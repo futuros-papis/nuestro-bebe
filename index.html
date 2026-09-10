@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Revelación de Género | Una Gran Sorpresa</title>
+    <title>Revelación de Género | Isabella o Isaac</title>
     
-    <!-- Fuentes Google Fonts: Great Vibes (cursiva suave) y Montserrat -->
+    <!-- Fuente Quicksand -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Librería para el efecto de confeti -->
+    <!-- Librería Confeti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <style>
         :root {
-            --bg-watercolor: #faf7ff;
-            --boy-blue: #619bd1;
+            --bg-color: #faf6fc;
+            --boy-blue: #5b9bd5;
             --boy-bg: #eaf3fb;
-            --girl-lavender: #a87bc7;
-            --girl-bg: #f5ebfa;
-            --gold-star: #eec276;
-            --text-dark: #3a3340;
-            --text-muted: #7d7285;
-            --card-border: #e3d5f0;
-            --card-shadow: 0 12px 30px rgba(168, 123, 199, 0.12);
+            --girl-purple: #a472c6;
+            --girl-bg: #f6edfa;
+            --gold-accent: #f3c26b;
+            --text-dark: #3a3042;
+            --text-muted: #796b82;
+            --card-border: #ebdcf5;
+            --card-shadow: 0 15px 35px rgba(164, 114, 198, 0.12);
         }
 
         * {
@@ -38,151 +38,215 @@
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--bg-watercolor);
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--bg-color);
             background-image: 
-                radial-gradient(circle at 15% 15%, #e1effc 0%, transparent 45%),
-                radial-gradient(circle at 85% 85%, #f2e4fa 0%, transparent 45%);
+                radial-gradient(circle at 15% 15%, #e6f0fa 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, #f4e8fb 0%, transparent 45%);
             color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
+            position: relative;
         }
 
-        h1, .script-font {
-            font-family: 'Great Vibes', cursive;
-            font-weight: normal;
+        /* DECORACIONES DE FONDO */
+        .bg-decorations {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .floating-item {
+            position: absolute;
+            opacity: 0.35;
+            animation: floatUp 12s infinite ease-in-out;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(105vh) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.4; }
+            80% { opacity: 0.4; }
+            100% { transform: translateY(-10vh) rotate(25deg); opacity: 0; }
         }
 
         .container {
             max-width: 680px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
+            z-index: 1;
         }
 
-        /* --- DECORACIONES VINTAGE --- */
-        .decor-star {
-            color: var(--gold-star);
-            font-size: 16px;
-            margin: 0 4px;
+        /* BOTÓN FLOTANTE MÚSICA */
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #ffffff;
+            border: 2px solid var(--card-border);
+            padding: 12px 20px;
+            border-radius: 50px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
         }
 
-        .decor-bow {
-            font-size: 28px;
-            display: block;
-            margin-bottom: 5px;
+        .music-btn:hover {
+            border-color: var(--girl-purple);
+            background: #faf2fe;
+            transform: scale(1.05);
         }
 
-        /* --- PORTADA --- */
+        /* HERO PORTADA */
         .hero {
-            min-height: 90vh;
+            min-height: 85vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 40px 20px;
+            padding: 25px 15px;
         }
 
         .subtitle-tag {
-            font-size: 13px;
+            font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 3px;
             color: var(--text-muted);
-            margin-bottom: 10px;
-            font-weight: 500;
+            margin-bottom: 12px;
+            font-weight: 700;
         }
 
         .hero h1 {
-            font-size: clamp(55px, 12vw, 85px);
-            color: var(--girl-lavender);
-            line-height: 1;
-            margin: 10px 0 15px;
-            text-shadow: 2px 2px 0px rgba(255,255,255,0.8);
+            font-size: clamp(36px, 8vw, 56px);
+            font-weight: 700;
+            color: var(--girl-purple);
+            line-height: 1.15;
+            margin-bottom: 20px;
         }
 
-        .vs-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 26px;
-            margin-bottom: 25px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 8px 25px;
-            border-radius: 50px;
-            border: 2px dashed var(--card-border);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        /* IMAGEN ORIGINAL DE LOS BEBÉS */
+        .baby-image-container {
+            margin: 15px 0 25px;
+            width: 100%;
+            max-width: 520px;
+            border-radius: 28px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.4);
+            padding: 10px;
+            border: 2px solid var(--card-border);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
         }
+
+        .baby-image-container:hover {
+            transform: scale(1.02);
+        }
+
+        .baby-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 20px;
+        }
+
+        .names-banner {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 480px;
+            margin-bottom: 20px;
+        }
+
+        .name-tag {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .name-tag.girl { color: var(--girl-purple); }
+        .name-tag.boy { color: var(--boy-blue); }
 
         .hero p {
             font-size: 15px;
             color: var(--text-muted);
             max-width: 480px;
-            margin-bottom: 35px;
-            font-weight: 400;
+            margin-bottom: 25px;
+            font-weight: 600;
         }
 
         .btn-main {
             display: inline-block;
-            background: linear-gradient(135deg, var(--girl-lavender), var(--boy-blue));
+            background: linear-gradient(135deg, var(--girl-purple), var(--boy-blue));
             color: #fff;
             padding: 16px 38px;
             border-radius: 50px;
             text-decoration: none;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 2px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(168, 123, 199, 0.3);
+            box-shadow: 0 10px 25px rgba(164, 114, 198, 0.35);
             border: none;
             cursor: pointer;
         }
 
         .btn-main:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(168, 123, 199, 0.4);
+            box-shadow: 0 14px 30px rgba(164, 114, 198, 0.45);
         }
 
-        /* --- TARJETAS TIPO MARCO ACUARELA --- */
+        /* TARJETAS SECCIONES */
         .section-card {
             background: #ffffff;
             border-radius: 28px;
-            padding: 40px 30px;
-            margin: 35px 0;
+            padding: 35px 22px;
+            margin: 30px 0;
             box-shadow: var(--card-shadow);
             text-align: center;
-            border: 3px double var(--card-border);
-            position: relative;
+            border: 2px solid var(--card-border);
         }
 
         .section-title {
-            font-size: 38px;
-            color: var(--boy-blue);
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--text-dark);
             margin-bottom: 10px;
         }
 
-        /* --- CUENTA REGRESIVA --- */
+        /* CUENTA REGRESIVA */
         .countdown {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin-top: 25px;
+            gap: 10px;
+            margin-top: 20px;
         }
 
         .time-box {
-            background: #fdfbfd;
-            padding: 12px 10px;
+            background: #fcf8ff;
+            padding: 12px 8px;
             border-radius: 16px;
-            min-width: 70px;
-            border: 1px solid var(--card-border);
+            min-width: 68px;
+            border: 1.5px solid var(--card-border);
         }
 
         .time-box .num {
             font-size: 26px;
             font-weight: 700;
             display: block;
-            line-height: 1;
-            color: var(--girl-lavender);
+            color: var(--girl-purple);
         }
 
         .time-box .label {
@@ -190,22 +254,22 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--text-muted);
-            margin-top: 5px;
+            font-weight: 700;
         }
 
-        /* --- DETALLES DEL EVENTO --- */
+        /* DETALLES */
         .info-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 15px;
-            margin-top: 25px;
+            gap: 12px;
+            margin-top: 20px;
         }
 
         .info-item {
-            padding: 18px;
-            background: var(--bg-watercolor);
+            padding: 16px;
+            background: var(--bg-color);
             border-radius: 16px;
-            border: 1px solid var(--card-border);
+            border: 1.5px solid var(--card-border);
         }
 
         .info-item h4 {
@@ -213,38 +277,39 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
             color: var(--text-muted);
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
         .info-item p {
             font-size: 15px;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--text-dark);
         }
 
-        /* --- FORMULARIO Y APUESTA --- */
+        /* FORMULARIO & TARJETAS DE ELECCIÓN */
         .form-group {
             text-align: left;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .form-group label {
             display: block;
-            font-size: 11px;
+            font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--text-muted);
-            margin-bottom: 8px;
-            font-weight: 600;
+            margin-bottom: 6px;
+            font-weight: 700;
         }
 
         .form-input, .form-select {
             width: 100%;
             padding: 14px 18px;
             border-radius: 14px;
-            border: 1px solid var(--card-border);
+            border: 1.5px solid var(--card-border);
             font-family: inherit;
-            font-size: 14px;
+            font-size: 15px;
+            font-weight: 600;
             background: #fff;
             outline: none;
             color: var(--text-dark);
@@ -253,137 +318,98 @@
         .team-selector {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 14px;
             margin: 20px 0;
         }
 
         .team-card {
-            border: 2px dashed var(--card-border);
-            border-radius: 20px;
-            padding: 20px 15px;
+            border: 2.5px dashed var(--card-border);
+            border-radius: 22px;
+            padding: 18px 10px;
             cursor: pointer;
             transition: all 0.3s ease;
             background: #fff;
             user-select: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .team-card.boy:hover, .team-card.selected.boy {
             border-color: var(--boy-blue);
             background: var(--boy-bg);
-            box-shadow: 0 8px 20px rgba(97, 155, 209, 0.2);
-            transform: scale(1.02);
+            transform: translateY(-4px);
         }
 
         .team-card.girl:hover, .team-card.selected.girl {
-            border-color: var(--girl-lavender);
+            border-color: var(--girl-purple);
             background: var(--girl-bg);
-            box-shadow: 0 8px 20px rgba(168, 123, 199, 0.2);
-            transform: scale(1.02);
-        }
-
-        .team-card .emoji {
-            font-size: 36px;
-            display: block;
-            margin-bottom: 6px;
+            transform: translateY(-4px);
         }
 
         .mission-box {
             display: none;
-            padding: 20px;
+            padding: 18px;
             border-radius: 18px;
             margin: 20px 0;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.4s ease;
         }
 
-        .mission-box.boy { background: var(--boy-bg); border: 2px dashed var(--boy-blue); color: #2d5882; }
-        .mission-box.girl { background: var(--girl-bg); border: 2px dashed var(--girl-lavender); color: #583373; }
+        .mission-box.boy { background: var(--boy-bg); border: 2px dashed var(--boy-blue); color: #215187; }
+        .mission-box.girl { background: var(--girl-bg); border: 2px dashed var(--girl-purple); color: #582580; }
 
         .success-message {
             display: none;
             padding: 25px;
             background: #f0fdf4;
-            border: 1px solid #bbf7d0;
-            border-radius: 18px;
+            border: 2px solid #bbf7d0;
+            border-radius: 20px;
             color: #166534;
             margin-top: 20px;
         }
 
-        /* --- PANEL DE CONTROL ADMIN --- */
+        /* ADMIN */
         .admin-section {
-            background: #332d38;
+            background: #27202d;
             color: #fff;
-            border-radius: 24px;
-            padding: 30px 20px;
-            margin: 50px 0 20px;
+            border-radius: 28px;
+            padding: 32px 20px;
+            margin: 45px 0 20px;
             text-align: center;
-        }
-
-        .admin-section h2 {
-            font-size: 26px;
-            margin-bottom: 10px;
-            color: #f3ebfa;
         }
 
         .admin-metrics {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
+            gap: 10px;
             margin: 20px 0;
         }
 
         .metric-card {
-            background: #463e4d;
-            padding: 12px;
+            background: #3a3043;
+            padding: 12px 8px;
             border-radius: 14px;
         }
 
-        .metric-card .value {
-            font-size: 24px;
-            font-weight: 700;
-            display: block;
-        }
+        .metric-card .value { font-size: 20px; font-weight: 700; }
+        .metric-card .label { font-size: 9px; text-transform: uppercase; color: #d0c5d8; }
 
-        .metric-card .label {
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #d1c7d9;
-        }
-
-        .table-wrapper {
-            overflow-x: auto;
-            margin-top: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-            font-size: 12px;
-        }
-
-        th, td {
-            padding: 10px 8px;
-            border-bottom: 1px solid #463e4d;
-        }
-
-        th {
-            background: #231e26;
-            color: #e3d5f0;
-            text-transform: uppercase;
-            font-size: 10px;
-            letter-spacing: 1px;
-        }
+        .table-wrapper { overflow-x: auto; margin-top: 18px; }
+        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 12px; }
+        th, td { padding: 10px 8px; border-bottom: 1px solid #3a3043; }
+        th { background: #19141e; color: #e8dbf2; text-transform: uppercase; font-size: 10px; }
 
         .btn-danger {
             background: #e53e3e;
             color: white;
             border: none;
-            padding: 8px 15px;
-            border-radius: 6px;
+            padding: 10px 18px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 11px;
             margin-top: 20px;
+            font-family: inherit;
+            font-weight: 700;
         }
 
         @keyframes fadeIn {
@@ -392,39 +418,55 @@
         }
 
         @media (max-width: 480px) {
-            .hero h1 { font-size: 58px; }
-            .section-card { padding: 30px 18px; }
+            .hero h1 { font-size: 32px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- DECORACIONES FLOTANTES ACUARELA -->
+    <div class="bg-decorations">
+        <div class="floating-item" style="left: 6%; animation-delay: 0s; font-size: 24px;">🎈</div>
+        <div class="floating-item" style="left: 22%; animation-delay: 3s; font-size: 20px;">⭐</div>
+        <div class="floating-item" style="left: 50%; animation-delay: 6s; font-size: 22px;">💜</div>
+        <div class="floating-item" style="left: 75%; animation-delay: 2s; font-size: 22px;">💙</div>
+        <div class="floating-item" style="left: 88%; animation-delay: 7s; font-size: 20px;">⭐</div>
+    </div>
+
+    <!-- REPRODUCTOR DE MÚSICA AUTOMÁTICA -->
+    <button class="music-btn" id="musicToggle">
+        🎵 <span id="musicText">Música Activa</span>
+    </button>
+    <audio id="bgMusic" loop src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8b939527d.mp3?filename=lullaby-good-night-baby-10499.mp3"></audio>
+
     <div class="container">
 
         <!-- 1. PORTADA -->
         <section class="hero">
-            <span class="decor-bow">🎀</span>
-            <div class="subtitle-tag">
-                <span class="decor-star">★</span> Una gran sorpresa está por llegar <span class="decor-star">★</span>
-            </div>
-            <h1>¿Niño o Niña?</h1>
+            <span class="subtitle-tag">✨ Hola, voy a ser tu bendición consentida ✨</span>
             
-            <div class="vs-badge">
-                <span>💙</span>
-                <span style="font-size: 16px; color: var(--text-muted); font-weight: 600;">o</span>
-                <span>💜</span>
+            <h1>¿Isabella o Isaac?</h1>
+
+            <!-- MOSTRAR LA IMAGEN RECORTADA DE LOS BEBÉS -->
+            <div class="baby-image-container">
+                <img src="bebes.png" alt="Isabella e Isaac">
             </div>
 
-            <p>Hay momentos que merecen ser compartidos. Queremos que nos acompañes a descubrir juntos una de las sorpresas más bonitas de nuestras vidas.</p>
+            <div class="names-banner">
+                <span class="name-tag girl">Isabella 💜</span>
+                <span class="name-tag boy">Isaac 💙</span>
+            </div>
+
+            <p>Queremos invitarte a compartir este día tan mágico y adivinar quién viene en camino a alegrar nuestras vidas.</p>
             
             <a href="#invitacion" class="btn-main">Descubrir Invitación</a>
         </section>
 
         <!-- 2. INVITACIÓN & CUENTA REGRESIVA -->
         <section id="invitacion" class="section-card">
-            <span class="subtitle-tag">Estás cordialmente invitado</span>
-            <h2 class="section-title script-font">Nuestra Revelación de Género</h2>
-            <p style="color: var(--text-muted); font-size: 14px;">Faltan muy pocos días para conocer el gran secreto. ¡Prepara tu intuición!</p>
+            <span class="subtitle-tag">Acompáñanos a celebrar</span>
+            <h2 class="section-title">Nuestra Revelación de Género</h2>
+            <p style="color: var(--text-muted); font-size: 14px; font-weight: 600;">Faltan muy pocos días para conocer el gran secreto:</p>
 
             <div class="countdown" id="countdown">
                 <div class="time-box">
@@ -448,7 +490,7 @@
 
         <!-- 3. DETALLES DEL EVENTO -->
         <section class="section-card">
-            <h2 class="section-title script-font">¿Dónde & Cuándo?</h2>
+            <h2 class="section-title">¿Dónde & Cuándo?</h2>
             <div class="info-grid">
                 <div class="info-item">
                     <h4>Fecha</h4>
@@ -465,15 +507,15 @@
             </div>
         </section>
 
-        <!-- 4. EXPERIENCIA INTERACTIVA DE CONFIRMACIÓN -->
+        <!-- 4. CONFIRMACIÓN Y VOTO -->
         <section class="section-card" id="confirmar">
             <span class="subtitle-tag">Paso 1 de 2</span>
-            <h2 class="section-title script-font">Confirma tu Asistencia</h2>
+            <h2 class="section-title">Confirma tu Asistencia</h2>
 
             <form id="rsvpForm">
                 <div class="form-group">
                     <label for="nombre">Nombre Completo</label>
-                    <input type="text" id="nombre" class="form-input" placeholder="Ej. Carlos Mendoza" required>
+                    <input type="text" id="nombre" class="form-input" placeholder="Ej. Camila Morales" required>
                 </div>
 
                 <div class="form-group">
@@ -494,32 +536,33 @@
                     </select>
                 </div>
 
-                <!-- SECCIÓN DE APUESTA -->
-                <div style="margin-top: 30px; border-top: 2px dashed var(--card-border); padding-top: 20px;">
-                    <span class="subtitle-tag">Paso 2 de 2 • Haz tu predicción</span>
-                    <h3 class="script-font" style="font-size: 34px; color: var(--text-dark);">🔮 ¿Qué crees que será?</h3>
+                <!-- SECCIÓN ELECCIÓN -->
+                <div style="margin-top: 25px; border-top: 2px dashed var(--card-border); padding-top: 22px;">
+                    <span class="subtitle-tag">Paso 2 de 2 • Tu Predicción</span>
+                    <h3 style="font-size: 20px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px;">🔮 ¿Quién crees que viene en camino?</h3>
 
                     <div class="team-selector">
-                        <div class="team-card boy" onclick="selectTeam('Niño 💙')">
-                            <span class="emoji">💙</span>
-                            <span style="font-weight: 600; font-size: 13px;">Equipo NIÑO</span>
+                        <div class="team-card girl" onclick="selectTeam('Isabella (Niña) 💜')">
+                            <span style="font-size: 32px; margin-bottom: 5px;">🎀</span>
+                            <span style="font-weight: 700; font-size: 15px; color: var(--girl-purple);">Equipo ISABELLA</span>
                         </div>
-                        <div class="team-card girl" onclick="selectTeam('Niña 💜')">
-                            <span class="emoji">💜</span>
-                            <span style="font-weight: 600; font-size: 13px;">Equipo NIÑA</span>
+
+                        <div class="team-card boy" onclick="selectTeam('Isaac (Niño) 💙')">
+                            <span style="font-size: 32px; margin-bottom: 5px;">🧸</span>
+                            <span style="font-weight: 700; font-size: 15px; color: var(--boy-blue);">Equipo ISAAC</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- MISIÓN DESBLOQUEADA -->
-                <div id="missionBoy" class="mission-box boy">
-                    <h3 class="script-font" style="font-size: 28px;">🎁 Tu Misión: Equipo NIÑO</h3>
-                    <p style="font-size: 13px;">Tu contribución asignada es: <strong>1 Paquete de Pañales (Talla M o L)</strong>.</p>
+                <!-- MISIÓN ASIGNADA -->
+                <div id="missionGirl" class="mission-box girl">
+                    <h3 style="font-size: 17px; font-weight: 700;">🎁 Misión: Equipo Isabella</h3>
+                    <p style="font-size: 13px; font-weight: 600;">Tu regalo asignado es: <strong>1 Paquete de Pañitos Húmedos</strong>.</p>
                 </div>
 
-                <div id="missionGirl" class="mission-box girl">
-                    <h3 class="script-font" style="font-size: 28px;">🎁 Tu Misión: Equipo NIÑA</h3>
-                    <p style="font-size: 13px;">Tu contribución asignada es: <strong>1 Paquete de Pañitos Húmedos</strong>.</p>
+                <div id="missionBoy" class="mission-box boy">
+                    <h3 style="font-size: 17px; font-weight: 700;">🎁 Misión: Equipo Isaac</h3>
+                    <p style="font-size: 13px; font-weight: 600;">Tu regalo asignado es: <strong>1 Paquete de Pañales (Talla M o L)</strong>.</p>
                 </div>
 
                 <button type="submit" class="btn-main" style="width: 100%; margin-top: 15px;">
@@ -528,21 +571,21 @@
             </form>
 
             <div id="successMessage" class="success-message">
-                <h3 class="script-font" style="font-size: 32px;">¡Registrado con Éxito! 🎉</h3>
-                <p style="font-size: 13px;">Muchas gracias por confirmar. Tu respuesta y tu predicción han quedado guardadas.</p>
+                <h3 style="font-size: 22px; font-weight: 700;">¡Registrado con Éxito! 🎉</h3>
+                <p style="font-size: 14px; font-weight: 600;">Muchas gracias por confirmar. ¡Nos vemos muy pronto!</p>
             </div>
         </section>
 
-        <!-- 5. PANEL DE CONTROL ADMINISTRADOR PRIVADO -->
+        <!-- 5. PANEL ADMIN -->
         <section class="admin-section">
-            <span class="subtitle-tag" style="color: #a89bb3;">Área Privada de Organizadores</span>
+            <span class="subtitle-tag" style="color: #a89bb3;">Área Privada</span>
             <h2>📊 Panel de Control</h2>
             
             <div id="loginAdmin">
-                <p style="font-size: 12px; color: #d1c7d9; margin-bottom: 15px;">Ingresa tu clave para ver las respuestas registradas:</p>
+                <p style="font-size: 12px; color: #d1c7d9; margin-bottom: 15px;">Ingresa tu clave para ver las respuestas:</p>
                 <input type="password" id="adminKey" class="form-input" style="max-width: 180px; margin: 0 auto 15px; text-align: center;" placeholder="Clave">
                 <br>
-                <button onclick="verificarClave()" class="btn-main" style="padding: 10px 25px; font-size: 11px;">Ingresar al Panel</button>
+                <button onclick="verificarClave()" class="btn-main" style="padding: 10px 25px; font-size: 12px;">Ingresar al Panel</button>
             </div>
 
             <div id="adminContent" style="display: none;">
@@ -552,24 +595,24 @@
                         <span class="label">Total Personas</span>
                     </div>
                     <div class="metric-card">
-                        <span class="value" id="votosBoy" style="color: #90cdf4;">0</span>
-                        <span class="label">Votos Niño 💙</span>
-                    </div>
-                    <div class="metric-card">
                         <span class="value" id="votosGirl" style="color: #d6bcfa;">0</span>
-                        <span class="label">Votos Niña 💜</span>
+                        <span class="label">Isabella 💜</span>
                     </div>
                     <div class="metric-card">
-                        <span class="value" id="totalPanales" style="color: #90cdf4;">0</span>
-                        <span class="label">Paq. Pañales</span>
+                        <span class="value" id="votosBoy" style="color: #90cdf4;">0</span>
+                        <span class="label">Isaac 💙</span>
                     </div>
                     <div class="metric-card">
                         <span class="value" id="totalPanitos" style="color: #d6bcfa;">0</span>
                         <span class="label">Paq. Pañitos</span>
                     </div>
+                    <div class="metric-card">
+                        <span class="value" id="totalPanales" style="color: #90cdf4;">0</span>
+                        <span class="label">Paq. Pañales</span>
+                    </div>
                 </div>
 
-                <h3 style="margin-top: 25px; text-align: left; font-size: 16px;">Lista de Confirmados</h3>
+                <h3 style="margin-top: 25px; text-align: left; font-size: 15px;">Lista de Confirmados</h3>
                 <div class="table-wrapper">
                     <table>
                         <thead>
@@ -578,7 +621,7 @@
                                 <th>Asiste</th>
                                 <th>Acomp.</th>
                                 <th>Predicción</th>
-                                <th>Misión Regalo</th>
+                                <th>Misión</th>
                             </tr>
                         </thead>
                         <tbody id="tablaInvitados"></tbody>
@@ -589,14 +632,46 @@
             </div>
         </section>
 
-        <div style="text-align: center; font-size: 12px; color: var(--text-muted); margin-bottom: 30px;">
-            <span class="decor-star">★</span> Hecho con amor para la llegada de nuestro bebé <span class="decor-star">★</span>
+        <div style="text-align: center; font-size: 12px; color: var(--text-muted); margin-bottom: 30px; font-weight: 600;">
+            ✨ Hecho con amor para la llegada de nuestro bebé ✨
         </div>
 
     </div>
 
     <!-- JAVASCRIPT -->
     <script>
+        // MÚSICA CON AUTOPLAY AL TOCAR PANTALLA
+        const musicBtn = document.getElementById('musicToggle');
+        const bgMusic = document.getElementById('bgMusic');
+        const musicText = document.getElementById('musicText');
+        let isPlaying = false;
+
+        function playAudio() {
+            if (!isPlaying) {
+                bgMusic.play().then(() => {
+                    isPlaying = true;
+                    musicText.innerText = "Pausar Música";
+                }).catch(() => {});
+            }
+        }
+
+        document.body.addEventListener('click', playAudio, { once: true });
+        document.body.addEventListener('touchstart', playAudio, { once: true });
+
+        musicBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (isPlaying) {
+                bgMusic.pause();
+                musicText.innerText = "Activar Música";
+                isPlaying = false;
+            } else {
+                bgMusic.play();
+                musicText.innerText = "Pausar Música";
+                isPlaying = true;
+            }
+        });
+
+        // CUENTA REGRESIVA
         const fechaEvento = new Date(2026, 9, 24, 15, 30, 0).getTime(); 
 
         const countdownTimer = setInterval(function() {
@@ -619,6 +694,7 @@
             }
         }, 1000);
 
+        // SELECCIÓN DE EQUIPO
         let votoSeleccionado = "";
 
         function selectTeam(equipo) {
@@ -627,15 +703,16 @@
             document.getElementById('missionBoy').style.display = 'none';
             document.getElementById('missionGirl').style.display = 'none';
 
-            if (equipo.includes('Niño')) {
-                document.querySelector('.team-card.boy').classList.add('selected');
-                document.getElementById('missionBoy').style.display = 'block';
-            } else {
+            if (equipo.includes('Isabella')) {
                 document.querySelector('.team-card.girl').classList.add('selected');
                 document.getElementById('missionGirl').style.display = 'block';
+            } else {
+                document.querySelector('.team-card.boy').classList.add('selected');
+                document.getElementById('missionBoy').style.display = 'block';
             }
         }
 
+        // REGISTRO Y CONFETI
         document.getElementById('rsvpForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -644,11 +721,11 @@
             const acompanantes = parseInt(document.getElementById('acompanantes').value);
 
             if (!votoSeleccionado) {
-                alert("Por favor elige si crees que será Niño 💙 o Niña 💜 antes de confirmar.");
+                alert("Por favor elige si crees que será Isabella 💜 o Isaac 💙 antes de confirmar.");
                 return;
             }
 
-            const mision = votoSeleccionado.includes('Niño') ? "1 Paq. Pañales" : "1 Paq. Pañitos";
+            const mision = votoSeleccionado.includes('Isabella') ? "1 Paq. Pañitos" : "1 Paq. Pañales";
 
             let registros = JSON.parse(localStorage.getItem('invitados_revelacion')) || [];
             
@@ -662,11 +739,12 @@
 
             localStorage.setItem('invitados_revelacion', JSON.stringify(registros));
 
+            // Confeti
             confetti({
-                particleCount: 120,
-                spread: 70,
+                particleCount: 150,
+                spread: 90,
                 origin: { y: 0.6 },
-                colors: ['#619bd1', '#a87bc7', '#eec276']
+                colors: ['#a472c6', '#5b9bd5', '#f3c26b']
             });
 
             document.getElementById('rsvpForm').style.display = 'none';
@@ -675,6 +753,7 @@
             cargarDatosAdmin();
         });
 
+        // PANEL ADMIN
         const CLAVE_ADMIN = "1234"; 
 
         function verificarClave() {
@@ -705,10 +784,10 @@
                     totalPersonas += (1 + item.acompanantes);
                 }
 
-                if (item.prediccion.includes('Niño')) {
+                if (item.prediccion.includes('Isaac')) {
                     votosBoy++;
                     if (item.asistencia === "Sí") totalPanales++;
-                } else if (item.prediccion.includes('Niña')) {
+                } else if (item.prediccion.includes('Isabella')) {
                     votosGirl++;
                     if (item.asistencia === "Sí") totalPanitos++;
                 }
@@ -732,7 +811,7 @@
         }
 
         function borrarDatos() {
-            if (confirm("¿Estás seguro de borrar todos los registros de prueba?")) {
+            if (confirm("¿Estás seguro de borrar los datos registrados?")) {
                 localStorage.removeItem('invitados_revelacion');
                 cargarDatosAdmin();
             }
