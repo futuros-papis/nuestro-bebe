@@ -270,8 +270,8 @@
         <section class="section-card">
             <h2 class="section-title">¿Dónde & Cuándo?</h2>
             <div class="info-grid">
-                <div class="info-item"><h4>Fecha</h4><p>Sábado, 24 de Octubre, 2026</p></div>
-                <div class="info-item"><h4>Hora</h4><p>3:30 PM</p></div>
+                <div class="info-item"><h4>Fecha</h4><p>Sábado, 03 de Octubre, 2026</p></div>
+                <div class="info-item"><h4>Hora</h4><p>2:00 PM</p></div>
                 <div class="info-item"><h4>Lugar</h4><p>Casa de la Familia / Salón de Eventos</p></div>
             </div>
         </section>
@@ -289,46 +289,49 @@
 
                 <div class="form-group">
                     <label for="asistencia">¿Nos acompañarás?</label>
-                    <select id="asistencia" class="form-select" required>
+                    <select id="asistencia" class="form-select" onchange="toggleAsistenciaCampos()" required>
                         <option value="Sí">¡Sí! Ahí estaré para celebrar 🥳</option>
                         <option value="No">Lo siento, no podré asistir 😔</option>
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <label for="acompanantes">¿Cuántos acompañantes van contigo?</label>
-                    <select id="acompanantes" class="form-select">
-                        <option value="0">Solo yo (0 acompañantes)</option>
-                        <option value="1">+1 Acompañante</option>
-                        <option value="2">+2 Acompañantes</option>
-                        <option value="3">+3 Acompañantes</option>
-                    </select>
-                </div>
+                <!-- CONTENEDOR QUE SE OCULTA SI DICEN QUE NO -->
+                <div id="camposAsistente">
+                    <div class="form-group">
+                        <label for="acompanantes">¿Cuántos acompañantes van contigo?</label>
+                        <select id="acompanantes" class="form-select">
+                            <option value="0">Solo yo (0 acompañantes)</option>
+                            <option value="1">+1 Acompañante</option>
+                            <option value="2">+2 Acompañantes</option>
+                            <option value="3">+3 Acompañantes</option>
+                        </select>
+                    </div>
 
-                <div style="margin-top: 30px; border-top: 2px dashed var(--card-border); padding-top: 22px;">
-                    <span class="subtitle-tag">Tu Predicción</span>
-                    <h3 style="font-size: 20px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px;">🔮 ¿Quién crees que será?</h3>
+                    <div style="margin-top: 30px; border-top: 2px dashed var(--card-border); padding-top: 22px;">
+                        <span class="subtitle-tag">Tu Predicción</span>
+                        <h3 style="font-size: 20px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px;">🔮 ¿Quién crees que será?</h3>
 
-                    <div class="team-selector">
-                        <div class="team-card girl" onclick="selectTeam('Isabella (Niña) 💜')">
-                            <span style="font-size: 32px; margin-bottom: 5px;">🎀</span>
-                            <span style="font-weight: 700; font-size: 15px; color: var(--girl-purple);">Equipo ISABELLA</span>
-                        </div>
-                        <div class="team-card boy" onclick="selectTeam('Isaac (Niño) 💙')">
-                            <span style="font-size: 32px; margin-bottom: 5px;">🧸</span>
-                            <span style="font-weight: 700; font-size: 15px; color: var(--boy-blue);">Equipo ISAAC</span>
+                        <div class="team-selector">
+                            <div class="team-card girl" onclick="selectTeam('Isabella (Niña) 💜')">
+                                <span style="font-size: 32px; margin-bottom: 5px;">🎀</span>
+                                <span style="font-weight: 700; font-size: 15px; color: var(--girl-purple);">Equipo ISABELLA</span>
+                            </div>
+                            <div class="team-card boy" onclick="selectTeam('Isaac (Niño) 💙')">
+                                <span style="font-size: 32px; margin-bottom: 5px;">🧸</span>
+                                <span style="font-weight: 700; font-size: 15px; color: var(--boy-blue);">Equipo ISAAC</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div id="missionGirl" class="mission-box girl">
-                    <h3 style="font-size: 17px; font-weight: 700;">🎁 Misión: Equipo Isabella</h3>
-                    <p style="font-size: 13px; font-weight: 600;">Tu regalo sugerido: <strong>1 Paquete de Pañitos Húmedos</strong>.</p>
-                </div>
+                    <div id="missionGirl" class="mission-box girl">
+                        <h3 style="font-size: 17px; font-weight: 700;">🎁 Misión: Equipo Isabella</h3>
+                        <p style="font-size: 13px; font-weight: 600;">Tu regalo sugerido: <strong>1 Paquete de Pañitos Húmedos</strong>.</p>
+                    </div>
 
-                <div id="missionBoy" class="mission-box boy">
-                    <h3 style="font-size: 17px; font-weight: 700;">🎁 Misión: Equipo Isaac</h3>
-                    <p style="font-size: 13px; font-weight: 600;">Tu regalo sugerido: <strong>1 Paquete de Pañales (Talla M o L)</strong>.</p>
+                    <div id="missionBoy" class="mission-box boy">
+                        <h3 style="font-size: 17px; font-weight: 700;">🎁 Misión: Equipo Isaac</h3>
+                        <p style="font-size: 13px; font-weight: 600;">Tu regalo sugerido: <strong>1 Paquete de Pañales (Etapa 3 o Etapa 4)</strong>.</p>
+                    </div>
                 </div>
 
                 <button type="submit" id="submitBtn" class="btn-main" style="width: 100%; margin-top: 20px;">
@@ -339,7 +342,7 @@
             <div id="successMessage" class="success-message">
                 <span style="font-size: 40px; display: block; margin-bottom: 10px;">🎉</span>
                 <h3 style="font-size: 24px; font-weight: 700; color: #15803d; margin-bottom: 8px;">¡Respuesta Registrada!</h3>
-                <p style="font-size: 15px; font-weight: 600; color: #166534;">Muchas gracias por ser parte de este momento especial. ¡Nos vemos!</p>
+                <p style="font-size: 15px; font-weight: 600; color: #166534;">Muchas gracias por avisarnos. ¡Te mandamos un abrazo!</p>
             </div>
         </section>
 
@@ -386,7 +389,6 @@
 
     <!-- JAVASCRIPT -->
     <script>
-        // ENLACE DE SHEETDB CONECTADO
         const SHEETDB_URL = "https://sheetdb.io/api/v1/pnct7bjqp2gn9"; 
 
         // CONFIGURACIÓN DE AUDIO Y APERTURA DE CARTA
@@ -415,8 +417,8 @@
             if (sound.playing()) { sound.pause(); } else { sound.play(); }
         });
 
-        // CUENTA REGRESIVA
-        const targetDate = new Date(2026, 9, 24, 15, 30, 0).getTime(); 
+        // CUENTA REGRESIVA (03 DE OCTUBRE DE 2026 A LAS 14:00)
+        const targetDate = new Date(2026, 9, 3, 14, 0, 0).getTime(); 
 
         function updateCountdown() {
             const now = new Date().getTime();
@@ -439,6 +441,17 @@
         }
         updateCountdown();
         setInterval(updateCountdown, 1000);
+
+        // CONTROLAR VISIBILIDAD SI NO ASISTE
+        function toggleAsistenciaCampos() {
+            const asistencia = document.getElementById('asistencia').value;
+            const camposAsistente = document.getElementById('camposAsistente');
+            if (asistencia === "No") {
+                camposAsistente.style.display = 'none';
+            } else {
+                camposAsistente.style.display = 'block';
+            }
+        }
 
         // SELECCIÓN DE EQUIPO
         let votoSeleccionado = "";
@@ -464,14 +477,20 @@
                 e.preventDefault();
                 const nombre = document.getElementById('nombre').value.trim();
                 const asistencia = document.getElementById('asistencia').value;
-                const acompanantes = document.getElementById('acompanantes').value;
+                let acompanantes = "0";
+                let prediccion = "No asiste";
+                let mision = "Ninguna";
 
-                if (!votoSeleccionado) {
-                    alert("Por favor elige si crees que será Isabella 💜 o Isaac 💙 antes de confirmar.");
-                    return;
+                if (asistencia === "Sí") {
+                    acompanantes = document.getElementById('acompanantes').value;
+                    if (!votoSeleccionado) {
+                        alert("Por favor elige si crees que será Isabella 💜 o Isaac 💙 antes de confirmar.");
+                        return;
+                    }
+                    prediccion = votoSeleccionado;
+                    mision = votoSeleccionado.includes('Isabella') ? "1 Paq. Pañitos Húmedos" : "1 Paq. Pañales (Etapa 3 o 4)";
                 }
 
-                const mision = votoSeleccionado.includes('Isabella') ? "1 Paq. Pañitos" : "1 Paq. Pañales";
                 const submitBtn = document.getElementById('submitBtn');
                 submitBtn.innerText = "Enviando respuesta...";
                 submitBtn.disabled = true;
@@ -485,14 +504,16 @@
                             nombre: nombre,
                             asistencia: asistencia,
                             acompanantes: acompanantes,
-                            prediccion: votoSeleccionado,
+                            prediccion: prediccion,
                             mision: mision
                         }]
                     })
                 })
                 .then(response => response.json())
                 .then(data => {
-                    confetti({ particleCount: 160, spread: 100, origin: { y: 0.6 }, colors: ['#a472c6', '#5b9bd5', '#f3c26b'] });
+                    if (asistencia === "Sí") {
+                        confetti({ particleCount: 160, spread: 100, origin: { y: 0.6 }, colors: ['#a472c6', '#5b9bd5', '#f3c26b'] });
+                    }
                     rsvpForm.style.opacity = '0';
                     setTimeout(() => {
                         rsvpForm.style.display = 'none';
@@ -526,7 +547,7 @@
             fetch(SHEETDB_URL)
             .then(response => response.json())
             .then(registros => {
-                let totalPersonas = 0, votosBoy = 0, votosGirl = 0, totalPanales = 0, totalPanitos = 0;
+                let totalPersonas = 0, votosBoy = 0, votosGirl = 0, totalPanitos = 0, totalPanales = 0;
                 tabla.innerHTML = "";
 
                 if (registros.length === 0) {
@@ -536,14 +557,15 @@
 
                 registros.forEach(item => {
                     let numAcomp = parseInt(item.acompanantes) || 0;
-                    if (item.asistencia === "Sí") totalPersonas += (1 + numAcomp);
-                    
-                    if (item.prediccion && item.prediccion.includes('Isaac')) { 
-                        votosBoy++; 
-                        if (item.asistencia === "Sí") totalPanales++; 
-                    } else if (item.prediccion && item.prediccion.includes('Isabella')) { 
-                        votosGirl++; 
-                        if (item.asistencia === "Sí") totalPanitos++; 
+                    if (item.asistencia === "Sí") {
+                        totalPersonas += (1 + numAcomp);
+                        if (item.prediccion && item.prediccion.includes('Isaac')) { 
+                            votosBoy++; 
+                            totalPanales++; 
+                        } else if (item.prediccion && item.prediccion.includes('Isabella')) { 
+                            votosGirl++; 
+                            totalPanitos++; 
+                        }
                     }
 
                     let tr = document.createElement('tr');
@@ -554,8 +576,8 @@
                 document.getElementById('totalAsistentes').innerText = totalPersonas;
                 document.getElementById('votosBoy').innerText = votosBoy;
                 document.getElementById('votosGirl').innerText = votosGirl;
-                document.getElementById('totalPanales').innerText = totalPanales;
                 document.getElementById('totalPanitos').innerText = totalPanitos;
+                document.getElementById('totalPanales').innerText = totalPanales;
             })
             .catch(error => {
                 tabla.innerHTML = `<tr><td colspan="5" style="text-align: center; color: #ff8b8b;">Error al cargar la lista de la nube.</td></tr>`;
