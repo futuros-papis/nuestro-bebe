@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Revelación de Género | Isabella o Isaac</title>
     
+    <!-- PREVISUALIZACIÓN EN REDES SOCIALES (OPEN GRAPH / OG) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="✨ Revelación de Género | Isabella o Isaac 🧸">
+    <meta property="og:description" content="¡Estás invitado a nuestra gran revelación de género! Descubre si será Isabella 💜 o Isaac 💙 y confirma tu asistencia.">
+    <meta property="og:image" content="visualizacion.jpeg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
     <!-- ICONO DE LA PESTAÑA (FAVICON DE PELUCHE 🧸) -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧸</text></svg>">
 
@@ -642,12 +651,15 @@
 
     <!-- JAVASCRIPT -->
     <script>
-        // CONFIGURACIÓN DE AUDIO RESISTENTE
+        // CONFIGURACIÓN DE AUDIO RESISTENTE Y RUTAS ABSOLUTAS
         const musicBtn = document.getElementById('musicToggle');
         const musicText = document.getElementById('musicText');
-        
+
+        // Detecta automáticamente la ruta correcta del archivo
+        const songPath = new URL('indigo.mp3', window.location.href).href;
+
         const sound = new Howl({
-            src: ['indigo.mp3', './indigo.mp3', 'Indigo.mp3', 'INDIGO.mp3', 'INDIGO.MP3'],
+            src: [songPath, 'indigo.mp3', './indigo.mp3'],
             loop: true,
             volume: 0.8,
             html5: true,
@@ -674,7 +686,7 @@
 
         document.addEventListener('click', playMusic, { once: true });
         document.addEventListener('touchstart', playMusic, { once: true });
-        
+
         const btnDesc = document.getElementById('btnDescubrir');
         if (btnDesc) {
             btnDesc.addEventListener('click', playMusic);
@@ -689,7 +701,7 @@
             }
         });
 
-        // CUENTA REGRESIVA - CORREGIDA
+        // CUENTA REGRESIVA
         const targetDate = new Date(2026, 9, 24, 15, 30, 0).getTime(); 
 
         function updateCountdown() {
