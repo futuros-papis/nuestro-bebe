@@ -39,15 +39,8 @@
             --card-shadow: 0 15px 35px rgba(164, 114, 198, 0.12);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Quicksand', sans-serif;
@@ -64,285 +57,109 @@
         /* --- PANTALLA INICIAL DE LA CARTA / SOBRE ANIMADO --- */
         #welcomeOverlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
+            top: 0; left: 0; width: 100%; height: 100vh;
             background: linear-gradient(135deg, rgba(164, 114, 198, 0.95), rgba(91, 155, 213, 0.95));
             backdrop-filter: blur(8px);
             z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: flex; justify-content: center; align-items: center;
             padding: 20px;
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
         .envelope-card {
-            background: #ffffff;
-            width: 100%;
-            max-width: 420px;
-            border-radius: 30px;
-            padding: 35px 25px;
-            text-align: center;
+            background: #ffffff; width: 100%; max-width: 420px;
+            border-radius: 30px; padding: 35px 25px; text-align: center;
             box-shadow: 0 25px 50px rgba(0,0,0,0.25);
             border: 3px solid rgba(255, 255, 255, 0.8);
             animation: bounceIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
+            position: relative; overflow: hidden;
         }
 
         .envelope-card img {
-            width: 100%;
-            max-height: 240px;
-            object-fit: cover;
-            border-radius: 20px;
-            margin-bottom: 20px;
+            width: 100%; max-height: 240px; object-fit: cover;
+            border-radius: 20px; margin-bottom: 20px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.08);
         }
 
-        .envelope-card h2 {
-            font-size: 24px;
-            color: var(--girl-purple);
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .envelope-card p {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin-bottom: 25px;
-            font-weight: 600;
-        }
+        .envelope-card h2 { font-size: 24px; color: var(--girl-purple); margin-bottom: 10px; font-weight: 700; }
+        .envelope-card p { font-size: 14px; color: var(--text-muted); margin-bottom: 25px; font-weight: 600; }
 
         .open-btn {
             background: linear-gradient(135deg, var(--girl-purple), var(--boy-blue));
-            color: #fff;
-            border: none;
-            padding: 16px 32px;
-            font-size: 15px;
-            font-weight: 700;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 10px 25px rgba(164, 114, 198, 0.4);
-            transition: all 0.3s ease;
-            width: 100%;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            color: #fff; border: none; padding: 16px 32px; font-size: 15px; font-weight: 700;
+            border-radius: 50px; cursor: pointer; box-shadow: 0 10px 25px rgba(164, 114, 198, 0.4);
+            transition: all 0.3s ease; width: 100%; text-transform: uppercase; letter-spacing: 1px;
         }
-
-        .open-btn:hover {
-            transform: scale(1.03);
-            box-shadow: 0 14px 30px rgba(164, 114, 198, 0.6);
-        }
+        .open-btn:hover { transform: scale(1.03); box-shadow: 0 14px 30px rgba(164, 114, 198, 0.6); }
 
         @keyframes bounceIn {
             0% { transform: scale(0.5); opacity: 0; }
             100% { transform: scale(1); opacity: 1; }
         }
 
-        .fade-out {
-            opacity: 0;
-            transform: scale(1.1);
-            pointer-events: none;
-        }
+        .fade-out { opacity: 0; transform: scale(1.1); pointer-events: none; }
 
         /* --- RESTO DE DISEÑOS --- */
-        .bg-decorations {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .floating-item {
-            position: absolute;
-            opacity: 0.35;
-            animation: floatUp 12s infinite ease-in-out;
-        }
+        .bg-decorations { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
+        .floating-item { position: absolute; opacity: 0.35; animation: floatUp 12s infinite ease-in-out; }
 
         @keyframes floatUp {
             0% { transform: translateY(105vh) rotate(0deg); opacity: 0; }
-            20% { opacity: 0.4; }
-            80% { opacity: 0.4; }
+            20% { opacity: 0.4; } 80% { opacity: 0.4; }
             100% { transform: translateY(-10vh) rotate(25deg); opacity: 0; }
         }
 
-        .container {
-            max-width: 680px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
+        .container { max-width: 680px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
 
         .music-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #ffffff;
-            border: 2px solid var(--card-border);
-            padding: 12px 20px;
-            border-radius: 50px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-            cursor: pointer;
-            z-index: 998;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--text-dark);
-            transition: all 0.3s ease;
+            position: fixed; bottom: 20px; right: 20px; background: #ffffff;
+            border: 2px solid var(--card-border); padding: 12px 20px; border-radius: 50px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12); cursor: pointer; z-index: 998;
+            display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700;
+            color: var(--text-dark); transition: all 0.3s ease;
         }
+        .music-btn:hover { border-color: var(--girl-purple); background: #faf2fe; transform: scale(1.05); }
 
-        .music-btn:hover {
-            border-color: var(--girl-purple);
-            background: #faf2fe;
-            transform: scale(1.05);
-        }
-
-        .hero {
-            min-height: 85vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 25px 15px;
-        }
-
-        .subtitle-tag {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-            font-weight: 700;
-        }
-
-        .hero h1 {
-            font-size: clamp(36px, 8vw, 56px);
-            font-weight: 700;
-            color: var(--girl-purple);
-            line-height: 1.15;
-            margin-bottom: 20px;
-        }
+        .hero { min-height: 85vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 25px 15px; }
+        .subtitle-tag { font-size: 12px; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 12px; font-weight: 700; }
+        .hero h1 { font-size: clamp(36px, 8vw, 56px); font-weight: 700; color: var(--girl-purple); line-height: 1.15; margin-bottom: 20px; }
 
         .baby-image-container {
-            margin: 15px 0 25px;
-            width: 100%;
-            max-width: 520px;
-            border-radius: 28px;
-            overflow: hidden;
-            background: rgba(255, 255, 255, 0.4);
-            padding: 10px;
-            border: 2px solid var(--card-border);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+            margin: 15px 0 25px; width: 100%; max-width: 520px; border-radius: 28px;
+            overflow: hidden; background: rgba(255, 255, 255, 0.4); padding: 10px;
+            border: 2px solid var(--card-border); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
         }
+        .baby-image-container img { width: 100%; height: auto; display: block; border-radius: 20px; }
 
-        .baby-image-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 20px;
-        }
-
-        .names-banner {
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-            max-width: 480px;
-            margin-bottom: 20px;
-        }
-
+        .names-banner { display: flex; justify-content: space-around; width: 100%; max-width: 480px; margin-bottom: 20px; }
         .name-tag { font-size: 22px; font-weight: 700; }
         .name-tag.girl { color: var(--girl-purple); }
         .name-tag.boy { color: var(--boy-blue); }
 
-        .hero p {
-            font-size: 15px;
-            color: var(--text-muted);
-            max-width: 480px;
-            margin-bottom: 25px;
-            font-weight: 600;
-        }
+        .hero p { font-size: 15px; color: var(--text-muted); max-width: 480px; margin-bottom: 25px; font-weight: 600; }
 
         .btn-main {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--girl-purple), var(--boy-blue));
-            color: #fff;
-            padding: 16px 38px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px rgba(164, 114, 198, 0.35);
-            border: none;
-            cursor: pointer;
+            display: inline-block; background: linear-gradient(135deg, var(--girl-purple), var(--boy-blue));
+            color: #fff; padding: 16px 38px; border-radius: 50px; text-decoration: none;
+            font-size: 14px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+            transition: all 0.3s ease; box-shadow: 0 10px 25px rgba(164, 114, 198, 0.35);
+            border: none; cursor: pointer;
         }
-
-        .btn-main:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 14px 30px rgba(164, 114, 198, 0.45);
-        }
+        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(164, 114, 198, 0.45); }
 
         .section-card {
-            background: #ffffff;
-            border-radius: 28px;
-            padding: 35px 22px;
-            margin: 30px 0;
-            box-shadow: var(--card-shadow);
-            text-align: center;
-            border: 2px solid var(--card-border);
+            background: #ffffff; border-radius: 28px; padding: 35px 22px; margin: 30px 0;
+            box-shadow: var(--card-shadow); text-align: center; border: 2px solid var(--card-border);
         }
+        .section-title { font-size: 26px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
 
-        .section-title {
-            font-size: 26px;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 10px;
-        }
-
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .time-box {
-            background: #fcf8ff;
-            padding: 12px 8px;
-            border-radius: 16px;
-            min-width: 68px;
-            border: 1.5px solid var(--card-border);
-        }
-
+        .countdown { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
+        .time-box { background: #fcf8ff; padding: 12px 8px; border-radius: 16px; min-width: 68px; border: 1.5px solid var(--card-border); }
         .time-box .num { font-size: 26px; font-weight: 700; display: block; color: var(--girl-purple); }
         .time-box .label { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); font-weight: 700; }
 
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-            margin-top: 20px;
-        }
-
-        .info-item {
-            padding: 16px;
-            background: var(--bg-color);
-            border-radius: 16px;
-            border: 1.5px solid var(--card-border);
-        }
-
+        .info-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
+        .info-item { padding: 16px; background: var(--bg-color); border-radius: 16px; border: 1.5px solid var(--card-border); }
         .info-item h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-bottom: 3px; }
         .info-item p { font-size: 15px; font-weight: 700; color: var(--text-dark); }
 
@@ -385,11 +202,6 @@
         table { width: 100%; border-collapse: collapse; text-align: left; font-size: 12px; }
         th, td { padding: 10px 8px; border-bottom: 1px solid #3a3043; }
         th { background: #19141e; color: #e8dbf2; text-transform: uppercase; font-size: 10px; }
-
-        .btn-danger {
-            background: #e53e3e; color: white; border: none; padding: 10px 18px;
-            border-radius: 8px; cursor: pointer; font-size: 11px; margin-top: 20px; font-weight: 700;
-        }
     </style>
 </head>
 <body>
@@ -519,7 +331,7 @@
                     <p style="font-size: 13px; font-weight: 600;">Tu regalo sugerido: <strong>1 Paquete de Pañales (Talla M o L)</strong>.</p>
                 </div>
 
-                <button type="submit" class="btn-main" style="width: 100%; margin-top: 20px;">
+                <button type="submit" id="submitBtn" class="btn-main" style="width: 100%; margin-top: 20px;">
                     Confirmar y Enviar Respuesta 🚀
                 </button>
             </form>
@@ -534,10 +346,10 @@
         <!-- 5. PANEL ADMIN -->
         <section class="admin-section">
             <span class="subtitle-tag" style="color: #a89bb3;">Área Privada</span>
-            <h2>📊 Panel de Control</h2>
+            <h2>📊 Panel de Control en la Nube</h2>
             
             <div id="loginAdmin">
-                <p style="font-size: 12px; color: #d1c7d9; margin-bottom: 15px;">Ingresa tu clave para ver los votos:</p>
+                <p style="font-size: 12px; color: #d1c7d9; margin-bottom: 15px;">Ingresa tu clave para ver los votos de todos:</p>
                 <input type="password" id="adminKey" class="form-input" style="max-width: 180px; margin: 0 auto 15px; text-align: center;" placeholder="Clave">
                 <br>
                 <button type="button" onclick="verificarClave()" class="btn-main" style="padding: 10px 25px; font-size: 12px;">Ingresar</button>
@@ -552,16 +364,18 @@
                     <div class="metric-card"><span class="value" id="totalPanales" style="color: #90cdf4;">0</span><span class="label">Paq. Pañales</span></div>
                 </div>
 
-                <h3 style="margin-top: 25px; text-align: left; font-size: 15px;">Lista de Confirmados</h3>
+                <h3 style="margin-top: 25px; text-align: left; font-size: 15px;">Lista Global de Confirmados</h3>
                 <div class="table-wrapper">
                     <table>
                         <thead>
                             <tr><th>Nombre</th><th>Asiste</th><th>Acomp.</th><th>Predicción</th><th>Misión</th></tr>
                         </thead>
-                        <tbody id="tablaInvitados"></tbody>
+                        <tbody id="tablaInvitados">
+                            <tr><td colspan="5" style="text-align: center;">Cargando datos...</td></tr>
+                        </tbody>
                     </table>
                 </div>
-                <button type="button" onclick="borrarDatos()" class="btn-danger">Borrar Datos</button>
+                <button type="button" onclick="cargarDatosAdmin()" class="btn-main" style="padding: 10px 20px; font-size: 11px; margin-top: 15px;">Actualizar Lista 🔄</button>
             </div>
         </section>
 
@@ -572,6 +386,9 @@
 
     <!-- JAVASCRIPT -->
     <script>
+        // ENLACE DE SHEETDB CONECTADO
+        const SHEETDB_URL = "https://sheetdb.io/api/v1/pnct7bjqp2gn9"; 
+
         // CONFIGURACIÓN DE AUDIO Y APERTURA DE CARTA
         const musicBtn = document.getElementById('musicToggle');
         const musicText = document.getElementById('musicText');
@@ -582,33 +399,20 @@
 
         const sound = new Howl({
             src: [songPath, 'indigo.mp3', './indigo.mp3'],
-            loop: true,
-            volume: 0.8,
-            html5: true,
-            onplay: function() {
-                musicText.innerText = "Reproduciendo: Índigo 🎵";
-            },
-            onpause: function() {
-                musicText.innerText = "Música pausada";
-            }
+            loop: true, volume: 0.8, html5: true,
+            onplay: function() { musicText.innerText = "Reproduciendo: Índigo 🎵"; },
+            onpause: function() { musicText.innerText = "Música pausada"; }
         });
 
-        // Al hacer clic en "Abrir Invitación", se quita la carta con animación y arranca la música de una vez
         openInvitationBtn.addEventListener('click', () => {
             sound.play();
             welcomeOverlay.classList.add('fade-out');
-            setTimeout(() => {
-                welcomeOverlay.style.display = 'none';
-            }, 800);
+            setTimeout(() => { welcomeOverlay.style.display = 'none'; }, 800);
         });
 
         musicBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            if (sound.playing()) {
-                sound.pause();
-            } else {
-                sound.play();
-            }
+            if (sound.playing()) { sound.pause(); } else { sound.play(); }
         });
 
         // CUENTA REGRESIVA
@@ -653,14 +457,14 @@
             }
         }
 
-        // FORMULARIO Y REGISTRO
+        // FORMULARIO CONECTADO A LA NUBE (SHEETDB)
         const rsvpForm = document.getElementById('rsvpForm');
         if (rsvpForm) {
             rsvpForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 const nombre = document.getElementById('nombre').value.trim();
                 const asistencia = document.getElementById('asistencia').value;
-                const acompanantes = parseInt(document.getElementById('acompanantes').value);
+                const acompanantes = document.getElementById('acompanantes').value;
 
                 if (!votoSeleccionado) {
                     alert("Por favor elige si crees que será Isabella 💜 o Isaac 💙 antes de confirmar.");
@@ -668,24 +472,42 @@
                 }
 
                 const mision = votoSeleccionado.includes('Isabella') ? "1 Paq. Pañitos" : "1 Paq. Pañales";
-                let registros = JSON.parse(localStorage.getItem('invitados_revelacion')) || [];
-                
-                registros.push({ nombre, asistencia, acompanantes, prediccion: votoSeleccionado, mision });
-                localStorage.setItem('invitados_revelacion', JSON.stringify(registros));
+                const submitBtn = document.getElementById('submitBtn');
+                submitBtn.innerText = "Enviando respuesta...";
+                submitBtn.disabled = true;
 
-                confetti({ particleCount: 160, spread: 100, origin: { y: 0.6 }, colors: ['#a472c6', '#5b9bd5', '#f3c26b'] });
-
-                rsvpForm.style.opacity = '0';
-                setTimeout(() => {
-                    rsvpForm.style.display = 'none';
-                    document.getElementById('successMessage').style.display = 'block';
-                }, 300);
-
-                cargarDatosAdmin();
+                // Enviar datos por API a Google Sheets
+                fetch(SHEETDB_URL, {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        data: [{
+                            nombre: nombre,
+                            asistencia: asistencia,
+                            acompanantes: acompanantes,
+                            prediccion: votoSeleccionado,
+                            mision: mision
+                        }]
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    confetti({ particleCount: 160, spread: 100, origin: { y: 0.6 }, colors: ['#a472c6', '#5b9bd5', '#f3c26b'] });
+                    rsvpForm.style.opacity = '0';
+                    setTimeout(() => {
+                        rsvpForm.style.display = 'none';
+                        document.getElementById('successMessage').style.display = 'block';
+                    }, 300);
+                })
+                .catch(error => {
+                    alert("Hubo un error al enviar. Revisa tu conexión e intenta de nuevo.");
+                    submitBtn.innerText = "Confirmar y Enviar Respuesta 🚀";
+                    submitBtn.disabled = false;
+                });
             });
         }
 
-        // PANEL ADMIN
+        // PANEL ADMIN CONECTADO A LA NUBE
         const CLAVE_ADMIN = "1234"; 
         function verificarClave() {
             if (document.getElementById('adminKey').value === CLAVE_ADMIN) {
@@ -698,34 +520,46 @@
         }
 
         function cargarDatosAdmin() {
-            let registros = JSON.parse(localStorage.getItem('invitados_revelacion')) || [];
-            let totalPersonas = 0, votosBoy = 0, votosGirl = 0, totalPanales = 0, totalPanitos = 0;
             const tabla = document.getElementById('tablaInvitados');
-            if (!tabla) return;
-            tabla.innerHTML = "";
+            tabla.innerHTML = `<tr><td colspan="5" style="text-align: center;">Cargando datos de la nube...</td></tr>`;
 
-            registros.forEach(item => {
-                if (item.asistencia === "Sí") totalPersonas += (1 + item.acompanantes);
-                if (item.prediccion.includes('Isaac')) { votosBoy++; if (item.asistencia === "Sí") totalPanales++; }
-                else if (item.prediccion.includes('Isabella')) { votosGirl++; if (item.asistencia === "Sí") totalPanitos++; }
+            fetch(SHEETDB_URL)
+            .then(response => response.json())
+            .then(registros => {
+                let totalPersonas = 0, votosBoy = 0, votosGirl = 0, totalPanales = 0, totalPanitos = 0;
+                tabla.innerHTML = "";
 
-                let tr = document.createElement('tr');
-                tr.innerHTML = `<td><strong>${item.nombre}</strong></td><td>${item.asistencia === "Sí" ? "✅ Sí" : "❌ No"}</td><td>+${item.acompanantes}</td><td>${item.prediccion}</td><td>${item.mision}</td>`;
-                tabla.appendChild(tr);
+                if (registros.length === 0) {
+                    tabla.innerHTML = `<tr><td colspan="5" style="text-align: center;">Aún no hay respuestas registradas.</td></tr>`;
+                    return;
+                }
+
+                registros.forEach(item => {
+                    let numAcomp = parseInt(item.acompanantes) || 0;
+                    if (item.asistencia === "Sí") totalPersonas += (1 + numAcomp);
+                    
+                    if (item.prediccion && item.prediccion.includes('Isaac')) { 
+                        votosBoy++; 
+                        if (item.asistencia === "Sí") totalPanales++; 
+                    } else if (item.prediccion && item.prediccion.includes('Isabella')) { 
+                        votosGirl++; 
+                        if (item.asistencia === "Sí") totalPanitos++; 
+                    }
+
+                    let tr = document.createElement('tr');
+                    tr.innerHTML = `<td><strong>${item.nombre}</strong></td><td>${item.asistencia === "Sí" ? "✅ Sí" : "❌ No"}</td><td>+${numAcomp}</td><td>${item.prediccion}</td><td>${item.mision}</td>`;
+                    tabla.appendChild(tr);
+                });
+
+                document.getElementById('totalAsistentes').innerText = totalPersonas;
+                document.getElementById('votosBoy').innerText = votosBoy;
+                document.getElementById('votosGirl').innerText = votosGirl;
+                document.getElementById('totalPanales').innerText = totalPanales;
+                document.getElementById('totalPanitos').innerText = totalPanitos;
+            })
+            .catch(error => {
+                tabla.innerHTML = `<tr><td colspan="5" style="text-align: center; color: #ff8b8b;">Error al cargar la lista de la nube.</td></tr>`;
             });
-
-            document.getElementById('totalAsistentes').innerText = totalPersonas;
-            document.getElementById('votosBoy').innerText = votosBoy;
-            document.getElementById('votosGirl').innerText = votosGirl;
-            document.getElementById('totalPanales').innerText = totalPanales;
-            document.getElementById('totalPanitos').innerText = totalPanitos;
-        }
-
-        function borrarDatos() {
-            if (confirm("¿Estás seguro de borrar los datos registrados?")) {
-                localStorage.removeItem('invitados_revelacion');
-                cargarDatosAdmin();
-            }
         }
     </script>
 </body>
