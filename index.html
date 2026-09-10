@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Revelación de Género | Isabella o Isaac</title>
     
+    <!-- ICONO DE LA PESTAÑA (FAVICON DE PELUCHE 🧸) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧸</text></svg>">
+
     <!-- Fuente Quicksand -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -465,21 +468,21 @@
             <h2 class="section-title">Nuestra Revelación de Género</h2>
             <p style="color: var(--text-muted); font-size: 14px; font-weight: 600;">Faltan muy pocos días para conocer el gran secreto:</p>
 
-            <div class="countdown" id="countdown">
+            <div class="countdown" id="countdownBox">
                 <div class="time-box">
-                    <span class="num" id="days">00</span>
+                    <span class="num" id="cdDays">00</span>
                     <span class="label">Días</span>
                 </div>
                 <div class="time-box">
-                    <span class="num" id="hours">00</span>
+                    <span class="num" id="cdHours">00</span>
                     <span class="label">Horas</span>
                 </div>
                 <div class="time-box">
-                    <span class="num" id="minutes">00</span>
+                    <span class="num" id="cdMinutes">00</span>
                     <span class="label">Min</span>
                 </div>
                 <div class="time-box">
-                    <span class="num" id="seconds">00</span>
+                    <span class="num" id="cdSeconds">00</span>
                     <span class="label">Seg</span>
                 </div>
             </div>
@@ -584,7 +587,7 @@
                 <p style="font-size: 12px; color: #d1c7d9; margin-bottom: 15px;">Ingresa tu clave para ver los votos:</p>
                 <input type="password" id="adminKey" class="form-input" style="max-width: 180px; margin: 0 auto 15px; text-align: center;" placeholder="Clave">
                 <br>
-                <button onclick="verificarClave()" class="btn-main" style="padding: 10px 25px; font-size: 12px;">Ingresar al Panel</button>
+                <button type="button" onclick="verificarClave()" class="btn-main" style="padding: 10px 25px; font-size: 12px;">Ingresar al Panel</button>
             </div>
 
             <div id="adminContent" style="display: none;">
@@ -627,7 +630,7 @@
                     </table>
                 </div>
 
-                <button onclick="borrarDatos()" class="btn-danger">Borrar Datos de Prueba</button>
+                <button type="button" onclick="borrarDatos()" class="btn-danger">Borrar Datos de Prueba</button>
             </div>
         </section>
 
@@ -639,9 +642,8 @@
 
     <!-- JAVASCRIPT -->
     <script>
-        // CONFIGURACIÓN DE AUDIO RESISTENTE A RUTAS Y ERRORES
+        // CONFIGURACIÓN DE AUDIO RESISTENTE
         const musicBtn = document.getElementById('musicToggle');
-        musicBtn.style.display = 'flex';
         const musicText = document.getElementById('musicText');
         
         const sound = new Howl({
@@ -650,11 +652,11 @@
             volume: 0.8,
             html5: true,
             onload: function() {
-                musicText.innerText = "Toca la pantalla para oír música 🎵";
+                musicText.innerText = "Toca para oír música 🎵";
             },
             onloaderror: function(id, err) {
-                console.error("Error al cargar la música:", err);
-                musicText.innerText = "⚠️ No se encontró indigo.mp3 en GitHub";
+                console.error("Error al cargar música:", err);
+                musicText.innerText = "⚠️ No se encontró indigo.mp3";
             },
             onplay: function() {
                 musicText.innerText = "Reproduciendo: Índigo 🎵";
@@ -670,12 +672,14 @@
             }
         }
 
-        // Toca en cualquier parte para iniciar la música automáticamente
         document.addEventListener('click', playMusic, { once: true });
         document.addEventListener('touchstart', playMusic, { once: true });
-        document.getElementById('btnDescubrir').addEventListener('click', playMusic);
+        
+        const btnDesc = document.getElementById('btnDescubrir');
+        if (btnDesc) {
+            btnDesc.addEventListener('click', playMusic);
+        }
 
-        // Control Manual con el botón flotante
         musicBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             if (sound.playing()) {
@@ -685,28 +689,36 @@
             }
         });
 
-        // CUENTA REGRESIVA
-        const fechaEvento = new Date(2026, 9, 24, 15, 30, 0).getTime(); 
+        // CUENTA REGRESIVA - CORREGIDA
+        const targetDate = new Date(2026, 9, 24, 15, 30, 0).getTime(); 
 
-        const countdownTimer = setInterval(function() {
-            const ahora = new Date().getTime();
-            const diferencia = fechaEvento - ahora;
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
 
-            if (diferencia > 0) {
-                const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-                const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-                const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-                document.getElementById("days").innerText = dias < 10 ? '0' + dias : dias;
-                document.getElementById("hours").innerText = horas < 10 ? '0' + horas : horas;
-                document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
-                document.getElementById("seconds").innerText = segundos < 10 ? '0' + segundos : segundos;
+                const elDays = document.getElementById("cdDays");
+                const elHours = document.getElementById("cdHours");
+                const elMinutes = document.getElementById("cdMinutes");
+                const elSeconds = document.getElementById("cdSeconds");
+
+                if (elDays) elDays.innerText = days < 10 ? '0' + days : days;
+                if (elHours) elHours.innerText = hours < 10 ? '0' + hours : hours;
+                if (elMinutes) elMinutes.innerText = minutes < 10 ? '0' + minutes : minutes;
+                if (elSeconds) elSeconds.innerText = seconds < 10 ? '0' + seconds : seconds;
             } else {
-                clearInterval(countdownTimer);
-                document.getElementById("countdown").innerHTML = "<h3>¡Llegó el gran día! 🎉</h3>";
+                const box = document.getElementById("countdownBox");
+                if (box) box.innerHTML = "<h3>¡Llegó el gran día! 🎉</h3>";
             }
-        }, 1000);
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
 
         // SELECCIÓN DE EQUIPO
         let votoSeleccionado = "";
@@ -726,53 +738,55 @@
             }
         }
 
-        // REGISTRO
-        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // REGISTRO Y FORMULARIO
+        const rsvpForm = document.getElementById('rsvpForm');
+        if (rsvpForm) {
+            rsvpForm.addEventListener('submit', function(e) {
+                e.preventDefault();
 
-            const nombre = document.getElementById('nombre').value.trim();
-            const asistencia = document.getElementById('asistencia').value;
-            const acompanantes = parseInt(document.getElementById('acompanantes').value);
+                const nombre = document.getElementById('nombre').value.trim();
+                const asistencia = document.getElementById('asistencia').value;
+                const acompanantes = parseInt(document.getElementById('acompanantes').value);
 
-            if (!votoSeleccionado) {
-                alert("Por favor elige si crees que será Isabella 💜 o Isaac 💙 antes de confirmar.");
-                return;
-            }
+                if (!votoSeleccionado) {
+                    alert("Por favor elige si crees que será Isabella 💜 o Isaac 💙 antes de confirmar.");
+                    return;
+                }
 
-            const mision = votoSeleccionado.includes('Isabella') ? "1 Paq. Pañitos" : "1 Paq. Pañales";
+                const mision = votoSeleccionado.includes('Isabella') ? "1 Paq. Pañitos" : "1 Paq. Pañales";
 
-            let registros = JSON.parse(localStorage.getItem('invitados_revelacion')) || [];
-            
-            registros.push({
-                nombre: nombre,
-                asistencia: asistencia,
-                acompanantes: acompanantes,
-                prediccion: votoSeleccionado,
-                mision: mision
+                let registros = JSON.parse(localStorage.getItem('invitados_revelacion')) || [];
+                
+                registros.push({
+                    nombre: nombre,
+                    asistencia: asistencia,
+                    acompanantes: acompanantes,
+                    prediccion: votoSeleccionado,
+                    mision: mision
+                });
+
+                localStorage.setItem('invitados_revelacion', JSON.stringify(registros));
+
+                // Confeti
+                confetti({
+                    particleCount: 160,
+                    spread: 100,
+                    origin: { y: 0.6 },
+                    colors: ['#a472c6', '#5b9bd5', '#f3c26b']
+                });
+
+                // Oculta formulario y muestra confirmación
+                rsvpForm.style.opacity = '0';
+                
+                setTimeout(() => {
+                    rsvpForm.style.display = 'none';
+                    const successMsg = document.getElementById('successMessage');
+                    if (successMsg) successMsg.style.display = 'block';
+                }, 300);
+
+                cargarDatosAdmin();
             });
-
-            localStorage.setItem('invitados_revelacion', JSON.stringify(registros));
-
-            // Confeti
-            confetti({
-                particleCount: 160,
-                spread: 100,
-                origin: { y: 0.6 },
-                colors: ['#a472c6', '#5b9bd5', '#f3c26b']
-            });
-
-            // Oculta formulario y muestra confirmación
-            const form = document.getElementById('rsvpForm');
-            form.style.opacity = '0';
-            
-            setTimeout(() => {
-                form.style.display = 'none';
-                const successMsg = document.getElementById('successMessage');
-                successMsg.style.display = 'block';
-            }, 300);
-
-            cargarDatosAdmin();
-        });
+        }
 
         // PANEL ADMIN
         const CLAVE_ADMIN = "1234"; 
@@ -798,6 +812,7 @@
             let totalPanitos = 0;
 
             const tabla = document.getElementById('tablaInvitados');
+            if (!tabla) return;
             tabla.innerHTML = "";
 
             registros.forEach(item => {
