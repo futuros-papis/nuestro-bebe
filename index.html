@@ -15,18 +15,14 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
-    <!-- ICONO DE LA PESTAÑA (FAVICON DE PELUCHE 🧸) -->
+    <!-- ICONO DE LA PESTAÑA -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧸</text></svg>">
 
-    <!-- Fuente Quicksand -->
+    <!-- Fuentes y Librerías -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Librería Confeti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-    <!-- Librería para Audio Indestructible -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
 
     <style>
@@ -65,7 +61,93 @@
             position: relative;
         }
 
-        /* DECORACIONES DE FONDO */
+        /* --- PANTALLA INICIAL DE LA CARTA / SOBRE ANIMADO --- */
+        #welcomeOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(164, 114, 198, 0.95), rgba(91, 155, 213, 0.95));
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .envelope-card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 420px;
+            border-radius: 30px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            animation: bounceIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .envelope-card img {
+            width: 100%;
+            max-height: 240px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .envelope-card h2 {
+            font-size: 24px;
+            color: var(--girl-purple);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .envelope-card p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .open-btn {
+            background: linear-gradient(135deg, var(--girl-purple), var(--boy-blue));
+            color: #fff;
+            border: none;
+            padding: 16px 32px;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(164, 114, 198, 0.4);
+            transition: all 0.3s ease;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .open-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 14px 30px rgba(164, 114, 198, 0.6);
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .fade-out {
+            opacity: 0;
+            transform: scale(1.1);
+            pointer-events: none;
+        }
+
+        /* --- RESTO DE DISEÑOS --- */
         .bg-decorations {
             position: fixed;
             top: 0;
@@ -98,7 +180,6 @@
             z-index: 1;
         }
 
-        /* BOTÓN FLOTANTE MÚSICA */
         .music-btn {
             position: fixed;
             bottom: 20px;
@@ -109,7 +190,7 @@
             border-radius: 50px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.12);
             cursor: pointer;
-            z-index: 999;
+            z-index: 998;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -125,7 +206,6 @@
             transform: scale(1.05);
         }
 
-        /* HERO PORTADA */
         .hero {
             min-height: 85vh;
             display: flex;
@@ -163,11 +243,6 @@
             padding: 10px;
             border: 2px solid var(--card-border);
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .baby-image-container:hover {
-            transform: scale(1.02);
         }
 
         .baby-image-container img {
@@ -185,11 +260,7 @@
             margin-bottom: 20px;
         }
 
-        .name-tag {
-            font-size: 22px;
-            font-weight: 700;
-        }
-
+        .name-tag { font-size: 22px; font-weight: 700; }
         .name-tag.girl { color: var(--girl-purple); }
         .name-tag.boy { color: var(--boy-blue); }
 
@@ -223,7 +294,6 @@
             box-shadow: 0 14px 30px rgba(164, 114, 198, 0.45);
         }
 
-        /* TARJETAS SECCIONES */
         .section-card {
             background: #ffffff;
             border-radius: 28px;
@@ -232,7 +302,6 @@
             box-shadow: var(--card-shadow);
             text-align: center;
             border: 2px solid var(--card-border);
-            transition: all 0.5s ease-in-out;
         }
 
         .section-title {
@@ -242,7 +311,6 @@
             margin-bottom: 10px;
         }
 
-        /* CUENTA REGRESIVA */
         .countdown {
             display: flex;
             justify-content: center;
@@ -258,22 +326,9 @@
             border: 1.5px solid var(--card-border);
         }
 
-        .time-box .num {
-            font-size: 26px;
-            font-weight: 700;
-            display: block;
-            color: var(--girl-purple);
-        }
+        .time-box .num { font-size: 26px; font-weight: 700; display: block; color: var(--girl-purple); }
+        .time-box .label { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); font-weight: 700; }
 
-        .time-box .label {
-            font-size: 9px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-muted);
-            font-weight: 700;
-        }
-
-        /* DETALLES */
         .info-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -288,125 +343,41 @@
             border: 1.5px solid var(--card-border);
         }
 
-        .info-item h4 {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--text-muted);
-            margin-bottom: 3px;
-        }
+        .info-item h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-bottom: 3px; }
+        .info-item p { font-size: 15px; font-weight: 700; color: var(--text-dark); }
 
-        .info-item p {
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--text-dark);
-        }
-
-        /* FORMULARIO DE PASOS */
-        .form-group {
-            text-align: left;
-            margin-bottom: 18px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-muted);
-            margin-bottom: 6px;
-            font-weight: 700;
-        }
-
+        .form-group { text-align: left; margin-bottom: 18px; }
+        .form-group label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 6px; font-weight: 700; }
         .form-input, .form-select {
-            width: 100%;
-            padding: 14px 18px;
-            border-radius: 14px;
-            border: 1.5px solid var(--card-border);
-            font-family: inherit;
-            font-size: 15px;
-            font-weight: 600;
-            background: #fff;
-            outline: none;
-            color: var(--text-dark);
+            width: 100%; padding: 14px 18px; border-radius: 14px;
+            border: 1.5px solid var(--card-border); font-family: inherit;
+            font-size: 15px; font-weight: 600; background: #fff; outline: none; color: var(--text-dark);
         }
 
-        .team-selector {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            margin: 20px 0;
-        }
-
+        .team-selector { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
         .team-card {
-            border: 2.5px dashed var(--card-border);
-            border-radius: 22px;
-            padding: 18px 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: #fff;
-            user-select: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            border: 2.5px dashed var(--card-border); border-radius: 22px; padding: 18px 10px;
+            cursor: pointer; transition: all 0.3s ease; background: #fff; user-select: none;
+            display: flex; flex-direction: column; align-items: center;
         }
+        .team-card.boy:hover, .team-card.selected.boy { border-color: var(--boy-blue); background: var(--boy-bg); transform: translateY(-4px); }
+        .team-card.girl:hover, .team-card.selected.girl { border-color: var(--girl-purple); background: var(--girl-bg); transform: translateY(-4px); }
 
-        .team-card.boy:hover, .team-card.selected.boy {
-            border-color: var(--boy-blue);
-            background: var(--boy-bg);
-            transform: translateY(-4px);
-        }
-
-        .team-card.girl:hover, .team-card.selected.girl {
-            border-color: var(--girl-purple);
-            background: var(--girl-bg);
-            transform: translateY(-4px);
-        }
-
-        .mission-box {
-            display: none;
-            padding: 18px;
-            border-radius: 18px;
-            margin: 20px 0;
-            animation: fadeIn 0.4s ease;
-        }
-
+        .mission-box { display: none; padding: 18px; border-radius: 18px; margin: 20px 0; }
         .mission-box.boy { background: var(--boy-bg); border: 2px dashed var(--boy-blue); color: #215187; }
         .mission-box.girl { background: var(--girl-bg); border: 2px dashed var(--girl-purple); color: #582580; }
 
         .success-message {
-            display: none;
-            padding: 30px 20px;
-            background: #f0fdf4;
-            border: 2px solid #bbf7d0;
-            border-radius: 20px;
-            color: #166534;
-            animation: fadeIn 0.6s ease;
+            display: none; padding: 30px 20px; background: #f0fdf4;
+            border: 2px solid #bbf7d0; border-radius: 20px; color: #166534;
         }
 
-        /* ADMIN */
         .admin-section {
-            background: #27202d;
-            color: #fff;
-            border-radius: 28px;
-            padding: 32px 20px;
-            margin: 45px 0 20px;
-            text-align: center;
+            background: #27202d; color: #fff; border-radius: 28px;
+            padding: 32px 20px; margin: 45px 0 20px; text-align: center;
         }
-
-        .admin-metrics {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
-            gap: 10px;
-            margin: 20px 0;
-        }
-
-        .metric-card {
-            background: #3a3043;
-            padding: 12px 8px;
-            border-radius: 14px;
-        }
-
+        .admin-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(95px, 1fr)); gap: 10px; margin: 20px 0; }
+        .metric-card { background: #3a3043; padding: 12px 8px; border-radius: 14px; }
         .metric-card .value { font-size: 20px; font-weight: 700; }
         .metric-card .label { font-size: 9px; text-transform: uppercase; color: #d0c5d8; }
 
@@ -416,25 +387,22 @@
         th { background: #19141e; color: #e8dbf2; text-transform: uppercase; font-size: 10px; }
 
         .btn-danger {
-            background: #e53e3e;
-            color: white;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 11px;
-            margin-top: 20px;
-            font-family: inherit;
-            font-weight: 700;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+            background: #e53e3e; color: white; border: none; padding: 10px 18px;
+            border-radius: 8px; cursor: pointer; font-size: 11px; margin-top: 20px; font-weight: 700;
         }
     </style>
 </head>
 <body>
+
+    <!-- PANTALLA INICIAL: CARTA / SOBRE ANIMADO -->
+    <div id="welcomeOverlay">
+        <div class="envelope-card">
+            <img src="visualizacion.jpeg" alt="Carta de invitación">
+            <h2>¡Tienes una Invitación!</h2>
+            <p>Acompáñanos a descubrir el gran secreto de nuestra familia.</p>
+            <button class="open-btn" id="openInvitationBtn">Abrir Invitación 💌</button>
+        </div>
+    </div>
 
     <!-- DECORACIONES FLOTANTES -->
     <div class="bg-decorations">
@@ -447,7 +415,7 @@
 
     <!-- BOTÓN DE MÚSICA -->
     <button class="music-btn" id="musicToggle">
-        🎵 <span id="musicText">Cargando música...</span>
+        🎵 <span id="musicText">Música pausada</span>
     </button>
 
     <div class="container">
@@ -469,7 +437,7 @@
 
             <p>Queremos invitarte a compartir este día tan mágico y adivinar quién viene en camino a alegrar nuestras vidas.</p>
             
-            <a href="#invitacion" class="btn-main" id="btnDescubrir">Descubrir Invitación</a>
+            <a href="#invitacion" class="btn-main">Descubrir Invitación</a>
         </section>
 
         <!-- 2. INVITACIÓN & CUENTA REGRESIVA -->
@@ -479,22 +447,10 @@
             <p style="color: var(--text-muted); font-size: 14px; font-weight: 600;">Faltan muy pocos días para conocer el gran secreto:</p>
 
             <div class="countdown" id="countdownBox">
-                <div class="time-box">
-                    <span class="num" id="cdDays">00</span>
-                    <span class="label">Días</span>
-                </div>
-                <div class="time-box">
-                    <span class="num" id="cdHours">00</span>
-                    <span class="label">Horas</span>
-                </div>
-                <div class="time-box">
-                    <span class="num" id="cdMinutes">00</span>
-                    <span class="label">Min</span>
-                </div>
-                <div class="time-box">
-                    <span class="num" id="cdSeconds">00</span>
-                    <span class="label">Seg</span>
-                </div>
+                <div class="time-box"><span class="num" id="cdDays">00</span><span class="label">Días</span></div>
+                <div class="time-box"><span class="num" id="cdHours">00</span><span class="label">Horas</span></div>
+                <div class="time-box"><span class="num" id="cdMinutes">00</span><span class="label">Min</span></div>
+                <div class="time-box"><span class="num" id="cdSeconds">00</span><span class="label">Seg</span></div>
             </div>
         </section>
 
@@ -502,24 +458,14 @@
         <section class="section-card">
             <h2 class="section-title">¿Dónde & Cuándo?</h2>
             <div class="info-grid">
-                <div class="info-item">
-                    <h4>Fecha</h4>
-                    <p>Sábado, 24 de Octubre, 2026</p>
-                </div>
-                <div class="info-item">
-                    <h4>Hora</h4>
-                    <p>3:30 PM</p>
-                </div>
-                <div class="info-item">
-                    <h4>Lugar</h4>
-                    <p>Casa de la Familia / Salón de Eventos</p>
-                </div>
+                <div class="info-item"><h4>Fecha</h4><p>Sábado, 24 de Octubre, 2026</p></div>
+                <div class="info-item"><h4>Hora</h4><p>3:30 PM</p></div>
+                <div class="info-item"><h4>Lugar</h4><p>Casa de la Familia / Salón de Eventos</p></div>
             </div>
         </section>
 
         <!-- 4. CONFIRMACIÓN Y VOTO -->
         <section class="section-card" id="confirmar">
-            
             <form id="rsvpForm">
                 <span class="subtitle-tag">Tu Información</span>
                 <h2 class="section-title" style="font-size: 22px; margin-bottom: 20px;">Confirma tu Asistencia</h2>
@@ -556,7 +502,6 @@
                             <span style="font-size: 32px; margin-bottom: 5px;">🎀</span>
                             <span style="font-weight: 700; font-size: 15px; color: var(--girl-purple);">Equipo ISABELLA</span>
                         </div>
-
                         <div class="team-card boy" onclick="selectTeam('Isaac (Niño) 💙')">
                             <span style="font-size: 32px; margin-bottom: 5px;">🧸</span>
                             <span style="font-weight: 700; font-size: 15px; color: var(--boy-blue);">Equipo ISAAC</span>
@@ -564,7 +509,6 @@
                     </div>
                 </div>
 
-                <!-- MISIÓN ASIGNADA -->
                 <div id="missionGirl" class="mission-box girl">
                     <h3 style="font-size: 17px; font-weight: 700;">🎁 Misión: Equipo Isabella</h3>
                     <p style="font-size: 13px; font-weight: 600;">Tu regalo sugerido: <strong>1 Paquete de Pañitos Húmedos</strong>.</p>
@@ -580,11 +524,10 @@
                 </button>
             </form>
 
-            <!-- MENSAJE DE ÉXITO -->
             <div id="successMessage" class="success-message">
                 <span style="font-size: 40px; display: block; margin-bottom: 10px;">🎉</span>
                 <h3 style="font-size: 24px; font-weight: 700; color: #15803d; margin-bottom: 8px;">¡Respuesta Registrada!</h3>
-                <p style="font-size: 15px; font-weight: 600; color: #166534;">Muchas gracias por ser parte de este momento especial. ¡Nos vemos en la celebración!</p>
+                <p style="font-size: 15px; font-weight: 600; color: #166534;">Muchas gracias por ser parte de este momento especial. ¡Nos vemos!</p>
             </div>
         </section>
 
@@ -597,66 +540,44 @@
                 <p style="font-size: 12px; color: #d1c7d9; margin-bottom: 15px;">Ingresa tu clave para ver los votos:</p>
                 <input type="password" id="adminKey" class="form-input" style="max-width: 180px; margin: 0 auto 15px; text-align: center;" placeholder="Clave">
                 <br>
-                <button type="button" onclick="verificarClave()" class="btn-main" style="padding: 10px 25px; font-size: 12px;">Ingresar al Panel</button>
+                <button type="button" onclick="verificarClave()" class="btn-main" style="padding: 10px 25px; font-size: 12px;">Ingresar</button>
             </div>
 
             <div id="adminContent" style="display: none;">
                 <div class="admin-metrics">
-                    <div class="metric-card">
-                        <span class="value" id="totalAsistentes">0</span>
-                        <span class="label">Total Personas</span>
-                    </div>
-                    <div class="metric-card">
-                        <span class="value" id="votosGirl" style="color: #d6bcfa;">0</span>
-                        <span class="label">Isabella 💜</span>
-                    </div>
-                    <div class="metric-card">
-                        <span class="value" id="votosBoy" style="color: #90cdf4;">0</span>
-                        <span class="label">Isaac 💙</span>
-                    </div>
-                    <div class="metric-card">
-                        <span class="value" id="totalPanitos" style="color: #d6bcfa;">0</span>
-                        <span class="label">Paq. Pañitos</span>
-                    </div>
-                    <div class="metric-card">
-                        <span class="value" id="totalPanales" style="color: #90cdf4;">0</span>
-                        <span class="label">Paq. Pañales</span>
-                    </div>
+                    <div class="metric-card"><span class="value" id="totalAsistentes">0</span><span class="label">Personas</span></div>
+                    <div class="metric-card"><span class="value" id="votosGirl" style="color: #d6bcfa;">0</span><span class="label">Isabella 💜</span></div>
+                    <div class="metric-card"><span class="value" id="votosBoy" style="color: #90cdf4;">0</span><span class="label">Isaac 💙</span></div>
+                    <div class="metric-card"><span class="value" id="totalPanitos" style="color: #d6bcfa;">0</span><span class="label">Paq. Pañitos</span></div>
+                    <div class="metric-card"><span class="value" id="totalPanales" style="color: #90cdf4;">0</span><span class="label">Paq. Pañales</span></div>
                 </div>
 
                 <h3 style="margin-top: 25px; text-align: left; font-size: 15px;">Lista de Confirmados</h3>
                 <div class="table-wrapper">
                     <table>
                         <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Asiste</th>
-                                <th>Acomp.</th>
-                                <th>Predicción</th>
-                                <th>Misión</th>
-                            </tr>
+                            <tr><th>Nombre</th><th>Asiste</th><th>Acomp.</th><th>Predicción</th><th>Misión</th></tr>
                         </thead>
                         <tbody id="tablaInvitados"></tbody>
                     </table>
                 </div>
-
-                <button type="button" onclick="borrarDatos()" class="btn-danger">Borrar Datos de Prueba</button>
+                <button type="button" onclick="borrarDatos()" class="btn-danger">Borrar Datos</button>
             </div>
         </section>
 
         <div style="text-align: center; font-size: 12px; color: var(--text-muted); margin-bottom: 30px; font-weight: 600;">
             ✨ Hecho con amor para la llegada de nuestro bebé ✨
         </div>
-
     </div>
 
     <!-- JAVASCRIPT -->
     <script>
-        // CONFIGURACIÓN DE AUDIO RESISTENTE Y RUTAS ABSOLUTAS
+        // CONFIGURACIÓN DE AUDIO Y APERTURA DE CARTA
         const musicBtn = document.getElementById('musicToggle');
         const musicText = document.getElementById('musicText');
+        const openInvitationBtn = document.getElementById('openInvitationBtn');
+        const welcomeOverlay = document.getElementById('welcomeOverlay');
 
-        // Detecta automáticamente la ruta correcta del archivo
         const songPath = new URL('indigo.mp3', window.location.href).href;
 
         const sound = new Howl({
@@ -664,34 +585,22 @@
             loop: true,
             volume: 0.8,
             html5: true,
-            onload: function() {
-                musicText.innerText = "Toca para oír música 🎵";
-            },
-            onloaderror: function(id, err) {
-                console.error("Error al cargar música:", err);
-                musicText.innerText = "⚠️ No se encontró indigo.mp3";
-            },
             onplay: function() {
                 musicText.innerText = "Reproduciendo: Índigo 🎵";
             },
             onpause: function() {
-                musicText.innerText = "Pausado (Índigo)";
+                musicText.innerText = "Música pausada";
             }
         });
 
-        function playMusic() {
-            if (!sound.playing()) {
-                sound.play();
-            }
-        }
-
-        document.addEventListener('click', playMusic, { once: true });
-        document.addEventListener('touchstart', playMusic, { once: true });
-
-        const btnDesc = document.getElementById('btnDescubrir');
-        if (btnDesc) {
-            btnDesc.addEventListener('click', playMusic);
-        }
+        // Al hacer clic en "Abrir Invitación", se quita la carta con animación y arranca la música de una vez
+        openInvitationBtn.addEventListener('click', () => {
+            sound.play();
+            welcomeOverlay.classList.add('fade-out');
+            setTimeout(() => {
+                welcomeOverlay.style.display = 'none';
+            }, 800);
+        });
 
         musicBtn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -715,27 +624,20 @@
                 const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-                const elDays = document.getElementById("cdDays");
-                const elHours = document.getElementById("cdHours");
-                const elMinutes = document.getElementById("cdMinutes");
-                const elSeconds = document.getElementById("cdSeconds");
-
-                if (elDays) elDays.innerText = days < 10 ? '0' + days : days;
-                if (elHours) elHours.innerText = hours < 10 ? '0' + hours : hours;
-                if (elMinutes) elMinutes.innerText = minutes < 10 ? '0' + minutes : minutes;
-                if (elSeconds) elSeconds.innerText = seconds < 10 ? '0' + seconds : seconds;
+                if (document.getElementById("cdDays")) document.getElementById("cdDays").innerText = days < 10 ? '0' + days : days;
+                if (document.getElementById("cdHours")) document.getElementById("cdHours").innerText = hours < 10 ? '0' + hours : hours;
+                if (document.getElementById("cdMinutes")) document.getElementById("cdMinutes").innerText = minutes < 10 ? '0' + minutes : minutes;
+                if (document.getElementById("cdSeconds")) document.getElementById("cdSeconds").innerText = seconds < 10 ? '0' + seconds : seconds;
             } else {
                 const box = document.getElementById("countdownBox");
                 if (box) box.innerHTML = "<h3>¡Llegó el gran día! 🎉</h3>";
             }
         }
-
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
         // SELECCIÓN DE EQUIPO
         let votoSeleccionado = "";
-
         function selectTeam(equipo) {
             votoSeleccionado = equipo;
             document.querySelectorAll('.team-card').forEach(card => card.classList.remove('selected'));
@@ -751,12 +653,11 @@
             }
         }
 
-        // REGISTRO Y FORMULARIO
+        // FORMULARIO Y REGISTRO
         const rsvpForm = document.getElementById('rsvpForm');
         if (rsvpForm) {
             rsvpForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-
                 const nombre = document.getElementById('nombre').value.trim();
                 const asistencia = document.getElementById('asistencia').value;
                 const acompanantes = parseInt(document.getElementById('acompanantes').value);
@@ -767,34 +668,17 @@
                 }
 
                 const mision = votoSeleccionado.includes('Isabella') ? "1 Paq. Pañitos" : "1 Paq. Pañales";
-
                 let registros = JSON.parse(localStorage.getItem('invitados_revelacion')) || [];
                 
-                registros.push({
-                    nombre: nombre,
-                    asistencia: asistencia,
-                    acompanantes: acompanantes,
-                    prediccion: votoSeleccionado,
-                    mision: mision
-                });
-
+                registros.push({ nombre, asistencia, acompanantes, prediccion: votoSeleccionado, mision });
                 localStorage.setItem('invitados_revelacion', JSON.stringify(registros));
 
-                // Confeti
-                confetti({
-                    particleCount: 160,
-                    spread: 100,
-                    origin: { y: 0.6 },
-                    colors: ['#a472c6', '#5b9bd5', '#f3c26b']
-                });
+                confetti({ particleCount: 160, spread: 100, origin: { y: 0.6 }, colors: ['#a472c6', '#5b9bd5', '#f3c26b'] });
 
-                // Oculta formulario y muestra confirmación
                 rsvpForm.style.opacity = '0';
-                
                 setTimeout(() => {
                     rsvpForm.style.display = 'none';
-                    const successMsg = document.getElementById('successMessage');
-                    if (successMsg) successMsg.style.display = 'block';
+                    document.getElementById('successMessage').style.display = 'block';
                 }, 300);
 
                 cargarDatosAdmin();
@@ -803,52 +687,30 @@
 
         // PANEL ADMIN
         const CLAVE_ADMIN = "1234"; 
-
         function verificarClave() {
-            const claveIngresada = document.getElementById('adminKey').value;
-            if (claveIngresada === CLAVE_ADMIN) {
+            if (document.getElementById('adminKey').value === CLAVE_ADMIN) {
                 document.getElementById('loginAdmin').style.display = 'none';
                 document.getElementById('adminContent').style.display = 'block';
                 cargarDatosAdmin();
             } else {
-                alert("Clave incorrecta. Inténtalo de nuevo.");
+                alert("Clave incorrecta.");
             }
         }
 
         function cargarDatosAdmin() {
             let registros = JSON.parse(localStorage.getItem('invitados_revelacion')) || [];
-
-            let totalPersonas = 0;
-            let votosBoy = 0;
-            let votosGirl = 0;
-            let totalPanales = 0;
-            let totalPanitos = 0;
-
+            let totalPersonas = 0, votosBoy = 0, votosGirl = 0, totalPanales = 0, totalPanitos = 0;
             const tabla = document.getElementById('tablaInvitados');
             if (!tabla) return;
             tabla.innerHTML = "";
 
             registros.forEach(item => {
-                if (item.asistencia === "Sí") {
-                    totalPersonas += (1 + item.acompanantes);
-                }
-
-                if (item.prediccion.includes('Isaac')) {
-                    votosBoy++;
-                    if (item.asistencia === "Sí") totalPanales++;
-                } else if (item.prediccion.includes('Isabella')) {
-                    votosGirl++;
-                    if (item.asistencia === "Sí") totalPanitos++;
-                }
+                if (item.asistencia === "Sí") totalPersonas += (1 + item.acompanantes);
+                if (item.prediccion.includes('Isaac')) { votosBoy++; if (item.asistencia === "Sí") totalPanales++; }
+                else if (item.prediccion.includes('Isabella')) { votosGirl++; if (item.asistencia === "Sí") totalPanitos++; }
 
                 let tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td><strong>${item.nombre}</strong></td>
-                    <td>${item.asistencia === "Sí" ? "✅ Sí" : "❌ No"}</td>
-                    <td>+${item.acompanantes}</td>
-                    <td>${item.prediccion}</td>
-                    <td>${item.mision}</td>
-                `;
+                tr.innerHTML = `<td><strong>${item.nombre}</strong></td><td>${item.asistencia === "Sí" ? "✅ Sí" : "❌ No"}</td><td>+${item.acompanantes}</td><td>${item.prediccion}</td><td>${item.mision}</td>`;
                 tabla.appendChild(tr);
             });
 
