@@ -298,13 +298,20 @@
                 <!-- CONTENEDOR QUE SE OCULTA SI DICEN QUE NO -->
                 <div id="camposAsistente">
                     <div class="form-group">
-                        <label for="acompanantes">¿Cuántos acompañantes van contigo?</label>
-                        <select id="acompanantes" class="form-select">
-                            <option value="0">Solo yo (0 acompañantes)</option>
-                            <option value="1">+1 Acompañante</option>
-                            <option value="2">+2 Acompañantes</option>
-                            <option value="3">+3 Acompañantes</option>
+                        <label>¿Cuántos acompañantes van contigo?</label>
+                        <select id="acompanantes" class="form-select" onchange="toggleAcompanantesInput()">
+                            <option value="0">0 acompañantes (Solo yo)</option>
+                            <option value="1">1 acompañante</option>
+                            <option value="2">2 acompañantes</option>
+                            <option value="3">3 acompañantes</option>
+                            <option value="otro">Más de 3</option>
                         </select>
+                    </div>
+
+                    <!-- CAMPO NUMÉRICO EDITABLE SI ES MÁS DE 3 -->
+                    <div class="form-group" id="grupoOtroAcomp" style="display: none;">
+                        <label for="inputOtroAcomp">Indica la cantidad exacta (solo números):</label>
+                        <input type="number" id="inputOtroAcomp" class="form-input" min="4" placeholder="Ej. 4">
                     </div>
 
                     <div style="margin-top: 30px; border-top: 2px dashed var(--card-border); padding-top: 22px;">
@@ -330,7 +337,7 @@
 
                     <div id="missionBoy" class="mission-box boy">
                         <h3 style="font-size: 17px; font-weight: 700;">🎁 Misión: Equipo Isaac</h3>
-                        <p style="font-size: 13px; font-weight: 600;">Tu regalo sugerido: <strong>1 Paquete de Pañales (Etapa 3 o Etapa 4)</strong>.</p>
+                        <p style="font-size: 13px; font-weight: 600;">Tu regalo sugerido: <strong>1 Paquete de Pañales en la descripción de misión (indicar talla Etapa 3 o Etapa 4)</strong>.</p>
                     </div>
                 </div>
 
@@ -453,6 +460,19 @@
             }
         }
 
+        // MOSTRAR INPUT EDITABLE SI SELECCIONAN "MÁS DE 3"
+        function toggleAcompanantesInput() {
+            const select = document.getElementById('acompanantes').value;
+            const grupoOtro = document.getElementById('grupoOtroAcomp');
+            if (select === 'otro') {
+                grupoOtro.style.display = 'block';
+                document.getElementById('inputOtroAcomp').focus();
+            } else {
+                grupoOtro.style.display = 'none';
+                document.getElementById('inputOtroAcomp').value = '';
+            }
+        }
+
         // SELECCIÓN DE EQUIPO
         let votoSeleccionado = "";
         function selectTeam(equipo) {
@@ -482,13 +502,29 @@
                 let mision = "Ninguna";
 
                 if (asistencia === "Sí") {
-                    acompanantes = document.getElementById('acompanantes').value;
+                    const selectAcomp = document.getElementById('acompanantes').value;
+                    if (selectAcomp === 'otro') {
+                        const valOtro = document.getElementById('inputOtroAcomp').value.trim();
+                        if (!valOtro || parseInt(valOtro) < 4) {
+                            alert("Por favor indica una cantidad válida de acompañantes (mínimo 4).");
+                            return;
+                        }
+                        acompanantes = valOtro;
+                    } else {
+                        acompanantes = selectAcomp;
+                    }
+
                     if (!votoSeleccionado) {
                         alert("Por favor elige si crees que será Isabella 💜 o Isaac 💙 antes de confirmar.");
                         return;
                     }
                     prediccion = votoSeleccionado;
-                    mision = votoSeleccionado.includes('Isabella') ? "1 Paq. Pañitos Húmedos" : "1 Paq. Pañales (Etapa 3 o 4)";
+                    
+                    if (votoSeleccionado.includes('Isabella')) {
+                        mision = "1 Paq. Pañitos Húmedos";
+                    } else {
+                        mision = "1 Paq. Pañales (Talla Etapa 3 o 4)";
+                    }
                 }
 
                 const submitBtn = document.getElementById('submitBtn');
