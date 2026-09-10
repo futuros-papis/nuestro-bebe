@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Revelación de Género | Isabella o Isaac</title>
     
+    <!-- Fuente Quicksand -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Librería Confeti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
+    <!-- Librería para Audio Indestructible -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
 
     <style>
@@ -420,6 +423,7 @@
 </head>
 <body>
 
+    <!-- DECORACIONES FLOTANTES -->
     <div class="bg-decorations">
         <div class="floating-item" style="left: 6%; animation-delay: 0s; font-size: 24px;">🎈</div>
         <div class="floating-item" style="left: 22%; animation-delay: 3s; font-size: 20px;">⭐</div>
@@ -428,12 +432,14 @@
         <div class="floating-item" style="left: 88%; animation-delay: 7s; font-size: 20px;">⭐</div>
     </div>
 
+    <!-- BOTÓN DE MÚSICA -->
     <button class="music-btn" id="musicToggle">
-        🎵 <span id="musicText">Toca para reproducir música</span>
+        🎵 <span id="musicText">Cargando música...</span>
     </button>
 
     <div class="container">
 
+        <!-- 1. PORTADA -->
         <section class="hero">
             <span class="subtitle-tag">✨ Hola, voy a ser tu bendición consentida ✨</span>
             
@@ -453,6 +459,7 @@
             <a href="#invitacion" class="btn-main" id="btnDescubrir">Descubrir Invitación</a>
         </section>
 
+        <!-- 2. INVITACIÓN & CUENTA REGRESIVA -->
         <section id="invitacion" class="section-card">
             <span class="subtitle-tag">Acompáñanos a celebrar</span>
             <h2 class="section-title">Nuestra Revelación de Género</h2>
@@ -478,6 +485,7 @@
             </div>
         </section>
 
+        <!-- 3. DETALLES DEL EVENTO -->
         <section class="section-card">
             <h2 class="section-title">¿Dónde & Cuándo?</h2>
             <div class="info-grid">
@@ -496,6 +504,7 @@
             </div>
         </section>
 
+        <!-- 4. CONFIRMACIÓN Y VOTO -->
         <section class="section-card" id="confirmar">
             
             <form id="rsvpForm">
@@ -542,6 +551,7 @@
                     </div>
                 </div>
 
+                <!-- MISIÓN ASIGNADA -->
                 <div id="missionGirl" class="mission-box girl">
                     <h3 style="font-size: 17px; font-weight: 700;">🎁 Misión: Equipo Isabella</h3>
                     <p style="font-size: 13px; font-weight: 600;">Tu regalo sugerido: <strong>1 Paquete de Pañitos Húmedos</strong>.</p>
@@ -557,6 +567,7 @@
                 </button>
             </form>
 
+            <!-- MENSAJE DE ÉXITO -->
             <div id="successMessage" class="success-message">
                 <span style="font-size: 40px; display: block; margin-bottom: 10px;">🎉</span>
                 <h3 style="font-size: 24px; font-weight: 700; color: #15803d; margin-bottom: 8px;">¡Respuesta Registrada!</h3>
@@ -564,6 +575,7 @@
             </div>
         </section>
 
+        <!-- 5. PANEL ADMIN -->
         <section class="admin-section">
             <span class="subtitle-tag" style="color: #a89bb3;">Área Privada</span>
             <h2>📊 Panel de Control</h2>
@@ -625,17 +637,25 @@
 
     </div>
 
+    <!-- JAVASCRIPT -->
     <script>
-        // CONFIGURACIÓN DE AUDIO CON HOWLER.JS
+        // CONFIGURACIÓN DE AUDIO RESISTENTE A RUTAS Y ERRORES
         const musicBtn = document.getElementById('musicToggle');
+        musicBtn.style.display = 'flex';
         const musicText = document.getElementById('musicText');
         
-        // Múltiples fuentes para asegurar compatibilidad
         const sound = new Howl({
-            src: ['indigo.mp3', './indigo.mp3'],
+            src: ['indigo.mp3', './indigo.mp3', 'Indigo.mp3', 'INDIGO.mp3', 'INDIGO.MP3'],
             loop: true,
             volume: 0.8,
             html5: true,
+            onload: function() {
+                musicText.innerText = "Toca la pantalla para oír música 🎵";
+            },
+            onloaderror: function(id, err) {
+                console.error("Error al cargar la música:", err);
+                musicText.innerText = "⚠️ No se encontró indigo.mp3 en GitHub";
+            },
             onplay: function() {
                 musicText.innerText = "Reproduciendo: Índigo 🎵";
             },
@@ -650,12 +670,12 @@
             }
         }
 
-        // Cualquier toque en la pantalla o botón iniciará la música al instante
+        // Toca en cualquier parte para iniciar la música automáticamente
         document.addEventListener('click', playMusic, { once: true });
         document.addEventListener('touchstart', playMusic, { once: true });
         document.getElementById('btnDescubrir').addEventListener('click', playMusic);
 
-        // Control Manual
+        // Control Manual con el botón flotante
         musicBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             if (sound.playing()) {
@@ -738,4 +758,85 @@
                 particleCount: 160,
                 spread: 100,
                 origin: { y: 0.6 },
-                colors:
+                colors: ['#a472c6', '#5b9bd5', '#f3c26b']
+            });
+
+            // Oculta formulario y muestra confirmación
+            const form = document.getElementById('rsvpForm');
+            form.style.opacity = '0';
+            
+            setTimeout(() => {
+                form.style.display = 'none';
+                const successMsg = document.getElementById('successMessage');
+                successMsg.style.display = 'block';
+            }, 300);
+
+            cargarDatosAdmin();
+        });
+
+        // PANEL ADMIN
+        const CLAVE_ADMIN = "1234"; 
+
+        function verificarClave() {
+            const claveIngresada = document.getElementById('adminKey').value;
+            if (claveIngresada === CLAVE_ADMIN) {
+                document.getElementById('loginAdmin').style.display = 'none';
+                document.getElementById('adminContent').style.display = 'block';
+                cargarDatosAdmin();
+            } else {
+                alert("Clave incorrecta. Inténtalo de nuevo.");
+            }
+        }
+
+        function cargarDatosAdmin() {
+            let registros = JSON.parse(localStorage.getItem('invitados_revelacion')) || [];
+
+            let totalPersonas = 0;
+            let votosBoy = 0;
+            let votosGirl = 0;
+            let totalPanales = 0;
+            let totalPanitos = 0;
+
+            const tabla = document.getElementById('tablaInvitados');
+            tabla.innerHTML = "";
+
+            registros.forEach(item => {
+                if (item.asistencia === "Sí") {
+                    totalPersonas += (1 + item.acompanantes);
+                }
+
+                if (item.prediccion.includes('Isaac')) {
+                    votosBoy++;
+                    if (item.asistencia === "Sí") totalPanales++;
+                } else if (item.prediccion.includes('Isabella')) {
+                    votosGirl++;
+                    if (item.asistencia === "Sí") totalPanitos++;
+                }
+
+                let tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${item.nombre}</strong></td>
+                    <td>${item.asistencia === "Sí" ? "✅ Sí" : "❌ No"}</td>
+                    <td>+${item.acompanantes}</td>
+                    <td>${item.prediccion}</td>
+                    <td>${item.mision}</td>
+                `;
+                tabla.appendChild(tr);
+            });
+
+            document.getElementById('totalAsistentes').innerText = totalPersonas;
+            document.getElementById('votosBoy').innerText = votosBoy;
+            document.getElementById('votosGirl').innerText = votosGirl;
+            document.getElementById('totalPanales').innerText = totalPanales;
+            document.getElementById('totalPanitos').innerText = totalPanitos;
+        }
+
+        function borrarDatos() {
+            if (confirm("¿Estás seguro de borrar los datos registrados?")) {
+                localStorage.removeItem('invitados_revelacion');
+                cargarDatosAdmin();
+            }
+        }
+    </script>
+</body>
+</html>
