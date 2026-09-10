@@ -11,6 +11,8 @@
     
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+
     <style>
         :root {
             --bg-color: #faf6fc;
@@ -427,9 +429,8 @@
     </div>
 
     <button class="music-btn" id="musicToggle">
-        🎵 <span id="musicText">Activar Música</span>
+        🎵 <span id="musicText">Toca para reproducir música</span>
     </button>
-    <audio id="bgMusic" loop src="indigo.mp3"></audio>
 
     <div class="container">
 
@@ -449,7 +450,7 @@
 
             <p>Queremos invitarte a compartir este día tan mágico y adivinar quién viene en camino a alegrar nuestras vidas.</p>
             
-            <a href="#invitacion" class="btn-main">Descubrir Invitación</a>
+            <a href="#invitacion" class="btn-main" id="btnDescubrir">Descubrir Invitación</a>
         </section>
 
         <section id="invitacion" class="section-card">
@@ -460,4 +461,281 @@
             <div class="countdown" id="countdown">
                 <div class="time-box">
                     <span class="num" id="days">00</span>
-                    <span
+                    <span class="label">Días</span>
+                </div>
+                <div class="time-box">
+                    <span class="num" id="hours">00</span>
+                    <span class="label">Horas</span>
+                </div>
+                <div class="time-box">
+                    <span class="num" id="minutes">00</span>
+                    <span class="label">Min</span>
+                </div>
+                <div class="time-box">
+                    <span class="num" id="seconds">00</span>
+                    <span class="label">Seg</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2 class="section-title">¿Dónde & Cuándo?</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <h4>Fecha</h4>
+                    <p>Sábado, 24 de Octubre, 2026</p>
+                </div>
+                <div class="info-item">
+                    <h4>Hora</h4>
+                    <p>3:30 PM</p>
+                </div>
+                <div class="info-item">
+                    <h4>Lugar</h4>
+                    <p>Casa de la Familia / Salón de Eventos</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-card" id="confirmar">
+            
+            <form id="rsvpForm">
+                <span class="subtitle-tag">Tu Información</span>
+                <h2 class="section-title" style="font-size: 22px; margin-bottom: 20px;">Confirma tu Asistencia</h2>
+
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo</label>
+                    <input type="text" id="nombre" class="form-input" placeholder="Ej. Camila Morales" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="asistencia">¿Nos acompañarás?</label>
+                    <select id="asistencia" class="form-select" required>
+                        <option value="Sí">¡Sí! Ahí estaré para celebrar 🥳</option>
+                        <option value="No">Lo siento, no podré asistir 😔</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="acompanantes">¿Cuántos acompañantes van contigo?</label>
+                    <select id="acompanantes" class="form-select">
+                        <option value="0">Solo yo (0 acompañantes)</option>
+                        <option value="1">+1 Acompañante</option>
+                        <option value="2">+2 Acompañantes</option>
+                        <option value="3">+3 Acompañantes</option>
+                    </select>
+                </div>
+
+                <div style="margin-top: 30px; border-top: 2px dashed var(--card-border); padding-top: 22px;">
+                    <span class="subtitle-tag">Tu Predicción</span>
+                    <h3 style="font-size: 20px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px;">🔮 ¿Quién crees que será?</h3>
+
+                    <div class="team-selector">
+                        <div class="team-card girl" onclick="selectTeam('Isabella (Niña) 💜')">
+                            <span style="font-size: 32px; margin-bottom: 5px;">🎀</span>
+                            <span style="font-weight: 700; font-size: 15px; color: var(--girl-purple);">Equipo ISABELLA</span>
+                        </div>
+
+                        <div class="team-card boy" onclick="selectTeam('Isaac (Niño) 💙')">
+                            <span style="font-size: 32px; margin-bottom: 5px;">🧸</span>
+                            <span style="font-weight: 700; font-size: 15px; color: var(--boy-blue);">Equipo ISAAC</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="missionGirl" class="mission-box girl">
+                    <h3 style="font-size: 17px; font-weight: 700;">🎁 Misión: Equipo Isabella</h3>
+                    <p style="font-size: 13px; font-weight: 600;">Tu regalo sugerido: <strong>1 Paquete de Pañitos Húmedos</strong>.</p>
+                </div>
+
+                <div id="missionBoy" class="mission-box boy">
+                    <h3 style="font-size: 17px; font-weight: 700;">🎁 Misión: Equipo Isaac</h3>
+                    <p style="font-size: 13px; font-weight: 600;">Tu regalo sugerido: <strong>1 Paquete de Pañales (Talla M o L)</strong>.</p>
+                </div>
+
+                <button type="submit" class="btn-main" style="width: 100%; margin-top: 20px;">
+                    Confirmar y Enviar Respuesta 🚀
+                </button>
+            </form>
+
+            <div id="successMessage" class="success-message">
+                <span style="font-size: 40px; display: block; margin-bottom: 10px;">🎉</span>
+                <h3 style="font-size: 24px; font-weight: 700; color: #15803d; margin-bottom: 8px;">¡Respuesta Registrada!</h3>
+                <p style="font-size: 15px; font-weight: 600; color: #166534;">Muchas gracias por ser parte de este momento especial. ¡Nos vemos en la celebración!</p>
+            </div>
+        </section>
+
+        <section class="admin-section">
+            <span class="subtitle-tag" style="color: #a89bb3;">Área Privada</span>
+            <h2>📊 Panel de Control</h2>
+            
+            <div id="loginAdmin">
+                <p style="font-size: 12px; color: #d1c7d9; margin-bottom: 15px;">Ingresa tu clave para ver los votos:</p>
+                <input type="password" id="adminKey" class="form-input" style="max-width: 180px; margin: 0 auto 15px; text-align: center;" placeholder="Clave">
+                <br>
+                <button onclick="verificarClave()" class="btn-main" style="padding: 10px 25px; font-size: 12px;">Ingresar al Panel</button>
+            </div>
+
+            <div id="adminContent" style="display: none;">
+                <div class="admin-metrics">
+                    <div class="metric-card">
+                        <span class="value" id="totalAsistentes">0</span>
+                        <span class="label">Total Personas</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="value" id="votosGirl" style="color: #d6bcfa;">0</span>
+                        <span class="label">Isabella 💜</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="value" id="votosBoy" style="color: #90cdf4;">0</span>
+                        <span class="label">Isaac 💙</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="value" id="totalPanitos" style="color: #d6bcfa;">0</span>
+                        <span class="label">Paq. Pañitos</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="value" id="totalPanales" style="color: #90cdf4;">0</span>
+                        <span class="label">Paq. Pañales</span>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 25px; text-align: left; font-size: 15px;">Lista de Confirmados</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Asiste</th>
+                                <th>Acomp.</th>
+                                <th>Predicción</th>
+                                <th>Misión</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaInvitados"></tbody>
+                    </table>
+                </div>
+
+                <button onclick="borrarDatos()" class="btn-danger">Borrar Datos de Prueba</button>
+            </div>
+        </section>
+
+        <div style="text-align: center; font-size: 12px; color: var(--text-muted); margin-bottom: 30px; font-weight: 600;">
+            ✨ Hecho con amor para la llegada de nuestro bebé ✨
+        </div>
+
+    </div>
+
+    <script>
+        // CONFIGURACIÓN DE AUDIO CON HOWLER.JS
+        const musicBtn = document.getElementById('musicToggle');
+        const musicText = document.getElementById('musicText');
+        
+        // Múltiples fuentes para asegurar compatibilidad
+        const sound = new Howl({
+            src: ['indigo.mp3', './indigo.mp3'],
+            loop: true,
+            volume: 0.8,
+            html5: true,
+            onplay: function() {
+                musicText.innerText = "Reproduciendo: Índigo 🎵";
+            },
+            onpause: function() {
+                musicText.innerText = "Pausado (Índigo)";
+            }
+        });
+
+        function playMusic() {
+            if (!sound.playing()) {
+                sound.play();
+            }
+        }
+
+        // Cualquier toque en la pantalla o botón iniciará la música al instante
+        document.addEventListener('click', playMusic, { once: true });
+        document.addEventListener('touchstart', playMusic, { once: true });
+        document.getElementById('btnDescubrir').addEventListener('click', playMusic);
+
+        // Control Manual
+        musicBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (sound.playing()) {
+                sound.pause();
+            } else {
+                sound.play();
+            }
+        });
+
+        // CUENTA REGRESIVA
+        const fechaEvento = new Date(2026, 9, 24, 15, 30, 0).getTime(); 
+
+        const countdownTimer = setInterval(function() {
+            const ahora = new Date().getTime();
+            const diferencia = fechaEvento - ahora;
+
+            if (diferencia > 0) {
+                const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerText = dias < 10 ? '0' + dias : dias;
+                document.getElementById("hours").innerText = horas < 10 ? '0' + horas : horas;
+                document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
+                document.getElementById("seconds").innerText = segundos < 10 ? '0' + segundos : segundos;
+            } else {
+                clearInterval(countdownTimer);
+                document.getElementById("countdown").innerHTML = "<h3>¡Llegó el gran día! 🎉</h3>";
+            }
+        }, 1000);
+
+        // SELECCIÓN DE EQUIPO
+        let votoSeleccionado = "";
+
+        function selectTeam(equipo) {
+            votoSeleccionado = equipo;
+            document.querySelectorAll('.team-card').forEach(card => card.classList.remove('selected'));
+            document.getElementById('missionBoy').style.display = 'none';
+            document.getElementById('missionGirl').style.display = 'none';
+
+            if (equipo.includes('Isabella')) {
+                document.querySelector('.team-card.girl').classList.add('selected');
+                document.getElementById('missionGirl').style.display = 'block';
+            } else {
+                document.querySelector('.team-card.boy').classList.add('selected');
+                document.getElementById('missionBoy').style.display = 'block';
+            }
+        }
+
+        // REGISTRO
+        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const nombre = document.getElementById('nombre').value.trim();
+            const asistencia = document.getElementById('asistencia').value;
+            const acompanantes = parseInt(document.getElementById('acompanantes').value);
+
+            if (!votoSeleccionado) {
+                alert("Por favor elige si crees que será Isabella 💜 o Isaac 💙 antes de confirmar.");
+                return;
+            }
+
+            const mision = votoSeleccionado.includes('Isabella') ? "1 Paq. Pañitos" : "1 Paq. Pañales";
+
+            let registros = JSON.parse(localStorage.getItem('invitados_revelacion')) || [];
+            
+            registros.push({
+                nombre: nombre,
+                asistencia: asistencia,
+                acompanantes: acompanantes,
+                prediccion: votoSeleccionado,
+                mision: mision
+            });
+
+            localStorage.setItem('invitados_revelacion', JSON.stringify(registros));
+
+            // Confeti
+            confetti({
+                particleCount: 160,
+                spread: 100,
+                origin: { y: 0.6 },
+                colors:
