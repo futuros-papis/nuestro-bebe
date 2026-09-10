@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Revelación de Género | Isabella o Isaac</title>
     
-    <!-- Fuente Quicksand -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Librería Confeti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <style>
@@ -137,7 +135,6 @@
             margin-bottom: 20px;
         }
 
-        /* IMAGEN ORIGINAL DE LOS BEBÉS */
         .baby-image-container {
             margin: 15px 0 25px;
             width: 100%;
@@ -208,7 +205,7 @@
             box-shadow: 0 14px 30px rgba(164, 114, 198, 0.45);
         }
 
-        /* TARJETAS SECCIONES */
+        /* TARJETAS SECCIONES CON TRANSICIÓN */
         .section-card {
             background: #ffffff;
             border-radius: 28px;
@@ -217,6 +214,7 @@
             box-shadow: var(--card-shadow);
             text-align: center;
             border: 2px solid var(--card-border);
+            transition: all 0.5s ease-in-out;
         }
 
         .section-title {
@@ -286,7 +284,7 @@
             color: var(--text-dark);
         }
 
-        /* FORMULARIO & TARJETAS DE ELECCIÓN */
+        /* FORMULARIO DE PASOS */
         .form-group {
             text-align: left;
             margin-bottom: 18px;
@@ -360,12 +358,12 @@
 
         .success-message {
             display: none;
-            padding: 25px;
+            padding: 30px 20px;
             background: #f0fdf4;
             border: 2px solid #bbf7d0;
             border-radius: 20px;
             color: #166534;
-            margin-top: 20px;
+            animation: fadeIn 0.6s ease;
         }
 
         /* ADMIN */
@@ -413,18 +411,13 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 { font-size: 32px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- DECORACIONES FLOTANTES ACUARELA -->
     <div class="bg-decorations">
         <div class="floating-item" style="left: 6%; animation-delay: 0s; font-size: 24px;">🎈</div>
         <div class="floating-item" style="left: 22%; animation-delay: 3s; font-size: 20px;">⭐</div>
@@ -433,21 +426,18 @@
         <div class="floating-item" style="left: 88%; animation-delay: 7s; font-size: 20px;">⭐</div>
     </div>
 
-    <!-- REPRODUCTOR DE MÚSICA AUTOMÁTICA -->
     <button class="music-btn" id="musicToggle">
-        🎵 <span id="musicText">Música Activa</span>
+        🎵 <span id="musicText">Índigo - Camilo</span>
     </button>
-    <audio id="bgMusic" loop src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8b939527d.mp3?filename=lullaby-good-night-baby-10499.mp3"></audio>
+    <audio id="bgMusic" loop src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8b939527d.mp3?filename=indigo-camilo.mp3"></audio>
 
     <div class="container">
 
-        <!-- 1. PORTADA -->
         <section class="hero">
             <span class="subtitle-tag">✨ Hola, voy a ser tu bendición consentida ✨</span>
             
             <h1>¿Isabella o Isaac?</h1>
 
-            <!-- MOSTRAR LA IMAGEN RECORTADA DE LOS BEBÉS -->
             <div class="baby-image-container">
                 <img src="bebes.png" alt="Isabella e Isaac">
             </div>
@@ -462,7 +452,6 @@
             <a href="#invitacion" class="btn-main">Descubrir Invitación</a>
         </section>
 
-        <!-- 2. INVITACIÓN & CUENTA REGRESIVA -->
         <section id="invitacion" class="section-card">
             <span class="subtitle-tag">Acompáñanos a celebrar</span>
             <h2 class="section-title">Nuestra Revelación de Género</h2>
@@ -488,7 +477,6 @@
             </div>
         </section>
 
-        <!-- 3. DETALLES DEL EVENTO -->
         <section class="section-card">
             <h2 class="section-title">¿Dónde & Cuándo?</h2>
             <div class="info-grid">
@@ -507,12 +495,12 @@
             </div>
         </section>
 
-        <!-- 4. CONFIRMACIÓN Y VOTO -->
         <section class="section-card" id="confirmar">
-            <span class="subtitle-tag">Paso 1 de 2</span>
-            <h2 class="section-title">Confirma tu Asistencia</h2>
-
+            
             <form id="rsvpForm">
+                <span class="subtitle-tag">Paso 1 de 2 • Tu Información</span>
+                <h2 class="section-title" style="font-size: 22px; margin-bottom: 20px;">Confirma tu Asistencia</h2>
+
                 <div class="form-group">
                     <label for="nombre">Nombre Completo</label>
                     <input type="text" id="nombre" class="form-input" placeholder="Ej. Camila Morales" required>
@@ -536,10 +524,9 @@
                     </select>
                 </div>
 
-                <!-- SECCIÓN ELECCIÓN -->
-                <div style="margin-top: 25px; border-top: 2px dashed var(--card-border); padding-top: 22px;">
+                <div style="margin-top: 30px; border-top: 2px dashed var(--card-border); padding-top: 22px;">
                     <span class="subtitle-tag">Paso 2 de 2 • Tu Predicción</span>
-                    <h3 style="font-size: 20px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px;">🔮 ¿Quién crees que viene en camino?</h3>
+                    <h3 style="font-size: 20px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px;">🔮 ¿Quién crees que será?</h3>
 
                     <div class="team-selector">
                         <div class="team-card girl" onclick="selectTeam('Isabella (Niña) 💜')">
@@ -554,35 +541,34 @@
                     </div>
                 </div>
 
-                <!-- MISIÓN ASIGNADA -->
                 <div id="missionGirl" class="mission-box girl">
                     <h3 style="font-size: 17px; font-weight: 700;">🎁 Misión: Equipo Isabella</h3>
-                    <p style="font-size: 13px; font-weight: 600;">Tu regalo asignado es: <strong>1 Paquete de Pañitos Húmedos</strong>.</p>
+                    <p style="font-size: 13px; font-weight: 600;">Tu regalo sugerido: <strong>1 Paquete de Pañitos Húmedos</strong>.</p>
                 </div>
 
                 <div id="missionBoy" class="mission-box boy">
                     <h3 style="font-size: 17px; font-weight: 700;">🎁 Misión: Equipo Isaac</h3>
-                    <p style="font-size: 13px; font-weight: 600;">Tu regalo asignado es: <strong>1 Paquete de Pañales (Talla M o L)</strong>.</p>
+                    <p style="font-size: 13px; font-weight: 600;">Tu regalo sugerido: <strong>1 Paquete de Pañales (Talla M o L)</strong>.</p>
                 </div>
 
-                <button type="submit" class="btn-main" style="width: 100%; margin-top: 15px;">
-                    Registrar Mi Asistencia 🚀
+                <button type="submit" class="btn-main" style="width: 100%; margin-top: 20px;">
+                    Confirmar y Enviar Respuesta 🚀
                 </button>
             </form>
 
             <div id="successMessage" class="success-message">
-                <h3 style="font-size: 22px; font-weight: 700;">¡Registrado con Éxito! 🎉</h3>
-                <p style="font-size: 14px; font-weight: 600;">Muchas gracias por confirmar. ¡Nos vemos muy pronto!</p>
+                <span style="font-size: 40px; display: block; margin-bottom: 10px;">🎉</span>
+                <h3 style="font-size: 24px; font-weight: 700; color: #15803d; margin-bottom: 8px;">¡Respuesta Registrada!</h3>
+                <p style="font-size: 15px; font-weight: 600; color: #166534;">Muchas gracias por ser parte de este momento especial. ¡Nos vemos en la celebración!</p>
             </div>
         </section>
 
-        <!-- 5. PANEL ADMIN -->
         <section class="admin-section">
             <span class="subtitle-tag" style="color: #a89bb3;">Área Privada</span>
             <h2>📊 Panel de Control</h2>
             
             <div id="loginAdmin">
-                <p style="font-size: 12px; color: #d1c7d9; margin-bottom: 15px;">Ingresa tu clave para ver las respuestas:</p>
+                <p style="font-size: 12px; color: #d1c7d9; margin-bottom: 15px;">Ingresa tu clave para ver los votos:</p>
                 <input type="password" id="adminKey" class="form-input" style="max-width: 180px; margin: 0 auto 15px; text-align: center;" placeholder="Clave">
                 <br>
                 <button onclick="verificarClave()" class="btn-main" style="padding: 10px 25px; font-size: 12px;">Ingresar al Panel</button>
@@ -638,35 +624,35 @@
 
     </div>
 
-    <!-- JAVASCRIPT -->
     <script>
-        // MÚSICA CON AUTOPLAY AL TOCAR PANTALLA
+        // MÚSICA ÍNDIGO CON AUTOPLAY EN CUALQUIER INTERACCIÓN
         const musicBtn = document.getElementById('musicToggle');
         const bgMusic = document.getElementById('bgMusic');
         const musicText = document.getElementById('musicText');
         let isPlaying = false;
 
-        function playAudio() {
+        function startMusic() {
             if (!isPlaying) {
                 bgMusic.play().then(() => {
                     isPlaying = true;
-                    musicText.innerText = "Pausar Música";
+                    musicText.innerText = "Reproduciendo: Índigo";
                 }).catch(() => {});
             }
         }
 
-        document.body.addEventListener('click', playAudio, { once: true });
-        document.body.addEventListener('touchstart', playAudio, { once: true });
+        // Reproduce automáticamente al tocar cualquier parte de la pantalla
+        document.addEventListener('click', startMusic, { once: true });
+        document.addEventListener('touchstart', startMusic, { once: true });
 
         musicBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             if (isPlaying) {
                 bgMusic.pause();
-                musicText.innerText = "Activar Música";
+                musicText.innerText = "Pausado (Índigo)";
                 isPlaying = false;
             } else {
                 bgMusic.play();
-                musicText.innerText = "Pausar Música";
+                musicText.innerText = "Reproduciendo: Índigo";
                 isPlaying = true;
             }
         });
@@ -712,7 +698,7 @@
             }
         }
 
-        // REGISTRO Y CONFETI
+        // REGISTRO CON TRANSICIÓN SUAVE
         document.getElementById('rsvpForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -739,16 +725,23 @@
 
             localStorage.setItem('invitados_revelacion', JSON.stringify(registros));
 
-            // Confeti
+            // Lanza confeti
             confetti({
-                particleCount: 150,
-                spread: 90,
+                particleCount: 160,
+                spread: 100,
                 origin: { y: 0.6 },
                 colors: ['#a472c6', '#5b9bd5', '#f3c26b']
             });
 
-            document.getElementById('rsvpForm').style.display = 'none';
-            document.getElementById('successMessage').style.display = 'block';
+            // Transición suave: Oculta el formulario y muestra mensaje final
+            const form = document.getElementById('rsvpForm');
+            form.style.opacity = '0';
+            
+            setTimeout(() => {
+                form.style.display = 'none';
+                const successMsg = document.getElementById('successMessage');
+                successMsg.style.display = 'block';
+            }, 300);
 
             cargarDatosAdmin();
         });
