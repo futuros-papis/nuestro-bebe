@@ -87,6 +87,11 @@
             width: 100%; max-height: 240px; object-fit: cover;
             border-radius: 20px; margin-bottom: 20px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: transform 0.4s ease;
+        }
+
+        .envelope-card:hover img {
+            transform: scale(1.03);
         }
 
         .envelope-card h2 { font-size: 24px; color: var(--girl-purple); margin-bottom: 10px; font-weight: 700; }
@@ -99,6 +104,12 @@
             transition: transform 0.25s ease, box-shadow 0.25s ease;
             width: 100%; text-transform: uppercase; letter-spacing: 1px;
             will-change: transform, box-shadow;
+            animation: pulseGlow 2s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 10px 25px rgba(164, 114, 198, 0.4); }
+            50% { box-shadow: 0 15px 35px rgba(91, 155, 213, 0.6); }
         }
         
         .open-btn:active { transform: scale(0.96); }
@@ -122,12 +133,13 @@
 
         @keyframes floatUp {
             0% { transform: translate3d(0, 105vh, 0) rotate(0deg); opacity: 0; }
-            20% { opacity: 0.4; } 80% { opacity: 0.4; }
+            20% { opacity: 0.45; } 80% { opacity: 0.45; }
             100% { transform: translate3d(0, -10vh, 0) rotate(25deg); opacity: 0; }
         }
 
         .container { max-width: 680px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
 
+        /* BOTÓN DE MÚSICA ANIMADO */
         .music-btn {
             position: fixed; bottom: 20px; right: 20px; background: #ffffff;
             border: 2px solid var(--card-border); padding: 12px 20px; border-radius: 50px;
@@ -137,6 +149,26 @@
             will-change: transform;
         }
         .music-btn:active { transform: scale(0.95); }
+
+        .music-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #cbd5e1;
+            transition: background-color 0.3s ease;
+        }
+
+        .music-btn.playing .music-indicator {
+            background-color: #22c55e;
+            box-shadow: 0 0 8px #22c55e;
+            animation: pulseWave 1.5s infinite ease-in-out;
+        }
+
+        @keyframes pulseWave {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.4); }
+        }
 
         /* --- ANIMACIONES Y TRANSICIONES PASO A PASO --- */
         @keyframes fadeSlideUp {
@@ -178,11 +210,12 @@
 
         @keyframes floatSoft {
             0%, 100% { transform: translate3d(0, 0, 0); }
-            50% { transform: translate3d(0, -6px, 0); }
+            50% { transform: translate3d(0, -8px, 0); }
         }
 
         .names-banner { display: flex; justify-content: space-around; width: 100%; max-width: 480px; margin-bottom: 20px; }
-        .name-tag { font-size: 22px; font-weight: 700; }
+        .name-tag { font-size: 22px; font-weight: 700; transition: transform 0.3s ease; }
+        .name-tag:hover { transform: scale(1.08); }
         .name-tag.girl { color: var(--girl-purple); }
         .name-tag.boy { color: var(--boy-blue); }
 
@@ -197,7 +230,19 @@
             border: none; cursor: pointer; text-align: center;
             will-change: transform, box-shadow;
         }
+        .btn-main:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px rgba(164, 114, 198, 0.45);
+        }
         .btn-main:active { transform: scale(0.96); }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: #fff; padding: 10px 20px; border-radius: 50px;
+            font-size: 11px; font-weight: 700; border: none; cursor: pointer;
+            margin-top: 20px; transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+        .btn-danger:active { transform: scale(0.95); }
 
         .btn-maps {
             display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -219,20 +264,23 @@
         .section-card {
             background: #ffffff; border-radius: 28px; padding: 35px 22px; margin: 30px 0;
             box-shadow: var(--card-shadow); text-align: center; border: 2px solid var(--card-border);
+            transition: transform 0.3s ease;
         }
         .section-title { font-size: 26px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
 
         .countdown { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
         .time-box { 
             background: #fcf8ff; padding: 12px 8px; border-radius: 16px; min-width: 68px; 
-            border: 1.5px solid var(--card-border); transition: transform 0.3s ease;
+            border: 1.5px solid var(--card-border); transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+        .time-box:hover { transform: translateY(-3px); box-shadow: 0 8px 15px rgba(164, 114, 198, 0.15); }
         .time-box:active { transform: scale(0.95); }
         .time-box .num { font-size: 26px; font-weight: 700; display: block; color: var(--girl-purple); }
         .time-box .label { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); font-weight: 700; }
 
         .info-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
-        .info-item { padding: 16px; background: var(--bg-color); border-radius: 16px; border: 1.5px solid var(--card-border); }
+        .info-item { padding: 16px; background: var(--bg-color); border-radius: 16px; border: 1.5px solid var(--card-border); transition: border-color 0.3s ease; }
+        .info-item:hover { border-color: var(--girl-purple); }
         .info-item h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-bottom: 3px; }
         .info-item p { font-size: 15px; font-weight: 700; color: var(--text-dark); }
 
@@ -242,9 +290,12 @@
             width: 100%; padding: 14px 18px; border-radius: 14px;
             border: 1.5px solid var(--card-border); font-family: inherit;
             font-size: 15px; font-weight: 600; background: #fff; outline: none; color: var(--text-dark);
-            transition: border-color 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
-        .form-input:focus, .form-select:focus { border-color: var(--girl-purple); }
+        .form-input:focus, .form-select:focus { 
+            border-color: var(--girl-purple); 
+            box-shadow: 0 0 0 4px rgba(164, 114, 198, 0.15);
+        }
 
         /* SELECCIÓN DE EQUIPO Y ANIMACIÓN DE PULSO */
         .team-selector { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
@@ -254,6 +305,7 @@
             background: #fff; user-select: none; display: flex; flex-direction: column; align-items: center;
             will-change: transform;
         }
+        .team-card:hover { transform: translateY(-3px); }
         .team-card:active { transform: scale(0.95); }
 
         @keyframes pulseSelection {
@@ -365,7 +417,7 @@
     </div>
 
     <!-- DECORACIONES FLOTANTES -->
-    <div class="bg-decorations">
+    <div class="bg-decorations" id="bgDecorations">
         <div class="floating-item" style="left: 6%; animation-delay: 0s; font-size: 24px;">🎈</div>
         <div class="floating-item" style="left: 22%; animation-delay: 3s; font-size: 20px;">⭐</div>
         <div class="floating-item" style="left: 50%; animation-delay: 6s; font-size: 22px;">💜</div>
@@ -375,7 +427,7 @@
 
     <!-- BOTÓN DE MÚSICA -->
     <button class="music-btn" id="musicToggle">
-        🎵 <span id="musicText">Música pausada</span>
+        <span class="music-indicator"></span> 🎵 <span id="musicText">Música pausada</span>
     </button>
 
     <div class="container">
@@ -573,7 +625,10 @@
                         </tbody>
                     </table>
                 </div>
-                <button type="button" onclick="cargarDatosAdmin()" class="btn-main" style="padding: 10px 20px; font-size: 11px; margin-top: 15px;">Actualizar Lista 🔄</button>
+                <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 15px;">
+                    <button type="button" onclick="cargarDatosAdmin()" class="btn-main" style="padding: 10px 20px; font-size: 11px;">Actualizar Lista 🔄</button>
+                    <button type="button" onclick="reiniciarBaseDatos()" class="btn-danger">⚠️ Limpiar Base de Datos (Reiniciar)</button>
+                </div>
             </div>
         </section>
 
@@ -596,8 +651,24 @@
         const sound = new Howl({
             src: [songPath, 'indigo.mp3', './indigo.mp3'],
             loop: true, volume: 0.8, html5: true,
-            onplay: function() { musicText.innerText = "Reproduciendo: Índigo 🎵"; },
-            onpause: function() { musicText.innerText = "Música pausada"; }
+            onplay: function() { 
+                musicText.innerText = "Reproduciendo: Índigo 🎵"; 
+                musicBtn.classList.add('playing');
+            },
+            onpause: function() { 
+                musicText.innerText = "Música pausada"; 
+                musicBtn.classList.remove('playing');
+            }
+        });
+
+        // PARALLAX SUTIL EN MÓVILES / MOUSE
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+            const decor = document.getElementById('bgDecorations');
+            if (decor) {
+                decor.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
+            }
         });
 
         // DISPARO DE CONFETI EN LA BIENVENIDA
@@ -871,8 +942,13 @@
                 let totalPersonas = 0, votosBoy = 0, votosGirl = 0, totalPanitos = 0, totalPanales = 0;
                 tabla.innerHTML = "";
 
-                if (registros.length === 0) {
+                if (!registros || registros.length === 0) {
                     tabla.innerHTML = `<tr><td colspan="5" style="text-align: center;">Aún no hay respuestas registradas.</td></tr>`;
+                    document.getElementById('totalAsistentes').innerText = "0";
+                    document.getElementById('votosBoy').innerText = "0";
+                    document.getElementById('votosGirl').innerText = "0";
+                    document.getElementById('totalPanitos').innerText = "0";
+                    document.getElementById('totalPanales').innerText = "0";
                     return;
                 }
 
@@ -902,6 +978,44 @@
             })
             .catch(error => {
                 tabla.innerHTML = `<tr><td colspan="5" style="text-align: center; color: #ff8b8b;">Error al cargar la lista de la nube.</td></tr>`;
+            });
+        }
+
+        // FUNCIÓN PARA REINICIAR LA BASE DE DATOS
+        function reiniciarBaseDatos() {
+            const confirmacion = confirm("⚠️ ¿Estás seguro/a de que deseas borrar TODAS las respuestas registradas? Esta acción no se puede deshacer.");
+            if (!confirmacion) return;
+
+            const tabla = document.getElementById('tablaInvitados');
+            tabla.innerHTML = `<tr><td colspan="5" style="text-align: center;">Limpiando registros... Por favor espera.</td></tr>`;
+
+            fetch(SHEETDB_URL)
+            .then(res => res.json())
+            .then(data => {
+                if (!data || data.length === 0) {
+                    alert("La base de datos ya está completamente vacía.");
+                    cargarDatosAdmin();
+                    return;
+                }
+
+                // Eliminar registros
+                let promesas = data.map(item => {
+                    if (item.nombre) {
+                        return fetch(`${SHEETDB_URL}/nombre/${encodeURIComponent(item.nombre)}`, {
+                            method: 'DELETE'
+                        });
+                    }
+                });
+
+                Promise.all(promesas)
+                .then(() => {
+                    alert("¡Base de datos reiniciada con éxito! Ya está lista para recibir las confirmaciones reales.");
+                    cargarDatosAdmin();
+                })
+                .catch(err => {
+                    alert("Nota: Algunos registros se borraron, pero te recomendamos vaciar las filas directamente en la hoja de Google Sheets para estar 100% seguro.");
+                    cargarDatosAdmin();
+                });
             });
         }
     </script>
