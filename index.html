@@ -147,6 +147,13 @@
         }
         .btn-main:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(164, 114, 198, 0.45); }
 
+        .btn-secondary {
+            background: #ffffff; color: var(--text-dark); border: 2px solid var(--card-border);
+            padding: 10px 20px; border-radius: 50px; font-size: 12px; font-weight: 700;
+            cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 6px;
+        }
+        .btn-secondary:hover { border-color: var(--girl-purple); background: #faf2fe; }
+
         .section-card {
             background: #ffffff; border-radius: 28px; padding: 35px 22px; margin: 30px 0;
             box-shadow: var(--card-shadow); text-align: center; border: 2px solid var(--card-border);
@@ -189,10 +196,19 @@
             border: 2px solid #bbf7d0; border-radius: 20px; color: #166534;
         }
 
+        /* --- BOTÓN Y PANEL ADMINISTRADOR OCULTO --- */
+        .admin-trigger-container { text-align: center; margin: 40px 0 20px; }
         .admin-section {
-            background: #27202d; color: #fff; border-radius: 28px;
-            padding: 32px 20px; margin: 45px 0 20px; text-align: center;
+            display: none; background: #27202d; color: #fff; border-radius: 28px;
+            padding: 32px 20px; margin: 20px 0 20px; text-align: center;
+            animation: fadeIn 0.5s ease;
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .admin-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(95px, 1fr)); gap: 10px; margin: 20px 0; }
         .metric-card { background: #3a3043; padding: 12px 8px; border-radius: 14px; }
         .metric-card .value { font-size: 20px; font-weight: 700; }
@@ -270,9 +286,18 @@
         <section class="section-card">
             <h2 class="section-title">¿Dónde & Cuándo?</h2>
             <div class="info-grid">
-                <div class="info-item"><h4>Fecha</h4><p>Domingo, 4 de Octubre, 2026</p></div>
-                <div class="info-item"><h4>Hora</h4><p>2:00 PM</p></div>
-                <div class="info-item"><h4>Lugar</h4><p>Casa de la Familia / Salón de Eventos</p></div>
+                <div class="info-item">
+                    <h4>Fecha</h4>
+                    <p>Domingo, 4 de Octubre, 2026</p>
+                </div>
+                <div class="info-item">
+                    <h4>Hora</h4>
+                    <p>2:00 PM</p>
+                </div>
+                <div class="info-item">
+                    <h4>Lugar</h4>
+                    <p>Calle 7 #90-81 (Zona verde)<br>Conjunto Rosales de Nueva Castilla</p>
+                </div>
             </div>
         </section>
 
@@ -337,7 +362,7 @@
 
                     <div id="missionBoy" class="mission-box boy">
                         <h3 style="font-size: 17px; font-weight: 700;">🎁 Misión: Equipo Isaac</h3>
-                        <p style="font-size: 13px; font-weight: 600;">Tu regalo sugerido: <strong>1 Paquete de Pañales en la descripción de misión (indicar talla Etapa 3 o Etapa 4)</strong>.</p>
+                        <p style="font-size: 13px; font-weight: 600;">Tu regalo sugerido: <strong>1 Paquete de Pañales (Talla Etapa 3 o Etapa 4)</strong>.</p>
                     </div>
                 </div>
 
@@ -353,8 +378,15 @@
             </div>
         </section>
 
-        <!-- 5. PANEL ADMIN -->
-        <section class="admin-section">
+        <!-- BOTÓN PARA ABRIR PANEL DE CONTROL -->
+        <div class="admin-trigger-container">
+            <button type="button" class="btn-secondary" onclick="toggleAdminPanel()">
+                ⚙️ Panel de Control
+            </button>
+        </div>
+
+        <!-- 5. PANEL ADMIN (OCULTO POR DEFECTO) -->
+        <section class="admin-section" id="adminSection">
             <span class="subtitle-tag" style="color: #a89bb3;">Área Privada</span>
             <h2>📊 Panel de Control en la Nube</h2>
             
@@ -448,6 +480,17 @@
         }
         updateCountdown();
         setInterval(updateCountdown, 1000);
+
+        // MOSTRAR/OCULTAR PANEL ADMINISTRADOR
+        function toggleAdminPanel() {
+            const adminSec = document.getElementById('adminSection');
+            if (adminSec.style.display === 'none' || adminSec.style.display === '') {
+                adminSec.style.display = 'block';
+                adminSec.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                adminSec.style.display = 'none';
+            }
+        }
 
         // CONTROLAR VISIBILIDAD SI NO ASISTE
         function toggleAsistenciaCampos() {
@@ -566,6 +609,7 @@
 
         // PANEL ADMIN CONECTADO A LA NUBE
         const CLAVE_ADMIN = "1234"; 
+
         function verificarClave() {
             if (document.getElementById('adminKey').value === CLAVE_ADMIN) {
                 document.getElementById('loginAdmin').style.display = 'none';
