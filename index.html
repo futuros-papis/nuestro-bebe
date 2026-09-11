@@ -138,6 +138,13 @@
 
         .hero p { font-size: 15px; color: var(--text-muted); max-width: 480px; margin-bottom: 25px; font-weight: 600; }
 
+        /* --- CONTADOR ESTILOS --- */
+        .countdown-wrapper { display: flex; justify-content: center; gap: 15px; margin: 20px 0; }
+        .countdown-box { background: #fff; border: 2px solid var(--card-border); border-radius: 15px; padding: 12px 10px; min-width: 75px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); text-align: center; }
+        .countdown-box span { display: block; font-size: 26px; font-weight: 700; color: var(--girl-purple); }
+        .countdown-box.boy-box span { color: var(--boy-blue); }
+        .countdown-box .label { font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-top: 5px; display: block; }
+        
         .section-card {
             background: #ffffff; border-radius: 28px; padding: 35px 22px; margin: 30px 0;
             box-shadow: var(--card-shadow); text-align: center; border: 2px solid var(--card-border);
@@ -148,7 +155,7 @@
         .info-item { padding: 16px; background: var(--bg-color); border-radius: 16px; border: 1.5px solid var(--card-border); }
         .info-item h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-bottom: 3px; }
         .info-item p { font-size: 15px; font-weight: 700; color: var(--text-dark); }
-        
+
         /* ESTILO NUEVO PARA GOOGLE MAPS */
         .btn-maps {
             display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -239,6 +246,26 @@
                 <span class="name-tag boy">Isaac</span>
             </div>
             <p>¡Estamos muy felices de compartir este momento tan especial contigo!</p>
+
+            <!-- CONTADOR RESTAURADO -->
+            <div id="countdown" class="countdown-wrapper">
+                <div class="countdown-box">
+                    <span id="cd-days">00</span>
+                    <span class="label">Días</span>
+                </div>
+                <div class="countdown-box boy-box">
+                    <span id="cd-hours">00</span>
+                    <span class="label">Horas</span>
+                </div>
+                <div class="countdown-box">
+                    <span id="cd-minutes">00</span>
+                    <span class="label">Min.</span>
+                </div>
+                <div class="countdown-box boy-box">
+                    <span id="cd-seconds">00</span>
+                    <span class="label">Seg.</span>
+                </div>
+            </div>
         </div>
 
         <!-- SECCIÓN DE FECHA Y LUGAR (CORREGIDA) -->
@@ -289,6 +316,10 @@
                         <option value="1">1 Acompañante</option>
                         <option value="2">2 Acompañantes</option>
                         <option value="3">3 Acompañantes</option>
+                        <!-- OPCIONES ADICIONALES RESTAURADAS -->
+                        <option value="4">4 Acompañantes</option>
+                        <option value="5">5 Acompañantes</option>
+                        <option value="Mas">Más de 5</option>
                     </select>
                 </div>
 
@@ -309,7 +340,7 @@
                     <strong>Tu regalo sugerido:</strong> 1 Paquete de Pañitos Húmedos.
                 </div>
 
-                <!-- CORRECCIÓN DEL TEXTO DEL ROBOT AQUÍ -->
+                <!-- CORRECCIÓN DEL TEXTO DEL PAÑAL AQUÍ -->
                 <div id="misionBoy" class="mission-box boy">
                     🧸 ¡Bienvenido al Team Isaac! <br><br>
                     <strong>Tu regalo sugerido:</strong> 1 Paquete de Pañales (Etapa 3 o 4).
@@ -319,7 +350,7 @@
             <button class="btn-submit" id="btnEnviar" onclick="enviarDatos()">Enviar Confirmación</button>
         </div>
 
-        <!-- SECCIÓN DE ADMINISTRADOR (CON EL JS CORREGIDO) -->
+        <!-- SECCIÓN DE ADMINISTRADOR -->
         <div class="admin-section" id="adminSection" style="display: none;">
             <h3 style="font-size: 18px; margin-bottom: 15px;">📊 Panel de Control (Privado)</h3>
             <button onclick="cargarDatosAdmin()" style="padding: 10px 20px; border-radius: 10px; background: #a472c6; color: white; border: none; cursor: pointer;">Actualizar Datos</button>
@@ -406,6 +437,29 @@
             confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 }, colors: ['#a472c6', '#5b9bd5'] });
         });
 
+        // --- LÓGICA DEL CONTADOR (RESTAURADA) ---
+        const countDownDate = new Date("Oct 4, 2026 15:00:00").getTime();
+        
+        const countdownTimer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById("cd-days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("cd-hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("cd-minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("cd-seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+            
+            if (distance < 0) {
+                clearInterval(countdownTimer);
+                document.getElementById("countdown").innerHTML = "<h3 style='color: var(--girl-purple);'>¡El gran día ha llegado!</h3>";
+            }
+        }, 1000);
+
         // --- LÓGICA DEL FORMULARIO ---
         let equipoSeleccionado = "";
 
@@ -466,8 +520,7 @@
             }, 1500);
         }
 
-        // --- LÓGICA DEL ADMINISTRADOR (AHORA SÍ COMPLETA Y SIN CORTES) ---
-        // Mostrar panel si se teclea la clave secreta
+        // --- LÓGICA DEL ADMINISTRADOR ---
         const CLAVE_ADMIN = "1234"; 
         let inputClave = "";
         document.addEventListener('keypress', (e) => {
@@ -504,6 +557,8 @@
                 data.forEach(item => {
                     if(item.asistencia === 'Si') {
                         let numAcomp = parseInt(item.acompanantes) || 0;
+                        if (isNaN(numAcomp)) numAcomp = 5; // Caso "Más de 5" para suma estimada
+
                         totalPersonas += (1 + numAcomp);
 
                         if (item.prediccion && item.prediccion.includes('Isaac')) {
@@ -517,7 +572,7 @@
                         const fila = `<tr>
                             <td>${item.nombre}</td>
                             <td>${item.asistencia}</td>
-                            <td>${numAcomp}</td>
+                            <td>${item.acompanantes}</td>
                             <td>${item.prediccion}</td>
                             <td>${item.mision}</td>
                         </tr>`;
