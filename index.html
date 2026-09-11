@@ -1,595 +1,601 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Revelación de Género | Isabella o Isaac</title>
-    
-    <!-- PREVISUALIZACIÓN EN REDES SOCIALES (OPEN GRAPH / OG) -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="✨ Revelación de Género | Isabella o Isaac 🧸">
-    <meta property="og:description" content="¡Están invitados a nuestra gran revelación de género! Descubran si será Isabella 💜 o Isaac 💙 y confirmen su asistencia.">
-    <meta property="og:image" content="https://futuros-papis.github.io/nuestro-bebe/visualizacion.jpeg">
-    <meta property="og:image:secure_url" content="https://futuros-papis.github.io/nuestro-bebe/visualizacion.jpeg">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revelación de Género | Isabella o Isaac</title>
+    
+    <!-- PREVISUALIZACIÓN EN REDES SOCIALES (OPEN GRAPH / OG) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="✨ Revelación de Género | Isabella o Isaac 🧸">
+    <meta property="og:description" content="¡Estás invitado a nuestra gran revelación de género! Descubre si será Isabella 💜 o Isaac 💙 y confirma tu asistencia.">
+    <meta property="og:image" content="https://futuros-papis.github.io/nuestro-bebe/visualizacion.jpeg">
+    <meta property="og:image:secure_url" content="https://futuros-papis.github.io/nuestro-bebe/visualizacion.jpeg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 
-    <!-- ICONO DE LA PESTAÑA -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧸</text></svg>">
+    <!-- ICONO DE LA PESTAÑA -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧸</text></svg>">
 
-    <!-- Fuentes y Librerías -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <!-- Fuentes y Librerías -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
 
-    <style>
-        :root {
-            --bg-color: #faf6fc;
-            --boy-blue: #5b9bd5;
-            --boy-bg: #eaf3fb;
-            --girl-purple: #a472c6;
-            --girl-bg: #f6edfa;
-            --gold-accent: #f3c26b;
-            --text-dark: #3a3042;
-            --text-muted: #796b82;
-            --card-border: #ebdcf5;
-            --card-shadow: 0 15px 35px rgba(164, 114, 198, 0.12);
-        }
+    <style>
+        :root {
+            --bg-color: #faf6fc;
+            --boy-blue: #5b9bd5;
+            --boy-bg: #eaf3fb;
+            --girl-purple: #a472c6;
+            --girl-bg: #f6edfa;
+            --gold-accent: #f3c26b;
+            --text-dark: #3a3042;
+            --text-muted: #796b82;
+            --card-border: #ebdcf5;
+            --card-shadow: 0 15px 35px rgba(164, 114, 198, 0.12);
+        }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
 
-        body {
-            font-family: 'Quicksand', sans-serif;
-            background-color: var(--bg-color);
-            background-image: 
-                radial-gradient(circle at 15% 15%, #e6f0fa 0%, transparent 45%),
-                radial-gradient(circle at 85% 85%, #f4e8fb 0%, transparent 45%);
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-            position: relative;
-        }
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 15% 15%, #e6f0fa 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, #f4e8fb 0%, transparent 45%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
 
-        /* --- PANTALLA INICIAL DE LA CARTA / SOBRE ANIMADO --- */
-        #welcomeOverlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100vh;
-            background: linear-gradient(135deg, rgba(164, 114, 198, 0.95), rgba(91, 155, 213, 0.95));
-            backdrop-filter: blur(8px);
-            z-index: 9999;
-            display: flex; justify-content: center; align-items: center;
-            padding: 20px;
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
+        /* --- PANTALLA INICIAL DE LA CARTA / SOBRE ANIMADO --- */
+        #welcomeOverlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            background: linear-gradient(135deg, rgba(164, 114, 198, 0.95), rgba(91, 155, 213, 0.95));
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            display: flex; justify-content: center; align-items: center;
+            padding: 20px;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
 
-        .envelope-card {
-            background: #ffffff; width: 100%; max-width: 420px;
-            border-radius: 30px; padding: 35px 25px; text-align: center;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
-            border: 3px solid rgba(255, 255, 255, 0.8);
-            animation: bounceIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative; overflow: hidden;
-        }
+        .envelope-card {
+            background: #ffffff; width: 100%; max-width: 420px;
+            border-radius: 30px; padding: 35px 25px; text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            animation: bounceIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative; overflow: hidden;
+        }
 
-        .envelope-card img {
-            width: 100%; max-height: 240px; object-fit: cover;
-            border-radius: 20px; margin-bottom: 20px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-        }
+        .envelope-card img {
+            width: 100%; max-height: 240px; object-fit: cover;
+            border-radius: 20px; margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
 
-        .envelope-card h2 { font-size: 24px; color: var(--girl-purple); margin-bottom: 10px; font-weight: 700; }
-        .envelope-card p { font-size: 14px; color: var(--text-muted); margin-bottom: 25px; font-weight: 600; }
+        .envelope-card h2 { font-size: 24px; color: var(--girl-purple); margin-bottom: 10px; font-weight: 700; }
+        .envelope-card p { font-size: 14px; color: var(--text-muted); margin-bottom: 25px; font-weight: 600; }
 
-        .open-btn {
-            background: linear-gradient(135deg, var(--girl-purple), var(--boy-blue));
-            color: #fff; border: none; padding: 16px 32px; font-size: 15px; font-weight: 700;
-            border-radius: 50px; cursor: pointer; box-shadow: 0 10px 25px rgba(164, 114, 198, 0.4);
-            transition: all 0.3s ease; width: 100%; text-transform: uppercase; letter-spacing: 1px;
-        }
-        .open-btn:hover { transform: scale(1.03); box-shadow: 0 14px 30px rgba(164, 114, 198, 0.6); }
+        .open-btn {
+            background: linear-gradient(135deg, var(--girl-purple), var(--boy-blue));
+            color: #fff; border: none; padding: 16px 32px; font-size: 15px; font-weight: 700;
+            border-radius: 50px; cursor: pointer; box-shadow: 0 10px 25px rgba(164, 114, 198, 0.4);
+            transition: all 0.3s ease; width: 100%; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .open-btn:hover { transform: scale(1.03); box-shadow: 0 14px 30px rgba(164, 114, 198, 0.6); }
 
-        @keyframes bounceIn {
-            0% { transform: scale(0.5); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
 
-        .fade-out { opacity: 0; transform: scale(1.1); pointer-events: none; }
+        .fade-out { opacity: 0; transform: scale(1.1); pointer-events: none; }
 
-        /* --- DECORACIONES FLOTANTES --- */
-        .bg-decorations { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
-        .floating-item { position: absolute; opacity: 0.35; animation: floatUp 12s infinite ease-in-out; }
+        /* --- RESTO DE DISEÑOS --- */
+        .bg-decorations { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
+        .floating-item { position: absolute; opacity: 0.35; animation: floatUp 12s infinite ease-in-out; }
 
-        @keyframes floatUp {
-            0% { transform: translateY(105vh) rotate(0deg); opacity: 0; }
-            20% { opacity: 0.4; } 80% { opacity: 0.4; }
-            100% { transform: translateY(-10vh) rotate(25deg); opacity: 0; }
-        }
+        @keyframes floatUp {
+            0% { transform: translateY(105vh) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.4; } 80% { opacity: 0.4; }
+            100% { transform: translateY(-10vh) rotate(25deg); opacity: 0; }
+        }
 
-        .container { max-width: 680px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
+        .container { max-width: 680px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
 
-        .music-btn {
-            position: fixed; bottom: 20px; right: 20px; background: #ffffff;
-            border: 2px solid var(--card-border); padding: 12px 20px; border-radius: 50px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12); cursor: pointer; z-index: 998;
-            display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700;
-            color: var(--text-dark); transition: all 0.3s ease;
-        }
-        .music-btn:hover { border-color: var(--girl-purple); background: #faf2fe; transform: scale(1.05); }
+        .music-btn {
+            position: fixed; bottom: 20px; right: 20px; background: #ffffff;
+            border: 2px solid var(--card-border); padding: 12px 20px; border-radius: 50px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12); cursor: pointer; z-index: 998;
+            display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700;
+            color: var(--text-dark); transition: all 0.3s ease;
+        }
+        .music-btn:hover { border-color: var(--girl-purple); background: #faf2fe; transform: scale(1.05); }
 
-        .hero { min-height: 85vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 25px 15px; }
-        .subtitle-tag { font-size: 12px; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 12px; font-weight: 700; }
-        .hero h1 { font-size: clamp(36px, 8vw, 56px); font-weight: 700; color: var(--girl-purple); line-height: 1.15; margin-bottom: 20px; }
+        .hero { min-height: 85vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 25px 15px; }
+        .subtitle-tag { font-size: 12px; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 12px; font-weight: 700; }
+        .hero h1 { font-size: clamp(36px, 8vw, 56px); font-weight: 700; color: var(--girl-purple); line-height: 1.15; margin-bottom: 20px; }
 
-        .baby-image-container {
-            margin: 15px 0 25px; width: 100%; max-width: 520px; border-radius: 28px;
-            overflow: hidden; background: rgba(255, 255, 255, 0.4); padding: 10px;
-            border: 2px solid var(--card-border); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
-        }
-        .baby-image-container img { width: 100%; height: auto; display: block; border-radius: 20px; }
+        .baby-image-container {
+            margin: 15px 0 25px; width: 100%; max-width: 520px; border-radius: 28px;
+            overflow: hidden; background: rgba(255, 255, 255, 0.4); padding: 10px;
+            border: 2px solid var(--card-border); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+        }
+        .baby-image-container img { width: 100%; height: auto; display: block; border-radius: 20px; }
 
-        .names-banner { display: flex; justify-content: space-around; width: 100%; max-width: 480px; margin-bottom: 20px; }
-        .name-tag { font-size: 22px; font-weight: 700; }
-        .name-tag.girl { color: var(--girl-purple); }
-        .name-tag.boy { color: var(--boy-blue); }
+        .names-banner { display: flex; justify-content: space-around; width: 100%; max-width: 480px; margin-bottom: 20px; }
+        .name-tag { font-size: 22px; font-weight: 700; }
+        .name-tag.girl { color: var(--girl-purple); }
+        .name-tag.boy { color: var(--boy-blue); }
 
-        .hero p { font-size: 15px; color: var(--text-muted); max-width: 480px; margin-bottom: 25px; font-weight: 600; }
+        .hero p { font-size: 15px; color: var(--text-muted); max-width: 480px; margin-bottom: 25px; font-weight: 600; }
 
-        /* --- CONTADOR ESTILOS --- */
-        .countdown-wrapper { display: flex; justify-content: center; gap: 15px; margin: 20px 0; }
-        .countdown-box { background: #fff; border: 2px solid var(--card-border); border-radius: 15px; padding: 12px 10px; min-width: 75px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); text-align: center; }
-        .countdown-box span { display: block; font-size: 26px; font-weight: 700; color: var(--girl-purple); }
-        .countdown-box.boy-box span { color: var(--boy-blue); }
-        .countdown-box .label { font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-top: 5px; display: block; }
-        
-        .section-card {
-            background: #ffffff; border-radius: 28px; padding: 35px 22px; margin: 30px 0;
-            box-shadow: var(--card-shadow); text-align: center; border: 2px solid var(--card-border);
-        }
-        .section-title { font-size: 26px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
+        .btn-main {
+            display: inline-block; background: linear-gradient(135deg, var(--girl-purple), var(--boy-blue));
+            color: #fff; padding: 16px 38px; border-radius: 50px; text-decoration: none;
+            font-size: 14px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+            transition: all 0.3s ease; box-shadow: 0 10px 25px rgba(164, 114, 198, 0.35);
+            border: none; cursor: pointer;
+        }
+        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(164, 114, 198, 0.45); }
 
-        .info-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
-        .info-item { padding: 16px; background: var(--bg-color); border-radius: 16px; border: 1.5px solid var(--card-border); }
-        .info-item h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-bottom: 3px; }
-        .info-item p { font-size: 15px; font-weight: 700; color: var(--text-dark); }
+        .section-card {
+            background: #ffffff; border-radius: 28px; padding: 35px 22px; margin: 30px 0;
+            box-shadow: var(--card-shadow); text-align: center; border: 2px solid var(--card-border);
+        }
+        .section-title { font-size: 26px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
 
-        /* ESTILO NUEVO PARA GOOGLE MAPS */
-        .btn-maps {
-            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            background: #fff; color: var(--boy-blue); border: 2px solid var(--boy-blue);
-            padding: 10px 18px; border-radius: 50px; font-size: 13px; font-weight: 700;
-            text-decoration: none; margin-top: 12px; transition: all 0.3s ease; width: 100%; max-width: 250px;
-        }
-        .btn-maps:hover { background: var(--boy-blue); color: #fff; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(91, 155, 213, 0.3); }
+        .countdown { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
+        .time-box { background: #fcf8ff; padding: 12px 8px; border-radius: 16px; min-width: 68px; border: 1.5px solid var(--card-border); }
+        .time-box .num { font-size: 26px; font-weight: 700; display: block; color: var(--girl-purple); }
+        .time-box .label { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); font-weight: 700; }
 
-        .form-group { text-align: left; margin-bottom: 18px; }
-        .form-group label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 6px; font-weight: 700; }
-        .form-input, .form-select {
-            width: 100%; padding: 14px 18px; border-radius: 14px;
-            border: 1.5px solid var(--card-border); font-family: inherit;
-            font-size: 15px; font-weight: 600; background: #fff; outline: none; color: var(--text-dark);
-        }
+        .info-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
+        .info-item { padding: 16px; background: var(--bg-color); border-radius: 16px; border: 1.5px solid var(--card-border); }
+        .info-item h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-bottom: 3px; }
+        .info-item p { font-size: 15px; font-weight: 700; color: var(--text-dark); }
 
-        .team-selector { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
-        .team-card {
-            border: 2.5px dashed var(--card-border); border-radius: 22px; padding: 18px 10px;
-            cursor: pointer; transition: all 0.3s ease; background: #fff; user-select: none;
-            display: flex; flex-direction: column; align-items: center;
-        }
-        .team-card.boy:hover, .team-card.selected.boy { border-color: var(--boy-blue); background: var(--boy-bg); transform: translateY(-4px); }
-        .team-card.girl:hover, .team-card.selected.girl { border-color: var(--girl-purple); background: var(--girl-bg); transform: translateY(-4px); }
+        .form-group { text-align: left; margin-bottom: 18px; }
+        .form-group label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 6px; font-weight: 700; }
+        .form-input, .form-select {
+            width: 100%; padding: 14px 18px; border-radius: 14px;
+            border: 1.5px solid var(--card-border); font-family: inherit;
+            font-size: 15px; font-weight: 600; background: #fff; outline: none; color: var(--text-dark);
+        }
 
-        .btn-submit {
-            background: linear-gradient(135deg, var(--girl-purple), var(--boy-blue));
-            color: #fff; border: none; padding: 16px; font-size: 16px; font-weight: 700;
-            border-radius: 50px; cursor: pointer; width: 100%; text-transform: uppercase; margin-top: 10px;
-        }
+        .team-selector { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
+        .team-card {
+            border: 2.5px dashed var(--card-border); border-radius: 22px; padding: 18px 10px;
+            cursor: pointer; transition: all 0.3s ease; background: #fff; user-select: none;
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .team-card.boy:hover, .team-card.selected.boy { border-color: var(--boy-blue); background: var(--boy-bg); transform: translateY(-4px); }
+        .team-card.girl:hover, .team-card.selected.girl { border-color: var(--girl-purple); background: var(--girl-bg); transform: translateY(-4px); }
 
-        .mission-box { display: none; padding: 18px; border-radius: 18px; margin: 20px 0; font-weight: 600; font-size: 15px;}
-        .mission-box.boy { background: var(--boy-bg); border: 2px dashed var(--boy-blue); color: #215187; }
-        .mission-box.girl { background: var(--girl-bg); border: 2px dashed var(--girl-purple); color: #582580; }
+        .mission-box { display: none; padding: 18px; border-radius: 18px; margin: 20px 0; }
+        .mission-box.boy { background: var(--boy-bg); border: 2px dashed var(--boy-blue); color: #215187; }
+        .mission-box.girl { background: var(--girl-bg); border: 2px dashed var(--girl-purple); color: #582580; }
 
-        .admin-section {
-            background: #27202d; color: #fff; border-radius: 28px;
-            padding: 32px 20px; margin: 45px 0 20px; text-align: center;
-        }
-        .admin-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(95px, 1fr)); gap: 10px; margin: 20px 0; }
-        .metric-card { background: #3a3043; padding: 12px 8px; border-radius: 14px; }
-        .metric-card .value { font-size: 20px; font-weight: 700; }
-        .metric-card .label { font-size: 9px; text-transform: uppercase; color: #d0c5d8; }
-        
-        .table-wrapper { overflow-x: auto; margin-top: 18px; }
-        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 12px; }
-        th, td { padding: 10px 8px; border-bottom: 1px solid #3a3043; }
-        th { background: #19141e; color: #e8dbf2; text-transform: uppercase; font-size: 10px; }
-    </style>
+        .success-message {
+            display: none; padding: 30px 20px; background: #f0fdf4;
+            border: 2px solid #bbf7d0; border-radius: 20px; color: #166534;
+        }
+
+        .admin-section {
+            background: #27202d; color: #fff; border-radius: 28px;
+            padding: 32px 20px; margin: 45px 0 20px; text-align: center;
+        }
+        .admin-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(95px, 1fr)); gap: 10px; margin: 20px 0; }
+        .metric-card { background: #3a3043; padding: 12px 8px; border-radius: 14px; }
+        .metric-card .value { font-size: 20px; font-weight: 700; }
+        .metric-card .label { font-size: 9px; text-transform: uppercase; color: #d0c5d8; }
+
+        .table-wrapper { overflow-x: auto; margin-top: 18px; }
+        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 12px; }
+        th, td { padding: 10px 8px; border-bottom: 1px solid #3a3043; }
+        th { background: #19141e; color: #e8dbf2; text-transform: uppercase; font-size: 10px; }
+    </style>
 </head>
 <body>
 
-    <!-- PANTALLA INICIAL: CARTA / SOBRE ANIMADO -->
-    <div id="welcomeOverlay">
-        <div class="envelope-card">
-            <img src="visualizacion.jpeg" alt="Carta de invitación">
-            <h2>¡Tienes una Invitación!</h2>
-            <p>Acompáñanos a descubrir el gran secreto de nuestra familia.</p>
-            <button class="open-btn" id="openInvitationBtn">Abrir Invitación 💌</button>
-        </div>
-    </div>
+    <!-- PANTALLA INICIAL: CARTA / SOBRE ANIMADO -->
+    <div id="welcomeOverlay">
+        <div class="envelope-card">
+            <img src="visualizacion.jpeg" alt="Carta de invitación">
+            <h2>¡Tienes una Invitación!</h2>
+            <p>Acompáñanos a descubrir el gran secreto de nuestra familia.</p>
+            <button class="open-btn" id="openInvitationBtn">Abrir Invitación 💌</button>
+        </div>
+    </div>
 
-    <!-- DECORACIONES FLOTANTES -->
-    <div class="bg-decorations">
-        <div class="floating-item" style="left: 6%; animation-delay: 0s; font-size: 24px;">🎈</div>
-        <div class="floating-item" style="left: 22%; animation-delay: 3s; font-size: 20px;">⭐</div>
-        <div class="floating-item" style="left: 50%; animation-delay: 6s; font-size: 22px;">💜</div>
-        <div class="floating-item" style="left: 75%; animation-delay: 2s; font-size: 22px;">💙</div>
-        <div class="floating-item" style="left: 85%; animation-delay: 5s; font-size: 24px;">🧸</div>
-    </div>
+    <!-- DECORACIONES FLOTANTES -->
+    <div class="bg-decorations">
+        <div class="floating-item" style="left: 6%; animation-delay: 0s; font-size: 24px;">🎈</div>
+        <div class="floating-item" style="left: 22%; animation-delay: 3s; font-size: 20px;">⭐</div>
+        <div class="floating-item" style="left: 50%; animation-delay: 6s; font-size: 22px;">💜</div>
+        <div class="floating-item" style="left: 75%; animation-delay: 2s; font-size: 22px;">💙</div>
+        <div class="floating-item" style="left: 88%; animation-delay: 7s; font-size: 20px;">⭐</div>
+    </div>
 
-    <!-- BOTÓN DE MÚSICA -->
-    <button id="musicBtn" class="music-btn">🎵 Música On</button>
+    <!-- BOTÓN DE MÚSICA -->
+    <button class="music-btn" id="musicToggle">
+        🎵 <span id="musicText">Música pausada</span>
+    </button>
 
-    <div class="container">
-        
-        <div class="hero">
-            <p class="subtitle-tag">Revelación de Género</p>
-            
-            <div class="baby-image-container">
-                <img src="bebes.png" alt="Nuestros Bebés">
-            </div>
+    <div class="container">
 
-            <div class="names-banner">
-                <span class="name-tag girl">Isabella</span>
-                <span style="font-size: 22px; font-weight: bold; color: var(--text-dark);">o</span>
-                <span class="name-tag boy">Isaac</span>
-            </div>
-            <p>¡Estamos muy felices de compartir este momento tan especial contigo!</p>
+        <!-- 1. PORTADA -->
+        <section class="hero">
+            <span class="subtitle-tag">✨ Hola, voy a ser tu bendición consentida ✨</span>
+            
+            <h1>¿Isabella o Isaac?</h1>
 
-            <!-- CONTADOR RESTAURADO -->
-            <div id="countdown" class="countdown-wrapper">
-                <div class="countdown-box">
-                    <span id="cd-days">00</span>
-                    <span class="label">Días</span>
-                </div>
-                <div class="countdown-box boy-box">
-                    <span id="cd-hours">00</span>
-                    <span class="label">Horas</span>
-                </div>
-                <div class="countdown-box">
-                    <span id="cd-minutes">00</span>
-                    <span class="label">Min.</span>
-                </div>
-                <div class="countdown-box boy-box">
-                    <span id="cd-seconds">00</span>
-                    <span class="label">Seg.</span>
-                </div>
-            </div>
-        </div>
+            <div class="baby-image-container">
+                <img src="bebes.png" alt="Isabella e Isaac">
+            </div>
 
-        <!-- SECCIÓN DE FECHA Y LUGAR (CORREGIDA) -->
-        <div class="section-card">
-            <h3 class="section-title">¿Dónde y Cuándo?</h3>
-            <div class="info-grid">
-                <div class="info-item">
-                    <h4>📅 Fecha y Hora</h4>
-                    <p>Sábado, 4 de octubre</p>
-                    <p style="font-size: 14px; color: var(--text-muted); font-weight: 500;">3:00 PM</p>
-                </div>
-                <div class="info-item">
-                    <h4>📍 Lugar del Evento</h4>
-                    <p>Conjunto Residencial Rosales de Nueva Castilla</p>
-                    <p style="font-size: 14px; color: var(--text-muted); font-weight: 500;">Calle 7 #90-81 (Zona verde)</p>
-                    
-                    <!-- NUEVO BOTÓN DE MAPS -->
-                    <a href="https://www.google.com/maps/search/?api=1&query=Calle+7+%2390-81+conjunto+residencial+rosales+de+nueva+castilla+Bogota" target="_blank" class="btn-maps">
-                        🗺️ Ver en Google Maps
-                    </a>
-                </div>
-            </div>
-        </div>
+            <div class="names-banner">
+                <span class="name-tag girl">Isabella 💜</span>
+                <span class="name-tag boy">Isaac 💙</span>
+            </div>
 
-        <!-- FORMULARIO DE CONFIRMACIÓN -->
-        <div class="section-card">
-            <h3 class="section-title">Confirma tu Asistencia</h3>
-            
-            <div class="form-group">
-                <label>Tu Nombre y Apellido</label>
-                <input type="text" id="nombreInvitado" class="form-input" placeholder="Ej. Juan Pérez">
-            </div>
+            <p>Queremos invitarte a compartir este día tan mágico y adivinar quién viene en camino a alegrar nuestras vidas.</p>
+            
+            <a href="#invitacion" class="btn-main">Descubrir Invitación</a>
+        </section>
 
-            <div class="form-group">
-                <label>¿Asistirás?</label>
-                <select id="asistencia" class="form-select" onchange="toggleForm()">
-                    <option value="" disabled selected>Selecciona una opción...</option>
-                    <option value="Si">¡Sí, ahí estaré!</option>
-                    <option value="No">No podré asistir 😢</option>
-                </select>
-            </div>
+        <!-- 2. INVITACIÓN & CUENTA REGRESIVA -->
+        <section id="invitacion" class="section-card">
+            <span class="subtitle-tag">Acompáñanos a celebrar</span>
+            <h2 class="section-title">Nuestra Revelación de Género</h2>
+            <p style="color: var(--text-muted); font-size: 14px; font-weight: 600;">Faltan muy pocos días para conocer el gran secreto:</p>
 
-            <div id="camposAdicionales" style="display: none;">
-                <div class="form-group">
-                    <label>¿Cuántos acompañantes adicionales llevas?</label>
-                    <select id="acompanantes" class="form-select">
-                        <option value="0">Solo yo</option>
-                        <option value="1">1 Acompañante</option>
-                        <option value="2">2 Acompañantes</option>
-                        <option value="3">3 Acompañantes</option>
-                        <!-- OPCIONES ADICIONALES RESTAURADAS -->
-                        <option value="4">4 Acompañantes</option>
-                        <option value="5">5 Acompañantes</option>
-                        <option value="Mas">Más de 5</option>
-                    </select>
-                </div>
+            <div class="countdown" id="countdownBox">
+                <div class="time-box"><span class="num" id="cdDays">00</span><span class="label">Días</span></div>
+                <div class="time-box"><span class="num" id="cdHours">00</span><span class="label">Horas</span></div>
+                <div class="time-box"><span class="num" id="cdMinutes">00</span><span class="label">Min</span></div>
+                <div class="time-box"><span class="num" id="cdSeconds">00</span><span class="label">Seg</span></div>
+            </div>
+        </section>
 
-                <h3 class="section-title" style="margin-top: 30px; font-size: 18px;">¿Qué equipo eres?</h3>
-                <div class="team-selector">
-                    <div class="team-card girl" onclick="seleccionarEquipo('Isabella')">
-                        <span style="font-size: 30px;">💜</span>
-                        <h4 style="margin-top: 10px; color: var(--girl-purple);">Team Isabella</h4>
-                    </div>
-                    <div class="team-card boy" onclick="seleccionarEquipo('Isaac')">
-                        <span style="font-size: 30px;">💙</span>
-                        <h4 style="margin-top: 10px; color: var(--boy-blue);">Team Isaac</h4>
-                    </div>
-                </div>
+        <!-- 3. DETALLES DEL EVENTO -->
+        <section class="section-card">
+            <h2 class="section-title">¿Dónde & Cuándo?</h2>
+            <div class="info-grid">
+                <div class="info-item"><h4>Fecha</h4><p>Domingo, 4 de Octubre, 2026</p></div>
+                <div class="info-item"><h4>Hora</h4><p>2:00 PM</p></div>
+                <div class="info-item"><h4>Lugar</h4><p>Casa de la Familia / Salón de Eventos</p></div>
+            </div>
+        </section>
 
-                <div id="misionGirl" class="mission-box girl">
-                    🎀 ¡Bienvenido al Team Isabella! <br><br>
-                    <strong>Tu regalo sugerido:</strong> 1 Paquete de Pañitos Húmedos.
-                </div>
+        <!-- 4. CONFIRMACIÓN Y VOTO -->
+        <section class="section-card" id="confirmar">
+            <form id="rsvpForm">
+                <span class="subtitle-tag">Tu Información</span>
+                <h2 class="section-title" style="font-size: 22px; margin-bottom: 20px;">Confirma tu Asistencia</h2>
 
-                <!-- CORRECCIÓN DEL TEXTO DEL PAÑAL AQUÍ -->
-                <div id="misionBoy" class="mission-box boy">
-                    🧸 ¡Bienvenido al Team Isaac! <br><br>
-                    <strong>Tu regalo sugerido:</strong> 1 Paquete de Pañales (Etapa 3 o 4).
-                </div>
-            </div>
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo</label>
+                    <input type="text" id="nombre" class="form-input" placeholder="Ej. Camila Morales" required>
+                </div>
 
-            <button class="btn-submit" id="btnEnviar" onclick="enviarDatos()">Enviar Confirmación</button>
-        </div>
+                <div class="form-group">
+                    <label for="asistencia">¿Nos acompañarás?</label>
+                    <select id="asistencia" class="form-select" onchange="toggleAsistenciaCampos()" required>
+                        <option value="Sí">¡Sí! Ahí estaré para celebrar 🥳</option>
+                        <option value="No">Lo siento, no podré asistir 😔</option>
+                    </select>
+                </div>
 
-        <!-- SECCIÓN DE ADMINISTRADOR -->
-        <div class="admin-section" id="adminSection" style="display: none;">
-            <h3 style="font-size: 18px; margin-bottom: 15px;">📊 Panel de Control (Privado)</h3>
-            <button onclick="cargarDatosAdmin()" style="padding: 10px 20px; border-radius: 10px; background: #a472c6; color: white; border: none; cursor: pointer;">Actualizar Datos</button>
-            
-            <div class="admin-metrics">
-                <div class="metric-card">
-                    <span class="value" id="totalAsistentes">0</span>
-                    <span class="label">Total Personas</span>
-                </div>
-                <div class="metric-card">
-                    <span class="value" id="votosGirl" style="color: #c084e8;">0</span>
-                    <span class="label">Votos Niña</span>
-                </div>
-                <div class="metric-card">
-                    <span class="value" id="votosBoy" style="color: #6daef0;">0</span>
-                    <span class="label">Votos Niño</span>
-                </div>
-                <div class="metric-card">
-                    <span class="value" id="totalPanitos">0</span>
-                    <span class="label">Pañitos</span>
-                </div>
-                <div class="metric-card">
-                    <span class="value" id="totalPanales">0</span>
-                    <span class="label">Pañales</span>
-                </div>
-            </div>
+                <!-- CONTENEDOR QUE SE OCULTA SI DICEN QUE NO -->
+                <div id="camposAsistente">
+                    <div class="form-group">
+                        <label>¿Cuántos acompañantes van contigo?</label>
+                        <select id="acompanantes" class="form-select" onchange="toggleAcompanantesInput()">
+                            <option value="0">0 acompañantes (Solo yo)</option>
+                            <option value="1">1 acompañante</option>
+                            <option value="2">2 acompañantes</option>
+                            <option value="3">3 acompañantes</option>
+                            <option value="otro">Más de 3</option>
+                        </select>
+                    </div>
 
-            <div class="table-wrapper">
-                <table id="tablaInvitados">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Va</th>
-                            <th>Acomp.</th>
-                            <th>Voto</th>
-                            <th>Misión</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Datos cargados aquí -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                    <!-- CAMPO NUMÉRICO EDITABLE SI ES MÁS DE 3 -->
+                    <div class="form-group" id="grupoOtroAcomp" style="display: none;">
+                        <label for="inputOtroAcomp">Indica la cantidad exacta (solo números):</label>
+                        <input type="number" id="inputOtroAcomp" class="form-input" min="4" placeholder="Ej. 4">
+                    </div>
 
-    </div>
+                    <div style="margin-top: 30px; border-top: 2px dashed var(--card-border); padding-top: 22px;">
+                        <span class="subtitle-tag">Tu Predicción</span>
+                        <h3 style="font-size: 20px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px;">🔮 ¿Quién crees que será?</h3>
 
-    <script>
-        // --- CONFIGURACIÓN DE AUDIO (HOWLER) ---
-        let bgMusic = new Howl({
-            src: ['indigo.mp3'],
-            loop: true,
-            volume: 0.5
-        });
+                        <div class="team-selector">
+                            <div class="team-card girl" onclick="selectTeam('Isabella (Niña) 💜')">
+                                <span style="font-size: 32px; margin-bottom: 5px;">🎀</span>
+                                <span style="font-weight: 700; font-size: 15px; color: var(--girl-purple);">Equipo ISABELLA</span>
+                            </div>
+                            <div class="team-card boy" onclick="selectTeam('Isaac (Niño) 💙')">
+                                <span style="font-size: 32px; margin-bottom: 5px;">🧸</span>
+                                <span style="font-weight: 700; font-size: 15px; color: var(--boy-blue);">Equipo ISAAC</span>
+                            </div>
+                        </div>
+                    </div>
 
-        let musicPlaying = false;
-        const musicBtn = document.getElementById('musicBtn');
+                    <div id="missionGirl" class="mission-box girl">
+                        <h3 style="font-size: 17px; font-weight: 700;">🎁 Misión: Equipo Isabella</h3>
+                        <p style="font-size: 13px; font-weight: 600;">Tu regalo sugerido: <strong>1 Paquete de Pañitos Húmedos</strong>.</p>
+                    </div>
 
-        function toggleMusic() {
-            if (musicPlaying) {
-                bgMusic.pause();
-                musicBtn.innerText = "🎵 Música Off";
-            } else {
-                bgMusic.play();
-                musicBtn.innerText = "🎵 Música On";
-            }
-            musicPlaying = !musicPlaying;
-        }
+                    <div id="missionBoy" class="mission-box boy">
+                        <h3 style="font-size: 17px; font-weight: 700;">🎁 Misión: Equipo Isaac</h3>
+                        <p style="font-size: 13px; font-weight: 600;">Tu regalo sugerido: <strong>1 Paquete de Pañales en la descripción de misión (indicar talla Etapa 3 o Etapa 4)</strong>.</p>
+                    </div>
+                </div>
 
-        musicBtn.addEventListener('click', toggleMusic);
+                <button type="submit" id="submitBtn" class="btn-main" style="width: 100%; margin-top: 20px;">
+                    Confirmar y Enviar Respuesta 🚀
+                </button>
+            </form>
 
-        // --- ANIMACIÓN DE ENTRADA Y SOBRE ---
-        document.getElementById('openInvitationBtn').addEventListener('click', () => {
-            document.getElementById('welcomeOverlay').classList.add('fade-out');
-            
-            // Iniciar música automáticamente al abrir (si el navegador lo permite)
-            if (!musicPlaying) {
-                bgMusic.play();
-                musicPlaying = true;
-                musicBtn.innerText = "🎵 Música On";
-            }
+            <div id="successMessage" class="success-message">
+                <span style="font-size: 40px; display: block; margin-bottom: 10px;">🎉</span>
+                <h3 style="font-size: 24px; font-weight: 700; color: #15803d; margin-bottom: 8px;">¡Respuesta Registrada!</h3>
+                <p style="font-size: 15px; font-weight: 600; color: #166534;">Muchas gracias por avisarnos. ¡Te mandamos un abrazo!</p>
+            </div>
+        </section>
 
-            // Confeti de bienvenida
-            confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 }, colors: ['#a472c6', '#5b9bd5'] });
-        });
+        <!-- 5. PANEL ADMIN -->
+        <section class="admin-section">
+            <span class="subtitle-tag" style="color: #a89bb3;">Área Privada</span>
+            <h2>📊 Panel de Control en la Nube</h2>
+            
+            <div id="loginAdmin">
+                <p style="font-size: 12px; color: #d1c7d9; margin-bottom: 15px;">Ingresa tu clave para ver los votos de todos:</p>
+                <input type="password" id="adminKey" class="form-input" style="max-width: 180px; margin: 0 auto 15px; text-align: center;" placeholder="Clave">
+                <br>
+                <button type="button" onclick="verificarClave()" class="btn-main" style="padding: 10px 25px; font-size: 12px;">Ingresar</button>
+            </div>
 
-        // --- LÓGICA DEL CONTADOR (RESTAURADA) ---
-        const countDownDate = new Date("Oct 4, 2026 15:00:00").getTime();
-        
-        const countdownTimer = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = countDownDate - now;
-            
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            document.getElementById("cd-days").innerText = days < 10 ? "0" + days : days;
-            document.getElementById("cd-hours").innerText = hours < 10 ? "0" + hours : hours;
-            document.getElementById("cd-minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("cd-seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
-            
-            if (distance < 0) {
-                clearInterval(countdownTimer);
-                document.getElementById("countdown").innerHTML = "<h3 style='color: var(--girl-purple);'>¡El gran día ha llegado!</h3>";
-            }
-        }, 1000);
+            <div id="adminContent" style="display: none;">
+                <div class="admin-metrics">
+                    <div class="metric-card"><span class="value" id="totalAsistentes">0</span><span class="label">Personas</span></div>
+                    <div class="metric-card"><span class="value" id="votosGirl" style="color: #d6bcfa;">0</span><span class="label">Isabella 💜</span></div>
+                    <div class="metric-card"><span class="value" id="votosBoy" style="color: #90cdf4;">0</span><span class="label">Isaac 💙</span></div>
+                    <div class="metric-card"><span class="value" id="totalPanitos" style="color: #d6bcfa;">0</span><span class="label">Paq. Pañitos</span></div>
+                    <div class="metric-card"><span class="value" id="totalPanales" style="color: #90cdf4;">0</span><span class="label">Paq. Pañales</span></div>
+                </div>
 
-        // --- LÓGICA DEL FORMULARIO ---
-        let equipoSeleccionado = "";
+                <h3 style="margin-top: 25px; text-align: left; font-size: 15px;">Lista Global de Confirmados</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>Nombre</th><th>Asiste</th><th>Acomp.</th><th>Predicción</th><th>Misión</th></tr>
+                        </thead>
+                        <tbody id="tablaInvitados">
+                            <tr><td colspan="5" style="text-align: center;">Cargando datos...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button type="button" onclick="cargarDatosAdmin()" class="btn-main" style="padding: 10px 20px; font-size: 11px; margin-top: 15px;">Actualizar Lista 🔄</button>
+            </div>
+        </section>
 
-        function toggleForm() {
-            const asistencia = document.getElementById('asistencia').value;
-            const campos = document.getElementById('camposAdicionales');
-            
-            if (asistencia === 'Si') {
-                campos.style.display = 'block';
-            } else {
-                campos.style.display = 'none';
-                equipoSeleccionado = "";
-                document.querySelectorAll('.team-card').forEach(c => c.classList.remove('selected'));
-                document.getElementById('misionGirl').style.display = 'none';
-                document.getElementById('misionBoy').style.display = 'none';
-            }
-        }
+        <div style="text-align: center; font-size: 12px; color: var(--text-muted); margin-bottom: 30px; font-weight: 600;">
+            ✨ Hecho con amor para la llegada de nuestro bebé ✨
+        </div>
+    </div>
 
-        function seleccionarEquipo(equipo) {
-            equipoSeleccionado = equipo;
-            
-            document.querySelectorAll('.team-card').forEach(c => c.classList.remove('selected'));
-            document.getElementById('misionGirl').style.display = 'none';
-            document.getElementById('misionBoy').style.display = 'none';
+    <!-- JAVASCRIPT -->
+    <script>
+        const SHEETDB_URL = "https://sheetdb.io/api/v1/pnct7bjqp2gn9"; 
 
-            if (equipo === 'Isabella') {
-                document.querySelector('.team-card.girl').classList.add('selected');
-                document.getElementById('misionGirl').style.display = 'block';
-            } else {
-                document.querySelector('.team-card.boy').classList.add('selected');
-                document.getElementById('misionBoy').style.display = 'block';
-            }
-        }
+        // CONFIGURACIÓN DE AUDIO Y APERTURA DE CARTA
+        const musicBtn = document.getElementById('musicToggle');
+        const musicText = document.getElementById('musicText');
+        const openInvitationBtn = document.getElementById('openInvitationBtn');
+        const welcomeOverlay = document.getElementById('welcomeOverlay');
 
-        function enviarDatos() {
-            const nombre = document.getElementById('nombreInvitado').value;
-            const asistencia = document.getElementById('asistencia').value;
-            
-            if (!nombre || !asistencia) {
-                alert("Por favor, dinos tu nombre y si vas a asistir.");
-                return;
-            }
+        const songPath = new URL('indigo.mp3', window.location.href).href;
 
-            if (asistencia === 'Si' && !equipoSeleccionado) {
-                alert("¡No olvides elegir a qué equipo perteneces!");
-                return;
-            }
+        const sound = new Howl({
+            src: [songPath, 'indigo.mp3', './indigo.mp3'],
+            loop: true, volume: 0.8, html5: true,
+            onplay: function() { musicText.innerText = "Reproduciendo: Índigo 🎵"; },
+            onpause: function() { musicText.innerText = "Música pausada"; }
+        });
 
-            const btn = document.getElementById('btnEnviar');
-            btn.innerText = "Enviando...";
-            btn.disabled = true;
+        openInvitationBtn.addEventListener('click', () => {
+            sound.play();
+            welcomeOverlay.classList.add('fade-out');
+            setTimeout(() => { welcomeOverlay.style.display = 'none'; }, 800);
+        });
 
-            // Simulación de envío a Google Apps Script
-            setTimeout(() => {
-                btn.innerText = "¡Confirmación Enviada! 🎉";
-                btn.style.background = "#4ade80";
-                confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-            }, 1500);
-        }
+        musicBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (sound.playing()) { sound.pause(); } else { sound.play(); }
+        });
 
-        // --- LÓGICA DEL ADMINISTRADOR ---
-        const CLAVE_ADMIN = "1234"; 
-        let inputClave = "";
-        document.addEventListener('keypress', (e) => {
-            inputClave += e.key;
-            if (inputClave.includes(CLAVE_ADMIN)) {
-                document.getElementById('adminSection').style.display = 'block';
-                inputClave = "";
-            }
-            if (inputClave.length > 10) inputClave = inputClave.substring(1);
-        });
+        // CUENTA REGRESIVA (04 DE OCTUBRE DE 2026 A LAS 14:00)
+        const targetDate = new Date(2026, 9, 4, 14, 0, 0).getTime(); 
 
-        function cargarDatosAdmin() {
-            // NOTA: Aquí debes poner el link real de tu Google Script (WebApp)
-            const scriptURL = 'AQUI_TU_LINK_DE_GOOGLE_APPS_SCRIPT'; 
-            const tabla = document.querySelector('#tablaInvitados tbody');
-            tabla.innerHTML = '<tr><td colspan="5" style="text-align: center;">Cargando datos...</td></tr>';
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
 
-            // Como no hay URL real, simulamos que cargamos datos para evitar errores
-            if(scriptURL === 'AQUI_TU_LINK_DE_GOOGLE_APPS_SCRIPT') {
-                tabla.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #a472c6;">Debes conectar tu Google Apps Script primero.</td></tr>';
-                return;
-            }
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-            fetch(scriptURL)
-            .then(response => response.json())
-            .then(data => {
-                tabla.innerHTML = '';
-                let totalPersonas = 0;
-                let votosBoy = 0;
-                let votosGirl = 0;
-                let totalPanitos = 0;
-                let totalPanales = 0;
+                if (document.getElementById("cdDays")) document.getElementById("cdDays").innerText = days < 10 ? '0' + days : days;
+                if (document.getElementById("cdHours")) document.getElementById("cdHours").innerText = hours < 10 ? '0' + hours : hours;
+                if (document.getElementById("cdMinutes")) document.getElementById("cdMinutes").innerText = minutes < 10 ? '0' + minutes : minutes;
+                if (document.getElementById("cdSeconds")) document.getElementById("cdSeconds").innerText = seconds < 10 ? '0' + seconds : seconds;
+            } else {
+                const box = document.getElementById("countdownBox");
+                if (box) box.innerHTML = "<h3>¡Llegó el gran día! 🎉</h3>";
+            }
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
 
-                data.forEach(item => {
-                    if(item.asistencia === 'Si') {
-                        let numAcomp = parseInt(item.acompanantes) || 0;
-                        if (isNaN(numAcomp)) numAcomp = 5; // Caso "Más de 5" para suma estimada
+        // CONTROLAR VISIBILIDAD SI NO ASISTE
+        function toggleAsistenciaCampos() {
+            const asistencia = document.getElementById('asistencia').value;
+            const camposAsistente = document.getElementById('camposAsistente');
+            if (asistencia === "No") {
+                camposAsistente.style.display = 'none';
+            } else {
+                camposAsistente.style.display = 'block';
+            }
+        }
 
-                        totalPersonas += (1 + numAcomp);
+        // MOSTRAR INPUT EDITABLE SI SELECCIONAN "MÁS DE 3"
+        function toggleAcompanantesInput() {
+            const select = document.getElementById('acompanantes').value;
+            const grupoOtro = document.getElementById('grupoOtroAcomp');
+            if (select === 'otro') {
+                grupoOtro.style.display = 'block';
+                document.getElementById('inputOtroAcomp').focus();
+            } else {
+                grupoOtro.style.display = 'none';
+                document.getElementById('inputOtroAcomp').value = '';
+            }
+        }
 
-                        if (item.prediccion && item.prediccion.includes('Isaac')) {
-                            votosBoy++;
-                            totalPanales++;
-                        } else if (item.prediccion && item.prediccion.includes('Isabella')) { 
-                            votosGirl++; 
-                            totalPanitos++; 
-                        }
+        // SELECCIÓN DE EQUIPO
+        let votoSeleccionado = "";
+        function selectTeam(equipo) {
+            votoSeleccionado = equipo;
+            document.querySelectorAll('.team-card').forEach(card => card.classList.remove('selected'));
+            document.getElementById('missionBoy').style.display = 'none';
+            document.getElementById('missionGirl').style.display = 'none';
 
-                        const fila = `<tr>
-                            <td>${item.nombre}</td>
-                            <td>${item.asistencia}</td>
-                            <td>${item.acompanantes}</td>
-                            <td>${item.prediccion}</td>
-                            <td>${item.mision}</td>
-                        </tr>`;
-                        tabla.innerHTML += fila;
-                    }
-                });
+            if (equipo.includes('Isabella')) {
+                document.querySelector('.team-card.girl').classList.add('selected');
+                document.getElementById('missionGirl').style.display = 'block';
+            } else {
+                document.querySelector('.team-card.boy').classList.add('selected');
+                document.getElementById('missionBoy').style.display = 'block';
+            }
+        }
 
-                document.getElementById('totalAsistentes').innerText = totalPersonas;
-                document.getElementById('votosBoy').innerText = votosBoy;
-                document.getElementById('votosGirl').innerText = votosGirl;
-                document.getElementById('totalPanales').innerText = totalPanales;
-                document.getElementById('totalPanitos').innerText = totalPanitos;
-            })
-            .catch(error => {
-                tabla.innerHTML = `<tr><td colspan="5" style="text-align: center; color: #ef4444;">Error al cargar los datos. Revisa tu conexión.</td></tr>`;
-            });
-        }
-    </script>
-</body>
-</html>
+        // FORMULARIO CONECTADO A LA NUBE (SHEETDB)
+        const rsvpForm = document.getElementById('rsvpForm');
+        if (rsvpForm) {
+            rsvpForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const nombre = document.getElementById('nombre').value.trim();
+                const asistencia = document.getElementById('asistencia').value;
+                let acompanantes = "0";
+                let prediccion = "No asiste";
+                let mision = "Ninguna";
+
+                if (asistencia === "Sí") {
+                    const selectAcomp = document.getElementById('acompanantes').value;
+                    if (selectAcomp === 'otro') {
+                        const valOtro = document.getElementById('inputOtroAcomp').value.trim();
+                        if (!valOtro || parseInt(valOtro) < 4) {
+                            alert("Por favor indica una cantidad válida de acompañantes (mínimo 4).");
+                            return;
+                        }
+                        acompanantes = valOtro;
+                    } else {
+                        acompanantes = selectAcomp;
+                    }
+
+                    if (!votoSeleccionado) {
+                        alert("Por favor elige si crees que será Isabella 💜 o Isaac 💙 antes de confirmar.");
+                        return;
+                    }
+                    prediccion = votoSeleccionado;
+                    
+                    if (votoSeleccionado.includes('Isabella')) {
+                        mision = "1 Paq. Pañitos Húmedos";
+                    } else {
+                        mision = "1 Paq. Pañales (Talla Etapa 3 o 4)";
+                    }
+                }
+
+                const submitBtn = document.getElementById('submitBtn');
+                submitBtn.innerText = "Enviando respuesta...";
+                submitBtn.disabled = true;
+
+                // Enviar datos por API a Google Sheets
+                fetch(SHEETDB_URL, {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        data: [{
+                            nombre: nombre,
+                            asistencia: asistencia,
+                            acompanantes: acompanantes,
+                            prediccion: prediccion,
+                            mision: mision
+                        }]
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (asistencia === "Sí") {
+                        confetti({ particleCount: 160, spread: 100, origin: { y: 0.6 }, colors: ['#a472c6', '#5b9bd5', '#f3c26b'] });
+                    }
+                    rsvpForm.style.opacity = '0';
+                    setTimeout(() => {
+                        rsvpForm.style.display = 'none';
+                        document.getElementById('successMessage').style.display = 'block';
+                    }, 300);
+                })
+                .catch(error => {
+                    alert("Hubo un error al enviar. Revisa tu conexión e intenta de nuevo.");
+                    submitBtn.innerText = "Confirmar y Enviar Respuesta 🚀";
+                    submitBtn.disabled = false;
+                });
+            });
+        }
+
+        // PANEL ADMIN CONECTADO A LA NUBE
+        const CLAVE_ADMIN = "1234"; 
+        function verificarClave() {
+            if (document.getElementById('adminKey').value === CLAVE_ADMIN) {
+                document.getElementById('loginAdmin').style.display = 'none';
+                document.getElementById('adminContent').style.display = 'block';
+                cargarDatosAdmin();
+            } else {
+                alert("Clave incorrecta.");
+            }
+        }
+
+        function cargarDatosAdmin() {
+            const tabla = document.getElementById('tablaInvitados');
+            tabla.innerHTML = `<tr><td colspan="5" style="text-align: center;">Cargando datos de la nube...</td></tr>`;
+
+            fetch(SHEETDB_URL)
+            .then(response => response.json())
+            .then(registros => {
+                let totalPersonas = 0, votosBoy = 0, votosGirl = 0, totalPanitos = 0, totalPanales = 0;
+                tabla.innerHTML = "";
+
+                if (registros.length === 0) {
+                    tabla.innerHTML = `<tr><td colspan="5" style="text-align: center;">Aún no hay respuestas registradas.</td></tr>`;
+                    return;
+                }
+
+                registros.forEach(item => {
+                    let numAcomp = parseInt(item.acompanantes) || 0;
+                    if (item.asistencia === "Sí") {
+                        totalPersonas += (1 + numAcomp);
+                        if (item.prediccion && item.prediccion.includes('Isaac')) { 
+                            votosBoy++; 
+                            totalPanales++; 
+                        } else if (item.prediccion && item.prediccion.
