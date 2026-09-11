@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Revelación de Género | Isabella o Isaac</title>
+    <title>Gran Revelación de Género | ¿Isabella o Isaac?</title>
     
     <!-- PREVISUALIZACIÓN EN REDES SOCIALES (OPEN GRAPH / OG) -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="✨ Revelación de Género | Isabella o Isaac 🧸">
-    <meta property="og:description" content="¡Estás invitado a nuestra gran revelación de género! Descubre si será Isabella 💜 o Isaac 💙 y confirma tu asistencia.">
+    <meta property="og:title" content="✨ Gran Revelación de Género | ¿Isabella o Isaac? 🧸">
+    <meta property="og:description" content="¡Estás invitado/a a nuestra gran revelación de género! Descubre si será Isabella 💜 o Isaac 💙 y confirma tu asistencia.">
     <meta property="og:image" content="https://futuros-papis.github.io/nuestro-bebe/visualizacion.jpeg">
     <meta property="og:image:secure_url" content="https://futuros-papis.github.io/nuestro-bebe/visualizacion.jpeg">
     <meta property="og:image:type" content="image/jpeg">
@@ -39,7 +39,13 @@
             --card-shadow: 0 15px 35px rgba(164, 114, 198, 0.12);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            -webkit-tap-highlight-color: transparent; 
+        }
+        
         html { scroll-behavior: smooth; }
 
         body {
@@ -60,10 +66,12 @@
             top: 0; left: 0; width: 100%; height: 100vh;
             background: linear-gradient(135deg, rgba(164, 114, 198, 0.95), rgba(91, 155, 213, 0.95));
             backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             z-index: 9999;
             display: flex; justify-content: center; align-items: center;
             padding: 20px;
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: opacity, transform;
         }
 
         .envelope-card {
@@ -88,25 +96,34 @@
             background: linear-gradient(135deg, var(--girl-purple), var(--boy-blue));
             color: #fff; border: none; padding: 16px 32px; font-size: 15px; font-weight: 700;
             border-radius: 50px; cursor: pointer; box-shadow: 0 10px 25px rgba(164, 114, 198, 0.4);
-            transition: all 0.3s ease; width: 100%; text-transform: uppercase; letter-spacing: 1px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            width: 100%; text-transform: uppercase; letter-spacing: 1px;
+            will-change: transform, box-shadow;
         }
-        .open-btn:hover { transform: scale(1.03); box-shadow: 0 14px 30px rgba(164, 114, 198, 0.6); }
+        
+        .open-btn:active { transform: scale(0.96); }
 
         @keyframes bounceIn {
             0% { transform: scale(0.5); opacity: 0; }
             100% { transform: scale(1); opacity: 1; }
         }
 
-        .fade-out { opacity: 0; transform: scale(1.1); pointer-events: none; }
+        .fade-out { opacity: 0; transform: scale(1.08); pointer-events: none; }
 
-        /* --- RESTO DE DISEÑOS --- */
+        /* --- DECORACIONES Y ELEMENTOS FLOTANTES CON ACELERACIÓN GPU --- */
         .bg-decorations { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
-        .floating-item { position: absolute; opacity: 0.35; animation: floatUp 12s infinite ease-in-out; }
+        
+        .floating-item { 
+            position: absolute; 
+            opacity: 0.35; 
+            animation: floatUp 12s infinite ease-in-out; 
+            will-change: transform, opacity;
+        }
 
         @keyframes floatUp {
-            0% { transform: translateY(105vh) rotate(0deg); opacity: 0; }
+            0% { transform: translate3d(0, 105vh, 0) rotate(0deg); opacity: 0; }
             20% { opacity: 0.4; } 80% { opacity: 0.4; }
-            100% { transform: translateY(-10vh) rotate(25deg); opacity: 0; }
+            100% { transform: translate3d(0, -10vh, 0) rotate(25deg); opacity: 0; }
         }
 
         .container { max-width: 680px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
@@ -116,11 +133,34 @@
             border: 2px solid var(--card-border); padding: 12px 20px; border-radius: 50px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.12); cursor: pointer; z-index: 998;
             display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700;
-            color: var(--text-dark); transition: all 0.3s ease;
+            color: var(--text-dark); transition: transform 0.25s ease, border-color 0.25s ease;
+            will-change: transform;
         }
-        .music-btn:hover { border-color: var(--girl-purple); background: #faf2fe; transform: scale(1.05); }
+        .music-btn:active { transform: scale(0.95); }
 
-        .hero { min-height: 85vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 25px 15px; }
+        /* --- ANIMACIONES Y TRANSICIONES PASO A PASO --- */
+        @keyframes fadeSlideUp {
+            0% {
+                opacity: 0;
+                transform: translate3d(0, 30px, 0) scale(0.98);
+            }
+            100% {
+                opacity: 1;
+                transform: translate3d(0, 0, 0) scale(1);
+            }
+        }
+
+        .step-section {
+            display: none;
+            will-change: opacity, transform;
+        }
+
+        .step-section.active {
+            display: block;
+            animation: fadeSlideUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 25px 15px; }
         .subtitle-tag { font-size: 12px; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 12px; font-weight: 700; }
         .hero h1 { font-size: clamp(36px, 8vw, 56px); font-weight: 700; color: var(--girl-purple); line-height: 1.15; margin-bottom: 20px; }
 
@@ -129,7 +169,17 @@
             overflow: hidden; background: rgba(255, 255, 255, 0.4); padding: 10px;
             border: 2px solid var(--card-border); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
         }
-        .baby-image-container img { width: 100%; height: auto; display: block; border-radius: 20px; }
+        
+        .baby-image-container img { 
+            width: 100%; height: auto; display: block; border-radius: 20px;
+            animation: floatSoft 5s ease-in-out infinite;
+            will-change: transform;
+        }
+
+        @keyframes floatSoft {
+            0%, 100% { transform: translate3d(0, 0, 0); }
+            50% { transform: translate3d(0, -6px, 0); }
+        }
 
         .names-banner { display: flex; justify-content: space-around; width: 100%; max-width: 480px; margin-bottom: 20px; }
         .name-tag { font-size: 22px; font-weight: 700; }
@@ -142,17 +192,29 @@
             display: inline-block; background: linear-gradient(135deg, var(--girl-purple), var(--boy-blue));
             color: #fff; padding: 16px 38px; border-radius: 50px; text-decoration: none;
             font-size: 14px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
-            transition: all 0.3s ease; box-shadow: 0 10px 25px rgba(164, 114, 198, 0.35);
-            border: none; cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease; 
+            box-shadow: 0 10px 25px rgba(164, 114, 198, 0.35);
+            border: none; cursor: pointer; text-align: center;
+            will-change: transform, box-shadow;
         }
-        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(164, 114, 198, 0.45); }
+        .btn-main:active { transform: scale(0.96); }
+
+        .btn-maps {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            background-color: #ea4335; color: #ffffff; padding: 12px 24px; border-radius: 50px;
+            font-weight: 700; font-size: 13px; text-decoration: none; margin-top: 15px;
+            box-shadow: 0 6px 18px rgba(234, 67, 53, 0.25); transition: transform 0.25s ease;
+            will-change: transform;
+        }
+        .btn-maps:active { transform: scale(0.96); }
 
         .btn-secondary {
             background: #ffffff; color: var(--text-dark); border: 2px solid var(--card-border);
             padding: 10px 20px; border-radius: 50px; font-size: 12px; font-weight: 700;
-            cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 6px;
+            cursor: pointer; transition: transform 0.25s ease, background 0.25s ease; 
+            display: inline-flex; align-items: center; gap: 6px;
         }
-        .btn-secondary:hover { border-color: var(--girl-purple); background: #faf2fe; }
+        .btn-secondary:active { transform: scale(0.95); }
 
         .section-card {
             background: #ffffff; border-radius: 28px; padding: 35px 22px; margin: 30px 0;
@@ -161,7 +223,11 @@
         .section-title { font-size: 26px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
 
         .countdown { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
-        .time-box { background: #fcf8ff; padding: 12px 8px; border-radius: 16px; min-width: 68px; border: 1.5px solid var(--card-border); }
+        .time-box { 
+            background: #fcf8ff; padding: 12px 8px; border-radius: 16px; min-width: 68px; 
+            border: 1.5px solid var(--card-border); transition: transform 0.3s ease;
+        }
+        .time-box:active { transform: scale(0.95); }
         .time-box .num { font-size: 26px; font-weight: 700; display: block; color: var(--girl-purple); }
         .time-box .label { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); font-weight: 700; }
 
@@ -176,37 +242,103 @@
             width: 100%; padding: 14px 18px; border-radius: 14px;
             border: 1.5px solid var(--card-border); font-family: inherit;
             font-size: 15px; font-weight: 600; background: #fff; outline: none; color: var(--text-dark);
+            transition: border-color 0.3s ease;
         }
+        .form-input:focus, .form-select:focus { border-color: var(--girl-purple); }
 
+        /* SELECCIÓN DE EQUIPO Y ANIMACIÓN DE PULSO */
         .team-selector { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
         .team-card {
             border: 2.5px dashed var(--card-border); border-radius: 22px; padding: 18px 10px;
-            cursor: pointer; transition: all 0.3s ease; background: #fff; user-select: none;
-            display: flex; flex-direction: column; align-items: center;
+            cursor: pointer; transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease; 
+            background: #fff; user-select: none; display: flex; flex-direction: column; align-items: center;
+            will-change: transform;
         }
-        .team-card.boy:hover, .team-card.selected.boy { border-color: var(--boy-blue); background: var(--boy-bg); transform: translateY(-4px); }
-        .team-card.girl:hover, .team-card.selected.girl { border-color: var(--girl-purple); background: var(--girl-bg); transform: translateY(-4px); }
+        .team-card:active { transform: scale(0.95); }
 
-        .mission-box { display: none; padding: 18px; border-radius: 18px; margin: 20px 0; }
+        @keyframes pulseSelection {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.06); }
+            100% { transform: scale(1); }
+        }
+
+        .team-card.selected.girl { 
+            border-color: var(--girl-purple); 
+            background: var(--girl-bg); 
+            animation: pulseSelection 0.4s ease-out;
+            box-shadow: 0 8px 20px rgba(164, 114, 198, 0.25);
+        }
+
+        .team-card.selected.boy { 
+            border-color: var(--boy-blue); 
+            background: var(--boy-bg); 
+            animation: pulseSelection 0.4s ease-out;
+            box-shadow: 0 8px 20px rgba(91, 155, 213, 0.25);
+        }
+
+        .mission-box { 
+            display: none; padding: 18px; border-radius: 18px; margin: 20px 0; 
+            animation: fadeSlideUp 0.5s ease forwards;
+        }
         .mission-box.boy { background: var(--boy-bg); border: 2px dashed var(--boy-blue); color: #215187; }
         .mission-box.girl { background: var(--girl-bg); border: 2px dashed var(--girl-purple); color: #582580; }
 
         .success-message {
             display: none; padding: 30px 20px; background: #f0fdf4;
-            border: 2px solid #bbf7d0; border-radius: 20px; color: #166534;
+            border: 2px solid #bbf7d0; border-radius: 20px; color: #166534; margin-bottom: 25px;
+            animation: fadeSlideUp 0.6s ease forwards;
         }
 
-        /* --- BOTÓN Y PANEL ADMINISTRADOR OCULTO --- */
+        /* --- GRÁFICO PÚBLICO DE RESULTADOS EN VIVO --- */
+        .live-chart-card {
+            display: none;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 25px 20px;
+            border: 2px solid var(--card-border);
+            box-shadow: var(--card-shadow);
+            margin-top: 20px;
+            text-align: center;
+            animation: fadeSlideUp 0.6s ease forwards;
+        }
+
+        .chart-bar-container {
+            margin: 20px 0;
+            background: #f1f5f9;
+            border-radius: 50px;
+            height: 32px;
+            display: flex;
+            overflow: hidden;
+            border: 2px solid var(--card-border);
+            position: relative;
+        }
+
+        .chart-fill-girl {
+            background: linear-gradient(90deg, #a472c6, #c084fc);
+            height: 100%; width: 50%;
+            transition: width 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-size: 12px; font-weight: 700;
+            will-change: width;
+        }
+
+        .chart-fill-boy {
+            background: linear-gradient(90deg, #60a5fa, #5b9bd5);
+            height: 100%; width: 50%;
+            transition: width 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-size: 12px; font-weight: 700;
+            will-change: width;
+        }
+
+        .chart-legend { display: flex; justify-content: space-around; font-weight: 700; font-size: 14px; }
+
+        /* --- PANEL ADMINISTRADOR OCULTO --- */
         .admin-trigger-container { text-align: center; margin: 40px 0 20px; }
         .admin-section {
             display: none; background: #27202d; color: #fff; border-radius: 28px;
             padding: 32px 20px; margin: 20px 0 20px; text-align: center;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            animation: fadeSlideUp 0.5s ease forwards;
         }
 
         .admin-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(95px, 1fr)); gap: 10px; margin: 20px 0; }
@@ -226,8 +358,8 @@
     <div id="welcomeOverlay">
         <div class="envelope-card">
             <img src="visualizacion.jpeg" alt="Carta de invitación">
-            <h2>¡Tienes una Invitación!</h2>
-            <p>Acompáñanos a descubrir el gran secreto de nuestra familia.</p>
+            <h2>¡Tienes una Invitación Especial! ✉️</h2>
+            <p>Acompáñanos a descubrir el secreto más dulce de nuestras vidas.</p>
             <button class="open-btn" id="openInvitationBtn">Abrir Invitación 💌</button>
         </div>
     </div>
@@ -248,9 +380,9 @@
 
     <div class="container">
 
-        <!-- 1. PORTADA -->
-        <section class="hero">
-            <span class="subtitle-tag">✨ Hola, voy a ser tu bendición consentida ✨</span>
+        <!-- PASO 1: PORTADA -->
+        <section id="step1" class="step-section active hero">
+            <span class="subtitle-tag">✨ ¡Hola! Ya casi nos conocemos ✨</span>
             
             <h1>¿Isabella o Isaac?</h1>
 
@@ -263,16 +395,16 @@
                 <span class="name-tag boy">Isaac 💙</span>
             </div>
 
-            <p>Queremos invitarte a compartir este día tan mágico y adivinar quién viene en camino a alegrar nuestras vidas.</p>
+            <p>Queremos invitarte a compartir un día inolvidable con nosotros y votar por quién crees que viene en camino a alegrar nuestros días.</p>
             
-            <a href="#invitacion" class="btn-main">Descubrir Invitación</a>
+            <button type="button" class="btn-main" onclick="unlockNextStep('step2')">Descubrir más detalles 📜</button>
         </section>
 
-        <!-- 2. INVITACIÓN & CUENTA REGRESIVA -->
-        <section id="invitacion" class="section-card">
+        <!-- PASO 2: INVITACIÓN & CUENTA REGRESIVA -->
+        <section id="step2" class="step-section section-card">
             <span class="subtitle-tag">Acompáñanos a celebrar</span>
             <h2 class="section-title">Nuestra Revelación de Género</h2>
-            <p style="color: var(--text-muted); font-size: 14px; font-weight: 600;">Faltan muy pocos días para conocer el gran secreto:</p>
+            <p style="color: var(--text-muted); font-size: 14px; font-weight: 600;">Faltan muy pocos días para revelar el gran secreto:</p>
 
             <div class="countdown" id="countdownBox">
                 <div class="time-box"><span class="num" id="cdDays">00</span><span class="label">Días</span></div>
@@ -280,68 +412,77 @@
                 <div class="time-box"><span class="num" id="cdMinutes">00</span><span class="label">Min</span></div>
                 <div class="time-box"><span class="num" id="cdSeconds">00</span><span class="label">Seg</span></div>
             </div>
+
+            <button type="button" class="btn-main" style="margin-top: 25px;" onclick="unlockNextStep('step3')">Ver fecha y ubicación 📍</button>
         </section>
 
-        <!-- 3. DETALLES DEL EVENTO -->
-        <section class="section-card">
-            <h2 class="section-title">¿Dónde & Cuándo?</h2>
+        <!-- PASO 3: DETALLES DEL EVENTO -->
+        <section id="step3" class="step-section section-card">
+            <h2 class="section-title">¿Dónde y Cuándo?</h2>
             <div class="info-grid">
                 <div class="info-item">
                     <h4>Fecha</h4>
-                    <p>Domingo, 4 de Octubre, 2026</p>
+                    <p>Domingo, 4 de Octubre de 2026</p>
                 </div>
                 <div class="info-item">
                     <h4>Hora</h4>
                     <p>2:00 PM</p>
                 </div>
                 <div class="info-item">
-                    <h4>Lugar</h4>
-                    <p>Calle 7 #90-81 (Zona verde)<br>Conjunto Rosales de Nueva Castilla</p>
+                    <h4>Lugar del Evento</h4>
+                    <p>Calle 7 # 90-81 (Zona verde)<br>Conjunto Rosales de Nueva Castilla</p>
+                    <a href="https://maps.google.com/?q=Calle+7+%2390-81+Bogota" target="_blank" rel="noopener noreferrer" class="btn-maps">
+                        📍 Abrir en Google Maps
+                    </a>
                 </div>
             </div>
+
+            <button type="button" class="btn-main" style="margin-top: 25px;" onclick="unlockNextStep('step4')">Confirmar mi asistencia ✍️</button>
         </section>
 
-        <!-- 4. CONFIRMACIÓN Y VOTO -->
-        <section class="section-card" id="confirmar">
+        <!-- PASO 4: FORMULARIO INTERACTIVO PASO A PASO -->
+        <section id="step4" class="step-section section-card">
             <form id="rsvpForm">
-                <span class="subtitle-tag">Tu Información</span>
+                <span class="subtitle-tag">Tu Confirmación</span>
                 <h2 class="section-title" style="font-size: 22px; margin-bottom: 20px;">Confirma tu Asistencia</h2>
 
-                <div class="form-group">
+                <!-- SUBPASO 4A: NOMBRE -->
+                <div class="form-group" id="groupNombre">
                     <label for="nombre">Nombre Completo</label>
                     <input type="text" id="nombre" class="form-input" placeholder="Ej. Camila Morales" required>
                 </div>
 
-                <div class="form-group">
-                    <label for="asistencia">¿Nos acompañarás?</label>
-                    <select id="asistencia" class="form-select" onchange="toggleAsistenciaCampos()" required>
+                <!-- SUBPASO 4B: ¿ASISTES? -->
+                <div class="form-group" id="groupAsistencia" style="display: none; animation: fadeSlideUp 0.5s ease forwards;">
+                    <label for="asistencia">¿Nos acompañarás en este día?</label>
+                    <select id="asistencia" class="form-select" onchange="handleAsistenciaChange()" required>
+                        <option value="" disabled selected>Selecciona una opción...</option>
                         <option value="Sí">¡Sí! Ahí estaré para celebrar 🥳</option>
                         <option value="No">Lo siento, no podré asistir 😔</option>
                     </select>
                 </div>
 
-                <!-- CONTENEDOR QUE SE OCULTA SI DICEN QUE NO -->
-                <div id="camposAsistente">
-                    <div class="form-group">
+                <!-- CONTENEDOR DE CAMPOS SI ASISTE -->
+                <div id="camposAsistente" style="display: none; animation: fadeSlideUp 0.5s ease forwards;">
+                    <div class="form-group" id="groupAcompanantes">
                         <label>¿Cuántos acompañantes van contigo?</label>
                         <select id="acompanantes" class="form-select" onchange="toggleAcompanantesInput()">
-                            <option value="0">0 acompañantes (Solo yo)</option>
+                            <option value="0">0 acompañantes (Iré solo/a)</option>
                             <option value="1">1 acompañante</option>
                             <option value="2">2 acompañantes</option>
                             <option value="3">3 acompañantes</option>
-                            <option value="otro">Más de 3</option>
+                            <option value="otro">Más de 3 acompañantes</option>
                         </select>
                     </div>
 
-                    <!-- CAMPO NUMÉRICO EDITABLE SI ES MÁS DE 3 -->
                     <div class="form-group" id="grupoOtroAcomp" style="display: none;">
-                        <label for="inputOtroAcomp">Indica la cantidad exacta (solo números):</label>
+                        <label for="inputOtroAcomp">Escribe la cantidad exacta (solo números):</label>
                         <input type="number" id="inputOtroAcomp" class="form-input" min="4" placeholder="Ej. 4">
                     </div>
 
                     <div style="margin-top: 30px; border-top: 2px dashed var(--card-border); padding-top: 22px;">
                         <span class="subtitle-tag">Tu Predicción</span>
-                        <h3 style="font-size: 20px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px;">🔮 ¿Quién crees que será?</h3>
+                        <h3 style="font-size: 20px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px;">🔮 ¿Cuál es tu equipo?</h3>
 
                         <div class="team-selector">
                             <div class="team-card girl" onclick="selectTeam('Isabella (Niña) 💜')">
@@ -357,41 +498,56 @@
 
                     <div id="missionGirl" class="mission-box girl">
                         <h3 style="font-size: 17px; font-weight: 700;">🎁 Misión: Equipo Isabella</h3>
-                        <p style="font-size: 13px; font-weight: 600;">Tu regalo sugerido: <strong>1 Paquete de Pañitos Húmedos</strong>.</p>
+                        <p style="font-size: 13px; font-weight: 600;">Tu sugerencia de regalo: <strong>1 Paquete de Pañitos Húmedos</strong>.</p>
                     </div>
 
                     <div id="missionBoy" class="mission-box boy">
                         <h3 style="font-size: 17px; font-weight: 700;">🎁 Misión: Equipo Isaac</h3>
-                        <p style="font-size: 13px; font-weight: 600;">Tu regalo sugerido: <strong>1 Paquete de Pañales (Talla Etapa 3 o Etapa 4)</strong>.</p>
+                        <p style="font-size: 13px; font-weight: 600;">Tu sugerencia de regalo: <strong>1 Paquete de Pañales (Talla Etapa 3 o Etapa 4)</strong>.</p>
                     </div>
                 </div>
 
-                <button type="submit" id="submitBtn" class="btn-main" style="width: 100%; margin-top: 20px;">
+                <button type="submit" id="submitBtn" class="btn-main" style="width: 100%; margin-top: 20px; display: none;">
                     Confirmar y Enviar Respuesta 🚀
                 </button>
             </form>
 
+            <!-- MENSAJE DE ÉXITO + GRÁFICO PÚBLICO -->
             <div id="successMessage" class="success-message">
                 <span style="font-size: 40px; display: block; margin-bottom: 10px;">🎉</span>
                 <h3 style="font-size: 24px; font-weight: 700; color: #15803d; margin-bottom: 8px;">¡Respuesta Registrada!</h3>
-                <p style="font-size: 15px; font-weight: 600; color: #166534;">Muchas gracias por avisarnos. ¡Te mandamos un abrazo!</p>
+                <p style="font-size: 15px; font-weight: 600; color: #166534;">Muchas gracias por tu confirmación. ¡Te esperamos para celebrar juntos!</p>
+            </div>
+
+            <div id="publicLiveChart" class="live-chart-card">
+                <span class="subtitle-tag">Votaciones en Vivo</span>
+                <h3 style="font-size: 18px; font-weight: 700; color: var(--text-dark);">Así van las apuestas de todos los invitados:</h3>
+                
+                <div class="chart-bar-container">
+                    <div id="publicFillGirl" class="chart-fill-girl">50%</div>
+                    <div id="publicFillBoy" class="chart-fill-boy">50%</div>
+                </div>
+
+                <div class="chart-legend">
+                    <span style="color: var(--girl-purple);" id="publicTextGirl">Isabella: 0 votos</span>
+                    <span style="color: var(--boy-blue);" id="publicTextBoy">Isaac: 0 votos</span>
+                </div>
             </div>
         </section>
 
-        <!-- BOTÓN PARA ABRIR PANEL DE CONTROL -->
+        <!-- PANEL DE CONTROL -->
         <div class="admin-trigger-container">
             <button type="button" class="btn-secondary" onclick="toggleAdminPanel()">
                 ⚙️ Panel de Control
             </button>
         </div>
 
-        <!-- 5. PANEL ADMIN (OCULTO POR DEFECTO) -->
         <section class="admin-section" id="adminSection">
             <span class="subtitle-tag" style="color: #a89bb3;">Área Privada</span>
             <h2>📊 Panel de Control en la Nube</h2>
             
             <div id="loginAdmin">
-                <p style="font-size: 12px; color: #d1c7d9; margin-bottom: 15px;">Ingresa tu clave para ver los votos de todos:</p>
+                <p style="font-size: 12px; color: #d1c7d9; margin-bottom: 15px;">Ingresa tu contraseña para administrar las respuestas:</p>
                 <input type="password" id="adminKey" class="form-input" style="max-width: 180px; margin: 0 auto 15px; text-align: center;" placeholder="Clave">
                 <br>
                 <button type="button" onclick="verificarClave()" class="btn-main" style="padding: 10px 25px; font-size: 12px;">Ingresar</button>
@@ -422,7 +578,7 @@
         </section>
 
         <div style="text-align: center; font-size: 12px; color: var(--text-muted); margin-bottom: 30px; font-weight: 600;">
-            ✨ Hecho con amor para la llegada de nuestro bebé ✨
+            ✨ Hecho con mucho amor para la llegada de nuestro bebé ✨
         </div>
     </div>
 
@@ -430,7 +586,6 @@
     <script>
         const SHEETDB_URL = "https://sheetdb.io/api/v1/pnct7bjqp2gn9"; 
 
-        // CONFIGURACIÓN DE AUDIO Y APERTURA DE CARTA
         const musicBtn = document.getElementById('musicToggle');
         const musicText = document.getElementById('musicText');
         const openInvitationBtn = document.getElementById('openInvitationBtn');
@@ -445,8 +600,30 @@
             onpause: function() { musicText.innerText = "Música pausada"; }
         });
 
+        // DISPARO DE CONFETI EN LA BIENVENIDA
+        function ráfagaConfetiInicio() {
+            const count = 200;
+            const defaults = {
+                origin: { y: 0.7 },
+                colors: ['#a472c6', '#5b9bd5', '#f3c26b', '#ffffff']
+            };
+
+            function fire(particleRatio, opts) {
+                confetti(Object.assign({}, defaults, opts, {
+                    particleCount: Math.floor(count * particleRatio)
+                }));
+            }
+
+            fire(0.25, { spread: 26, startVelocity: 55 });
+            fire(0.2, { spread: 60 });
+            fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+            fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+            fire(0.1, { spread: 120, startVelocity: 45 });
+        }
+
         openInvitationBtn.addEventListener('click', () => {
             sound.play();
+            ráfagaConfetiInicio();
             welcomeOverlay.classList.add('fade-out');
             setTimeout(() => { welcomeOverlay.style.display = 'none'; }, 800);
         });
@@ -456,7 +633,76 @@
             if (sound.playing()) { sound.pause(); } else { sound.play(); }
         });
 
-        // CUENTA REGRESIVA (04 DE OCTUBRE DE 2026 A LAS 14:00)
+        // SCROLL SUAVE OPTIMIZADO PARA MÓVILES
+        function unlockNextStep(nextStepId) {
+            const nextEl = document.getElementById(nextStepId);
+            if (nextEl && !nextEl.classList.contains('active')) {
+                nextEl.classList.add('active');
+                setTimeout(() => {
+                    nextEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 150);
+            }
+        }
+
+        // LÓGICA DE FORMULARIO
+        const nombreInput = document.getElementById('nombre');
+        const groupAsistencia = document.getElementById('groupAsistencia');
+
+        nombreInput.addEventListener('input', function() {
+            if (this.value.trim().length > 2) {
+                groupAsistencia.style.display = 'block';
+            }
+        });
+
+        function handleAsistenciaChange() {
+            const val = document.getElementById('asistencia').value;
+            const camposAsistente = document.getElementById('camposAsistente');
+            const submitBtn = document.getElementById('submitBtn');
+
+            if (val === 'Sí') {
+                camposAsistente.style.display = 'block';
+                if (votoSeleccionado !== "") {
+                    submitBtn.style.display = 'block';
+                } else {
+                    submitBtn.style.display = 'none';
+                }
+            } else if (val === 'No') {
+                camposAsistente.style.display = 'none';
+                submitBtn.style.display = 'block';
+            }
+        }
+
+        function toggleAcompanantesInput() {
+            const select = document.getElementById('acompanantes').value;
+            const grupoOtro = document.getElementById('grupoOtroAcomp');
+            if (select === 'otro') {
+                grupoOtro.style.display = 'block';
+                document.getElementById('inputOtroAcomp').focus();
+            } else {
+                grupoOtro.style.display = 'none';
+                document.getElementById('inputOtroAcomp').value = '';
+            }
+        }
+
+        let votoSeleccionado = "";
+        function selectTeam(equipo) {
+            votoSeleccionado = equipo;
+            document.querySelectorAll('.team-card').forEach(card => card.classList.remove('selected'));
+            document.getElementById('missionBoy').style.display = 'none';
+            document.getElementById('missionGirl').style.display = 'none';
+
+            if (equipo.includes('Isabella')) {
+                document.querySelector('.team-card.girl').classList.add('selected');
+                document.getElementById('missionGirl').style.display = 'block';
+            } else {
+                document.querySelector('.team-card.boy').classList.add('selected');
+                document.getElementById('missionBoy').style.display = 'block';
+            }
+
+            document.getElementById('submitBtn').style.display = 'block';
+        }
+
+        // CUENTA REGRESIVA
         const targetDate = new Date(2026, 9, 4, 14, 0, 0).getTime(); 
 
         function updateCountdown() {
@@ -481,59 +727,7 @@
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-        // MOSTRAR/OCULTAR PANEL ADMINISTRADOR
-        function toggleAdminPanel() {
-            const adminSec = document.getElementById('adminSection');
-            if (adminSec.style.display === 'none' || adminSec.style.display === '') {
-                adminSec.style.display = 'block';
-                adminSec.scrollIntoView({ behavior: 'smooth' });
-            } else {
-                adminSec.style.display = 'none';
-            }
-        }
-
-        // CONTROLAR VISIBILIDAD SI NO ASISTE
-        function toggleAsistenciaCampos() {
-            const asistencia = document.getElementById('asistencia').value;
-            const camposAsistente = document.getElementById('camposAsistente');
-            if (asistencia === "No") {
-                camposAsistente.style.display = 'none';
-            } else {
-                camposAsistente.style.display = 'block';
-            }
-        }
-
-        // MOSTRAR INPUT EDITABLE SI SELECCIONAN "MÁS DE 3"
-        function toggleAcompanantesInput() {
-            const select = document.getElementById('acompanantes').value;
-            const grupoOtro = document.getElementById('grupoOtroAcomp');
-            if (select === 'otro') {
-                grupoOtro.style.display = 'block';
-                document.getElementById('inputOtroAcomp').focus();
-            } else {
-                grupoOtro.style.display = 'none';
-                document.getElementById('inputOtroAcomp').value = '';
-            }
-        }
-
-        // SELECCIÓN DE EQUIPO
-        let votoSeleccionado = "";
-        function selectTeam(equipo) {
-            votoSeleccionado = equipo;
-            document.querySelectorAll('.team-card').forEach(card => card.classList.remove('selected'));
-            document.getElementById('missionBoy').style.display = 'none';
-            document.getElementById('missionGirl').style.display = 'none';
-
-            if (equipo.includes('Isabella')) {
-                document.querySelector('.team-card.girl').classList.add('selected');
-                document.getElementById('missionGirl').style.display = 'block';
-            } else {
-                document.querySelector('.team-card.boy').classList.add('selected');
-                document.getElementById('missionBoy').style.display = 'block';
-            }
-        }
-
-        // FORMULARIO CONECTADO A LA NUBE (SHEETDB)
+        // ENVÍO DE DATOS Y SEGUNDO DISPARO DE CONFETI
         const rsvpForm = document.getElementById('rsvpForm');
         if (rsvpForm) {
             rsvpForm.addEventListener('submit', function(e) {
@@ -574,7 +768,6 @@
                 submitBtn.innerText = "Enviando respuesta...";
                 submitBtn.disabled = true;
 
-                // Enviar datos por API a Google Sheets
                 fetch(SHEETDB_URL, {
                     method: 'POST',
                     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
@@ -597,18 +790,66 @@
                     setTimeout(() => {
                         rsvpForm.style.display = 'none';
                         document.getElementById('successMessage').style.display = 'block';
+                        actualizarGraficoPublico();
                     }, 300);
                 })
                 .catch(error => {
-                    alert("Hubo un error al enviar. Revisa tu conexión e intenta de nuevo.");
+                    alert("Hubo un error al enviar tu respuesta. Por favor revisa tu conexión e intenta de nuevo.");
                     submitBtn.innerText = "Confirmar y Enviar Respuesta 🚀";
                     submitBtn.disabled = false;
                 });
             });
         }
 
-        // PANEL ADMIN CONECTADO A LA NUBE
+        function actualizarGraficoPublico() {
+            const chartCard = document.getElementById('publicLiveChart');
+            chartCard.style.display = 'block';
+
+            fetch(SHEETDB_URL)
+            .then(res => res.json())
+            .then(data => {
+                let girl = 0;
+                let boy = 0;
+
+                data.forEach(item => {
+                    if (item.prediccion && item.prediccion.includes('Isabella')) girl++;
+                    if (item.prediccion && item.prediccion.includes('Isaac')) boy++;
+                });
+
+                const total = girl + boy;
+                let pGirl = 50;
+                let pBoy = 50;
+
+                if (total > 0) {
+                    pGirl = Math.round((girl / total) * 100);
+                    pBoy = 100 - pGirl;
+                }
+
+                document.getElementById('publicFillGirl').style.width = pGirl + '%';
+                document.getElementById('publicFillGirl').innerText = pGirl + '%';
+                document.getElementById('publicFillBoy').style.width = pBoy + '%';
+                document.getElementById('publicFillBoy').innerText = pBoy + '%';
+
+                document.getElementById('publicTextGirl').innerText = `Isabella 💜: ${girl} voto(s)`;
+                document.getElementById('publicTextBoy').innerText = `Isaac 💙: ${boy} voto(s)`;
+            })
+            .catch(err => {
+                console.log("Error al cargar la votación pública", err);
+            });
+        }
+
+        // PANEL ADMIN
         const CLAVE_ADMIN = "1234"; 
+
+        function toggleAdminPanel() {
+            const adminSec = document.getElementById('adminSection');
+            if (adminSec.style.display === 'none' || adminSec.style.display === '') {
+                adminSec.style.display = 'block';
+                adminSec.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                adminSec.style.display = 'none';
+            }
+        }
 
         function verificarClave() {
             if (document.getElementById('adminKey').value === CLAVE_ADMIN) {
