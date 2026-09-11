@@ -385,36 +385,6 @@
 
         .chart-legend { display: flex; justify-content: space-around; font-weight: 700; font-size: 14px; }
 
-        /* --- ESTILOS PARA SUGERENCIAS Y MENÚ --- */
-        .ideas-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            margin-top: 15px;
-            text-align: left;
-        }
-        .idea-card {
-            background: var(--bg-color);
-            border: 1.5px solid var(--card-border);
-            border-radius: 18px;
-            padding: 16px;
-        }
-        .idea-card h4 {
-            color: var(--girl-purple);
-            font-size: 16px;
-            margin-bottom: 6px;
-        }
-        .idea-card p {
-            font-size: 13px;
-            color: var(--text-dark);
-            margin-bottom: 8px;
-        }
-        .idea-card ul {
-            padding-left: 20px;
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
         /* --- PANEL ADMINISTRADOR OCULTO --- */
         .admin-trigger-container { text-align: center; margin: 40px 0 20px; }
         .admin-section {
@@ -498,7 +468,7 @@
             <button type="button" class="btn-main" style="margin-top: 25px;" onclick="unlockNextStep('step3')">Ver fecha y ubicación 📍</button>
         </section>
 
-        <!-- PASO 3: DETALLES DEL EVENTO Y MENÚ -->
+        <!-- PASO 3: DETALLES DEL EVENTO -->
         <section id="step3" class="step-section section-card">
             <h2 class="section-title">¿Dónde y Cuándo?</h2>
             <div class="info-grid">
@@ -516,33 +486,6 @@
                     <a href="https://maps.google.com/?q=Calle+7+%2390-81+Bogota" target="_blank" rel="noopener noreferrer" class="btn-maps">
                         📍 Abrir en Google Maps
                     </a>
-                </div>
-            </div>
-
-            <!-- DETALLES DEL PASTEL Y BEBIDAS -->
-            <div style="margin-top: 30px; border-top: 2px dashed var(--card-border); padding-top: 20px;">
-                <span class="subtitle-tag">Dulces y Sorpresas</span>
-                <h3 style="font-size: 20px; font-weight: 700; color: var(--text-dark); margin-bottom: 12px;">🍰 Detalles Especiales del Evento</h3>
-                
-                <div class="ideas-grid">
-                    <div class="idea-card">
-                        <h4>🎂 El Pastel de Revelación</h4>
-                        <p>Diseño divido neutro de dos pisos con masa de vainilla y relleno especial:</p>
-                        <ul>
-                            <li><strong>Mitad Izquierda:</strong> Tono morado pastel para Isabella 💜</li>
-                            <li><strong>Mitad Derecha:</strong> Tono azul celeste para Isaac 💙</li>
-                            <li><strong>Interior:</strong> Bizcocho de color secreto para el momento exacto de la revelación ✨</li>
-                        </ul>
-                    </div>
-
-                    <div class="idea-card">
-                        <h4>🍹 Barra de Bebidas Temáticas</h4>
-                        <p>Variedad de refrescos y cócteles sin alcohol organizados según tu equipo:</p>
-                        <ul>
-                            <li><strong>Pink Lemonade / Morada:</strong> Con infusión de frutos rojos y flores de mariposa para el Equipo Isabella.</li>
-                            <li><strong>Blue Hawaiian Mocktail:</strong> Refrescante mezcla de piña, crema de coco y curacao azul sin alcohol para el Equipo Isaac.</li>
-                        </ul>
-                    </div>
                 </div>
             </div>
 
