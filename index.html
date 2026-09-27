@@ -449,7 +449,10 @@
 
             <p>Queremos invitarte a compartir un día inolvidable con nosotros y votar por quién crees que viene en camino a alegrar nuestros días.</p>
             
-            <button type="button" class="btn-main" onclick="unlockNextStep('step2')">Descubrir más detalles 📜</button>
+            <div style="display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 320px; margin: 0 auto;">
+                <button type="button" class="btn-main" onclick="unlockNextStep('step2')">Descubrir más detalles 📜</button>
+                <button type="button" class="btn-secondary" style="justify-content: center; padding: 14px 20px; font-size: 13px;" onclick="irADatosInvitacion()">Ver datos de invitación (Si ya confirmaste) 📍</button>
+            </div>
         </section>
 
         <!-- PASO 2: INVITACIÓN & CUENTA REGRESIVA -->
@@ -486,6 +489,13 @@
                     <a href="https://maps.google.com/?q=Calle+7+%2390-81+Bogota" target="_blank" rel="noopener noreferrer" class="btn-maps">
                         📍 Abrir en Google Maps
                     </a>
+                </div>
+                <div class="info-item" style="background: var(--girl-bg); border-color: var(--girl-purple);">
+                    <h4>🎁 Recordatorio de Regalo</h4>
+                    <p style="font-size: 14px; margin-top: 5px;">
+                        • <strong>Equipo Isabella:</strong> 1 Paquete de Pañitos Húmedos 🎀<br>
+                        • <strong>Equipo Isaac:</strong> 1 Paquete de Pañales (Etapa 3 o 4) 🧸
+                    </p>
                 </div>
             </div>
 
@@ -713,6 +723,24 @@
                     nextEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }, 150);
             }
+        }
+
+        // LÓGICA DEL BOTÓN DIRECTO "VER DATOS DE INVITACIÓN"
+        function irADatosInvitacion() {
+            // Desbloquea las secciones 2, 3 y 4
+            ['step2', 'step3', 'step4'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.add('active');
+            });
+
+            // Carga las votaciones en vivo en la parte inferior
+            actualizarGraficoPublico();
+
+            // Hace scroll fluido directamente hacia la fecha y ubicación (Paso 3)
+            setTimeout(() => {
+                const step3 = document.getElementById('step3');
+                if (step3) step3.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
         }
 
         // LÓGICA DE FORMULARIO
