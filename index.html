@@ -236,6 +236,31 @@
         }
         .btn-main:active { transform: scale(0.96); }
 
+        /* NUEVO ESTILO MISMA LETRA Y DISEÑO PARA VER DATOS */
+        .btn-view-data {
+            display: inline-block; 
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            color: #fff; 
+            padding: 16px 38px; 
+            border-radius: 50px; 
+            text-decoration: none;
+            font-size: 14px; 
+            font-weight: 700; 
+            letter-spacing: 1.5px; 
+            text-transform: uppercase;
+            transition: transform 0.25s ease, box-shadow 0.25s ease; 
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.35);
+            border: none; 
+            cursor: pointer; 
+            text-align: center;
+            will-change: transform, box-shadow;
+        }
+        .btn-view-data:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px rgba(139, 92, 246, 0.45);
+        }
+        .btn-view-data:active { transform: scale(0.96); }
+
         .btn-danger {
             background: linear-gradient(135deg, #ef4444, #dc2626);
             color: #fff; padding: 10px 20px; border-radius: 50px;
@@ -449,9 +474,9 @@
 
             <p>Queremos invitarte a compartir un día inolvidable con nosotros y votar por quién crees que viene en camino a alegrar nuestros días.</p>
             
-            <div style="display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 320px; margin: 0 auto;">
+            <div style="display: flex; flex-direction: column; gap: 14px; width: 100%; max-width: 380px; margin: 0 auto;">
                 <button type="button" class="btn-main" onclick="unlockNextStep('step2')">Descubrir más detalles 📜</button>
-                <button type="button" class="btn-secondary" style="justify-content: center; padding: 14px 20px; font-size: 13px;" onclick="irADatosInvitacion()">Ver datos de invitación (Si ya confirmaste) 📍</button>
+                <button type="button" class="btn-view-data" onclick="irADatosInvitacion()">Ver datos de invitación (Si ya confirmaste) 📍</button>
             </div>
         </section>
 
@@ -470,6 +495,22 @@
 
             <button type="button" class="btn-main" style="margin-top: 25px;" onclick="unlockNextStep('step3')">Ver fecha y ubicación 📍</button>
         </section>
+
+        <!-- GRÁFICO PÚBLICO DE RESULTADOS EN VIVO (POSICIONADO ARRIBA DE LA UBICACIÓN CUANDO REVISAN DATOS) -->
+        <div id="publicLiveChart" class="live-chart-card">
+            <span class="subtitle-tag">Votaciones en Vivo</span>
+            <h3 style="font-size: 18px; font-weight: 700; color: var(--text-dark);">Así van las apuestas de todos los invitados:</h3>
+            
+            <div class="chart-bar-container">
+                <div id="publicFillGirl" class="chart-fill-girl">50%</div>
+                <div id="publicFillBoy" class="chart-fill-boy">50%</div>
+            </div>
+
+            <div class="chart-legend">
+                <span style="color: var(--girl-purple);" id="publicTextGirl">Isabella: 0 votos</span>
+                <span style="color: var(--boy-blue);" id="publicTextBoy">Isaac: 0 votos</span>
+            </div>
+        </div>
 
         <!-- PASO 3: DETALLES DEL EVENTO -->
         <section id="step3" class="step-section section-card">
@@ -499,7 +540,7 @@
                 </div>
             </div>
 
-            <button type="button" class="btn-main" style="margin-top: 25px;" onclick="unlockNextStep('step4')">Confirmar mi asistencia ✍️</button>
+            <button type="button" id="btnIrAConfirmar" class="btn-main" style="margin-top: 25px;" onclick="unlockNextStep('step4')">Confirmar mi asistencia ✍️</button>
         </section>
 
         <!-- PASO 4: FORMULARIO INTERACTIVO PASO A PASO -->
@@ -574,26 +615,11 @@
                 </button>
             </form>
 
-            <!-- MENSAJE DE ÉXITO + GRÁFICO PÚBLICO -->
+            <!-- MENSAJE DE ÉXITO -->
             <div id="successMessage" class="success-message">
                 <span style="font-size: 40px; display: block; margin-bottom: 10px;">🎉</span>
                 <h3 style="font-size: 24px; font-weight: 700; color: #15803d; margin-bottom: 8px;">¡Respuesta Registrada!</h3>
                 <p style="font-size: 15px; font-weight: 600; color: #166534;">Muchas gracias por tu confirmación. ¡Te esperamos para celebrar juntos!</p>
-            </div>
-
-            <div id="publicLiveChart" class="live-chart-card">
-                <span class="subtitle-tag">Votaciones en Vivo</span>
-                <h3 style="font-size: 18px; font-weight: 700; color: var(--text-dark);">Así van las apuestas de todos los invitados:</h3>
-                
-                <div class="chart-bar-container">
-                    <div id="publicFillGirl" class="chart-fill-girl">50%</div>
-                    <div id="publicFillBoy" class="chart-fill-boy">50%</div>
-                </div>
-
-                <div class="chart-legend">
-                    <span style="color: var(--girl-purple);" id="publicTextGirl">Isabella: 0 votos</span>
-                    <span style="color: var(--boy-blue);" id="publicTextBoy">Isaac: 0 votos</span>
-                </div>
             </div>
         </section>
 
@@ -725,21 +751,25 @@
             }
         }
 
-        // LÓGICA DEL BOTÓN DIRECTO "VER DATOS DE INVITACIÓN"
+        // NUEVA LÓGICA: BOTÓN "VER DATOS DE INVITACIÓN"
         function irADatosInvitacion() {
-            // Desbloquea las secciones 2, 3 y 4
-            ['step2', 'step3', 'step4'].forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.classList.add('active');
-            });
+            // 1. Mostrar secciones necesarias
+            document.getElementById('step2').classList.add('active');
+            document.getElementById('step3').classList.add('active');
 
-            // Carga las votaciones en vivo en la parte inferior
+            // 2. Ocultar el formulario de confirmación (Paso 4) y el botón de confirmar
+            document.getElementById('step4').classList.remove('active');
+            document.getElementById('step4').style.display = 'none';
+            const btnConfirmar = document.getElementById('btnIrAConfirmar');
+            if (btnConfirmar) btnConfirmar.style.display = 'none';
+
+            // 3. Cargar y mostrar primero el gráfico de votaciones arriba del mapa
             actualizarGraficoPublico();
 
-            // Hace scroll fluido directamente hacia la fecha y ubicación (Paso 3)
+            // 4. Hacer scroll suave directamente hacia el gráfico de votos
             setTimeout(() => {
-                const step3 = document.getElementById('step3');
-                if (step3) step3.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                const chartCard = document.getElementById('publicLiveChart');
+                if (chartCard) chartCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }, 100);
         }
 
