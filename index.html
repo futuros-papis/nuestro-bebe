@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gran Revelación de Género | ¿Isabella o Isaac?</title>
+    <title>Baby Shower de Zoe Isabella 🎀</title>
     
     <!-- PREVISUALIZACIÓN EN REDES SOCIALES (OPEN GRAPH / OG) -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="✨ Gran Revelación de Género | ¿Isabella o Isaac? 🧸">
-    <meta property="og:description" content="¡Estás invitado/a a nuestra gran revelación de género! Descubre si será Isabella 💜 o Isaac 💙 y confirma tu asistencia.">
+    <meta property="og:title" content="🎀 Baby Shower de Zoe Isabella | ¡Estás Invitado/a! ✨">
+    <meta property="og:description" content="Acompáñanos este domingo 6 de diciembre a celebrar la dulce espera de nuestra princesa Zoe Isabella. Confirma tu asistencia aquí.">
     <meta property="og:image" content="https://futuros-papis.github.io/nuestro-bebe/visualizacion.jpeg">
     <meta property="og:image:secure_url" content="https://futuros-papis.github.io/nuestro-bebe/visualizacion.jpeg">
     <meta property="og:image:type" content="image/jpeg">
@@ -16,7 +16,7 @@
     <meta property="og:image:height" content="630">
 
     <!-- ICONO DE LA PESTAÑA -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧸</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎀</text></svg>">
 
     <!-- Fuentes y Librerías -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,16 +27,17 @@
 
     <style>
         :root {
-            --bg-color: #faf6fc;
-            --boy-blue: #5b9bd5;
-            --boy-bg: #eaf3fb;
-            --girl-purple: #a472c6;
-            --girl-bg: #f6edfa;
-            --gold-accent: #f3c26b;
-            --text-dark: #3a3042;
-            --text-muted: #796b82;
-            --card-border: #ebdcf5;
-            --card-shadow: 0 15px 35px rgba(164, 114, 198, 0.12);
+            --bg-color: #fdf8fc;
+            --primary-pink: #d97aa6;
+            --primary-lavender: #a472c6;
+            --soft-pink-bg: #fceef5;
+            --soft-lavender-bg: #f6edfa;
+            --gold-accent: #e8b85a;
+            --text-dark: #3a2d3d;
+            --text-muted: #7d6b80;
+            --card-border: #f0dced;
+            --card-shadow: 0 15px 35px rgba(217, 122, 166, 0.13);
+            --success-green: #16a34a;
         }
 
         * { 
@@ -52,8 +53,8 @@
             font-family: 'Quicksand', sans-serif;
             background-color: var(--bg-color);
             background-image: 
-                radial-gradient(circle at 15% 15%, #e6f0fa 0%, transparent 45%),
-                radial-gradient(circle at 85% 85%, #f4e8fb 0%, transparent 45%);
+                radial-gradient(circle at 15% 15%, #fce8f3 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, #f3e6fa 0%, transparent 45%);
             color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
@@ -64,7 +65,7 @@
         #welcomeOverlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100vh;
-            background: linear-gradient(135deg, rgba(164, 114, 198, 0.95), rgba(91, 155, 213, 0.95));
+            background: linear-gradient(135deg, rgba(217, 122, 166, 0.96), rgba(164, 114, 198, 0.96));
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             z-index: 9999;
@@ -77,39 +78,35 @@
         .envelope-card {
             background: #ffffff; width: 100%; max-width: 420px;
             border-radius: 30px; padding: 35px 25px; text-align: center;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
-            border: 3px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.22);
+            border: 3px solid rgba(255, 255, 255, 0.9);
             animation: bounceIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative; overflow: hidden;
         }
 
         .envelope-card img {
-            width: 100%; max-height: 240px; object-fit: cover;
-            border-radius: 20px; margin-bottom: 20px;
+            width: 100%; max-height: 230px; object-fit: cover;
+            border-radius: 20px; margin-bottom: 18px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.08);
             transition: transform 0.4s ease;
         }
 
-        .envelope-card:hover img {
-            transform: scale(1.03);
-        }
-
-        .envelope-card h2 { font-size: 24px; color: var(--girl-purple); margin-bottom: 10px; font-weight: 700; }
-        .envelope-card p { font-size: 14px; color: var(--text-muted); margin-bottom: 25px; font-weight: 600; }
+        .envelope-card:hover img { transform: scale(1.03); }
+        .envelope-card h2 { font-size: 23px; color: var(--primary-pink); margin-bottom: 8px; font-weight: 700; }
+        .envelope-card p { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; font-weight: 600; }
 
         .open-btn {
-            background: linear-gradient(135deg, var(--girl-purple), var(--boy-blue));
+            background: linear-gradient(135deg, var(--primary-pink), var(--primary-lavender));
             color: #fff; border: none; padding: 16px 32px; font-size: 15px; font-weight: 700;
-            border-radius: 50px; cursor: pointer; box-shadow: 0 10px 25px rgba(164, 114, 198, 0.4);
+            border-radius: 50px; cursor: pointer; box-shadow: 0 10px 25px rgba(217, 122, 166, 0.4);
             transition: transform 0.25s ease, box-shadow 0.25s ease;
             width: 100%; text-transform: uppercase; letter-spacing: 1px;
-            will-change: transform, box-shadow;
             animation: pulseGlow 2s infinite;
         }
 
         @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 10px 25px rgba(164, 114, 198, 0.4); }
-            50% { box-shadow: 0 15px 35px rgba(91, 155, 213, 0.6); }
+            0%, 100% { box-shadow: 0 10px 25px rgba(217, 122, 166, 0.4); }
+            50% { box-shadow: 0 15px 35px rgba(164, 114, 198, 0.6); }
         }
         
         .open-btn:active { transform: scale(0.96); }
@@ -121,7 +118,7 @@
 
         .fade-out { opacity: 0; transform: scale(1.08); pointer-events: none; }
 
-        /* --- DECORACIONES Y ELEMENTOS FLOTANTES --- */
+        /* --- DECORACIONES FLOTANTES --- */
         .bg-decorations { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
         
         .floating-item { 
@@ -137,31 +134,25 @@
             100% { transform: translate3d(0, -10vh, 0) rotate(25deg); opacity: 0; }
         }
 
-        .container { max-width: 680px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
+        .container { max-width: 720px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
 
-        /* BOTÓN DE MÚSICA ANIMADO */
+        /* BOTÓN DE MÚSICA */
         .music-btn {
             position: fixed; bottom: 20px; right: 20px; background: #ffffff;
-            border: 2px solid var(--card-border); padding: 12px 20px; border-radius: 50px;
+            border: 2px solid var(--card-border); padding: 11px 18px; border-radius: 50px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.12); cursor: pointer; z-index: 998;
-            display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700;
-            color: var(--text-dark); transition: transform 0.25s ease, border-color 0.25s ease;
-            will-change: transform;
+            display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700;
+            color: var(--text-dark); transition: transform 0.25s ease;
         }
         .music-btn:active { transform: scale(0.95); }
 
         .music-indicator {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: #cbd5e1;
-            transition: background-color 0.3s ease;
+            display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+            background-color: #cbd5e1; transition: background-color 0.3s ease;
         }
 
         .music-btn.playing .music-indicator {
-            background-color: #22c55e;
-            box-shadow: 0 0 8px #22c55e;
+            background-color: #22c55e; box-shadow: 0 0 8px #22c55e;
             animation: pulseWave 1.5s infinite ease-in-out;
         }
 
@@ -170,42 +161,43 @@
             50% { transform: scale(1.4); }
         }
 
-        /* --- ANIMACIONES Y TRANSICIONES PASO A PASO --- */
+        /* --- TRANSICIONES PASO A PASO --- */
         @keyframes fadeSlideUp {
-            0% {
-                opacity: 0;
-                transform: translate3d(0, 30px, 0) scale(0.98);
-            }
-            100% {
-                opacity: 1;
-                transform: translate3d(0, 0, 0) scale(1);
-            }
+            0% { opacity: 0; transform: translate3d(0, 30px, 0) scale(0.98); }
+            100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
         }
 
-        .step-section {
-            display: none;
-            will-change: opacity, transform;
-        }
-
+        .step-section { display: none; will-change: opacity, transform; }
         .step-section.active {
             display: block;
             animation: fadeSlideUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 25px 15px; }
-        .subtitle-tag { font-size: 12px; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 12px; font-weight: 700; }
-        .hero h1 { font-size: clamp(36px, 8vw, 56px); font-weight: 700; color: var(--girl-purple); line-height: 1.15; margin-bottom: 20px; }
+        .hero { min-height: 82vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 25px 15px; }
+        .subtitle-tag { font-size: 11px; text-transform: uppercase; letter-spacing: 2.5px; color: var(--primary-lavender); margin-bottom: 10px; font-weight: 700; display: block; }
+        
+        .hero h1 { 
+            font-size: clamp(36px, 8vw, 56px); font-weight: 700; 
+            background: linear-gradient(135deg, var(--primary-pink), var(--primary-lavender));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            line-height: 1.15; margin-bottom: 12px; 
+        }
+
+        .reveal-badge {
+            display: inline-block; background: var(--soft-pink-bg); color: var(--primary-pink);
+            border: 1.5px solid #f5cde0; padding: 6px 16px; border-radius: 50px;
+            font-size: 13px; font-weight: 700; margin-bottom: 18px;
+        }
 
         .baby-image-container {
-            margin: 15px 0 25px; width: 100%; max-width: 520px; border-radius: 28px;
-            overflow: hidden; background: rgba(255, 255, 255, 0.4); padding: 10px;
-            border: 2px solid var(--card-border); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+            margin: 10px 0 22px; width: 100%; max-width: 460px; border-radius: 28px;
+            overflow: hidden; background: rgba(255, 255, 255, 0.55); padding: 10px;
+            border: 2px solid var(--card-border); box-shadow: 0 12px 30px rgba(217, 122, 166, 0.12);
         }
         
         .baby-image-container img { 
             width: 100%; height: auto; display: block; border-radius: 20px;
             animation: floatSoft 5s ease-in-out infinite;
-            will-change: transform;
         }
 
         @keyframes floatSoft {
@@ -213,220 +205,196 @@
             50% { transform: translate3d(0, -8px, 0); }
         }
 
-        .names-banner { display: flex; justify-content: space-around; width: 100%; max-width: 480px; margin-bottom: 20px; }
-        .name-tag { font-size: 22px; font-weight: 700; transition: transform 0.3s ease; }
-        .name-tag:hover { transform: scale(1.08); }
-        .name-tag.girl { color: var(--girl-purple); }
-        .name-tag.boy { color: var(--boy-blue); }
-
-        .hero p { font-size: 15px; color: var(--text-muted); max-width: 480px; margin-bottom: 25px; font-weight: 600; }
+        .hero p { font-size: 15px; color: var(--text-muted); max-width: 500px; margin-bottom: 25px; font-weight: 600; }
 
         .btn-main {
-            display: inline-block; background: linear-gradient(135deg, var(--girl-purple), var(--boy-blue));
-            color: #fff; padding: 16px 38px; border-radius: 50px; text-decoration: none;
-            font-size: 14px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+            display: inline-block; background: linear-gradient(135deg, var(--primary-pink), var(--primary-lavender));
+            color: #fff; padding: 16px 34px; border-radius: 50px; text-decoration: none;
+            font-size: 13px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
             transition: transform 0.25s ease, box-shadow 0.25s ease; 
-            box-shadow: 0 10px 25px rgba(164, 114, 198, 0.35);
+            box-shadow: 0 10px 25px rgba(217, 122, 166, 0.35);
             border: none; cursor: pointer; text-align: center;
-            will-change: transform, box-shadow;
         }
-        .btn-main:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 14px 28px rgba(164, 114, 198, 0.45);
-        }
+        .btn-main:hover { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(217, 122, 166, 0.45); }
         .btn-main:active { transform: scale(0.96); }
+        .btn-main:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
 
-        /* NUEVO ESTILO MISMA LETRA Y DISEÑO PARA VER DATOS */
         .btn-view-data {
-            display: inline-block; 
-            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
-            color: #fff; 
-            padding: 16px 38px; 
-            border-radius: 50px; 
-            text-decoration: none;
-            font-size: 14px; 
-            font-weight: 700; 
-            letter-spacing: 1.5px; 
-            text-transform: uppercase;
+            display: inline-block; background: #ffffff; color: var(--primary-lavender);
+            padding: 14px 28px; border-radius: 50px; text-decoration: none;
+            font-size: 13px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase;
             transition: transform 0.25s ease, box-shadow 0.25s ease; 
-            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.35);
-            border: none; 
-            cursor: pointer; 
-            text-align: center;
-            will-change: transform, box-shadow;
+            border: 2px solid var(--card-border); cursor: pointer; text-align: center;
         }
-        .btn-view-data:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 14px 28px rgba(139, 92, 246, 0.45);
-        }
-        .btn-view-data:active { transform: scale(0.96); }
-
-        .btn-danger {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: #fff; padding: 10px 20px; border-radius: 50px;
-            font-size: 11px; font-weight: 700; border: none; cursor: pointer;
-            margin-top: 20px; transition: transform 0.2s ease, opacity 0.2s ease;
-        }
-        .btn-danger:active { transform: scale(0.95); }
+        .btn-view-data:hover { border-color: var(--primary-pink); transform: translateY(-2px); }
 
         .btn-maps {
             display: inline-flex; align-items: center; justify-content: center; gap: 8px;
             background-color: #ea4335; color: #ffffff; padding: 12px 24px; border-radius: 50px;
-            font-weight: 700; font-size: 13px; text-decoration: none; margin-top: 15px;
+            font-weight: 700; font-size: 13px; text-decoration: none; margin-top: 12px;
             box-shadow: 0 6px 18px rgba(234, 67, 53, 0.25); transition: transform 0.25s ease;
-            will-change: transform;
         }
         .btn-maps:active { transform: scale(0.96); }
 
         .btn-secondary {
             background: #ffffff; color: var(--text-dark); border: 2px solid var(--card-border);
             padding: 10px 20px; border-radius: 50px; font-size: 12px; font-weight: 700;
-            cursor: pointer; transition: transform 0.25s ease, background 0.25s ease; 
-            display: inline-flex; align-items: center; gap: 6px;
+            cursor: pointer; transition: transform 0.25s ease; display: inline-flex; align-items: center; gap: 6px;
         }
-        .btn-secondary:active { transform: scale(0.95); }
 
         .section-card {
-            background: #ffffff; border-radius: 28px; padding: 35px 22px; margin: 30px 0;
+            background: #ffffff; border-radius: 28px; padding: 32px 22px; margin: 28px 0;
             box-shadow: var(--card-shadow); text-align: center; border: 2px solid var(--card-border);
-            transition: transform 0.3s ease;
         }
-        .section-title { font-size: 26px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
+        .section-title { font-size: 25px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
 
         .countdown { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
         .time-box { 
-            background: #fcf8ff; padding: 12px 8px; border-radius: 16px; min-width: 68px; 
-            border: 1.5px solid var(--card-border); transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: var(--soft-pink-bg); padding: 12px 8px; border-radius: 16px; min-width: 68px; 
+            border: 1.5px solid #f5cde0; transition: transform 0.3s ease;
         }
-        .time-box:hover { transform: translateY(-3px); box-shadow: 0 8px 15px rgba(164, 114, 198, 0.15); }
-        .time-box:active { transform: scale(0.95); }
-        .time-box .num { font-size: 26px; font-weight: 700; display: block; color: var(--girl-purple); }
+        .time-box:hover { transform: translateY(-3px); }
+        .time-box .num { font-size: 26px; font-weight: 700; display: block; color: var(--primary-pink); }
         .time-box .label { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); font-weight: 700; }
 
         .info-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
-        .info-item { padding: 16px; background: var(--bg-color); border-radius: 16px; border: 1.5px solid var(--card-border); transition: border-color 0.3s ease; }
-        .info-item:hover { border-color: var(--girl-purple); }
-        .info-item h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-bottom: 3px; }
+        @media (min-width: 560px) {
+            .info-grid.two-cols { grid-template-columns: 1fr 1fr; }
+        }
+        .info-item { padding: 16px; background: var(--bg-color); border-radius: 18px; border: 1.5px solid var(--card-border); }
+        .info-item h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--primary-lavender); margin-bottom: 4px; }
         .info-item p { font-size: 15px; font-weight: 700; color: var(--text-dark); }
 
+        .deadline-alert {
+            margin-top: 16px; padding: 12px 16px; border-radius: 14px;
+            background: #fffbeb; border: 1.5px dashed #f59e0b; color: #92400e;
+            font-size: 13px; font-weight: 700;
+        }
+
+        /* --- TIENDA / LISTA DE DESEOS --- */
+        .gift-intro {
+            font-size: 14px; color: var(--text-muted); font-weight: 600;
+            max-width: 540px; margin: 0 auto 18px;
+        }
+
+        .category-tabs {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 20px;
+        }
+
+        .cat-pill {
+            background: var(--bg-color); border: 1.5px solid var(--card-border);
+            color: var(--text-muted); padding: 8px 14px; border-radius: 50px;
+            font-size: 12px; font-weight: 700; cursor: pointer; transition: all 0.2s ease;
+        }
+        .cat-pill.active, .cat-pill:hover {
+            background: var(--primary-pink); color: #fff; border-color: var(--primary-pink);
+        }
+
+        .gift-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        .gift-card {
+            background: #ffffff;
+            border: 2px solid var(--card-border);
+            border-radius: 20px;
+            padding: 15px 12px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            user-select: none;
+        }
+
+        .gift-card:hover:not(.reserved) {
+            transform: translateY(-3px);
+            border-color: var(--primary-pink);
+            box-shadow: 0 8px 20px rgba(217, 122, 166, 0.16);
+        }
+
+        .gift-card.selected {
+            border-color: var(--primary-pink);
+            background: var(--soft-pink-bg);
+            box-shadow: 0 8px 22px rgba(217, 122, 166, 0.25);
+        }
+
+        .gift-card.selected::after {
+            content: "✓ Elegido";
+            position: absolute; top: 10px; right: 10px;
+            background: var(--primary-pink); color: #fff;
+            font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 20px;
+        }
+
+        .gift-card.reserved {
+            background: #f8fafc;
+            border-color: #e2e8f0;
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+
+        .gift-icon { font-size: 30px; margin-bottom: 8px; display: block; }
+        .gift-name { font-size: 14px; font-weight: 700; color: var(--text-dark); line-height: 1.3; margin-bottom: 4px; }
+        .gift-desc { font-size: 11px; color: var(--text-muted); font-weight: 600; margin-bottom: 10px; }
+
+        .gift-badge {
+            display: inline-block; font-size: 10px; font-weight: 700;
+            padding: 4px 8px; border-radius: 8px; width: fit-content;
+        }
+        .badge-unique { background: #f3e8ff; color: #7e22ce; }
+        .badge-multi { background: #dcfce7; color: #15803d; }
+        .badge-reserved { background: #e2e8f0; color: #475569; }
+
+        .selected-gift-banner {
+            margin-top: 18px; padding: 14px 16px; border-radius: 16px;
+            background: var(--soft-lavender-bg); border: 2px dashed var(--primary-lavender);
+            color: var(--text-dark); font-size: 13px; font-weight: 700;
+            display: none; text-align: center;
+            animation: fadeSlideUp 0.4s ease forwards;
+        }
+
+        /* FORMULARIO */
         .form-group { text-align: left; margin-bottom: 18px; }
         .form-group label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 6px; font-weight: 700; }
-        .form-input, .form-select {
+        .form-input, .form-select, .form-textarea {
             width: 100%; padding: 14px 18px; border-radius: 14px;
             border: 1.5px solid var(--card-border); font-family: inherit;
             font-size: 15px; font-weight: 600; background: #fff; outline: none; color: var(--text-dark);
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
-        .form-input:focus, .form-select:focus { 
-            border-color: var(--girl-purple); 
-            box-shadow: 0 0 0 4px rgba(164, 114, 198, 0.15);
+        .form-input:focus, .form-select:focus, .form-textarea:focus { 
+            border-color: var(--primary-pink); 
+            box-shadow: 0 0 0 4px rgba(217, 122, 166, 0.15);
         }
-
-        /* SELECCIÓN DE EQUIPO Y ANIMACIÓN DE PULSO */
-        .team-selector { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
-        .team-card {
-            border: 2.5px dashed var(--card-border); border-radius: 22px; padding: 18px 10px;
-            cursor: pointer; transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease; 
-            background: #fff; user-select: none; display: flex; flex-direction: column; align-items: center;
-            will-change: transform;
-        }
-        .team-card:hover { transform: translateY(-3px); }
-        .team-card:active { transform: scale(0.95); }
-
-        @keyframes pulseSelection {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.06); }
-            100% { transform: scale(1); }
-        }
-
-        .team-card.selected.girl { 
-            border-color: var(--girl-purple); 
-            background: var(--girl-bg); 
-            animation: pulseSelection 0.4s ease-out;
-            box-shadow: 0 8px 20px rgba(164, 114, 198, 0.25);
-        }
-
-        .team-card.selected.boy { 
-            border-color: var(--boy-blue); 
-            background: var(--boy-bg); 
-            animation: pulseSelection 0.4s ease-out;
-            box-shadow: 0 8px 20px rgba(91, 155, 213, 0.25);
-        }
-
-        .mission-box { 
-            display: none; padding: 18px; border-radius: 18px; margin: 20px 0; 
-            animation: fadeSlideUp 0.5s ease forwards;
-        }
-        .mission-box.boy { background: var(--boy-bg); border: 2px dashed var(--boy-blue); color: #215187; }
-        .mission-box.girl { background: var(--girl-bg); border: 2px dashed var(--girl-purple); color: #582580; }
 
         .success-message {
             display: none; padding: 30px 20px; background: #f0fdf4;
-            border: 2px solid #bbf7d0; border-radius: 20px; color: #166534; margin-bottom: 25px;
+            border: 2px solid #bbf7d0; border-radius: 20px; color: #166534; margin-bottom: 10px;
             animation: fadeSlideUp 0.6s ease forwards;
         }
-
-        /* --- GRÁFICO PÚBLICO DE RESULTADOS EN VIVO --- */
-        .live-chart-card {
-            display: none;
-            background: #ffffff;
-            border-radius: 24px;
-            padding: 25px 20px;
-            border: 2px solid var(--card-border);
-            box-shadow: var(--card-shadow);
-            margin-top: 20px;
-            text-align: center;
-            animation: fadeSlideUp 0.6s ease forwards;
-        }
-
-        .chart-bar-container {
-            margin: 20px 0;
-            background: #f1f5f9;
-            border-radius: 50px;
-            height: 32px;
-            display: flex;
-            overflow: hidden;
-            border: 2px solid var(--card-border);
-            position: relative;
-        }
-
-        .chart-fill-girl {
-            background: linear-gradient(90deg, #a472c6, #c084fc);
-            height: 100%; width: 50%;
-            transition: width 1.2s cubic-bezier(0.65, 0, 0.35, 1);
-            display: flex; align-items: center; justify-content: center;
-            color: #fff; font-size: 12px; font-weight: 700;
-            will-change: width;
-        }
-
-        .chart-fill-boy {
-            background: linear-gradient(90deg, #60a5fa, #5b9bd5);
-            height: 100%; width: 50%;
-            transition: width 1.2s cubic-bezier(0.65, 0, 0.35, 1);
-            display: flex; align-items: center; justify-content: center;
-            color: #fff; font-size: 12px; font-weight: 700;
-            will-change: width;
-        }
-
-        .chart-legend { display: flex; justify-content: space-around; font-weight: 700; font-size: 14px; }
 
         /* --- PANEL ADMINISTRADOR OCULTO --- */
         .admin-trigger-container { text-align: center; margin: 40px 0 20px; }
         .admin-section {
-            display: none; background: #27202d; color: #fff; border-radius: 28px;
-            padding: 32px 20px; margin: 20px 0 20px; text-align: center;
+            display: none; background: #2b212e; color: #fff; border-radius: 28px;
+            padding: 32px 20px; margin: 20px 0; text-align: center;
             animation: fadeSlideUp 0.5s ease forwards;
         }
 
-        .admin-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(95px, 1fr)); gap: 10px; margin: 20px 0; }
-        .metric-card { background: #3a3043; padding: 12px 8px; border-radius: 14px; }
-        .metric-card .value { font-size: 20px; font-weight: 700; }
-        .metric-card .label { font-size: 9px; text-transform: uppercase; color: #d0c5d8; }
+        .admin-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 10px; margin: 20px 0; }
+        .metric-card { background: #3f3144; padding: 14px 10px; border-radius: 16px; }
+        .metric-card .value { font-size: 22px; font-weight: 700; display: block; }
+        .metric-card .label { font-size: 10px; text-transform: uppercase; color: #e2d4e6; }
 
         .table-wrapper { overflow-x: auto; margin-top: 18px; }
         table { width: 100%; border-collapse: collapse; text-align: left; font-size: 12px; }
-        th, td { padding: 10px 8px; border-bottom: 1px solid #3a3043; }
-        th { background: #19141e; color: #e8dbf2; text-transform: uppercase; font-size: 10px; }
+        th, td { padding: 10px 8px; border-bottom: 1px solid #3f3144; }
+        th { background: #1d1620; color: #f3d9eb; text-transform: uppercase; font-size: 10px; }
     </style>
 </head>
 <body>
@@ -434,20 +402,20 @@
     <!-- PANTALLA INICIAL: CARTA / SOBRE ANIMADO -->
     <div id="welcomeOverlay">
         <div class="envelope-card">
-            <img src="visualizacion.jpeg" alt="Carta de invitación">
-            <h2>¡Tienes una Invitación Especial! ✉️</h2>
-            <p>Acompáñanos a descubrir el secreto más dulce de nuestras vidas.</p>
+            <img src="visualizacion.jpeg" alt="Invitación Baby Shower Zoe Isabella">
+            <h2>¡Baby Shower de Zoe Isabella! 🎀</h2>
+            <p>¡Era niña! 💜 Ahora acompáñanos a celebrar su próxima llegada con mucho amor.</p>
             <button class="open-btn" id="openInvitationBtn">Abrir Invitación 💌</button>
         </div>
     </div>
 
     <!-- DECORACIONES FLOTANTES -->
     <div class="bg-decorations" id="bgDecorations">
-        <div class="floating-item" style="left: 6%; animation-delay: 0s; font-size: 24px;">🎈</div>
-        <div class="floating-item" style="left: 22%; animation-delay: 3s; font-size: 20px;">⭐</div>
-        <div class="floating-item" style="left: 50%; animation-delay: 6s; font-size: 22px;">💜</div>
-        <div class="floating-item" style="left: 75%; animation-delay: 2s; font-size: 22px;">💙</div>
-        <div class="floating-item" style="left: 88%; animation-delay: 7s; font-size: 20px;">⭐</div>
+        <div class="floating-item" style="left: 6%; animation-delay: 0s; font-size: 24px;">🎀</div>
+        <div class="floating-item" style="left: 22%; animation-delay: 3s; font-size: 20px;">✨</div>
+        <div class="floating-item" style="left: 50%; animation-delay: 6s; font-size: 22px;">🌸</div>
+        <div class="floating-item" style="left: 75%; animation-delay: 2s; font-size: 22px;">🍼</div>
+        <div class="floating-item" style="left: 88%; animation-delay: 7s; font-size: 20px;">💜</div>
     </div>
 
     <!-- BOTÓN DE MÚSICA -->
@@ -459,32 +427,28 @@
 
         <!-- PASO 1: PORTADA -->
         <section id="step1" class="step-section active hero">
-            <span class="subtitle-tag">✨ ¡Hola! Ya casi nos conocemos ✨</span>
+            <span class="subtitle-tag">✨ ¡La dulce espera continúa! ✨</span>
             
-            <h1>¿Isabella o Isaac?</h1>
+            <h1>Zoe Isabella</h1>
+            <div class="reveal-badge">🎀 Nuestro Baby Shower 🎀</div>
 
             <div class="baby-image-container">
-                <img src="bebes.png" alt="Isabella e Isaac">
+                <img src="bebes.png" alt="Zoe Isabella">
             </div>
 
-            <div class="names-banner">
-                <span class="name-tag girl">Isabella 💜</span>
-                <span class="name-tag boy">Isaac 💙</span>
-            </div>
-
-            <p>Queremos invitarte a compartir un día inolvidable con nosotros y votar por quién crees que viene en camino a alegrar nuestros días.</p>
+            <p>Después de descubrir juntos que viene una hermosa princesa en camino, queremos celebrar su llegada en una tarde llena de cariño, juegos y alegría.</p>
             
-            <div style="display: flex; flex-direction: column; gap: 14px; width: 100%; max-width: 380px; margin: 0 auto;">
-                <button type="button" class="btn-main" onclick="unlockNextStep('step2')">Descubrir más detalles 📜</button>
-                <button type="button" class="btn-view-data" onclick="irADatosInvitacion()">Ver datos de invitación (Si ya confirmaste) 📍</button>
+            <div style="display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 390px; margin: 0 auto;">
+                <button type="button" class="btn-main" onclick="unlockNextStep('step2')">Ver detalles del evento 📜</button>
+                <button type="button" class="btn-view-data" onclick="irADatosInvitacion()">Ya confirmé (Ver dirección y hora) 📍</button>
             </div>
         </section>
 
-        <!-- PASO 2: INVITACIÓN & CUENTA REGRESIVA -->
+        <!-- PASO 2: CUENTA REGRESIVA -->
         <section id="step2" class="step-section section-card">
-            <span class="subtitle-tag">Acompáñanos a celebrar</span>
-            <h2 class="section-title">Nuestra Revelación de Género</h2>
-            <p style="color: var(--text-muted); font-size: 14px; font-weight: 600;">Faltan muy pocos días para revelar el gran secreto:</p>
+            <span class="subtitle-tag">Cuenta regresiva</span>
+            <h2 class="section-title">¡Falta muy poco para celebrar!</h2>
+            <p style="color: var(--text-muted); font-size: 14px; font-weight: 600;">Cada día estamos más cerca de tener a Zoe Isabella en nuestros brazos:</p>
 
             <div class="countdown" id="countdownBox">
                 <div class="time-box"><span class="num" id="cdDays">00</span><span class="label">Días</span></div>
@@ -493,82 +457,66 @@
                 <div class="time-box"><span class="num" id="cdSeconds">00</span><span class="label">Seg</span></div>
             </div>
 
-            <button type="button" class="btn-main" style="margin-top: 25px;" onclick="unlockNextStep('step3')">Ver fecha y ubicación 📍</button>
+            <button type="button" class="btn-main" style="margin-top: 25px;" onclick="unlockNextStep('step3')">Ver fecha y lugar 📍</button>
         </section>
-
-        <!-- GRÁFICO PÚBLICO DE RESULTADOS EN VIVO (POSICIONADO ARRIBA DE LA UBICACIÓN CUANDO REVISAN DATOS) -->
-        <div id="publicLiveChart" class="live-chart-card">
-            <span class="subtitle-tag">Votaciones en Vivo</span>
-            <h3 style="font-size: 18px; font-weight: 700; color: var(--text-dark);">Así van las apuestas de todos los invitados:</h3>
-            
-            <div class="chart-bar-container">
-                <div id="publicFillGirl" class="chart-fill-girl">50%</div>
-                <div id="publicFillBoy" class="chart-fill-boy">50%</div>
-            </div>
-
-            <div class="chart-legend">
-                <span style="color: var(--girl-purple);" id="publicTextGirl">Isabella: 0 votos</span>
-                <span style="color: var(--boy-blue);" id="publicTextBoy">Isaac: 0 votos</span>
-            </div>
-        </div>
 
         <!-- PASO 3: DETALLES DEL EVENTO -->
         <section id="step3" class="step-section section-card">
+            <span class="subtitle-tag">Agenda el día</span>
             <h2 class="section-title">¿Dónde y Cuándo?</h2>
-            <div class="info-grid">
+            <div class="info-grid two-cols">
                 <div class="info-item">
-                    <h4>Fecha</h4>
-                    <p>Domingo, 4 de Octubre de 2026</p>
+                    <h4>📅 Fecha</h4>
+                    <p>Domingo, 6 de Diciembre de 2026</p>
                 </div>
                 <div class="info-item">
-                    <h4>Hora</h4>
+                    <h4>🕑 Hora</h4>
                     <p>2:00 PM</p>
                 </div>
+            </div>
+            <div class="info-grid" style="margin-top: 12px;">
                 <div class="info-item">
-                    <h4>Lugar del Evento</h4>
-                    <p>Calle 7 # 90-81 (Zona verde)<br>Conjunto Rosales de Nueva Castilla</p>
-                    <a href="https://maps.google.com/?q=Calle+7+%2390-81+Bogota" target="_blank" rel="noopener noreferrer" class="btn-maps">
-                        📍 Abrir en Google Maps
+                    <h4>📍 Lugar del Evento</h4>
+                    <p>Salón Comunal — Conjunto Residencial Rosales de Nueva Castilla<br>Calle 7 # 90-81</p>
+                    <a href="https://maps.google.com/?q=Conjunto+Residencial+Rosales+de+Nueva+Castilla+Calle+7+90-81+Bogota" target="_blank" rel="noopener noreferrer" class="btn-maps">
+                        📍 Abrir ubicación en Google Maps
                     </a>
-                </div>
-                <div class="info-item" style="background: var(--girl-bg); border-color: var(--girl-purple);">
-                    <h4>🎁 Recordatorio de Regalo</h4>
-                    <p style="font-size: 14px; margin-top: 5px;">
-                        • <strong>Equipo Isabella:</strong> 1 Paquete de Pañitos Húmedos 🎀<br>
-                        • <strong>Equipo Isaac:</strong> 1 Paquete de Pañales (Etapa 3 o 4) 🧸
-                    </p>
                 </div>
             </div>
 
-            <button type="button" id="btnIrAConfirmar" class="btn-main" style="margin-top: 25px;" onclick="unlockNextStep('step4')">Confirmar mi asistencia ✍️</button>
+            <div class="deadline-alert">
+                ⏳ Por favor confirma tu asistencia a más tardar el <strong>sábado 5 de diciembre</strong> para organizar todo con mucho cariño.
+            </div>
+
+            <button type="button" id="btnIrAConfirmar" class="btn-main" style="margin-top: 22px;" onclick="abrirFormularioYTienda()">Confirmar asistencia y ver ideas de regalo 🎁</button>
         </section>
 
-        <!-- PASO 4: FORMULARIO INTERACTIVO PASO A PASO -->
+        <!-- PASO 4: CONFIRMACIÓN + VITRINA DE REGALOS -->
         <section id="step4" class="step-section section-card">
             <form id="rsvpForm">
                 <span class="subtitle-tag">Tu Confirmación</span>
-                <h2 class="section-title" style="font-size: 22px; margin-bottom: 20px;">Confirma tu Asistencia</h2>
+                <h2 class="section-title" style="font-size: 23px; margin-bottom: 18px;">Confirma tu Asistencia</h2>
 
-                <!-- SUBPASO 4A: NOMBRE -->
-                <div class="form-group" id="groupNombre">
+                <!-- NOMBRE -->
+                <div class="form-group">
                     <label for="nombre">Nombre Completo</label>
                     <input type="text" id="nombre" class="form-input" placeholder="Ej. Camila Morales" required>
                 </div>
 
-                <!-- SUBPASO 4B: ¿ASISTES? -->
-                <div class="form-group" id="groupAsistencia" style="display: none; animation: fadeSlideUp 0.5s ease forwards;">
-                    <label for="asistencia">¿Nos acompañarás en este día?</label>
+                <!-- ASISTENCIA -->
+                <div class="form-group">
+                    <label for="asistencia">¿Nos acompañarás este día?</label>
                     <select id="asistencia" class="form-select" onchange="handleAsistenciaChange()" required>
                         <option value="" disabled selected>Selecciona una opción...</option>
-                        <option value="Sí">¡Sí! Ahí estaré para celebrar 🥳</option>
+                        <option value="Sí">¡Sí! Ahí estaré para celebrar con Zoe Isabella 🥳</option>
                         <option value="No">Lo siento, no podré asistir 😔</option>
                     </select>
                 </div>
 
-                <!-- CONTENEDOR DE CAMPOS SI ASISTE -->
+                <!-- CAMPOS SI ASISTE -->
                 <div id="camposAsistente" style="display: none; animation: fadeSlideUp 0.5s ease forwards;">
-                    <div class="form-group" id="groupAcompanantes">
-                        <label>¿Cuántos acompañantes van contigo? (No te cuentes a ti, solo tus acompañantes)</label>
+                    <div class="form-group">
+                        <label for="acompanantes">¿Cuántos acompañantes van contigo? (No te cuentes a ti)</label>
                         <select id="acompanantes" class="form-select" onchange="toggleAcompanantesInput()">
                             <option value="0">0 acompañantes (Iré solo/a)</option>
                             <option value="1">1 acompañante</option>
@@ -579,63 +527,71 @@
                     </div>
 
                     <div class="form-group" id="grupoOtroAcomp" style="display: none;">
-                        <label for="inputOtroAcomp">Escribe la cantidad exacta (solo números):</label>
+                        <label for="inputOtroAcomp">Escribe la cantidad exacta de acompañantes:</label>
                         <input type="number" id="inputOtroAcomp" class="form-input" min="4" placeholder="Ej. 4">
                     </div>
 
-                    <div style="margin-top: 30px; border-top: 2px dashed var(--card-border); padding-top: 22px;">
-                        <span class="subtitle-tag">Tu Predicción</span>
-                        <h3 style="font-size: 20px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px;">🔮 ¿Cuál es tu equipo?</h3>
+                    <!-- VITRINA / TIENDA DE REGALOS -->
+                    <div style="margin-top: 28px; border-top: 2px dashed var(--card-border); padding-top: 24px;">
+                        <span class="subtitle-tag">Opcional · Ideas para Zoe Isabella</span>
+                        <h3 style="font-size: 21px; font-weight: 700; color: var(--text-dark); margin-bottom: 6px;">🛍️ Lista de Deseos</h3>
+                        <p class="gift-intro">
+                            Tu compañía es nuestro mejor regalo. Si deseas tener un detalle con Zoe Isabella, aquí dejamos algunas ideas; los artículos marcados como <strong>Único</strong> se reservan automáticamente para que nadie los repita.
+                        </p>
 
-                        <div class="team-selector">
-                            <div class="team-card girl" onclick="selectTeam('Isabella (Niña) 💜')">
-                                <span style="font-size: 32px; margin-bottom: 5px;">🎀</span>
-                                <span style="font-weight: 700; font-size: 15px; color: var(--girl-purple);">Equipo ISABELLA</span>
-                            </div>
-                            <div class="team-card boy" onclick="selectTeam('Isaac (Niño) 💙')">
-                                <span style="font-size: 32px; margin-bottom: 5px;">🧸</span>
-                                <span style="font-weight: 700; font-size: 15px; color: var(--boy-blue);">Equipo ISAAC</span>
-                            </div>
+                        <!-- FILTRO DE CATEGORÍAS -->
+                        <div class="category-tabs">
+                            <button type="button" class="cat-pill active" onclick="filtrarRegalos('todos', this)">Todos</button>
+                            <button type="button" class="cat-pill" onclick="filtrarRegalos('basicos', this)">Pañales y Aseo</button>
+                            <button type="button" class="cat-pill" onclick="filtrarRegalos('bano', this)">Baño y Cuidado</button>
+                            <button type="button" class="cat-pill" onclick="filtrarRegalos('descanso', this)">Paseo y Descanso</button>
+                            <button type="button" class="cat-pill" onclick="filtrarRegalos('ropita', this)">Ropita</button>
                         </div>
+
+                        <div id="giftLoadingMsg" style="font-size: 12px; color: var(--primary-lavender); font-weight: 700; margin-bottom: 10px;">
+                            🔄 Sincronizando disponibilidad en tiempo real...
+                        </div>
+
+                        <!-- GRID DE REGALOS -->
+                        <div class="gift-grid" id="giftGrid"></div>
+
+                        <!-- BANNER DE REGALO ELEGIDO -->
+                        <div id="selectedGiftBanner" class="selected-gift-banner"></div>
                     </div>
 
-                    <div id="missionGirl" class="mission-box girl">
-                        <h3 style="font-size: 17px; font-weight: 700;">🎁 Misión: Equipo Isabella</h3>
-                        <p style="font-size: 13px; font-weight: 600;">Tu sugerencia de regalo: <strong>1 Paquete de Pañitos Húmedos</strong>.</p>
-                    </div>
-
-                    <div id="missionBoy" class="mission-box boy">
-                        <h3 style="font-size: 17px; font-weight: 700;">🎁 Misión: Equipo Isaac</h3>
-                        <p style="font-size: 13px; font-weight: 600;">Tu sugerencia de regalo: <strong>1 Paquete de Pañales (Etapa 3 o Etapa 4)</strong>.</p>
+                    <!-- MENSAJE PARA ZOE ISABELLA -->
+                    <div class="form-group" style="margin-top: 22px;">
+                        <label for="mensaje">💌 Déjale un deseo o consejo a Zoe Isabella (Opcional)</label>
+                        <textarea id="mensaje" class="form-textarea" rows="2" placeholder="Ej. ¡Te esperamos con los brazos abiertos, princesa!"></textarea>
                     </div>
                 </div>
 
-                <button type="submit" id="submitBtn" class="btn-main" style="width: 100%; margin-top: 20px; display: none;">
-                    Confirmar y Enviar Respuesta 🚀
+                <button type="submit" id="submitBtn" class="btn-main" style="width: 100%; margin-top: 15px; display: none;">
+                    Confirmar Asistencia 🚀
                 </button>
             </form>
 
             <!-- MENSAJE DE ÉXITO -->
             <div id="successMessage" class="success-message">
-                <span style="font-size: 40px; display: block; margin-bottom: 10px;">🎉</span>
-                <h3 style="font-size: 24px; font-weight: 700; color: #15803d; margin-bottom: 8px;">¡Respuesta Registrada!</h3>
-                <p style="font-size: 15px; font-weight: 600; color: #166534;">Muchas gracias por tu confirmación. ¡Te esperamos para celebrar juntos!</p>
+                <span style="font-size: 42px; display: block; margin-bottom: 10px;">🎀</span>
+                <h3 style="font-size: 24px; font-weight: 700; color: #15803d; margin-bottom: 8px;">¡Confirmación Registrada!</h3>
+                <p id="successText" style="font-size: 15px; font-weight: 600; color: #166534;">Muchas gracias por acompañarnos en este día tan especial para Zoe Isabella.</p>
             </div>
         </section>
 
         <!-- PANEL DE CONTROL -->
         <div class="admin-trigger-container">
             <button type="button" class="btn-secondary" onclick="toggleAdminPanel()">
-                ⚙️ Panel de Control
+                ⚙️ Panel de Control (Papás)
             </button>
         </div>
 
         <section class="admin-section" id="adminSection">
-            <span class="subtitle-tag" style="color: #a89bb3;">Área Privada</span>
-            <h2>📊 Panel de Control en la Nube</h2>
+            <span class="subtitle-tag" style="color: #d8b4e2;">Área Privada</span>
+            <h2>📊 Control de Invitados y Regalos</h2>
             
             <div id="loginAdmin">
-                <p style="font-size: 12px; color: #d1c7d9; margin-bottom: 15px;">Ingresa tu contraseña para administrar las respuestas:</p>
+                <p style="font-size: 12px; color: #e2d4e6; margin-bottom: 15px;">Ingresa tu contraseña para ver los confirmados:</p>
                 <input type="password" id="adminKey" class="form-input" style="max-width: 180px; margin: 0 auto 15px; text-align: center;" placeholder="Clave">
                 <br>
                 <button type="button" onclick="verificarClave()" class="btn-main" style="padding: 10px 25px; font-size: 12px;">Ingresar</button>
@@ -643,45 +599,79 @@
 
             <div id="adminContent" style="display: none;">
                 <div class="admin-metrics">
-                    <div class="metric-card"><span class="value" id="totalAsistentes">0</span><span class="label">Personas</span></div>
-                    <div class="metric-card"><span class="value" id="votosGirl" style="color: #d6bcfa;">0</span><span class="label">Isabella 💜</span></div>
-                    <div class="metric-card"><span class="value" id="votosBoy" style="color: #90cdf4;">0</span><span class="label">Isaac 💙</span></div>
-                    <div class="metric-card"><span class="value" id="totalPanitos" style="color: #d6bcfa;">0</span><span class="label">Paq. Pañitos</span></div>
-                    <div class="metric-card"><span class="value" id="totalPanales" style="color: #90cdf4;">0</span><span class="label">Paq. Pañales</span></div>
+                    <div class="metric-card"><span class="value" id="totalAsistentes">0</span><span class="label">Personas Total</span></div>
+                    <div class="metric-card"><span class="value" id="totalFamilias" style="color: #f9a8d4;">0</span><span class="label">Confirmados</span></div>
+                    <div class="metric-card"><span class="value" id="regalosUnicosReservados" style="color: #d8b4e2;">0</span><span class="label">Regalos Únicos</span></div>
+                    <div class="metric-card"><span class="value" id="regalosBasicos" style="color: #86efac;">0</span><span class="label">Pañales/Aseo</span></div>
                 </div>
 
-                <h3 style="margin-top: 25px; text-align: left; font-size: 15px;">Lista Global de Confirmados</h3>
+                <h3 style="margin-top: 25px; text-align: left; font-size: 15px;">Lista de Confirmados — Baby Shower</h3>
                 <div class="table-wrapper">
                     <table>
                         <thead>
-                            <tr><th>Nombre</th><th>Asiste</th><th>Acomp.</th><th>Predicción</th><th>Misión</th></tr>
+                            <tr><th>Nombre</th><th>Asiste</th><th>Acomp.</th><th>Detalle Elegido</th><th>Mensaje</th></tr>
                         </thead>
                         <tbody id="tablaInvitados">
                             <tr><td colspan="5" style="text-align: center;">Cargando datos...</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 15px;">
+                <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 18px;">
                     <button type="button" onclick="cargarDatosAdmin()" class="btn-main" style="padding: 10px 20px; font-size: 11px;">Actualizar Lista 🔄</button>
-                    <button type="button" onclick="reiniciarBaseDatos()" class="btn-danger">⚠️ Limpiar Base de Datos (Reiniciar)</button>
                 </div>
             </div>
         </section>
 
         <div style="text-align: center; font-size: 12px; color: var(--text-muted); margin-bottom: 30px; font-weight: 600;">
-            ✨ Hecho con mucho amor para la llegada de nuestro bebé ✨
+            ✨ Hecho con mucho amor para la llegada de Zoe Isabella ✨
         </div>
     </div>
 
     <!-- JAVASCRIPT -->
     <script>
-        const SHEETDB_URL = "https://sheetdb.io/api/v1/pnct7bjqp2gn9"; 
+        // Conectado a tu misma API de SheetDB apuntando a la nueva pestaña "Baby Shower"
+        const SHEETDB_BASE = "https://sheetdb.io/api/v1/pnct7bjqp2gn9";
+        const SHEET_NAME = "Baby Shower";
+        const SHEETDB_URL = `${SHEETDB_BASE}?sheet=${encodeURIComponent(SHEET_NAME)}`;
 
+        // CATÁLOGO DE REGALOS (unique: true = se bloquea al elegirse 1 vez | unique: false = varios invitados pueden llevarlo)
+        const CATALOGO_REGALOS = [
+            // Básicos y Pañales (Abiertos para varios)
+            { id: "panales_e1", nombre: "Pañales Etapa 1", desc: "Para sus primeros meses", categoria: "basicos", icon: "🧷", unique: false },
+            { id: "panales_e2", nombre: "Pañales Etapa 2", desc: "Ideales para tener reserva", categoria: "basicos", icon: "🍼", unique: false },
+            { id: "panales_e3", nombre: "Pañales Etapa 3", desc: "Para cuando crezca un poquito", categoria: "basicos", icon: "🧸", unique: false },
+            { id: "panitos_crema", nombre: "Pañitos Húmedos y Crema", desc: "Aseo diario suave para bebé", categoria: "basicos", icon: "🧻", unique: false },
+
+            // Baño y Cuidado (Únicos - 1 unidad)
+            { id: "banera_bebe", nombre: "Bañera Ergonómica", desc: "Con soporte para recién nacida", categoria: "bano", icon: "🛁", unique: true },
+            { id: "kit_aseo", nombre: "Kit de Cuidado y Termómetro", desc: "Cortaúñas, cepillo suave y termómetro", categoria: "bano", icon: "🩺", unique: true },
+            { id: "toallas_capucha", nombre: "Set de Toallas con Capucha", desc: "Suaves de algodón para después del baño", categoria: "bano", icon: "🧖‍♀️", unique: true },
+
+            // Paseo y Descanso (Únicos - 1 unidad)
+            { id: "gimnasio_bebe", nombre: "Gimnasio de Actividades", desc: "Tapete acolchado con sonajeros", categoria: "descanso", icon: "🎪", unique: true },
+            { id: "canguro_ergo", nombre: "Fular o Canguro Ergonómico", desc: "Para pasear cerquita de mamá y papá", categoria: "descanso", icon: "🦘", unique: true },
+            { id: "panalera_morral", nombre: "Maleta Pañalera", desc: "Tipo morral con compartimentos térmicos", categoria: "descanso", icon: "🎒", unique: true },
+            { id: "set_cobijas", nombre: "Set de Cobijas y Muselinas", desc: "Cobijas térmicas y mantitas ligeras", categoria: "descanso", icon: " blanket", icon: "🛏️", unique: true },
+            { id: "cojin_lactancia", nombre: "Cojín de Lactancia", desc: "Soporte cómodo para mamá y bebé", categoria: "descanso", icon: "🌙", unique: true },
+
+            // Ropita (Abiertos o únicos)
+            { id: "ropita_3_6", nombre: "Conjunto Ropita (3 a 6 meses)", desc: "Bodies, pijamitas o enterizos cómodos", categoria: "ropita", icon: "👗", unique: false },
+            { id: "ropita_6_12", nombre: "Conjunto Ropita (6 a 12 meses)", desc: "Para cuando esté más grandecita", categoria: "ropita", icon: "🎀", unique: false },
+            { id: "medias_baberos", nombre: "Set de Medias, Gorritos y Baberos", desc: "Básicos de algodón para el clima frío", categoria: "ropita", icon: "🧦", unique: true },
+
+            // Opción libre
+            { id: "detalle_libre", nombre: "Sorpresa / Detalle Libre", desc: "Quiero elegir algo especial por mi cuenta", categoria: "basicos", icon: "🎁", unique: false }
+        ];
+
+        let regalosReservadosIds = new Set();
+        let regaloSeleccionado = null;
+        let categoriaActual = "todos";
+
+        // MÚSICA Y BIENVENIDA
         const musicBtn = document.getElementById('musicToggle');
         const musicText = document.getElementById('musicText');
         const openInvitationBtn = document.getElementById('openInvitationBtn');
         const welcomeOverlay = document.getElementById('welcomeOverlay');
-
         const songPath = new URL('indigo.mp3', window.location.href).href;
 
         const sound = new Howl({
@@ -697,40 +687,21 @@
             }
         });
 
-        // PARALLAX SUTIL EN MÓVILES / MOUSE
-        document.addEventListener('mousemove', (e) => {
-            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
-            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
-            const decor = document.getElementById('bgDecorations');
-            if (decor) {
-                decor.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
-            }
-        });
-
-        // DISPARO DE CONFETI EN LA BIENVENIDA
-        function ráfagaConfetiInicio() {
-            const count = 200;
-            const defaults = {
-                origin: { y: 0.7 },
-                colors: ['#a472c6', '#5b9bd5', '#f3c26b', '#ffffff']
-            };
-
+        function rafagaConfetiInicio() {
+            const count = 180;
+            const defaults = { origin: { y: 0.7 }, colors: ['#d97aa6', '#a472c6', '#e8b85a', '#ffffff'] };
             function fire(particleRatio, opts) {
-                confetti(Object.assign({}, defaults, opts, {
-                    particleCount: Math.floor(count * particleRatio)
-                }));
+                confetti(Object.assign({}, defaults, opts, { particleCount: Math.floor(count * particleRatio) }));
             }
-
             fire(0.25, { spread: 26, startVelocity: 55 });
             fire(0.2, { spread: 60 });
             fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
             fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
-            fire(0.1, { spread: 120, startVelocity: 45 });
         }
 
         openInvitationBtn.addEventListener('click', () => {
             sound.play();
-            ráfagaConfetiInicio();
+            rafagaConfetiInicio();
             welcomeOverlay.classList.add('fade-out');
             setTimeout(() => { welcomeOverlay.style.display = 'none'; }, 800);
         });
@@ -740,7 +711,7 @@
             if (sound.playing()) { sound.pause(); } else { sound.play(); }
         });
 
-        // SCROLL SUAVE OPTIMIZADO PARA MÓVILES
+        // NAVEGACIÓN ENTRE PASOS
         function unlockNextStep(nextStepId) {
             const nextEl = document.getElementById(nextStepId);
             if (nextEl && !nextEl.classList.contains('active')) {
@@ -751,38 +722,138 @@
             }
         }
 
-        // NUEVA LÓGICA: BOTÓN "VER DATOS DE INVITACIÓN"
         function irADatosInvitacion() {
-            // 1. Mostrar secciones necesarias
             document.getElementById('step2').classList.add('active');
             document.getElementById('step3').classList.add('active');
-
-            // 2. Ocultar el formulario de confirmación (Paso 4) y el botón de confirmar
-            document.getElementById('step4').classList.remove('active');
             document.getElementById('step4').style.display = 'none';
             const btnConfirmar = document.getElementById('btnIrAConfirmar');
             if (btnConfirmar) btnConfirmar.style.display = 'none';
 
-            // 3. Cargar y mostrar primero el gráfico de votaciones arriba del mapa
-            actualizarGraficoPublico();
-
-            // 4. Hacer scroll suave directamente hacia el gráfico de votos
             setTimeout(() => {
-                const chartCard = document.getElementById('publicLiveChart');
-                if (chartCard) chartCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                document.getElementById('step3').scrollIntoView({ behavior: 'smooth', block: 'center' });
             }, 100);
         }
 
-        // LÓGICA DE FORMULARIO
-        const nombreInput = document.getElementById('nombre');
-        const groupAsistencia = document.getElementById('groupAsistencia');
+        function abrirFormularioYTienda() {
+            unlockNextStep('step4');
+            cargarDisponibilidadRegalos();
+        }
 
-        nombreInput.addEventListener('input', function() {
-            if (this.value.trim().length > 2) {
-                groupAsistencia.style.display = 'block';
+        // CUENTA REGRESIVA AL 6 DE DICIEMBRE DE 2026 A LAS 2:00 PM (Mes 11 en JS es Diciembre)
+        const targetDate = new Date(2026, 11, 6, 14, 0, 0).getTime(); 
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById("cdDays").innerText = days < 10 ? '0' + days : days;
+                document.getElementById("cdHours").innerText = hours < 10 ? '0' + hours : hours;
+                document.getElementById("cdMinutes").innerText = minutes < 10 ? '0' + minutes : minutes;
+                document.getElementById("cdSeconds").innerText = seconds < 10 ? '0' + seconds : seconds;
+            } else {
+                document.getElementById("countdownBox").innerHTML = "<h3>¡Hoy celebramos a Zoe Isabella! 🎀</h3>";
             }
-        });
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
 
+        // SINCRONIZACIÓN DE REGALOS EN TIEMPO REAL CON SHEETDB
+        async function cargarDisponibilidadRegalos() {
+            const loadingMsg = document.getElementById('giftLoadingMsg');
+            loadingMsg.style.display = 'block';
+            renderizarRegalos();
+
+            try {
+                const res = await fetch(SHEETDB_URL);
+                const data = await res.json();
+                regalosReservadosIds.clear();
+
+                if (Array.isArray(data)) {
+                    data.forEach(row => {
+                        if (row.asistencia === "Sí" && row.regalo_id) {
+                            const itemCatalogo = CATALOGO_REGALOS.find(g => g.id === row.regalo_id);
+                            if (itemCatalogo && itemCatalogo.unique) {
+                                regalosReservadosIds.add(row.regalo_id);
+                            }
+                        }
+                    });
+                }
+                loadingMsg.style.display = 'none';
+                renderizarRegalos();
+            } catch (err) {
+                loadingMsg.innerText = "✨ Elige el detalle que más te guste:";
+                renderizarRegalos();
+            }
+        }
+
+        function filtrarRegalos(categoria, btnEl) {
+            categoriaActual = categoria;
+            document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+            if (btnEl) btnEl.classList.add('active');
+            renderizarRegalos();
+        }
+
+        function renderizarRegalos() {
+            const grid = document.getElementById('giftGrid');
+            grid.innerHTML = "";
+
+            const filtrados = categoriaActual === "todos" 
+                ? CATALOGO_REGALOS 
+                : CATALOGO_REGALOS.filter(item => item.categoria === categoriaActual);
+
+            filtrados.forEach(item => {
+                const estaReservado = item.unique && regalosReservadosIds.has(item.id);
+                const estaSeleccionado = regaloSeleccionado && regaloSeleccionado.id === item.id;
+
+                const card = document.createElement('div');
+                card.className = `gift-card ${estaReservado ? 'reserved' : ''} ${estaSeleccionado ? 'selected' : ''}`;
+
+                let badgeHtml = '';
+                if (estaReservado) {
+                    badgeHtml = `<span class="gift-badge badge-reserved">✨ Ya elegido</span>`;
+                } else if (item.unique) {
+                    badgeHtml = `<span class="gift-badge badge-unique">Artículo único</span>`;
+                } else {
+                    badgeHtml = `<span class="gift-badge badge-multi">Disponible</span>`;
+                }
+
+                card.innerHTML = `
+                    <div>
+                        <span class="gift-icon">${item.icon}</span>
+                        <div class="gift-name">${item.nombre}</div>
+                        <div class="gift-desc">${item.desc}</div>
+                    </div>
+                    ${badgeHtml}
+                `;
+
+                if (!estaReservado) {
+                    card.onclick = () => seleccionarRegalo(item);
+                }
+
+                grid.appendChild(card);
+            });
+        }
+
+        function seleccionarRegalo(item) {
+            const banner = document.getElementById('selectedGiftBanner');
+            if (regaloSeleccionado && regaloSeleccionado.id === item.id) {
+                regaloSeleccionado = null;
+                banner.style.display = 'none';
+            } else {
+                regaloSeleccionado = item;
+                banner.style.display = 'block';
+                banner.innerHTML = `🎁 Has seleccionado: <strong>${item.nombre}</strong> ${item.unique ? '(Se reservará exclusivamente para ti al confirmar)' : ''}`;
+            }
+            renderizarRegalos();
+        }
+
+        // LÓGICA DEL FORMULARIO
         function handleAsistenciaChange() {
             const val = document.getElementById('asistencia').value;
             const camposAsistente = document.getElementById('camposAsistente');
@@ -790,14 +861,13 @@
 
             if (val === 'Sí') {
                 camposAsistente.style.display = 'block';
-                if (votoSeleccionado !== "") {
-                    submitBtn.style.display = 'block';
-                } else {
-                    submitBtn.style.display = 'none';
-                }
+                submitBtn.style.display = 'block';
+                submitBtn.innerText = "Confirmar Asistencia 🚀";
+                cargarDisponibilidadRegalos();
             } else if (val === 'No') {
                 camposAsistente.style.display = 'none';
                 submitBtn.style.display = 'block';
+                submitBtn.innerText = "Enviar Respuesta 💌";
             }
         }
 
@@ -813,91 +883,61 @@
             }
         }
 
-        let votoSeleccionado = "";
-        function selectTeam(equipo) {
-            votoSeleccionado = equipo;
-            document.querySelectorAll('.team-card').forEach(card => card.classList.remove('selected'));
-            document.getElementById('missionBoy').style.display = 'none';
-            document.getElementById('missionGirl').style.display = 'none';
-
-            if (equipo.includes('Isabella')) {
-                document.querySelector('.team-card.girl').classList.add('selected');
-                document.getElementById('missionGirl').style.display = 'block';
-            } else {
-                document.querySelector('.team-card.boy').classList.add('selected');
-                document.getElementById('missionBoy').style.display = 'block';
-            }
-
-            document.getElementById('submitBtn').style.display = 'block';
-        }
-
-        // CUENTA REGRESIVA
-        const targetDate = new Date(2026, 9, 4, 14, 0, 0).getTime(); 
-
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const diff = targetDate - now;
-
-            if (diff > 0) {
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-                if (document.getElementById("cdDays")) document.getElementById("cdDays").innerText = days < 10 ? '0' + days : days;
-                if (document.getElementById("cdHours")) document.getElementById("cdHours").innerText = hours < 10 ? '0' + hours : hours;
-                if (document.getElementById("cdMinutes")) document.getElementById("cdMinutes").innerText = minutes < 10 ? '0' + minutes : minutes;
-                if (document.getElementById("cdSeconds")) document.getElementById("cdSeconds").innerText = seconds < 10 ? '0' + seconds : seconds;
-            } else {
-                const box = document.getElementById("countdownBox");
-                if (box) box.innerHTML = "<h3>¡Llegó el gran día! 🎉</h3>";
-            }
-        }
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-
-        // ENVÍO DE DATOS Y SEGUNDO DISPARO DE CONFETI
+        // ENVÍO CON VERIFICACIÓN ANTI-DUPLICADOS EN TIEMPO REAL
         const rsvpForm = document.getElementById('rsvpForm');
-        if (rsvpForm) {
-            rsvpForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const nombre = document.getElementById('nombre').value.trim();
-                const asistencia = document.getElementById('asistencia').value;
-                let acompanantes = "0";
-                let prediccion = "No asiste";
-                let mision = "Ninguna";
+        rsvpForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const nombre = document.getElementById('nombre').value.trim();
+            const asistencia = document.getElementById('asistencia').value;
+            const mensaje = document.getElementById('mensaje').value.trim() || "Sin mensaje";
+            let acompanantes = "0";
+            let regaloId = "sin_seleccion";
+            let regaloNombre = "No especificado / Por definir";
 
-                if (asistencia === "Sí") {
-                    const selectAcomp = document.getElementById('acompanantes').value;
-                    if (selectAcomp === 'otro') {
-                        const valOtro = document.getElementById('inputOtroAcomp').value.trim();
-                        if (!valOtro || parseInt(valOtro) < 4) {
-                            alert("Por favor indica una cantidad válida de acompañantes (mínimo 4).");
-                            return;
-                        }
-                        acompanantes = valOtro;
-                    } else {
-                        acompanantes = selectAcomp;
-                    }
-
-                    if (!votoSeleccionado) {
-                        alert("Por favor elige si crees que será Isabella 💜 o Isaac 💙 antes de confirmar.");
+            if (asistencia === "Sí") {
+                const selectAcomp = document.getElementById('acompanantes').value;
+                if (selectAcomp === 'otro') {
+                    const valOtro = document.getElementById('inputOtroAcomp').value.trim();
+                    if (!valOtro || parseInt(valOtro) < 4) {
+                        alert("Por favor indica una cantidad válida de acompañantes (mínimo 4).");
                         return;
                     }
-                    prediccion = votoSeleccionado;
-                    
-                    if (votoSeleccionado.includes('Isabella')) {
-                        mision = "1 Paq. Pañitos Húmedos";
-                    } else {
-                        mision = "1 Paq. Pañales (Etapa 3 o 4)";
+                    acompanantes = valOtro;
+                } else {
+                    acompanantes = selectAcomp;
+                }
+
+                if (regaloSeleccionado) {
+                    regaloId = regaloSeleccionado.id;
+                    regaloNombre = regaloSeleccionado.nombre;
+                }
+            } else {
+                regaloId = "no_asiste";
+                regaloNombre = "No asiste";
+            }
+
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerText = "Verificando y guardando...";
+            submitBtn.disabled = true;
+
+            try {
+                // Verificación de último segundo por si alguien más reservó el mismo artículo único
+                if (asistencia === "Sí" && regaloSeleccionado && regaloSeleccionado.unique) {
+                    const checkRes = await fetch(SHEETDB_URL);
+                    const checkData = await checkRes.json();
+                    const yaLoTomaron = Array.isArray(checkData) && checkData.some(r => r.asistencia === "Sí" && r.regalo_id === regaloSeleccionado.id);
+                    if (yaLoTomaron) {
+                        alert(`¡Ups! Justo hace un instante otro invitado reservó "${regaloSeleccionado.nombre}". Por favor elige otro detalle de la lista.`);
+                        regaloSeleccionado = null;
+                        document.getElementById('selectedGiftBanner').style.display = 'none';
+                        await cargarDisponibilidadRegalos();
+                        submitBtn.innerText = "Confirmar Asistencia 🚀";
+                        submitBtn.disabled = false;
+                        return;
                     }
                 }
 
-                const submitBtn = document.getElementById('submitBtn');
-                submitBtn.innerText = "Enviando respuesta...";
-                submitBtn.disabled = true;
-
-                fetch(SHEETDB_URL, {
+                await fetch(SHEETDB_URL, {
                     method: 'POST',
                     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -905,69 +945,36 @@
                             nombre: nombre,
                             asistencia: asistencia,
                             acompanantes: acompanantes,
-                            prediccion: prediccion,
-                            mision: mision
+                            regalo_id: regaloId,
+                            regalo: regaloNombre,
+                            mensaje: mensaje
                         }]
                     })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (asistencia === "Sí") {
-                        confetti({ particleCount: 160, spread: 100, origin: { y: 0.6 }, colors: ['#a472c6', '#5b9bd5', '#f3c26b'] });
+                });
+
+                if (asistencia === "Sí") {
+                    confetti({ particleCount: 160, spread: 100, origin: { y: 0.6 }, colors: ['#d97aa6', '#a472c6', '#e8b85a'] });
+                    if (regaloSeleccionado) {
+                        document.getElementById('successText').innerHTML = `Muchas gracias <strong>${nombre}</strong>. Tu asistencia quedó confirmada y anotamos tu detalle (<strong>${regaloNombre}</strong>). ¡Te esperamos el 6 de diciembre!`;
                     }
-                    rsvpForm.style.opacity = '0';
-                    setTimeout(() => {
-                        rsvpForm.style.display = 'none';
-                        document.getElementById('successMessage').style.display = 'block';
-                        actualizarGraficoPublico();
-                    }, 300);
-                })
-                .catch(error => {
-                    alert("Hubo un error al enviar tu respuesta. Por favor revisa tu conexión e intenta de nuevo.");
-                    submitBtn.innerText = "Confirmar y Enviar Respuesta 🚀";
-                    submitBtn.disabled = false;
-                });
-            });
-        }
-
-        function actualizarGraficoPublico() {
-            const chartCard = document.getElementById('publicLiveChart');
-            chartCard.style.display = 'block';
-
-            fetch(SHEETDB_URL)
-            .then(res => res.json())
-            .then(data => {
-                let girl = 0;
-                let boy = 0;
-
-                data.forEach(item => {
-                    if (item.prediccion && item.prediccion.includes('Isabella')) girl++;
-                    if (item.prediccion && item.prediccion.includes('Isaac')) boy++;
-                });
-
-                const total = girl + boy;
-                let pGirl = 50;
-                let pBoy = 50;
-
-                if (total > 0) {
-                    pGirl = Math.round((girl / total) * 100);
-                    pBoy = 100 - pGirl;
+                } else {
+                    document.getElementById('successText').innerHTML = `Gracias por avisarnos, <strong>${nombre}</strong>. ¡Te tendremos muy presente en este día especial!`;
                 }
 
-                document.getElementById('publicFillGirl').style.width = pGirl + '%';
-                document.getElementById('publicFillGirl').innerText = pGirl + '%';
-                document.getElementById('publicFillBoy').style.width = pBoy + '%';
-                document.getElementById('publicFillBoy').innerText = pBoy + '%';
+                rsvpForm.style.opacity = '0';
+                setTimeout(() => {
+                    rsvpForm.style.display = 'none';
+                    document.getElementById('successMessage').style.display = 'block';
+                }, 300);
 
-                document.getElementById('publicTextGirl').innerText = `Isabella 💜: ${girl} voto(s)`;
-                document.getElementById('publicTextBoy').innerText = `Isaac 💙: ${boy} voto(s)`;
-            })
-            .catch(err => {
-                console.log("Error al cargar la votación pública", err);
-            });
-        }
+            } catch (error) {
+                alert("Hubo un error de conexión al enviar tu respuesta. Intenta de nuevo por favor.");
+                submitBtn.innerText = "Confirmar Asistencia 🚀";
+                submitBtn.disabled = false;
+            }
+        });
 
-        // PANEL ADMIN
+        // PANEL DE CONTROL (CLAVE: 1234)
         const CLAVE_ADMIN = "1234"; 
 
         function toggleAdminPanel() {
@@ -992,88 +999,47 @@
 
         function cargarDatosAdmin() {
             const tabla = document.getElementById('tablaInvitados');
-            tabla.innerHTML = `<tr><td colspan="5" style="text-align: center;">Cargando datos de la nube...</td></tr>`;
+            tabla.innerHTML = `<tr><td colspan="5" style="text-align: center;">Cargando datos...</td></tr>`;
 
             fetch(SHEETDB_URL)
             .then(response => response.json())
             .then(registros => {
-                let totalPersonas = 0, votosBoy = 0, votosGirl = 0, totalPanitos = 0, totalPanales = 0;
+                let totalPersonas = 0, totalFamilias = 0, unicosCount = 0, basicosCount = 0;
                 tabla.innerHTML = "";
 
                 if (!registros || registros.length === 0) {
-                    tabla.innerHTML = `<tr><td colspan="5" style="text-align: center;">Aún no hay respuestas registradas.</td></tr>`;
-                    document.getElementById('totalAsistentes').innerText = "0";
-                    document.getElementById('votosBoy').innerText = "0";
-                    document.getElementById('votosGirl').innerText = "0";
-                    document.getElementById('totalPanitos').innerText = "0";
-                    document.getElementById('totalPanales').innerText = "0";
+                    tabla.innerHTML = `<tr><td colspan="5" style="text-align: center;">Aún no hay confirmaciones para el Baby Shower.</td></tr>`;
                     return;
                 }
 
                 registros.forEach(item => {
                     let numAcomp = parseInt(item.acompanantes) || 0;
                     if (item.asistencia === "Sí") {
+                        totalFamilias++;
                         totalPersonas += (1 + numAcomp);
-                        if (item.prediccion && item.prediccion.includes('Isaac')) { 
-                            votosBoy++; 
-                            totalPanales++; 
-                        } else if (item.prediccion && item.prediccion.includes('Isabella')) { 
-                            votosGirl++; 
-                            totalPanitos++; 
-                        }
+                        const catItem = CATALOGO_REGALOS.find(g => g.id === item.regalo_id);
+                        if (catItem && catItem.unique) unicosCount++;
+                        if (catItem && catItem.categoria === "basicos" && catItem.id !== "detalle_libre") basicosCount++;
                     }
 
                     let tr = document.createElement('tr');
-                    tr.innerHTML = `<td><strong>${item.nombre}</strong></td><td>${item.asistencia === "Sí" ? "✅ Sí" : "❌ No"}</td><td>+${numAcomp}</td><td>${item.prediccion}</td><td>${item.mision}</td>`;
+                    tr.innerHTML = `
+                        <td><strong>${item.nombre}</strong></td>
+                        <td>${item.asistencia === "Sí" ? "✅ Sí" : "❌ No"}</td>
+                        <td>+${numAcomp}</td>
+                        <td>${item.regalo || '-'}</td>
+                        <td>${item.mensaje || '-'}</td>
+                    `;
                     tabla.appendChild(tr);
                 });
 
                 document.getElementById('totalAsistentes').innerText = totalPersonas;
-                document.getElementById('votosBoy').innerText = votosBoy;
-                document.getElementById('votosGirl').innerText = votosGirl;
-                document.getElementById('totalPanitos').innerText = totalPanitos;
-                document.getElementById('totalPanales').innerText = totalPanales;
+                document.getElementById('totalFamilias').innerText = totalFamilias;
+                document.getElementById('regalosUnicosReservados').innerText = unicosCount;
+                document.getElementById('regalosBasicos').innerText = basicosCount;
             })
-            .catch(error => {
-                tabla.innerHTML = `<tr><td colspan="5" style="text-align: center; color: #ff8b8b;">Error al cargar la lista de la nube.</td></tr>`;
-            });
-        }
-
-        // FUNCIÓN PARA REINICIAR LA BASE DE DATOS
-        function reiniciarBaseDatos() {
-            const confirmacion = confirm("⚠️ ¿Estás seguro/a de que deseas borrar TODAS las respuestas registradas? Esta acción no se puede deshacer.");
-            if (!confirmacion) return;
-
-            const tabla = document.getElementById('tablaInvitados');
-            tabla.innerHTML = `<tr><td colspan="5" style="text-align: center;">Limpiando registros... Por favor espera.</td></tr>`;
-
-            fetch(SHEETDB_URL)
-            .then(res => res.json())
-            .then(data => {
-                if (!data || data.length === 0) {
-                    alert("La base de datos ya está completamente vacía.");
-                    cargarDatosAdmin();
-                    return;
-                }
-
-                // Eliminar registros
-                let promesas = data.map(item => {
-                    if (item.nombre) {
-                        return fetch(`${SHEETDB_URL}/nombre/${encodeURIComponent(item.nombre)}`, {
-                            method: 'DELETE'
-                        });
-                    }
-                });
-
-                Promise.all(promesas)
-                .then(() => {
-                    alert("¡Base de datos reiniciada con éxito! Ya está lista para recibir las confirmaciones reales.");
-                    cargarDatosAdmin();
-                })
-                .catch(err => {
-                    alert("Nota: Algunos registros se borraron, pero te recomendamos vaciar las filas directamente en la hoja de Google Sheets para estar 100% seguro.");
-                    cargarDatosAdmin();
-                });
+            .catch(() => {
+                tabla.innerHTML = `<tr><td colspan="5" style="text-align: center; color: #fca5a5;">Verifica que la pestaña "Baby Shower" exista en tu Google Sheet.</td></tr>`;
             });
         }
     </script>
