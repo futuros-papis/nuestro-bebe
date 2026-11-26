@@ -1361,17 +1361,6 @@
       if (window._cloudSyncInterval) clearInterval(window._cloudSyncInterval);
       window._cloudSyncInterval = setInterval(fetchCustomRtdb, 2000);
     }
-        }
-      } catch (e) {
-        console.warn("Cloud fetch warning:", e);
-      }
-    }
-
-    function startCustomRtdbSync() {
-      fetchCustomRtdb();
-      if (window._cloudSyncInterval) clearInterval(window._cloudSyncInterval);
-      window._cloudSyncInterval = setInterval(fetchCustomRtdb, 4000);
-    }
 
     window.saveCustomCloudUrl = async function() {
       const input = document.getElementById("firebase-db-url-input");
@@ -1678,6 +1667,9 @@
             <span>💖</span>
           </div>
         </div>
+      `).join("");
+    }
+
     window.openGiftModal = async function(giftId) {
       await fetchCustomRtdb();
       const gift = appState.gifts.find(g => g.id === giftId);
