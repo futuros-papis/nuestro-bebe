@@ -741,14 +741,14 @@
           <div class="p-5 rounded-2xl bg-gold-100/80 border-2 border-gold-300">
             <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
               <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-gold-500 flex items-center gap-1.5">
-                🎁 Regalo(s) seleccionado(s) para Zoe:
+                🎁 Regalo obligatorio seleccionado para Zoe:
               </span>
-              <button type="button" onclick="goToStep(5)" class="px-3.5 py-1.5 rounded-full bg-white border border-gold-300 text-xs sm:text-sm font-bold text-blush-500 hover:bg-blush-50 transition">
-                Ver Lista de Regalos ↓
+              <button type="button" onclick="openGiftPickerPopup()" class="px-4 py-2 rounded-full bg-blush-500 text-white text-xs sm:text-sm font-bold hover:bg-blush-400 transition shadow-sm">
+                Elegir Regalo Aquí
               </button>
             </div>
-            <div id="rsvp-selected-gifts" class="text-sm text-plum-900">
-              Aún no has elegido un regalo. Puedes confirmar tu asistencia aquí o elegir tu regalo en el siguiente paso.
+            <div id="rsvp-selected-gifts" class="text-sm font-semibold text-plum-900">
+              Obligatorio: Aún no has elegido un regalo. Toca "Elegir Regalo Aquí" para seleccionar uno.
             </div>
           </div>
 
@@ -995,11 +995,11 @@
 
   <!-- ==================== MODAL 3B: VENTANA FLOTANTE PASO A PASO ==================== -->
   <div id="wizard-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-plum-900/75 backdrop-blur-sm">
-    <div class="bg-ivory rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border-2 border-gold-300 relative space-y-5">
+    <div class="bg-ivory rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border-2 border-gold-300 relative space-y-5 max-h-[90vh] overflow-y-auto">
       <button type="button" onclick="closeStepWizardModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-cream text-plum-900 font-bold flex items-center justify-center">✕</button>
       <div class="text-center space-y-1">
-        <span id="wizard-step-tag" class="text-xs uppercase tracking-widest text-gold-500 font-bold">Ventana 1 de 3</span>
-        <h3 id="wizard-step-title" class="font-serif text-3xl font-bold text-plum-900">¿Quién confirma?</h3>
+        <span id="wizard-step-tag" class="text-xs uppercase tracking-widest text-gold-500 font-bold">Paso 1 de 4</span>
+        <h3 id="wizard-step-title" class="font-serif text-3xl font-bold text-plum-900">Tu Asistencia</h3>
       </div>
 
       <div id="wizard-step-content" class="space-y-4"></div>
@@ -1009,9 +1009,23 @@
           ← Anterior
         </button>
         <button type="button" id="wizard-next-btn" onclick="nextWizardStep()" class="flex-1 py-3.5 px-6 rounded-full bg-gradient-to-r from-plum-900 to-plum-800 text-ivory font-bold text-xs sm:text-sm shadow-lg">
-          Siguiente →
+          Siguiente Paso →
         </button>
       </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 3C: POPUP SELECTOR OBLIGATORIO DE REGALOS ==================== -->
+  <div id="gift-picker-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-plum-900/75 backdrop-blur-sm">
+    <div class="bg-ivory rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border-2 border-gold-300 relative space-y-5 max-h-[90vh] overflow-y-auto">
+      <button type="button" onclick="closeGiftPickerPopup()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-cream text-plum-900 font-bold flex items-center justify-center">✕</button>
+      <div class="text-center space-y-1">
+        <span class="text-xs uppercase tracking-widest text-blush-500 font-bold">Selección Obligatoria • Sin Repetidos</span>
+        <h3 class="font-serif text-3xl font-bold text-plum-900">Elige un Regalo para Zoe Isabella</h3>
+        <p class="text-xs sm:text-sm text-plum-800/80">Selecciona un detalle disponible para poder completar tu confirmación.</p>
+      </div>
+
+      <div id="picker-gift-list" class="grid sm:grid-cols-2 gap-3.5"></div>
     </div>
   </div>
 
@@ -1686,6 +1700,37 @@
       modal.classList.remove("flex");
     };
 
+    window.openGiftPickerPopup = function() {
+      const container = document.getElementById("picker-gift-list");
+      const available = appState.gifts.filter(g => g.unlimited || g.claimedBy.length < g.totalQty);
+      container.innerHTML = available.map(g => {
+        const rem = g.unlimited ? "Siempre disponible" : (g.totalQty === 1 ? "1 disponible" : `${g.totalQty - g.claimedBy.length} disponibles`);
+        return `
+          <div class="p-4 rounded-2xl bg-white border border-gold-300 flex flex-col justify-between gap-3 shadow-sm">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-1">
+                <span class="font-serif text-xl font-bold text-plum-900">${g.name}</span>
+                <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700">${rem}</span>
+              </div>
+              <p class="font-serif italic text-sm text-plum-800/80">"${g.quote}"</p>
+            </div>
+            <button type="button" onclick="closeGiftPickerPopup(); openGiftModal('${g.id}');" class="w-full py-2.5 rounded-xl bg-plum-900 text-ivory text-xs font-bold hover:bg-plum-800 transition">
+              Apartar ${g.name}
+            </button>
+          </div>
+        `;
+      }).join("");
+      const m = document.getElementById("gift-picker-modal");
+      m.classList.remove("hidden");
+      m.classList.add("flex");
+    };
+
+    window.closeGiftPickerPopup = function() {
+      const m = document.getElementById("gift-picker-modal");
+      m.classList.add("hidden");
+      m.classList.remove("flex");
+    };
+
     function renderWizardModal() {
       const tag = document.getElementById("wizard-step-tag");
       const title = document.getElementById("wizard-step-title");
@@ -1694,31 +1739,37 @@
       const nextBtn = document.getElementById("wizard-next-btn");
 
       prevBtn.classList.toggle("invisible", wizardStep === 1);
-      nextBtn.textContent = wizardStep === 3 ? "Ir a Confirmar y Regalos ✓" : "Siguiente →";
+      nextBtn.textContent = wizardStep === 4 ? "Confirmar Asistencia y Regalo ✓" : "Siguiente Paso →";
 
       if (wizardStep === 1) {
-        tag.textContent = "Ventana 1 de 3 • Fecha y Lugar";
-        title.textContent = "¡Nos vemos muy pronto!";
+        tag.textContent = "Ventana 1 de 4 • Bienvenida y Detalles";
+        title.textContent = "Baby Shower de Zoe Isabella";
         content.innerHTML = `
           <div class="p-4 rounded-2xl bg-white border border-gold-200 space-y-2 text-sm text-plum-900">
-            <p>📅 <strong>Fecha:</strong> Domingo 06 de Diciembre de 2026</p>
-            <p>⏰ <strong>Hora:</strong> 2:00 PM (14:00 hrs)</p>
+            <p class="font-serif italic text-lg text-blush-500">"¡Ya casi estoy lista para conocerlos! Acompáñanos a celebrar mi llegada."</p>
+            <p>📅 <strong>Fecha:</strong> Domingo 06 de Diciembre de 2026 • <strong>2:00 PM</strong></p>
             <p>📍 <strong>Lugar:</strong> Conjunto Rosales de Nueva Castilla - Calle 7 #90-81 (Salón Comunal)</p>
+            <p>🎉 <strong>Actividades:</strong> Bienvenida y brindis (14:00), Juegos y risas (15:00), Regalos y deseos (16:30), Mesa dulce y pastel (17:30).</p>
           </div>
-          <p class="text-xs text-plum-800/80 text-center">Confirma tu asistencia antes del 05/12/2026.</p>
+          <p class="text-xs text-plum-800/80 text-center">Confirma antes del 05/12/2026. Es obligatorio elegir un regalo.</p>
         `;
       } else if (wizardStep === 2) {
-        tag.textContent = "Ventana 2 de 3 • Tu Nombre y Cupos";
-        title.textContent = "¿Cuántos asistirán?";
+        tag.textContent = "Ventana 2 de 4 • Tu Nombre y Cupos";
+        title.textContent = "¿Quién asiste y cuántos son?";
         const currentVal = document.getElementById("guest-name").value;
         const currentCount = parseInt(document.getElementById("guests-count").value || "1", 10);
+        const currentAtt = document.querySelector('input[name="attending"]:checked')?.value || "si";
         content.innerHTML = `
           <div>
-            <label class="block text-xs font-bold uppercase text-plum-900 mb-1">Tu Nombre Completo</label>
-            <input id="wizard-name-input" type="text" value="${escapeHTML(currentVal)}" placeholder="Ej. María González" class="w-full px-4 py-3 rounded-xl bg-white border-2 border-gold-300 text-plum-900 text-base" />
+            <label class="block text-xs font-bold uppercase text-plum-900 mb-1">Tu Nombre Completo *</label>
+            <input id="wizard-name-input" type="text" value="${escapeHTML(currentVal)}" placeholder="Escribe tu nombre y apellido" class="w-full px-4 py-3 rounded-xl bg-white border-2 border-gold-300 text-plum-900 text-base" />
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <button type="button" id="wiz-att-yes" onclick="setWizardAttending('si')" class="p-3 rounded-2xl border-2 ${currentAtt === 'si' ? 'border-blush-500 bg-blush-50' : 'border-gold-200 bg-white'} font-bold text-sm">💖 Sí asistiré</button>
+            <button type="button" id="wiz-att-no" onclick="setWizardAttending('no')" class="p-3 rounded-2xl border-2 ${currentAtt === 'no' ? 'border-plum-900 bg-cream' : 'border-gold-200 bg-white'} font-bold text-sm">🕊️ No podré ir</button>
           </div>
           <div>
-            <label class="block text-xs font-bold uppercase text-plum-900 mb-1">Personas que asisten</label>
+            <label class="block text-xs font-bold uppercase text-plum-900 mb-1">Personas en total (incluyéndote)</label>
             <div class="flex items-center justify-between bg-white border-2 border-gold-300 rounded-2xl p-3">
               <button type="button" onclick="changeGuestCount(-1); document.getElementById('wizard-count-num').textContent = document.getElementById('guests-count').value;" class="w-12 h-12 rounded-xl bg-blush-100 text-plum-900 font-bold text-2xl">−</button>
               <span id="wizard-count-num" class="font-serif text-3xl font-bold text-plum-900">${currentCount}</span>
@@ -1726,37 +1777,68 @@
             </div>
           </div>
         `;
-      } else {
-        tag.textContent = "Ventana 3 de 3 • Regalos sin Repetidos";
-        title.textContent = "¿Quieres apartar un regalo?";
-        const availableGifts = appState.gifts.filter(g => g.unlimited || g.claimedBy.length < g.totalQty).slice(0, 6);
+      } else if (wizardStep === 3) {
+        tag.textContent = "Ventana 3 de 4 • Regalo Obligatorio";
+        title.textContent = "Elige un Regalo para Zoe";
+        const availableGifts = appState.gifts.filter(g => g.unlimited || g.claimedBy.length < g.totalQty);
+        const chosenText = appState.currentSessionGifts.length > 0
+          ? `<div class="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-xs font-bold text-emerald-800">✅ Regalo elegido: ${appState.currentSessionGifts.map(i => i.name).join(", ")}</div>`
+          : `<div class="p-3 rounded-xl bg-blush-50 border border-blush-200 text-xs font-bold text-blush-500">⚠️ Obligatorio: Toca un regalo para apartarlo antes de continuar.</div>`;
         content.innerHTML = `
-          <p class="text-xs sm:text-sm text-plum-800/85">Toca cualquier regalo disponible para apartarlo al instante:</p>
-          <div class="grid grid-cols-2 gap-2.5">
+          ${chosenText}
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-60 overflow-y-auto pr-1">
             ${availableGifts.map(g => `
-              <button type="button" onclick="closeStepWizardModal(); goToStep(5); setTimeout(() => openGiftModal('${g.id}'), 250);" class="p-3 rounded-2xl bg-white border border-gold-300 hover:bg-blush-50 text-left transition">
-                <span class="block font-bold text-xs sm:text-sm text-plum-900">${g.name}</span>
-                <span class="text-[11px] text-emerald-700 font-semibold">Disponible</span>
+              <button type="button" onclick="closeStepWizardModal(); openGiftModal('${g.id}');" class="p-3 rounded-2xl bg-white border border-gold-300 hover:bg-blush-50 text-left transition">
+                <span class="block font-bold text-sm text-plum-900">${g.name}</span>
+                <span class="text-[11px] font-serif italic text-plum-800/75 line-clamp-1">"${g.quote}"</span>
               </button>
             `).join("")}
+          </div>
+        `;
+      } else {
+        tag.textContent = "Ventana 4 de 4 • Mensaje y Confirmación";
+        title.textContent = "Déjale un Deseo a Zoe";
+        const msgVal = document.getElementById("guest-message").value;
+        content.innerHTML = `
+          <div>
+            <label class="block text-xs font-bold uppercase text-plum-900 mb-1">Mensaje para Zoe Isabella</label>
+            <textarea id="wizard-msg-input" rows="3" placeholder="Escribe unas palabras lindas para Zoe..." class="w-full px-4 py-3 rounded-xl bg-white border-2 border-gold-300 text-plum-900 text-sm">${escapeHTML(msgVal)}</textarea>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-gold-100/70 border border-gold-300 text-xs text-plum-900 space-y-1">
+            <p><strong>Invitado:</strong> ${escapeHTML(document.getElementById("guest-name").value || "Sin nombre")}</p>
+            <p><strong>Regalo:</strong> ${appState.currentSessionGifts.length > 0 ? appState.currentSessionGifts.map(i => i.name).join(", ") : "⚠️ Aún no elegido"}</p>
           </div>
         `;
       }
     }
 
+    window.setWizardAttending = function(val) {
+      const radio = document.querySelector(`input[name="attending"][value="${val}"]`);
+      if (radio) radio.checked = true;
+      renderWizardModal();
+    };
+
     window.nextWizardStep = function() {
       if (wizardStep === 2) {
         const wName = document.getElementById("wizard-name-input");
-        if (wName && wName.value.trim()) {
-          document.getElementById("guest-name").value = wName.value.trim();
+        if (!wName || !wName.value.trim()) {
+          showToast("Por favor escribe tu nombre completo.");
+          return;
         }
+        document.getElementById("guest-name").value = wName.value.trim();
       }
-      if (wizardStep < 3) {
+      if (wizardStep === 3 && appState.currentSessionGifts.length === 0) {
+        showToast("Es obligatorio elegir un regalo para continuar.");
+        return;
+      }
+      if (wizardStep < 4) {
         wizardStep++;
         renderWizardModal();
       } else {
+        const wMsg = document.getElementById("wizard-msg-input");
+        if (wMsg) document.getElementById("guest-message").value = wMsg.value;
         closeStepWizardModal();
-        goToStep(4);
+        document.getElementById("rsvp-form").requestSubmit();
       }
     };
 
@@ -1786,9 +1868,13 @@
       const sessionGiftNames = appState.currentSessionGifts.map(g => `${g.name}${g.qty > 1 ? ` (x${g.qty})` : ""}`);
       const allGuestGifts = [...new Set([...sessionGiftNames, ...previouslyClaimed])];
 
-      const giftsLabel = allGuestGifts.length > 0
-        ? allGuestGifts.join(", ")
-        : "Por elegir en la lista";
+      if (allGuestGifts.length === 0) {
+        showToast("Es obligatorio elegir un regalo para Zoe Isabella antes de confirmar.");
+        openGiftPickerPopup();
+        return;
+      }
+
+      const giftsLabel = allGuestGifts.join(", ");
 
       const newEntry = {
         id: "rsvp_" + Date.now(),
