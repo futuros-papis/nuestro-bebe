@@ -119,19 +119,6 @@
     ::-webkit-scrollbar-thumb { background: #E5C887; border-radius: 9999px; }
     ::-webkit-scrollbar-thumb:hover { background: #C9A25B; }
 
-    @media print {
-      body * { visibility: hidden; }
-      #vip-ticket-printable, #vip-ticket-printable * { visibility: visible; }
-      #vip-ticket-printable {
-        position: fixed;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
-        max-width: 480px;
-      }
-    }
-
     #welcome-envelope-overlay {
       transition: opacity 0.85s ease, transform 0.85s ease, visibility 0.85s ease;
     }
@@ -246,7 +233,7 @@
 
       <div class="flex items-center gap-2">
         <button type="button" id="my-confirmation-btn" onclick="openMyConfirmationModal()" class="hidden px-3.5 py-2.5 rounded-full bg-emerald-600 text-white text-xs sm:text-sm font-bold shadow-md hover:bg-emerald-700 transition">
-          🎟️ Mi Confirmación
+          ✅ Mi Confirmación
         </button>
         <button type="button" onclick="openStepWizardModal()" class="px-4 sm:px-5 py-2.5 rounded-full bg-gradient-to-r from-blush-500 to-blush-400 text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition duration-200">
           ✨ Ventana Paso a Paso
@@ -322,10 +309,10 @@
           </button>
         </div>
 
-        <!-- Banner de Confirmación Ya Registrada (Aparece cuando el invitado ya confirmó) -->
+        <!-- Banner de Confirmación Ya Enviada -->
         <div id="already-confirmed-banner" class="hidden p-4 rounded-2xl bg-emerald-50 border-2 border-emerald-300 text-left flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <div>
-            <p class="text-xs font-extrabold uppercase tracking-wider text-emerald-700">✅ ¡Tu asistencia ya está registrada!</p>
+            <p class="text-xs font-extrabold uppercase tracking-wider text-emerald-700">✅ ¡Tu confirmación ya fue enviada y guardada!</p>
             <p id="banner-confirmation-summary" class="text-sm font-semibold text-plum-900 mt-0.5"></p>
           </div>
           <button type="button" onclick="openMyConfirmationModal()" class="px-4 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition shrink-0">
@@ -782,7 +769,7 @@
             type="submit"
             class="w-full py-5 px-8 rounded-full bg-gradient-to-r from-plum-900 via-plum-800 to-plum-900 text-ivory font-bold text-base sm:text-lg shadow-xl hover:shadow-gold-glow hover:-translate-y-0.5 transition duration-200 flex items-center justify-center gap-2.5 cursor-pointer"
           >
-            <span>Confirmar mi Asistencia Ahora</span>
+            <span>Enviar mi Confirmación Ahora</span>
             <svg class="w-6 h-6 text-gold-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
               <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
             </svg>
@@ -911,17 +898,22 @@
     </div>
   </div>
 
-  <!-- ==================== MODAL 2: PASE VIP Y CONSULTA DE CONFIRMACIÓN ==================== -->
+  <!-- ==================== MODAL 2: CONFIRMACIÓN ENVIADA Y RESUMEN ==================== -->
   <div id="vip-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-plum-900/70 backdrop-blur-md overflow-y-auto">
     <div class="max-w-md w-full my-auto space-y-4">
       <div id="vip-ticket-printable" class="bg-gradient-to-br from-ivory via-cream to-blush-50 rounded-[2rem] p-7 border-2 border-gold-400 shadow-2xl relative overflow-hidden">
+        <div class="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-300 text-emerald-800 text-center mb-4">
+          <p class="text-xs font-extrabold uppercase tracking-wider">✅ ¡Confirmación enviada y guardada!</p>
+          <p class="text-xs font-medium mt-0.5">Ya quedó registrada para los papás de Zoe Isabella. No necesitas hacer nada más.</p>
+        </div>
+
         <div class="flex items-center justify-between border-b border-dashed border-gold-300 pb-4 mb-5">
           <div>
-            <span class="text-[10px] uppercase tracking-[0.28em] text-gold-500 font-bold">Pase Oficial de Invitado</span>
+            <span class="text-[10px] uppercase tracking-[0.28em] text-gold-500 font-bold">Resumen de Invitación</span>
             <h3 class="font-serif italic text-3xl font-bold text-plum-900">Zoe Isabella</h3>
           </div>
-          <div class="w-12 h-12 rounded-full bg-gold-100 border border-gold-300 flex items-center justify-center font-serif italic font-bold text-gold-500 text-lg">
-            VIP
+          <div class="px-3 py-1.5 rounded-full bg-emerald-100 border border-emerald-300 font-bold text-emerald-800 text-xs">
+            ENVIADO
           </div>
         </div>
 
@@ -975,11 +967,8 @@
       </div>
 
       <div class="flex gap-3">
-        <button type="button" onclick="window.print()" class="flex-1 py-3.5 rounded-full bg-gold-400 text-plum-900 font-bold text-xs sm:text-sm shadow-lg hover:bg-gold-300 transition">
-          Guardar / Imprimir Pase
-        </button>
-        <button type="button" onclick="closeVipModal()" class="px-6 py-3.5 rounded-full bg-white text-plum-900 font-semibold text-xs sm:text-sm shadow-lg">
-          Cerrar
+        <button type="button" onclick="closeVipModal()" class="w-full py-4 rounded-full bg-gradient-to-r from-plum-900 to-plum-800 text-ivory font-bold text-sm shadow-lg hover:bg-plum-800 transition">
+          Listo, Entendido ✓
         </button>
       </div>
     </div>
@@ -1005,7 +994,7 @@
         </div>
         <div class="p-3.5 rounded-2xl bg-white border border-gold-200 flex items-start gap-3">
           <span class="w-7 h-7 rounded-full bg-plum-900 text-ivory font-bold flex items-center justify-center shrink-0">3</span>
-          <p><strong>Listo:</strong> Presiona <em>Confirmar mi Asistencia Ahora</em>. Podrás ver <em>Mi Confirmación</em> y el lugar cuando quieras.</p>
+          <p><strong>Listo:</strong> Presiona <em>Enviar mi Confirmación Ahora</em>. Podrás ver <em>Mi Confirmación</em> y el lugar cuando quieras.</p>
         </div>
       </div>
 
@@ -1094,7 +1083,10 @@
           <span class="text-xs uppercase tracking-widest text-gold-500 font-bold">Zoe Isabella • Control en Vivo</span>
           <h3 class="font-serif text-3xl sm:text-4xl font-bold text-plum-900">Panel de los Papás</h3>
         </div>
-        <div class="flex items-center gap-2.5">
+        <div class="flex flex-wrap items-center gap-2.5">
+          <button type="button" onclick="resetAllEventData()" class="px-4 py-2.5 rounded-xl bg-red-600 text-white text-xs sm:text-sm font-bold shadow hover:bg-red-700 transition">
+            🗑️ Vaciar Todo e Iniciar en Cero
+          </button>
           <button type="button" onclick="exportGuestsCSV()" class="px-4 py-2.5 rounded-xl bg-emerald-600 text-white text-xs sm:text-sm font-bold shadow hover:bg-emerald-700 transition">
             Descargar Excel (CSV)
           </button>
@@ -1229,9 +1221,14 @@
       { id: "lluvia-sobres", name: "Lluvia de Sobres (Aporte en Efectivo)", category: "sobres", totalQty: 99, unlimited: true, quote: "Si prefieres darme un detalle en sobre el día del evento, ¡lo recibiré con enorme gratitud!", icon: "envelope" }
     ];
 
+    function buildFreshGifts() {
+      return JSON.parse(JSON.stringify(INITIAL_GIFTS)).map(g => ({ ...g, claimedBy: [] }));
+    }
+
     let appState = {
-      gifts: JSON.parse(JSON.stringify(INITIAL_GIFTS)).map(g => ({ ...g, claimedBy: [] })),
+      gifts: buildFreshGifts(),
       rsvps: [],
+      resetAt: 0,
       lastConfirmedGuest: null,
       currentSessionGifts: [],
       activeCategory: "todos",
@@ -1287,6 +1284,14 @@
               (snap) => {
                 if (snap.exists()) {
                   const data = snap.data();
+                  const remoteResetAt = Number(data.resetAt || 0);
+                  if (remoteResetAt > (appState.resetAt || 0)) {
+                    appState.resetAt = remoteResetAt;
+                    appState.gifts = buildFreshGifts();
+                    appState.rsvps = [];
+                    appState.lastConfirmedGuest = null;
+                    appState.currentSessionGifts = [];
+                  }
                   if (data.gifts) appState.gifts = mergeGiftCatalog(data.gifts);
                   if (data.rsvps) appState.rsvps = data.rsvps;
                   saveToLocal(false);
@@ -1320,9 +1325,28 @@
         if (res.ok) {
           const data = await res.json();
           if (data && typeof data === "object") {
+            const remoteResetAt = Number(data.resetAt || 0);
+            const localResetAt = Number(appState.resetAt || 0);
+
+            if (localResetAt > remoteResetAt) {
+              setSyncStatus("En vivo");
+              return;
+            }
+
+            if (remoteResetAt > localResetAt) {
+              appState.resetAt = remoteResetAt;
+              appState.gifts = mergeGiftCatalog(data.gifts || []);
+              appState.rsvps = Array.isArray(data.rsvps) ? data.rsvps : [];
+              appState.lastConfirmedGuest = null;
+              appState.currentSessionGifts = [];
+              saveToLocal(false);
+              renderAll();
+              setSyncStatus("En vivo");
+              return;
+            }
+
             if (Array.isArray(data.gifts)) {
               const merged = mergeGiftCatalog(data.gifts);
-              // Keep any local session claim if not yet synced, unless a finite gift is already full by someone else
               appState.gifts = INITIAL_GIFTS.map(base => {
                 const remoteGift = merged.find(m => m.id === base.id) || { ...base, claimedBy: [] };
                 const localGift = appState.gifts.find(l => l.id === base.id);
@@ -1405,7 +1429,8 @@
           const parsed = JSON.parse(raw);
           if (parsed.gifts) appState.gifts = mergeGiftCatalog(parsed.gifts);
           if (parsed.rsvps) appState.rsvps = parsed.rsvps;
-          if (parsed.lastConfirmedGuest) appState.lastConfirmedGuest = parsed.lastConfirmedGuest;
+          if (parsed.resetAt) appState.resetAt = Number(parsed.resetAt);
+          if (parsed.lastConfirmedGuest !== undefined) appState.lastConfirmedGuest = parsed.lastConfirmedGuest;
         }
       } catch (e) {
         console.warn("Local load warning:", e);
@@ -1417,6 +1442,7 @@
         localStorage.setItem(STORAGE_KEY, JSON.stringify({
           gifts: appState.gifts.map(g => ({ id: g.id, claimedBy: g.claimedBy })),
           rsvps: appState.rsvps,
+          resetAt: appState.resetAt || 0,
           lastConfirmedGuest: appState.lastConfirmedGuest
         }));
         if (notifyTabs && broadcastChannel) {
@@ -1434,6 +1460,7 @@
       const payload = {
         gifts: appState.gifts.map(g => ({ id: g.id, claimedBy: g.claimedBy })),
         rsvps: appState.rsvps,
+        resetAt: appState.resetAt || 0,
         lastConfirmedGuest: appState.lastConfirmedGuest,
         updatedAt: new Date().toISOString()
       };
@@ -1483,6 +1510,7 @@
           await setDoc(stateDocRef, {
             gifts: appState.gifts.map(g => ({ id: g.id, claimedBy: g.claimedBy })),
             rsvps: appState.rsvps,
+            resetAt: appState.resetAt || 0,
             updatedAt: new Date().toISOString()
           });
         } catch (e) {
@@ -1905,7 +1933,7 @@
       const nextBtn = document.getElementById("wizard-next-btn");
 
       prevBtn.classList.toggle("invisible", wizardStep === 1);
-      nextBtn.textContent = wizardStep === 4 ? "Confirmar Asistencia y Regalo ✓" : "Siguiente Paso →";
+      nextBtn.textContent = wizardStep === 4 ? "Enviar Confirmación y Regalo ✓" : "Siguiente Paso →";
 
       if (wizardStep === 1) {
         tag.textContent = "Ventana 1 de 4 • Bienvenida y Detalles";
@@ -2093,7 +2121,7 @@
       document.getElementById("guests-count-wrapper").classList.remove("opacity-40", "pointer-events-none");
       appState.currentSessionGifts = [];
       updateRegistryStats();
-      showToast("¡Asistencia confirmada con éxito!");
+      showToast("¡Confirmación enviada y guardada con éxito!");
     });
 
     document.querySelectorAll('input[name="attending"]').forEach(radio => {
@@ -2265,19 +2293,49 @@
     };
 
     window.deleteRsvp = async function(id) {
+      const target = appState.rsvps.find(r => r.id === id);
+      if (target && target.name) {
+        const targetLower = target.name.trim().toLowerCase();
+        appState.gifts.forEach(g => {
+          g.claimedBy = g.claimedBy.filter(person => person.trim().toLowerCase() !== targetLower);
+        });
+      }
       appState.rsvps = appState.rsvps.filter(r => r.id !== id);
       if (appState.lastConfirmedGuest && appState.lastConfirmedGuest.id === id) {
         appState.lastConfirmedGuest = null;
       }
+      appState.resetAt = Date.now();
       await persistState();
       renderAdminTables();
-      showToast("Registro eliminado.");
+      showToast("Invitado eliminado y regalos liberados.");
+    };
+
+    window.resetAllEventData = async function() {
+      const firstCheck = window.confirm("⚠️ ¿Estás seguro de que quieres BORRAR TODOS los invitados, mensajes y regalos apartados para iniciar la página en cero?");
+      if (!firstCheck) return;
+      const secondCheck = window.confirm("Confirma nuevamente: se vaciarán todos los registros de la web y de la hoja de cálculo para dejar todo limpio.");
+      if (!secondCheck) return;
+
+      appState.gifts = buildFreshGifts();
+      appState.rsvps = [];
+      appState.lastConfirmedGuest = null;
+      appState.currentSessionGifts = [];
+      appState.resetAt = Date.now();
+
+      try {
+        localStorage.removeItem(STORAGE_KEY);
+      } catch (e) {}
+
+      await persistState();
+      renderAdminTables();
+      showToast("✅ Todo fue vaciado correctamente. El evento inició en cero.");
     };
 
     window.releaseGiftUnit = async function(giftId) {
       const gift = appState.gifts.find(g => g.id === giftId);
       if (gift && gift.claimedBy.length > 0) {
         gift.claimedBy.pop();
+        appState.resetAt = Date.now();
         await persistState();
         renderAdminTables();
         showToast("Unidad liberada nuevamente en la boutique.");
