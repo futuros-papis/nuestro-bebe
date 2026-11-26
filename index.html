@@ -1237,9 +1237,10 @@
 
     const STORAGE_KEY = "zoe_isabella_babyshower_v2";
     const CUSTOM_RTDB_KEY = "zoe_isabella_rtdb_url";
+    const DEFAULT_CLOUD_URL = "https://script.google.com/macros/s/AKfycbzITB7mD16bi13lLAr8QYiGYrCMPsMgrneliA0-I8z_YsuWFns5t8Sa5ZLJeE1lXYNyNQ/exec";
     let db = null;
     let useCloud = false;
-    let customRtdbUrl = localStorage.getItem(CUSTOM_RTDB_KEY) || "";
+    let customRtdbUrl = localStorage.getItem(CUSTOM_RTDB_KEY) || DEFAULT_CLOUD_URL;
     const appId = typeof __app_id !== "undefined" ? __app_id : "zoe-isabella-shower";
     const broadcastChannel = typeof BroadcastChannel !== "undefined" ? new BroadcastChannel("zoe_isabella_live_sync") : null;
 
