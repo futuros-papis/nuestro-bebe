@@ -972,6 +972,189 @@
     </div>
   </div>
 
+  <!-- ==================== MODAL 3: EASY HELP GUIDE FOR ALL AGES ==================== -->
+  <div id="help-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-plum-900/70 backdrop-blur-sm">
+    <div class="bg-ivory rounded-3xl max-w-md w-full p-7 shadow-2xl border-2 border-gold-300 relative space-y-5">
+      <button onclick="closeHelpModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-cream text-plum-900 font-bold flex items-center justify-center">✕</button>
+      <div class="text-center space-y-1">
+        <span class="text-xs uppercase tracking-widest text-gold-500 font-bold">Guía Paso a Paso</span>
+        <h3 class="font-serif text-3xl font-bold text-plum-900">¿Cómo confirmar?</h3>
+      </div>
+
+      <div class="space-y-3.5 text-sm text-plum-900">
+        <div class="p-3.5 rounded-2xl bg-white border border-gold-200 flex items-start gap-3">
+          <span class="w-7 h-7 rounded-full bg-blush-500 text-white font-bold flex items-center justify-center shrink-0">1</span>
+          <p><strong>Escribe tu nombre y cupos:</strong> Ve a <em>Confirmar Asistencia</em>, pon tu nombre y usa los botones <strong>+</strong> o <strong>−</strong> para elegir cuántas personas van.</p>
+        </div>
+        <div class="p-3.5 rounded-2xl bg-white border border-gold-200 flex items-start gap-3">
+          <span class="w-7 h-7 rounded-full bg-gold-400 text-plum-900 font-bold flex items-center justify-center shrink-0">2</span>
+          <p><strong>Elige un regalo (opcional):</strong> Toca <em>Elegir este Regalo</em> en la lista de regalos para apartarlo y que no se repita.</p>
+        </div>
+        <div class="p-3.5 rounded-2xl bg-white border border-gold-200 flex items-start gap-3">
+          <span class="w-7 h-7 rounded-full bg-plum-900 text-ivory font-bold flex items-center justify-center shrink-0">3</span>
+          <p><strong>Listo:</strong> Presiona <em>Confirmar mi Asistencia Ahora</em>. Te aparecerá tu pase listo para guardar o imprimir.</p>
+        </div>
+      </div>
+
+      <button onclick="closeHelpModal()" class="w-full py-3.5 rounded-full bg-plum-900 text-ivory font-bold text-sm shadow-lg">
+        ¡Entendido, gracias!
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 4: ADMIN PIN LOGIN (0122) ==================== -->
+  <div id="admin-login-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-plum-900/70 backdrop-blur-sm">
+    <div class="bg-ivory rounded-3xl max-w-sm w-full p-7 shadow-2xl border-2 border-gold-300 relative space-y-5">
+      <button onclick="closeAdminLogin()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-cream text-plum-900 font-bold flex items-center justify-center">✕</button>
+      <div class="text-center space-y-1">
+        <span class="text-xs uppercase tracking-widest text-gold-500 font-bold">Acceso Privado Papás</span>
+        <h3 class="font-serif text-3xl font-bold text-plum-900">Panel de Control</h3>
+        <p class="text-xs text-plum-800/75">Ingresa la contraseña de los papás para ver invitados y regalos.</p>
+      </div>
+
+      <form onsubmit="verifyAdminPin(event)" class="space-y-4">
+        <div>
+          <label for="admin-pin-input" class="block text-xs font-bold uppercase tracking-wider text-plum-900 mb-1.5">
+            Contraseña
+          </label>
+          <input
+            type="password"
+            id="admin-pin-input"
+            inputmode="numeric"
+            required
+            placeholder="••••"
+            class="w-full px-4 py-3.5 rounded-2xl bg-white border-2 border-gold-300 text-plum-900 text-center text-xl tracking-[0.4em] font-bold focus:outline-none focus:ring-2 focus:ring-blush-400"
+          />
+          <p id="admin-pin-error" class="hidden text-xs text-blush-500 font-bold mt-2 text-center">
+            Contraseña incorrecta. Intenta de nuevo.
+          </p>
+        </div>
+
+        <button type="submit" class="w-full py-3.5 rounded-full bg-gradient-to-r from-plum-900 to-plum-800 text-ivory font-bold text-sm shadow-lg hover:shadow-gold-glow transition">
+          Entrar al Panel
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 5: PARENTS ADMIN DASHBOARD ==================== -->
+  <div id="admin-dashboard-modal" class="fixed inset-0 z-50 hidden bg-plum-900/75 backdrop-blur-sm overflow-y-auto p-4 sm:p-6">
+    <div class="max-w-6xl mx-auto bg-ivory rounded-[2rem] p-6 sm:p-8 shadow-2xl border-2 border-gold-300 space-y-6 my-4">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-gold-200 pb-4">
+        <div>
+          <span class="text-xs uppercase tracking-widest text-gold-500 font-bold">Zoe Isabella • Control en Vivo</span>
+          <h3 class="font-serif text-3xl sm:text-4xl font-bold text-plum-900">Panel de los Papás</h3>
+        </div>
+        <div class="flex items-center gap-2.5">
+          <button onclick="exportGuestsCSV()" class="px-4 py-2.5 rounded-xl bg-emerald-600 text-white text-xs sm:text-sm font-bold shadow hover:bg-emerald-700 transition">
+            Descargar Excel (CSV)
+          </button>
+          <button onclick="closeAdminDashboard()" class="px-4 py-2.5 rounded-xl bg-plum-900 text-ivory text-xs sm:text-sm font-bold hover:bg-plum-800 transition">
+            Cerrar Panel
+          </button>
+        </div>
+      </div>
+
+      <!-- KPI Cards -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="p-4 rounded-2xl bg-white border border-gold-200 shadow-sm">
+          <span class="text-xs uppercase font-bold text-plum-800/60">Total Asistentes</span>
+          <p id="kpi-total-people" class="font-serif text-3xl font-bold text-plum-900 mt-1">0</p>
+        </div>
+        <div class="p-4 rounded-2xl bg-white border border-gold-200 shadow-sm">
+          <span class="text-xs uppercase font-bold text-emerald-700">Confirmaron Sí</span>
+          <p id="kpi-families-yes" class="font-serif text-3xl font-bold text-emerald-700 mt-1">0</p>
+        </div>
+        <div class="p-4 rounded-2xl bg-white border border-gold-200 shadow-sm">
+          <span class="text-xs uppercase font-bold text-plum-800/60">Indicaron No</span>
+          <p id="kpi-families-no" class="font-serif text-3xl font-bold text-plum-800 mt-1">0</p>
+        </div>
+        <div class="p-4 rounded-2xl bg-white border border-gold-200 shadow-sm">
+          <span class="text-xs uppercase font-bold text-gold-500">Regalos Apartados</span>
+          <p id="kpi-gifts-claimed" class="font-serif text-3xl font-bold text-blush-500 mt-1">0/0</p>
+          <span id="kpi-gifts-percent" class="text-[11px] text-plum-800/70">0% del inventario</span>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="flex flex-wrap gap-2">
+        <button id="tab-btn-guests" onclick="switchAdminTab('guests')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-plum-900 text-ivory">
+          Invitados y Cupos
+        </button>
+        <button id="tab-btn-gifts" onclick="switchAdminTab('gifts')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-plum-800 border border-gold-200">
+          Inventario de Regalos
+        </button>
+        <button id="tab-btn-cloud" onclick="switchAdminTab('cloud')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-plum-800 border border-gold-200">
+          Conexión en la Nube
+        </button>
+      </div>
+
+      <!-- Tab 1: Guests -->
+      <div id="admin-tab-guests" class="space-y-4">
+        <input
+          type="text"
+          id="admin-search-guest"
+          oninput="renderAdminTables()"
+          placeholder="Buscar invitado o regalo..."
+          class="w-full sm:max-w-sm px-4 py-2.5 rounded-xl bg-white border border-gold-300 text-sm text-plum-900 focus:outline-none focus:ring-2 focus:ring-blush-400"
+        />
+        <div class="overflow-x-auto rounded-2xl border border-gold-200 bg-white">
+          <table class="w-full text-left border-collapse text-xs sm:text-sm">
+            <thead class="bg-cream border-b border-gold-200 text-plum-900 font-bold">
+              <tr>
+                <th class="py-3 px-4">Invitado</th>
+                <th class="py-3 px-4">Asistencia</th>
+                <th class="py-3 px-4">Cupos</th>
+                <th class="py-3 px-4">Regalos</th>
+                <th class="py-3 px-4">Mensaje</th>
+                <th class="py-3 px-4 text-right">Acción</th>
+              </tr>
+            </thead>
+            <tbody id="admin-guests-tbody" class="divide-y divide-gold-100"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab 2: Gifts -->
+      <div id="admin-tab-gifts" class="hidden overflow-x-auto rounded-2xl border border-gold-200 bg-white">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+          <thead class="bg-cream border-b border-gold-200 text-plum-900 font-bold">
+            <tr>
+              <th class="py-3 px-4">Regalo</th>
+              <th class="py-3 px-4">Categoría</th>
+              <th class="py-3 px-4">Estado</th>
+              <th class="py-3 px-4">Apartado por</th>
+              <th class="py-3 px-4 text-right">Liberar</th>
+            </tr>
+          </thead>
+          <tbody id="admin-gifts-tbody" class="divide-y divide-gold-100"></tbody>
+        </table>
+      </div>
+
+      <!-- Tab 3: Cloud Connection -->
+      <div id="admin-tab-cloud" class="hidden p-5 rounded-2xl bg-white border border-gold-200 space-y-4">
+        <h4 class="font-bold text-plum-900 text-base">Sincronización en Tiempo Real (Firebase Realtime Database)</h4>
+        <p class="text-xs sm:text-sm text-plum-800/80">
+          Si conectas la URL de tu base de datos de Firebase (por ejemplo <code class="bg-cream px-1.5 py-0.5 rounded">https://tu-proyecto-default-rtdb.firebaseio.com</code>), todos los invitados verán en tiempo real los regalos apartados desde cualquier celular.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <input
+            type="url"
+            id="firebase-db-url-input"
+            placeholder="https://tu-proyecto.firebaseio.com"
+            class="flex-1 px-4 py-3 rounded-xl bg-ivory border border-gold-300 text-sm text-plum-900"
+          />
+          <button onclick="saveCustomCloudUrl()" class="px-5 py-3 rounded-xl bg-plum-900 text-ivory text-sm font-bold hover:bg-plum-800 transition">
+            Conectar Base de Datos
+          </button>
+        </div>
+        <p id="cloud-status-badge" class="text-xs font-semibold text-gold-500">
+          Modo actual: Guardado local del dispositivo (listo para conectar a la nube).
+        </p>
+      </div>
+    </div>
+  </div>
+
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
@@ -2108,6 +2291,9 @@
       renderGifts();
       updateRegistryStats();
       renderWishesWall();
+      if (document.getElementById("admin-dashboard-modal") && !document.getElementById("admin-dashboard-modal").classList.contains("hidden")) {
+        renderAdminTables();
+      }
     }
 
     window.addEventListener("load", () => {
