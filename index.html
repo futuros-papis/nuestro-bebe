@@ -1191,6 +1191,9 @@
           <button type="button" onclick="saveCustomCloudUrl()" class="px-5 py-3 rounded-xl bg-plum-900 text-ivory text-sm font-bold hover:bg-plum-800 transition">
             Conectar Base de Datos
           </button>
+          <button type="button" onclick="testCloudConnectionNow()" class="px-4 py-3 rounded-xl bg-emerald-600 text-white text-sm font-bold hover:bg-emerald-700 transition">
+            Probar Hoja Ahora
+          </button>
         </div>
         <p id="cloud-status-badge" class="text-xs font-semibold text-gold-500">
           Modo actual: Sincronización entre pestañas + guardado local (listo para conectar tu hoja/nube).
@@ -1354,58 +1357,20 @@
       showToast("¡Conexión en tiempo real activada!");
     };
 
-    function mergeGiftCatalog(savedGifts) {
-      return INITIAL_GIFTS.map(base => {
-        const found = savedGifts.find(s => s.id === base.id);
-        return found ? { ...base, claimedBy: found.claimedBy || [] } : { ...base, claimedBy: [] };
-      });
-    }
-
-    function loadFromLocal() {
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (raw) {
-          const parsed = JSON.parse(raw);
-          if (parsed.gifts) appState.gifts = mergeGiftCatalog(parsed.gifts);
-          if (parsed.rsvps) appState.rsvps = parsed.rsvps;
-          if (parsed.lastConfirmedGuest) appState.lastConfirmedGuest = parsed.lastConfirmedGuest;
-        }
-      } catch (e) {}
-    }
-
-    function saveToLocal(notifyTabs = true) {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify({
-          gifts: appState.gifts.map(g => ({ id: g.id, claimedBy: g.claimedBy })),
-          rsvps: appState.rsvps,
-          lastConfirmedGuest: appState.lastConfirmedGuest
-        }));
-        if (notifyTabs && broadcastChannel) {
-          broadcastChannel.postMessage({ type: "STATE_UPDATED", timestamp: Date.now() });
-        }
-      } catch (e) {}
-    }
-
-    function setSyncStatus(text, colorClass) {
-      const badge = document.getElementById("live-sync-indicator");
-      if (!badge) return;
-      badge.className = `inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white border border-gold-200 text-[11px] font-bold ${colorClass}`;
-      badge.innerHTML = `<span>${text}</span>`;
-    }
-
-    async function persistState() {
-      saveToLocal(true);
-      renderAll();
-
-      if (customRtdbUrl) {
-        try {
-          const cleanUrl = customRtdbUrl.replace(/\/$/, "");
-          const isAppsScript = cleanUrl.includes("script.google.com");
-          const payload = {
-            gifts: appState.gifts.map(g => ({ id: g.id, claimedBy: g.claimedBy })),
-            rsvps: appState.rsvps,
-            updatedAt: new Date().toISOString()
-          };
+    window.testCloudConnectionNow = async function() {
+      const urlInput = document.getElementById("firebase-db-url-input").value.trim() || customRtdbUrl;
+      if (!urlInput) {
+        showToast("Primero pega tu enlace de Google Apps Script.");
+        return;
+      }
+      customRtdbUrl = urlInput.replace(/\/$/, "");
+      localStorage.setItem(CUSTOM_RTDB_KEY, customRtdbUrl);
+      document.getElementById("cloud-status-badge").textContent = "⏳ Enviando prueba a tu hoja de cálculo...";
+      await persistState();
+      await fetchCustomRtdb();
+      document.getElementById("cloud-status-badge").textContent = "✅ Prueba enviada. Revisa tu hoja de Google Sheets y actualiza si hace falta.";
+      showToast("Prueba enviada a Google Sheets");
+    };
           if (isAppsScript) {
             await fetch(cleanUrl, {
               method: "POST",
@@ -1414,6 +1379,19 @@
               headers: { "Content-Type": "text/plain;charset=utf-8" },
               body: JSON.stringify(payload)
             });
+            try {
+              const encoded = encodeURIComponent(JSON.stringify(payload));
+              if (encoded.length < 7500) {
+                const sep = cleanUrl.includes("?") ? "&" : "?";
+                await fetch(`${cleanUrl}${sep}action=sync&data=${encoded}&t=${Date.now()}`, {
+                  method: "GET",
+                  mode: "no-cors",
+                  cache: "no-store"
+                });
+              }
+            } catch (getErr) {
+              console.warn("GET sync fallback warning:", getErr);
+            }
             setTimeout(fetchCustomRtdb, 900);
           } else {
             await fetch(`${cleanUrl}/babyshower_zoe.json`, {
