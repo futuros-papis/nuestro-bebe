@@ -3,7 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zoe Isabella — Baby Shower & Boutique de Deseos</title>
+  <title>Zoe Isabella — Invitación Oficial Baby Shower</title>
+
+  <!-- Favicon Personalizado de Princesa (Corona & Corazón Rosa/Dorado) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23FFF5F7' stroke='%23C9A25B' stroke-width='3'/%3E%3Cpath d='M16 38 L20 22 L28 30 L32 18 L36 30 L44 22 L48 38 Z' fill='%23E5C887' stroke='%23A8813B' stroke-width='2' stroke-linejoin='round'/%3E%3Crect x='16' y='38' width='32' height='5' rx='2' fill='%23C9A25B'/%3E%3Cpath d='M32 47 C32 47 23 42 23 37 C23 34 26 32 29 34 C31 35 32 37 32 37 C32 37 33 35 35 34 C38 32 41 34 41 37 C41 42 32 47 32 47 Z' fill='%23D45674'/%3E%3C/svg%3E" />
+
+  <!-- Metaetiquetas Open Graph para Vista Previa Espectacular al compartir en WhatsApp -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="👑 Baby Shower de Zoe Isabella — ¡Estás Invitado!" />
+  <meta property="og:description" content="Acompáñanos a celebrar la pronta llegada de nuestra princesa Zoe Isabella. Domingo 06 de Diciembre de 2026 • 2:00 PM. Toca aquí para ver la invitación, confirmar asistencia y elegir tu regalo." />
+  <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630' viewBox='0 0 1200 630'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23FFFDF9'/%3E%3Cstop offset='50%25' stop-color='%23FCE8EC'/%3E%3Cstop offset='100%25' stop-color='%23FBF5E6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='630' fill='url(%23bg)'/%3E%3Crect x='36' y='36' width='1128' height='558' rx='32' fill='none' stroke='%23C9A25B' stroke-width='4'/%3E%3Crect x='52' y='52' width='1096' height='526' rx='24' fill='none' stroke='%23E5C887' stroke-width='1.5' stroke-dasharray='8 8'/%3E%3Ctext x='600' y='160' text-anchor='middle' font-family='Georgia, serif' font-size='28' fill='%23A8813B' letter-spacing='8'%3EINVITACI%C3%93N ESPECIAL%3C/text%3E%3Ctext x='600' y='285' text-anchor='middle' font-family='Georgia, serif' font-style='italic' font-weight='bold' font-size='104' fill='%232A1F24'%3EZoe Isabella%3C/text%3E%3Ctext x='600' y='365' text-anchor='middle' font-family='Georgia, serif' font-size='38' fill='%23D45674'%3EBaby Shower %E2%80%A2 Una Princesa en Camino%3C/text%3E%3Crect x='330' y='415' width='540' height='74' rx='37' fill='%232A1F24'/%3E%3Ctext x='600' y='462' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='26' fill='%23FFFDF9'%3E06 de Diciembre, 2026 %E2%80%A2 2:00 PM%3C/text%3E%3Ctext x='600' y='540' text-anchor='middle' font-family='sans-serif' font-size='22' fill='%233D2E35'%3EConjunto Rosales de Nueva Castilla - Sal%C3%B3n Comunal%3C/text%3E%3C/svg%3E" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="👑 Baby Shower de Zoe Isabella — ¡Estás Invitado!" />
+  <meta name="twitter:description" content="Domingo 06 de Diciembre de 2026 • 2:00 PM. Toca para confirmar tu asistencia y ver los regalos." />
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -121,45 +134,125 @@
         max-width: 480px;
       }
     }
+
+    /* Royal Envelope Opening Transition */
+    #welcome-envelope-overlay {
+      transition: opacity 0.85s ease, transform 0.85s ease, visibility 0.85s ease;
+    }
+    #welcome-envelope-overlay.opened {
+      opacity: 0;
+      transform: scale(1.06);
+      visibility: hidden;
+      pointer-events: none;
+    }
   </style>
 </head>
-<body class="font-sans antialiased selection:bg-blush-200 selection:text-plum-900 floral-bg-pattern">
+<body class="font-sans antialiased selection:bg-blush-200 selection:text-plum-900 floral-bg-pattern text-base">
+
+  <!-- ==================== ROYAL ENVELOPE WELCOME OVERLAY (TRIGGERS MUSIC & MAGIC) ==================== -->
+  <div id="welcome-envelope-overlay" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gradient-to-br from-ivory via-blush-50 to-gold-100">
+    <div class="max-w-md w-full bg-white/95 rounded-[2.2rem] p-7 sm:p-10 shadow-2xl border-2 border-gold-300 text-center relative overflow-hidden">
+      <!-- Decorative Corner Arcs -->
+      <div class="absolute -top-12 -left-12 w-32 h-32 rounded-full bg-blush-100/70 pointer-events-none"></div>
+      <div class="absolute -bottom-12 -right-12 w-32 h-32 rounded-full bg-gold-100/80 pointer-events-none"></div>
+
+      <div class="relative z-10 space-y-5">
+        <span class="inline-block px-4 py-1.5 rounded-full bg-gold-100 text-gold-500 text-xs font-bold uppercase tracking-[0.22em]">
+          Tienes una Invitación Especial
+        </span>
+
+        <!-- Wax Seal / Royal Crown Emblem -->
+        <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-blush-400 via-blush-500 to-gold-500 p-1 shadow-gold-glow animate-float-slow">
+          <div class="w-full h-full rounded-full bg-ivory flex flex-col items-center justify-center border border-gold-300">
+            <svg class="w-9 h-9 text-gold-500" viewBox="0 0 64 64" fill="none">
+              <path d="M14 42 L19 23 L28 32 L32 18 L36 32 L45 23 L50 42 Z" fill="#E5C887" stroke="#A8813B" stroke-width="2" stroke-linejoin="round"/>
+              <rect x="14" y="42" width="36" height="5" rx="2" fill="#C9A25B"/>
+            </svg>
+            <span class="font-serif italic font-bold text-sm text-plum-900 -mt-0.5">Z &amp; I</span>
+          </div>
+        </div>
+
+        <div class="space-y-1.5">
+          <p class="text-sm font-medium text-plum-800">Baby Shower de nuestra princesa</p>
+          <h2 class="font-serif italic text-4xl sm:text-5xl font-bold text-plum-900">Zoe Isabella</h2>
+          <p class="text-sm text-plum-800/80 pt-1">Domingo 06 de Diciembre, 2026 • 2:00 PM</p>
+        </div>
+
+        <div class="pt-2">
+          <button
+            onclick="openRoyalInvitation()"
+            class="w-full py-4 px-6 rounded-full bg-gradient-to-r from-plum-900 via-plum-800 to-plum-900 text-ivory font-bold text-base sm:text-lg shadow-xl hover:shadow-gold-glow hover:-translate-y-0.5 transition flex items-center justify-center gap-3 cursor-pointer"
+          >
+            <span>Abrir Invitación</span>
+            <svg class="w-5 h-5 text-gold-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <p class="text-xs text-plum-800/65 mt-3 flex items-center justify-center gap-1.5">
+            <span>🎵</span>
+            <span>Incluye música suave de bienvenida</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Music & Easy Help Controls (Senior-Friendly & Accessible) -->
+  <div class="fixed bottom-4 left-4 z-40 flex flex-col sm:flex-row items-start sm:items-center gap-2">
+    <button
+      id="music-toggle-btn"
+      onclick="toggleLullabyMusic()"
+      class="px-4 py-3 rounded-full bg-white/95 border-2 border-gold-300 text-plum-900 shadow-lg hover:bg-gold-100 transition flex items-center gap-2 text-xs sm:text-sm font-bold"
+      title="Activar o pausar música"
+    >
+      <span id="music-icon" class="text-base">🎵</span>
+      <span id="music-label">Música: Activada</span>
+    </button>
+
+    <button
+      onclick="openHelpModal()"
+      class="px-4 py-3 rounded-full bg-plum-900 text-ivory border border-gold-300 shadow-lg hover:bg-plum-800 transition flex items-center gap-2 text-xs sm:text-sm font-bold"
+    >
+      <span class="w-5 h-5 rounded-full bg-gold-400 text-plum-900 flex items-center justify-center font-bold text-xs">?</span>
+      <span>¿Cómo confirmar?</span>
+    </button>
+  </div>
 
   <!-- Ambient Floating Petals / Sparkles Canvas -->
   <canvas id="ambient-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-70"></canvas>
 
   <!-- Subtle Floating Top Navbar -->
-  <header class="sticky top-0 z-40 glass-card border-b border-gold-200/60">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+  <header class="sticky top-0 z-30 glass-card border-b border-gold-200/60">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
       <a href="#inicio" class="flex items-center gap-2.5 group">
-        <span class="w-9 h-9 rounded-full bg-gradient-to-br from-blush-200 to-gold-200 flex items-center justify-center border border-gold-300 shadow-sm group-hover:scale-105 transition">
+        <span class="w-10 h-10 rounded-full bg-gradient-to-br from-blush-200 to-gold-200 flex items-center justify-center border border-gold-300 shadow-sm group-hover:scale-105 transition">
           <svg class="w-5 h-5 text-gold-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
             <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" fill="rgba(201,162,91,0.2)"/>
             <path d="M19 3v4M21 5h-4" stroke-linecap="round"/>
           </svg>
         </span>
         <div>
-          <span class="font-serif italic text-xl font-semibold text-plum-900 tracking-wide">Zoe Isabella</span>
-          <span class="hidden sm:inline-block text-[11px] uppercase tracking-[0.2em] text-gold-500 ml-2 border-l border-gold-300 pl-2">Baby Shower</span>
+          <span class="font-serif italic text-xl sm:text-2xl font-semibold text-plum-900 tracking-wide">Zoe Isabella</span>
+          <span class="hidden sm:inline-block text-xs uppercase tracking-[0.2em] text-gold-500 ml-2 border-l border-gold-300 pl-2 font-semibold">Baby Shower</span>
         </div>
       </a>
 
-      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-plum-800">
-        <a href="#historia" class="hover:text-gold-500 transition">Mi Historia</a>
-        <a href="#itinerario" class="hover:text-gold-500 transition">Lo que Haremos</a>
-        <a href="#ubicacion" class="hover:text-gold-500 transition">Lugar & Fecha</a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-plum-900">
+        <a href="#itinerario" class="hover:text-gold-500 transition">Actividades</a>
+        <a href="#ubicacion" class="hover:text-gold-500 transition">Lugar y Hora</a>
+        <a href="#rsvp" class="hover:text-gold-500 transition">1. Confirmar Asistencia</a>
         <a href="#boutique" class="hover:text-gold-500 transition flex items-center gap-1.5">
-          <span>Boutique de Regalos</span>
-          <span id="nav-gift-badge" class="px-2 py-0.5 text-[11px] rounded-full bg-blush-100 text-blush-500 font-semibold">17</span>
+          <span>2. Lista de Regalos</span>
+          <span id="nav-gift-badge" class="px-2.5 py-0.5 text-xs rounded-full bg-blush-100 text-blush-500 font-bold">17</span>
         </a>
       </nav>
 
       <div class="flex items-center gap-2.5">
-        <a href="#rsvp" class="px-4 py-2 rounded-full bg-gradient-to-r from-plum-900 to-plum-800 text-ivory text-xs sm:text-sm font-medium shadow-md hover:shadow-gold-glow hover:-translate-y-0.5 transition duration-200">
+        <a href="#rsvp" class="px-4 sm:px-5 py-2.5 rounded-full bg-gradient-to-r from-plum-900 to-plum-800 text-ivory text-xs sm:text-sm font-bold shadow-md hover:shadow-gold-glow hover:-translate-y-0.5 transition duration-200">
           Confirmar Asistencia
         </a>
-        <button onclick="openAdminLogin()" title="Acceso Papás" class="p-2.5 rounded-full border border-gold-300/70 bg-white/80 text-gold-500 hover:bg-gold-100 transition" aria-label="Panel de Control Papás">
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <button onclick="openAdminLogin()" title="Acceso Papás" class="p-3 rounded-full border border-gold-300/80 bg-white/90 text-gold-500 hover:bg-gold-100 transition" aria-label="Panel de Control Papás">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
             <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
           </svg>
@@ -169,77 +262,73 @@
   </header>
 
   <!-- ==================== HERO SECTION ==================== -->
-  <section id="inicio" class="relative z-10 pt-10 pb-16 sm:pt-16 sm:pb-24 px-4 sm:px-6">
+  <section id="inicio" class="relative z-10 pt-8 pb-14 sm:pt-14 sm:pb-20 px-4 sm:px-6">
     <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
       
-      <!-- Left Editorial Copy -->
+      <!-- Left Editorial Copy (High Contrast & Large Readable Fonts) -->
       <div class="lg:col-span-7 text-center lg:text-left space-y-6">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-gold-300/80 shadow-sm">
-          <span class="w-2 h-2 rounded-full bg-blush-400 animate-ping"></span>
-          <span class="text-xs font-semibold uppercase tracking-[0.22em] text-gold-500">Dulce Espera • 06 de Diciembre, 2026</span>
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/95 border border-gold-300 shadow-sm">
+          <span class="w-2.5 h-2.5 rounded-full bg-blush-500 animate-ping"></span>
+          <span class="text-xs sm:text-sm font-bold uppercase tracking-[0.18em] text-gold-500">Domingo 06 de Diciembre, 2026 • 2:00 PM</span>
         </div>
 
         <div class="space-y-2">
-          <p class="font-serif italic text-2xl sm:text-3xl text-blush-500">Una pequeña princesa está en camino...</p>
-          <h1 class="font-serif text-5xl sm:text-7xl lg:text-[5.2rem] font-semibold leading-[1.03] text-plum-900 tracking-tight">
-            Zoe <span class="italic font-normal gold-shimmer-text">Isabella</span>
+          <p class="font-serif italic text-2xl sm:text-3xl text-blush-500 font-semibold">Una pequeña princesa está en camino...</p>
+          <h1 class="font-serif text-5xl sm:text-7xl lg:text-[5.2rem] font-bold leading-[1.03] text-plum-900 tracking-tight">
+            Zoe <span class="italic font-semibold gold-shimmer-text">Isabella</span>
           </h1>
         </div>
 
-        <p class="text-base sm:text-lg text-plum-800/85 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
-          "Aún no nos conocemos, pero ya siento todo el amor que me rodea. Ven a celebrar mi pronta llegada en una tarde llena de magia, juegos, sonrisas y abrazos que guardaré para siempre en mi corazón."
+        <p class="text-base sm:text-lg text-plum-900/90 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+          "Aún no nos conocemos, pero ya siento todo el amor que me rodea. Ven a celebrar mi pronta llegada en una tarde llena de alegría, juegos y abrazos que guardaré para siempre en mi corazón."
         </p>
+
+        <!-- Easy 2-Step Action Buttons (Very clear for Seniors & All Guests) -->
+        <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+          <a href="#rsvp" class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-blush-500 to-blush-400 text-white font-bold text-base shadow-lg shadow-blush-300/50 hover:shadow-xl hover:-translate-y-0.5 transition flex items-center justify-center gap-2.5">
+            <span class="w-6 h-6 rounded-full bg-white text-blush-500 text-xs font-extrabold flex items-center justify-center">1</span>
+            <span>Confirmar mi Asistencia</span>
+          </a>
+          <a href="#boutique" class="w-full sm:w-auto px-8 py-4 rounded-full bg-white border-2 border-gold-400 text-plum-900 font-bold text-base hover:bg-gold-100/70 transition flex items-center justify-center gap-2.5 shadow-sm">
+            <span class="w-6 h-6 rounded-full bg-gold-400 text-plum-900 text-xs font-extrabold flex items-center justify-center">2</span>
+            <span>Elegir un Regalo</span>
+          </a>
+        </div>
 
         <!-- Live Countdown Timer -->
         <div class="pt-2">
-          <p class="text-[11px] uppercase tracking-[0.25em] text-gold-500 font-semibold mb-3">Falta muy poco para abrazarnos</p>
+          <p class="text-xs uppercase tracking-[0.22em] text-gold-500 font-bold mb-3">Falta muy poco para abrazarnos</p>
           <div class="grid grid-cols-4 gap-2.5 sm:gap-4 max-w-md mx-auto lg:mx-0">
             <div class="glass-card rounded-2xl p-3 sm:p-4 text-center shadow-luxury">
               <div id="cd-days" class="font-serif text-3xl sm:text-4xl font-bold text-plum-900">00</div>
-              <div class="text-[11px] uppercase tracking-widest text-plum-800/70 mt-1">Días</div>
+              <div class="text-xs uppercase tracking-wider text-plum-800 font-semibold mt-1">Días</div>
             </div>
             <div class="glass-card rounded-2xl p-3 sm:p-4 text-center shadow-luxury">
               <div id="cd-hours" class="font-serif text-3xl sm:text-4xl font-bold text-plum-900">00</div>
-              <div class="text-[11px] uppercase tracking-widest text-plum-800/70 mt-1">Horas</div>
+              <div class="text-xs uppercase tracking-wider text-plum-800 font-semibold mt-1">Horas</div>
             </div>
             <div class="glass-card rounded-2xl p-3 sm:p-4 text-center shadow-luxury">
               <div id="cd-minutes" class="font-serif text-3xl sm:text-4xl font-bold text-plum-900">00</div>
-              <div class="text-[11px] uppercase tracking-widest text-plum-800/70 mt-1">Min</div>
+              <div class="text-xs uppercase tracking-wider text-plum-800 font-semibold mt-1">Min</div>
             </div>
             <div class="glass-card rounded-2xl p-3 sm:p-4 text-center shadow-luxury">
               <div id="cd-seconds" class="font-serif text-3xl sm:text-4xl font-bold text-blush-500">00</div>
-              <div class="text-[11px] uppercase tracking-widest text-plum-800/70 mt-1">Seg</div>
+              <div class="text-xs uppercase tracking-wider text-plum-800 font-semibold mt-1">Seg</div>
             </div>
           </div>
         </div>
 
-        <!-- Primary Action Buttons + Calendar Hook -->
-        <div class="pt-3 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5">
-          <a href="#rsvp" class="w-full sm:w-auto px-7 py-4 rounded-full bg-gradient-to-r from-blush-500 to-blush-400 text-white font-semibold text-sm shadow-lg shadow-blush-300/50 hover:shadow-xl hover:-translate-y-0.5 transition flex items-center justify-center gap-2">
-            <span>Reservar mi Lugar</span>
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-              <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-          <a href="#boutique" class="w-full sm:w-auto px-7 py-4 rounded-full bg-white border border-gold-300 text-plum-900 font-semibold text-sm hover:bg-gold-100/60 transition flex items-center justify-center gap-2">
-            <svg class="w-4 h-4 text-gold-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
-            </svg>
-            <span>Ver Boutique de Regalos</span>
-          </a>
-        </div>
-
-        <!-- Subtle Psychological Memory Trigger: Add to Calendar -->
-        <div class="pt-1 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs text-plum-800/80">
-          <button onclick="downloadICS()" class="inline-flex items-center gap-1.5 text-gold-500 hover:text-plum-900 font-semibold underline decoration-gold-300 underline-offset-4 transition">
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <!-- Calendar Reminder Buttons -->
+        <div class="pt-1 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-sm text-plum-900">
+          <button onclick="downloadICS()" class="inline-flex items-center gap-2 text-gold-500 hover:text-plum-900 font-bold underline decoration-gold-400 underline-offset-4 transition">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
             </svg>
-            <span>Guardar recordatorio en mi celular (.ics)</span>
+            <span>Guardar recordatorio en mi celular</span>
           </button>
-          <span class="hidden sm:inline text-gold-300">•</span>
-          <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Baby+Shower+de+Zoe+Isabella&dates=20261206T190000Z/20261206T233000Z&details=Celebremos+juntos+la+pronta+llegada+de+Zoe+Isabella.+No+olvides+revisar+tu+regalo+elegido+en+la+invitaci%C3%B3n.&location=Conjunto+Rosales+de+Nueva+Castilla+-+Calle+7+%2390-81+(Sal%C3%B3n+comunal),+Bogot%C3%A1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-plum-800 hover:text-gold-500 font-medium transition">
-            <span>+ Google Calendar</span>
+          <span class="hidden sm:inline text-gold-400">•</span>
+          <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Baby+Shower+de+Zoe+Isabella&dates=20261206T190000Z/20261206T233000Z&details=Celebremos+juntos+la+pronta+llegada+de+Zoe+Isabella.+No+olvides+revisar+tu+regalo+elegido+en+la+invitaci%C3%B3n.&location=Conjunto+Rosales+de+Nueva+Castilla+-+Calle+7+%2390-81+(Sal%C3%B3n+comunal),+Bogot%C3%A1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-plum-900 hover:text-gold-500 font-semibold transition">
+            <span>+ Agregar a Google Calendar</span>
           </a>
         </div>
       </div>
@@ -559,60 +648,173 @@
 
         <!-- Embedded Interactive Map -->
         <div class="lg:col-span-7">
-          <div class="rounded-3xl overflow-hidden border-2 border-gold-200/80 shadow-inner h-72 sm:h-80 bg-cream relative">
-            <iframe
-              title="Ubicación Conjunto Rosales de Nueva Castilla"
-              src="https://maps.google.com/maps?q=Calle%207%20%2390-81%2C%20Bogota%2C%20Colombia&t=&z=16&ie=UTF8&iwloc=&output=embed"
-              class="w-full h-full border-0"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-          </div>
+  <!-- ==================== RSVP & CONFIRMATION SECTION (STEP 1 - ULTRA CLEAR FOR ALL AGES) ==================== -->
+  <section id="rsvp" class="relative z-10 py-14 sm:py-20 px-4 sm:px-6">
+    <div class="max-w-3xl mx-auto">
+      <div class="glass-card rounded-[2.4rem] p-6 sm:p-12 shadow-luxury border-2 border-gold-300/80 relative overflow-hidden">
+        <!-- Decorative Top Banner -->
+        <div class="text-center space-y-3 mb-8">
+          <span class="inline-block px-4 py-1.5 rounded-full bg-blush-100 text-blush-500 text-xs sm:text-sm font-bold tracking-wider uppercase">
+            Paso 1 • Confirma antes del 05 de Diciembre, 2026
+          </span>
+          <h2 class="font-serif text-4xl sm:text-5xl font-bold text-plum-900">Confirma tu Asistencia</h2>
+          <p class="text-base text-plum-800 max-w-lg mx-auto">
+            Escribe tu nombre y dinos cuántas personas vendrán contigo. ¡Es muy fácil y rápido!
+          </p>
         </div>
+
+        <form id="rsvp-form" class="space-y-6">
+          <!-- Full Name -->
+          <div>
+            <label for="guest-name" class="block text-sm font-bold uppercase tracking-wider text-plum-900 mb-2">
+              1. Tu Nombre Completo *
+            </label>
+            <input
+              type="text"
+              id="guest-name"
+              required
+              placeholder="Escribe aquí tu nombre y apellido"
+              class="w-full px-5 py-4 text-base sm:text-lg rounded-2xl bg-white border-2 border-gold-300 text-plum-900 placeholder:text-plum-800/45 focus:outline-none focus:ring-2 focus:ring-blush-400 transition"
+            />
+          </div>
+
+          <!-- Attendance Toggle -->
+          <div>
+            <label class="block text-sm font-bold uppercase tracking-wider text-plum-900 mb-2">
+              2. ¿Podrás acompañarnos? *
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <label class="cursor-pointer">
+                <input type="radio" name="attending" value="si" checked class="peer sr-only" />
+                <div class="p-4 sm:p-5 rounded-2xl border-2 border-gold-200 bg-white text-center peer-checked:border-blush-500 peer-checked:bg-blush-50 shadow-sm transition">
+                  <span class="block text-2xl mb-1">💖</span>
+                  <span class="font-bold text-base sm:text-lg text-plum-900">¡Sí, allí estaré!</span>
+                </div>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="attending" value="no" class="peer sr-only" />
+                <div class="p-4 sm:p-5 rounded-2xl border-2 border-gold-200 bg-white text-center peer-checked:border-plum-800 peer-checked:bg-cream shadow-sm transition">
+                  <span class="block text-2xl mb-1">🕊️</span>
+                  <span class="font-bold text-base sm:text-lg text-plum-800">No podré asistir</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Senior-Friendly Big +/- Stepper for Number of Attendees -->
+          <div id="guests-count-wrapper">
+            <label class="block text-sm font-bold uppercase tracking-wider text-plum-900 mb-2">
+              3. ¿Cuántas personas asistirán en total? (Incluyéndote) *
+            </label>
+            <div class="flex items-center justify-between bg-white border-2 border-gold-300 rounded-2xl p-3 sm:p-4">
+              <button
+                type="button"
+                onclick="changeGuestCount(-1)"
+                class="w-14 h-14 rounded-xl bg-blush-100 hover:bg-blush-200 text-plum-900 font-bold text-3xl flex items-center justify-center active:scale-95 transition select-none"
+                aria-label="Restar una persona"
+              >
+                −
+              </button>
+              <div class="text-center">
+                <span id="guests-count-display" class="font-serif text-4xl font-bold text-plum-900">1</span>
+                <span id="guests-count-label" class="block text-xs sm:text-sm font-semibold text-plum-800">persona (Solo yo)</span>
+                <input type="hidden" id="guests-count" value="1" />
+              </div>
+              <button
+                type="button"
+                onclick="changeGuestCount(1)"
+                class="w-14 h-14 rounded-xl bg-gold-200 hover:bg-gold-300 text-plum-900 font-bold text-3xl flex items-center justify-center active:scale-95 transition select-none"
+                aria-label="Sumar una persona"
+              >
+                +
+              </button>
+            </div>
+          </div>
+
+          <!-- Selected Gifts Summary Box inside RSVP -->
+          <div class="p-5 rounded-2xl bg-gold-100/80 border-2 border-gold-300">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-gold-500 flex items-center gap-1.5">
+                🎁 Regalo(s) seleccionado(s) para Zoe:
+              </span>
+              <a href="#boutique" class="px-3.5 py-1.5 rounded-full bg-white border border-gold-300 text-xs sm:text-sm font-bold text-blush-500 hover:bg-blush-50 transition">
+                Ver Lista de Regalos ↓
+              </a>
+            </div>
+            <div id="rsvp-selected-gifts" class="text-sm text-plum-900">
+              Aún no has elegido un regalo. Puedes confirmar tu asistencia aquí y luego elegir tu regalo abajo.
+            </div>
+          </div>
+
+          <!-- Sweet Message for Zoe Isabella -->
+          <div>
+            <label for="guest-message" class="block text-sm font-bold uppercase tracking-wider text-plum-900 mb-2">
+              4. Déjale un mensaje bonito a Zoe Isabella (Opcional)
+            </label>
+            <textarea
+              id="guest-message"
+              rows="3"
+              placeholder="Escribe unas palabras de cariño para Zoe..."
+              class="w-full px-5 py-3.5 text-base rounded-2xl bg-white border-2 border-gold-300 text-plum-900 placeholder:text-plum-800/45 focus:outline-none focus:ring-2 focus:ring-blush-400 transition"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full py-5 px-8 rounded-full bg-gradient-to-r from-plum-900 via-plum-800 to-plum-900 text-ivory font-bold text-base sm:text-lg shadow-xl hover:shadow-gold-glow hover:-translate-y-0.5 transition duration-200 flex items-center justify-center gap-2.5 cursor-pointer"
+          >
+            <span>Confirmar mi Asistencia Ahora</span>
+            <svg class="w-6 h-6 text-gold-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </button>
+        </form>
       </div>
     </div>
   </section>
 
-  <!-- ==================== BOUTIQUE DE REGALOS (ANTI-DUPLICATE INVENTORY) ==================== -->
-  <section id="boutique" class="relative z-10 py-16 sm:py-24 px-4 sm:px-6">
+  <!-- ==================== BOUTIQUE DE REGALOS (STEP 2 - SIMPLE & CLEAR GIFT NAMES) ==================== -->
+  <section id="boutique" class="relative z-10 py-14 sm:py-20 px-4 sm:px-6">
     <div class="max-w-6xl mx-auto">
       <div class="text-center max-w-3xl mx-auto space-y-3 mb-10">
-        <span class="text-xs uppercase tracking-[0.26em] text-gold-500 font-semibold">Lista Inteligente Sin Repetidos</span>
-        <h2 class="font-serif text-4xl sm:text-5xl font-semibold text-plum-900">La Boutique de Zoe Isabella</h2>
-        <p class="text-plum-800/80 text-sm sm:text-base leading-relaxed">
-          Muchos nos han preguntado qué necesita Zoe para su llegada. Creamos esta boutique especial para que elijas el detalle que más te nazca; <strong class="text-plum-900">al apartar un regalo exclusivo (como su cuna o coche), se bloquea automáticamente</strong> para evitar regalos repetidos.
+        <span class="inline-block px-4 py-1.5 rounded-full bg-gold-100 text-gold-500 text-xs sm:text-sm font-bold uppercase tracking-[0.2em]">
+          Paso 2 • Lista Sin Regalos Repetidos
+        </span>
+        <h2 class="font-serif text-4xl sm:text-5xl font-bold text-plum-900">Regalos para Zoe Isabella</h2>
+        <p class="text-plum-900/85 text-base leading-relaxed">
+          Toca el botón <strong class="text-plum-900">"Elegir este Regalo"</strong> en el detalle que desees obsequiar. Cuando alguien elige un regalo único (como la cuna o el coche), se marca automáticamente como apartado para que no se repita.
         </p>
 
         <!-- Emotional Progress Bar -->
         <div class="pt-4 max-w-xl mx-auto">
-          <div class="flex items-center justify-between text-xs font-semibold mb-1.5">
-            <span class="text-plum-800">Preparando el nidito de Zoe Isabella</span>
+          <div class="flex items-center justify-between text-xs sm:text-sm font-bold mb-1.5">
+            <span class="text-plum-900">Preparando el cuarto de Zoe Isabella</span>
             <span id="registry-progress-text" class="text-gold-500">0% completado</span>
           </div>
-          <div class="w-full h-3 bg-blush-100 rounded-full overflow-hidden p-0.5 border border-gold-200/70">
+          <div class="w-full h-3.5 bg-blush-100 rounded-full overflow-hidden p-0.5 border border-gold-300">
             <div id="registry-progress-bar" class="h-full rounded-full bg-gradient-to-r from-blush-400 via-gold-400 to-blush-500 transition-all duration-700" style="width: 4%;"></div>
           </div>
         </div>
       </div>
 
       <!-- Category Filter Pills -->
-      <div id="category-filters" class="flex flex-wrap items-center justify-center gap-2 mb-10">
-        <button data-cat="todos" class="cat-btn active px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-plum-900 text-ivory shadow-sm transition">
+      <div id="category-filters" class="flex flex-wrap items-center justify-center gap-2.5 mb-10">
+        <button data-cat="todos" class="cat-btn active px-5 py-2.5 rounded-full text-sm font-bold bg-plum-900 text-ivory shadow-sm transition">
           Todos los Regalos
         </button>
-        <button data-cat="descanso" class="cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white/85 border border-gold-200 text-plum-800 hover:bg-gold-100/70 transition">
+        <button data-cat="descanso" class="cat-btn px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-gold-300 text-plum-900 hover:bg-gold-100/70 transition">
           Descanso y Paseo
         </button>
-        <button data-cat="cuidado" class="cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white/85 border border-gold-200 text-plum-800 hover:bg-gold-100/70 transition">
-          Baño y Cuidado
+        <button data-cat="cuidado" class="cat-btn px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-gold-300 text-plum-900 hover:bg-gold-100/70 transition">
+          Baño y Aseo
         </button>
-        <button data-cat="alimentacion" class="cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white/85 border border-gold-200 text-plum-800 hover:bg-gold-100/70 transition">
+        <button data-cat="alimentacion" class="cat-btn px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-gold-300 text-plum-900 hover:bg-gold-100/70 transition">
           Alimentación
         </button>
-        <button data-cat="ropita" class="cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white/85 border border-gold-200 text-plum-800 hover:bg-gold-100/70 transition">
+        <button data-cat="ropita" class="cat-btn px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-gold-300 text-plum-900 hover:bg-gold-100/70 transition">
           Ropita y Pañales
         </button>
-        <button data-cat="sobres" class="cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white/85 border border-gold-200 text-plum-800 hover:bg-gold-100/70 transition">
+        <button data-cat="sobres" class="cat-btn px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-gold-300 text-plum-900 hover:bg-gold-100/70 transition">
           Lluvia de Sobres ✉️
         </button>
       </div>
@@ -624,179 +826,70 @@
     </div>
   </section>
 
-  <!-- ==================== RSVP & CONFIRMATION SECTION ==================== -->
-  <section id="rsvp" class="relative z-10 py-16 sm:py-24 px-4 sm:px-6">
-    <div class="max-w-3xl mx-auto">
-      <div class="glass-card rounded-[2.4rem] p-7 sm:p-12 shadow-luxury border border-gold-300/60 relative overflow-hidden">
-        <!-- Decorative Top Banner -->
-        <div class="text-center space-y-3 mb-8">
-          <span class="inline-block px-4 py-1 rounded-full bg-blush-100 text-blush-500 text-xs font-bold tracking-wider uppercase">
-            Confirma antes del 05 de Diciembre, 2026
-          </span>
-          <h2 class="font-serif text-4xl sm:text-5xl font-semibold text-plum-900">Confirma tu Asistencia</h2>
-          <p class="text-sm text-plum-800/80 max-w-lg mx-auto">
-            Tu presencia es nuestro mayor regalo. Completa tus datos para reservar tus lugares y generar tu Pase VIP de Invitado.
-          </p>
-        </div>
-
-        <form id="rsvp-form" class="space-y-6">
-          <!-- Full Name -->
-          <div>
-            <label for="guest-name" class="block text-xs font-bold uppercase tracking-wider text-plum-900 mb-2">
-              Nombre Completo *
-            </label>
-            <input
-              type="text"
-              id="guest-name"
-              required
-              placeholder="Ej. Camila Andrea Rodríguez"
-              class="w-full px-4 py-3.5 rounded-2xl bg-white/95 border border-gold-300/80 text-plum-900 placeholder:text-plum-800/40 focus:outline-none focus:ring-2 focus:ring-blush-400 transition"
-            />
-          </div>
-
-          <!-- Attendance Toggle -->
-          <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-plum-900 mb-2">
-              ¿Nos acompañarás en este día tan especial? *
-            </label>
-            <div class="grid grid-cols-2 gap-3">
-              <label class="cursor-pointer">
-                <input type="radio" name="attending" value="si" checked class="peer sr-only" />
-                <div class="p-4 rounded-2xl border-2 border-gold-200 bg-white/80 text-center peer-checked:border-blush-500 peer-checked:bg-blush-50/90 transition">
-                  <span class="block text-lg mb-0.5">💖</span>
-                  <span class="font-semibold text-sm text-plum-900">¡Sí, allí estaré!</span>
-                </div>
-              </label>
-              <label class="cursor-pointer">
-                <input type="radio" name="attending" value="no" class="peer sr-only" />
-                <div class="p-4 rounded-2xl border-2 border-gold-200 bg-white/80 text-center peer-checked:border-plum-800 peer-checked:bg-cream transition">
-                  <span class="block text-lg mb-0.5">🕊️</span>
-                  <span class="font-semibold text-sm text-plum-800">No podré asistir</span>
-                </div>
-              </label>
-            </div>
-          </div>
-
-          <!-- Number of Attendees -->
-          <div id="guests-count-wrapper">
-            <label for="guests-count" class="block text-xs font-bold uppercase tracking-wider text-plum-900 mb-2">
-              ¿Cuántas personas asistirán en total? (Incluyéndote) *
-            </label>
-            <select
-              id="guests-count"
-              class="w-full px-4 py-3.5 rounded-2xl bg-white/95 border border-gold-300/80 text-plum-900 focus:outline-none focus:ring-2 focus:ring-blush-400 transition"
-            >
-              <option value="1">1 persona (Solo yo)</option>
-              <option value="2">2 personas (Yo + 1 acompañante)</option>
-              <option value="3">3 personas (Familia de 3)</option>
-              <option value="4">4 personas (Familia de 4)</option>
-              <option value="5">5 personas (Familia de 5)</option>
-            </select>
-          </div>
-
-          <!-- Selected Gifts Summary Box inside RSVP -->
-          <div class="p-4 sm:p-5 rounded-2xl bg-gold-100/60 border border-gold-300/80">
-            <div class="flex items-center justify-between gap-2 mb-2">
-              <span class="text-xs font-bold uppercase tracking-wider text-gold-500 flex items-center gap-1.5">
-                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/>
-                </svg>
-                Regalo(s) seleccionado(s) para Zoe:
-              </span>
-              <a href="#boutique" class="text-xs font-semibold text-blush-500 hover:underline">+ Elegir en Boutique</a>
-            </div>
-            <div id="rsvp-selected-gifts" class="text-xs sm:text-sm text-plum-800/80">
-              Aún no has seleccionado un regalo en la boutique (puedes elegirlo arriba antes de confirmar).
-            </div>
-          </div>
-
-          <!-- Sweet Message for Zoe Isabella -->
-          <div>
-            <label for="guest-message" class="block text-xs font-bold uppercase tracking-wider text-plum-900 mb-2">
-              Déjale un deseo o consejo de vida a Zoe Isabella ✨
-            </label>
-            <textarea
-              id="guest-message"
-              rows="3"
-              placeholder="Escribe unas palabras bonitas que Zoe leerá cuando crezca..."
-              class="w-full px-4 py-3 rounded-2xl bg-white/95 border border-gold-300/80 text-plum-900 placeholder:text-plum-800/40 focus:outline-none focus:ring-2 focus:ring-blush-400 transition"
-            ></textarea>
-          </div>
-
-          <button
-            type="submit"
-            class="w-full py-4 px-8 rounded-full bg-gradient-to-r from-plum-900 via-plum-800 to-plum-900 text-ivory font-semibold text-base shadow-lg hover:shadow-gold-glow hover:-translate-y-0.5 transition duration-200 flex items-center justify-center gap-2"
-          >
-            <span>Confirmar Asistencia y Generar mi Pase VIP</span>
-            <svg class="w-5 h-5 text-gold-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
-            </svg>
-          </button>
-        </form>
-      </div>
-    </div>
-  </section>
-
   <!-- ==================== GUEST WISHES WALL ==================== -->
-  <section id="muro-deseos" class="relative z-10 py-12 px-4 sm:px-6">
-    <div class="max-w-5xl mx-auto">
-      <div class="text-center mb-8">
-        <span class="text-xs uppercase tracking-[0.25em] text-gold-500 font-semibold">Recuerdos Eternos</span>
-        <h3 class="font-serif text-3xl sm:text-4xl font-semibold text-plum-900 mt-1">Mensajes de Amor para Zoe</h3>
+        <div class="mt-5 pt-4 border-t border-dashed border-gold-300 flex items-center justify-between text-xs text-plum-800">
+          <span>¡Te esperamos con mucha ilusión!</span>
+          <button onclick="downloadICS()" class="font-bold text-gold-500 underline">+ Guardar en Calendario</button>
+        </div>
       </div>
-      <div id="wishes-wall" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <!-- Populated dynamically -->
-      </div>
-    </div>
-  </section>
 
-  <!-- ==================== FOOTER ==================== -->
-  <footer class="relative z-10 border-t border-gold-200/70 bg-white/70 backdrop-blur-md py-10 px-4 sm:px-6 mt-12">
-    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-      <div>
-        <p class="font-serif italic text-2xl font-semibold text-plum-900">Zoe Isabella</p>
-        <p class="text-xs text-plum-800/70 mt-0.5">06 de Diciembre, 2026 • Salón Comunal Rosales de Nueva Castilla</p>
+      <!-- Prompt to pick a gift if they haven't chosen one yet -->
+      <div id="vip-gift-nudge" class="bg-white/95 rounded-2xl p-4 border border-gold-300 text-center space-y-2.5 shadow-lg">
+        <p class="text-sm font-semibold text-plum-900">¿Deseas apartar de una vez tu regalo para Zoe Isabella?</p>
+        <button onclick="goToGiftsFromTicket()" class="w-full py-3 px-4 rounded-xl bg-blush-500 text-white font-bold text-sm hover:bg-blush-400 transition">
+          Ir a Elegir mi Regalo →
+        </button>
       </div>
-      <div class="flex items-center gap-4">
-        <button onclick="openAdminLogin()" class="inline-flex items-center gap-1.5 text-xs font-medium text-plum-800/70 hover:text-gold-500 transition px-3 py-1.5 rounded-full border border-gold-200 bg-ivory">
-          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-          </svg>
-          <span>Panel de Control Papás</span>
+
+      <div class="flex gap-3">
+        <button onclick="window.print()" class="flex-1 py-3.5 rounded-full bg-gold-400 text-plum-900 font-bold text-sm shadow-lg hover:bg-gold-300 transition">
+          Guardar / Imprimir Pase
+        </button>
+        <button onclick="closeVipModal()" class="px-6 py-3.5 rounded-full bg-white text-plum-900 font-bold text-sm shadow-lg">
+          Listo
         </button>
       </div>
     </div>
-  </footer>
+  </div>
 
-  <!-- ==================== MODAL 1: QUICK GIFT RESERVATION ==================== -->
-  <div id="gift-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-plum-900/60 backdrop-blur-sm">
-    <div class="bg-ivory rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-gold-300 relative animate-fade-in">
-      <button onclick="closeGiftModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-cream text-plum-800 hover:bg-blush-100 flex items-center justify-center">✕</button>
-      <div class="text-center space-y-2 mb-5">
-        <span class="text-xs uppercase tracking-widest text-gold-500 font-bold">Apartar Regalo Exclusivo</span>
-        <h3 id="modal-gift-title" class="font-serif text-2xl sm:text-3xl font-semibold text-plum-900">Nombre del Regalo</h3>
-        <p id="modal-gift-quote" class="font-serif italic text-base text-blush-500">"Frase del bebé"</p>
+  <!-- ==================== MODAL 2B: EASY HELP GUIDE FOR SENIORS ==================== -->
+  <div id="help-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-plum-900/70 backdrop-blur-sm">
+    <div class="bg-ivory rounded-3xl max-w-md w-full p-7 shadow-2xl border-2 border-gold-300 relative space-y-5">
+      <button onclick="closeHelpModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-cream text-plum-900 font-bold flex items-center justify-center">✕</button>
+      <div class="text-center">
+        <span class="text-xs uppercase tracking-widest text-gold-500 font-bold">Guía Rápida</span>
+        <h3 class="font-serif text-3xl font-bold text-plum-900 mt-1">¿Cómo funciona la invitación?</h3>
       </div>
 
-      <div class="space-y-4">
-        <div>
-          <label class="block text-xs font-bold uppercase tracking-wider text-plum-900 mb-1.5">Tu Nombre Completo *</label>
-          <input type="text" id="modal-gift-guest-name" placeholder="Para registrar que este regalo es de tu parte" class="w-full px-4 py-3 rounded-xl bg-white border border-gold-300 text-sm focus:outline-none focus:ring-2 focus:ring-blush-400" />
+      <div class="space-y-4 text-sm sm:text-base text-plum-900">
+        <div class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-white border border-gold-200">
+          <span class="w-8 h-8 rounded-full bg-blush-500 text-white font-bold flex items-center justify-center shrink-0">1</span>
+          <div>
+            <p class="font-bold">Confirma tu asistencia</p>
+            <p class="text-xs sm:text-sm text-plum-800/80 mt-0.5">Escribe tu nombre, toca los botones <strong>+</strong> o <strong>−</strong> para elegir cuántas personas van y presiona <strong>"Confirmar mi Asistencia"</strong>.</p>
+          </div>
         </div>
 
-        <div id="modal-gift-qty-box" class="hidden">
-          <label class="block text-xs font-bold uppercase tracking-wider text-plum-900 mb-1.5">Cantidad a regalar</label>
-          <select id="modal-gift-qty" class="w-full px-4 py-3 rounded-xl bg-white border border-gold-300 text-sm"></select>
+        <div class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-white border border-gold-200">
+          <span class="w-8 h-8 rounded-full bg-gold-400 text-plum-900 font-bold flex items-center justify-center shrink-0">2</span>
+          <div>
+            <p class="font-bold">Elige un regalo (sin repetir)</p>
+            <p class="text-xs sm:text-sm text-plum-800/80 mt-0.5">Baja a la sección de regalos, toca <strong>"Elegir este Regalo"</strong> y escribe tu nombre para dejarlo apartado.</p>
+          </div>
         </div>
 
-        <div class="p-3.5 rounded-xl bg-blush-50 border border-blush-200 text-xs text-plum-800 leading-relaxed">
-          💡 Al apartarlo, este regalo quedará reservado a tu nombre para que nadie más lo repita. ¡Luego solo completa tu asistencia abajo!
+        <div class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-white border border-gold-200">
+          <span class="w-8 h-8 rounded-full bg-plum-900 text-ivory font-bold flex items-center justify-center shrink-0">3</span>
+          <div>
+            <p class="font-bold">¿Cómo llegar al lugar?</p>
+            <p class="text-xs sm:text-sm text-plum-800/80 mt-0.5">Toca el botón negro <strong>"Abrir en Google Maps"</strong> en la sección de Lugar y Hora para que tu celular te guíe hasta la puerta.</p>
+          </div>
         </div>
-
-        <button onclick="confirmGiftSelection()" class="w-full py-3.5 rounded-full bg-gradient-to-r from-blush-500 to-blush-400 text-white font-semibold text-sm shadow-md hover:shadow-lg transition">
-          Apartar este Regalo para Zoe ✨
-        </button>
       </div>
+
+      <button onclick="closeHelpModal()" class="w-full py-3.5 rounded-full bg-plum-900 text-ivory font-bold text-base">
+        ¡Entendido, gracias!
+      </button>
     </div>
   </div>
 
@@ -933,12 +1026,15 @@
         </div>
 
         <!-- Tabs inside Admin -->
-        <div class="flex gap-2 border-b border-gold-200 pb-3">
+        <div class="flex flex-wrap gap-2 border-b border-gold-200 pb-3">
           <button onclick="switchAdminTab('guests')" id="tab-btn-guests" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-plum-900 text-ivory">
             Lista de Asistentes
           </button>
           <button onclick="switchAdminTab('gifts')" id="tab-btn-gifts" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-plum-800 border border-gold-200">
             Control de Regalos &amp; Stock
+          </button>
+          <button onclick="switchAdminTab('cloud')" id="tab-btn-cloud" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-plum-800 border border-gold-200">
+            ☁️ Conexión en la Nube
           </button>
         </div>
 
@@ -987,107 +1083,120 @@
             </table>
           </div>
         </div>
+
+        <!-- Tab 3: Cloud Sync Configuration (Firebase Realtime Database URL) -->
+        <div id="admin-tab-cloud" class="hidden space-y-4">
+          <div class="p-5 rounded-2xl bg-white border border-gold-200 space-y-4">
+            <div>
+              <h4 class="font-serif text-2xl font-bold text-plum-900">Sincronización Compartida entre Todos los Invitados</h4>
+              <p class="text-xs sm:text-sm text-plum-800/80 mt-1">
+                Para que cuando la tía María aparte la <strong>Cuna</strong> en su celular, al primo Juan le salga bloqueada al instante en el suyo, pega aquí la URL de tu base de datos gratuita de <strong>Firebase Realtime Database</strong> (termina en <code>.firebaseio.com</code>):
+              </p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3">
+              <input
+                type="url"
+                id="firebase-db-url-input"
+                placeholder="https://baby-shower-zoe-default-rtdb.firebaseio.com"
+                class="flex-1 px-4 py-3 rounded-xl bg-ivory border border-gold-300 text-sm"
+              />
+              <button onclick="saveCustomCloudUrl()" class="px-6 py-3 rounded-xl bg-plum-900 text-ivory font-bold text-sm hover:bg-plum-800 transition">
+                Conectar Base de Datos
+              </button>
+            </div>
+            <p id="cloud-status-badge" class="text-xs font-semibold text-gold-500">
+              Estado actual: Modo local activo (listo para conectar URL compartida).
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-
-  <!-- Toast Notification -->
-  <div id="toast" class="fixed bottom-5 right-5 z-50 hidden max-w-sm bg-plum-900 text-ivory px-5 py-3.5 rounded-2xl shadow-2xl border border-gold-400 text-xs sm:text-sm flex items-center gap-3">
-    <span class="text-gold-300 text-lg">✨</span>
-    <span id="toast-msg">Acción completada</span>
-  </div>
-
-  <!-- ==================== FIREBASE + APPLICATION LOGIC ==================== -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-    import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-    import { getFirestore, doc, setDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-    // Curated Luxury Baby Shower Gift Catalog (Anti-Duplicate Stock Control)
+    // Simple, Clear, Everyday Gift Names (Senior-Friendly, Zero Jargon)
     const INITIAL_GIFTS = [
       {
-        id: "cuna-colecho",
-        name: "Cuna Colecho de Madera",
+        id: "cuna",
+        name: "Cuna",
         category: "descanso",
         totalQty: 1,
         quote: "Para mis primeras siestas y sueños más dulces junto a mamá y papá.",
         icon: "crib"
       },
       {
-        id: "coche-travel",
-        name: "Coche de Paseo Travel System 3 en 1",
+        id: "coche",
+        name: "Coche",
         category: "descanso",
         totalQty: 1,
         quote: "Para salir a descubrir el mundo y pasear en familia con total comodidad.",
         icon: "stroller"
       },
       {
-        id: "silla-comedor",
-        name: "Silla Comedor Evolutiva",
-        category: "alimentacion",
-        totalQty: 1,
-        quote: "Para mis primeras papillas y compartir la mesa junto a quienes más amo.",
-        icon: "chair"
-      },
-      {
-        id: "banera-ergonomica",
-        name: "Bañera Ergonómica con Soporte y Termómetro",
+        id: "banera",
+        name: "Bañera",
         category: "cuidado",
         totalQty: 1,
         quote: "Para disfrutar mis baños tibios y chapoteos relajantes antes de dormir.",
         icon: "bath"
       },
       {
-        id: "gimnasio-musical",
-        name: "Gimnasio Musical de Estimulación",
+        id: "silla-comer",
+        name: "Silla de Comer",
+        category: "alimentacion",
+        totalQty: 1,
+        quote: "Para mis primeras papillas y compartir la mesa junto a quienes más amo.",
+        icon: "chair"
+      },
+      {
+        id: "corral",
+        name: "Corral",
+        category: "descanso",
+        totalQty: 1,
+        quote: "Un espacio seguro y cómodo para descansar y jugar mientras crezco.",
+        icon: "crib"
+      },
+      {
+        id: "silla-carro",
+        name: "Silla para el Carro",
+        category: "descanso",
+        totalQty: 1,
+        quote: "Para viajar siempre segura y protegida en cada paseo en carro.",
+        icon: "carrier"
+      },
+      {
+        id: "gimnasio-juegos",
+        name: "Gimnasio de Juegos",
         category: "descanso",
         totalQty: 1,
         quote: "Para jugar, explorar colores y desarrollar mis primeros sentidos.",
         icon: "gym"
       },
       {
-        id: "extractor-leche",
-        name: "Extractor de Leche Eléctrico Doble",
-        category: "alimentacion",
-        totalQty: 1,
-        quote: "Un aliado maravilloso para ayudar a mamá en mi etapa de lactancia.",
-        icon: "bottle"
-      },
-      {
-        id: "monitor-bebe",
-        name: "Monitor de Bebé con Cámara HD Nocturna",
-        category: "descanso",
-        totalQty: 1,
-        quote: "Para que mamá y papá puedan verme dormir tranquila desde cualquier lugar.",
-        icon: "monitor"
-      },
-      {
-        id: "esterilizador-biberones",
-        name: "Esterilizador y Calentador de Biberones",
-        category: "alimentacion",
-        totalQty: 1,
-        quote: "Para mantener siempre listos y protegidos mis teteros a toda hora.",
-        icon: "sterilizer"
-      },
-      {
-        id: "movil-proyector",
-        name: "Móvil Musical de Cuna con Proyector de Estrellas",
+        id: "movil-cuna",
+        name: "Móvil Musical para Cuna",
         category: "descanso",
         totalQty: 1,
         quote: "Para arrullarme con melodías suaves bajo un cielo estrellado.",
         icon: "moon"
       },
       {
-        id: "fular-portabebes",
-        name: "Fular / Canguro Ergonómico Portabebés",
+        id: "monitor-bebe",
+        name: "Cámara / Monitor de Bebé",
         category: "descanso",
         totalQty: 1,
-        quote: "Para ir cerquita del corazón de mamá y papá en cada salida.",
-        icon: "carrier"
+        quote: "Para que mamá y papá puedan verme dormir tranquila desde cualquier cuarto.",
+        icon: "monitor"
       },
       {
-        id: "set-biberones",
-        name: "Set de Biberones Anticólicos + Cepillos",
+        id: "esterilizador",
+        name: "Esterilizador de Biberones",
+        category: "alimentacion",
+        totalQty: 1,
+        quote: "Para mantener siempre limpios y protegidos mis teteros a toda hora.",
+        icon: "sterilizer"
+      },
+      {
+        id: "biberones-chupos",
+        name: "Biberones y Chupos",
         category: "alimentacion",
         totalQty: 2,
         quote: "Para mis tomas felices y pancita siempre contenta.",
@@ -1095,47 +1204,63 @@
       },
       {
         id: "kit-aseo",
-        name: "Kit Completo de Aseo y Cuidado Recién Nacido",
+        name: "Kit de Aseo (Crema, Shampoo y Jabón)",
         category: "cuidado",
-        totalQty: 2,
-        quote: "Para mantener mis uñitas, cabello y piel siempre impecables.",
+        totalQty: 3,
+        quote: "Para cuidar mi piel delicada y oler siempre delicioso.",
         icon: "care"
       },
       {
-        id: "ropita-algodon",
-        name: "Set de Ropita Algodón Pima (0 a 3 Meses)",
+        id: "toallas-capucha",
+        name: "Toallas con Capucha",
+        category: "cuidado",
+        totalQty: 2,
+        quote: "Para arroparme calientita apenas salga de mi baño.",
+        icon: "blanket"
+      },
+      {
+        id: "cobijas-sabanas",
+        name: "Cobijas y Sábanas",
+        category: "descanso",
+        totalQty: 3,
+        quote: "Para sentirme abrazadita y abrigada en cada siesta.",
+        icon: "blanket"
+      },
+      {
+        id: "ropita",
+        name: "Ropita (0 a 6 meses)",
         category: "ropita",
-        totalQty: 4,
+        totalQty: 5,
         quote: "Para estrenar pintas suaves, calientitas y adorables en mis primeros meses.",
         icon: "onesie"
       },
       {
-        id: "cobija-muselina",
-        name: "Cobija Térmica de Muselina + Peluche de Apego",
-        category: "descanso",
-        totalQty: 3,
-        quote: "Para sentirme abrazadita y segura en cada siesta.",
-        icon: "blanket"
-      },
-      {
         id: "panales-etapa1",
-        name: "Pañales Etapa 1 / Recién Nacido (Paquete Grande)",
+        name: "Pañales Etapa 1",
         category: "ropita",
-        totalQty: 8,
+        totalQty: 6,
         quote: "¡El tesoro más usado de todos! Siempre estaré sequita y feliz.",
         icon: "diaper"
       },
       {
+        id: "panales-etapa2",
+        name: "Pañales Etapa 2",
+        category: "ropita",
+        totalQty: 6,
+        quote: "Para cuando empiece a crecer rapidito y moverme por todas partes.",
+        icon: "diaper"
+      },
+      {
         id: "panitos-humedos",
-        name: "Pañitos Húmedos Recién Nacido (Caja x 6)",
+        name: "Pañitos Húmedos",
         category: "cuidado",
         totalQty: 6,
-        quote: "Suavidad pura para cuidar mi piel delicada en cada cambio.",
+        quote: "Suavidad pura para cuidar mi piel en cada cambio de pañal.",
         icon: "care"
       },
       {
         id: "lluvia-sobres",
-        name: "Lluvia de Sobres / Aporte para el Futuro de Zoe",
+        name: "Lluvia de Sobres (Aporte en Efectivo)",
         category: "sobres",
         totalQty: 99,
         unlimited: true,
@@ -1153,15 +1278,22 @@
       selectedGiftForModal: null
     };
 
-    const STORAGE_KEY = "zoe_isabella_babyshower_v1";
+    const STORAGE_KEY = "zoe_isabella_babyshower_v2";
+    const CUSTOM_RTDB_KEY = "zoe_isabella_rtdb_url";
     let db = null;
     let useCloud = false;
+    let customRtdbUrl = localStorage.getItem(CUSTOM_RTDB_KEY) || "";
     const appId = typeof __app_id !== "undefined" ? __app_id : "zoe-isabella-shower";
 
-    // Initialize Persistence (Firebase Firestore if available + instant local sync)
+    // Initialize Persistence (Supports Environment Firestore OR Custom Firebase RTDB URL + Local Backup)
     async function initStorage() {
       loadFromLocal();
       renderAll();
+
+      if (customRtdbUrl) {
+        startCustomRtdbSync();
+        return;
+      }
 
       try {
         if (typeof __firebase_config !== "undefined" && __firebase_config) {
@@ -1203,6 +1335,44 @@
       }
     }
 
+    async function fetchCustomRtdb() {
+      if (!customRtdbUrl) return;
+      try {
+        const cleanUrl = customRtdbUrl.replace(/\/$/, "");
+        const res = await fetch(`${cleanUrl}/babyshower_zoe.json`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data) {
+            if (data.gifts) appState.gifts = mergeGiftCatalog(data.gifts);
+            if (data.rsvps) appState.rsvps = data.rsvps;
+            saveToLocal();
+            renderAll();
+          }
+        }
+      } catch (e) {
+        console.warn("RTDB fetch warning:", e);
+      }
+    }
+
+    function startCustomRtdbSync() {
+      fetchCustomRtdb();
+      setInterval(fetchCustomRtdb, 6000);
+    }
+
+    window.saveCustomCloudUrl = async function() {
+      const input = document.getElementById("firebase-db-url-input").value.trim();
+      if (!input || !input.startsWith("http")) {
+        showToast("Por favor pega una URL válida de Firebase.");
+        return;
+      }
+      customRtdbUrl = input.replace(/\/$/, "");
+      localStorage.setItem(CUSTOM_RTDB_KEY, customRtdbUrl);
+      await persistState();
+      startCustomRtdbSync();
+      document.getElementById("cloud-status-badge").textContent = "✅ Conectado a la nube en tiempo real: " + customRtdbUrl;
+      showToast("¡Base de datos en la nube conectada!");
+    };
+
     function mergeGiftCatalog(savedGifts) {
       return INITIAL_GIFTS.map(base => {
         const found = savedGifts.find(s => s.id === base.id);
@@ -1233,6 +1403,24 @@
     async function persistState() {
       saveToLocal();
       renderAll();
+
+      if (customRtdbUrl) {
+        try {
+          const cleanUrl = customRtdbUrl.replace(/\/$/, "");
+          await fetch(`${cleanUrl}/babyshower_zoe.json`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              gifts: appState.gifts.map(g => ({ id: g.id, claimedBy: g.claimedBy })),
+              rsvps: appState.rsvps,
+              updatedAt: new Date().toISOString()
+            })
+          });
+        } catch (e) {
+          console.warn("RTDB write error:", e);
+        }
+      }
+
       if (useCloud && db) {
         try {
           const stateDocRef = doc(db, "artifacts", appId, "public", "data", "babyshower", "mainState");
@@ -1463,10 +1651,110 @@
       closeGiftModal();
       showToast(`¡Gracias ${guestName}! Apartaste: ${gift.name}`);
 
-      // Smoothly scroll to RSVP so they complete seat reservation
+      // Smoothly scroll to RSVP if they haven't confirmed yet
+      const alreadyConfirmed = appState.rsvps.some(r => r.name.toLowerCase() === guestName.toLowerCase());
+      if (!alreadyConfirmed) {
+        setTimeout(() => {
+          document.getElementById("rsvp").scrollIntoView({ behavior: "smooth" });
+        }, 650);
+      }
+    };
+
+    // Senior-Friendly Big +/- Stepper Logic
+    window.changeGuestCount = function(delta) {
+      const hiddenInput = document.getElementById("guests-count");
+      let current = parseInt(hiddenInput.value || "1", 10);
+      current = Math.min(10, Math.max(1, current + delta));
+      hiddenInput.value = current;
+      document.getElementById("guests-count-display").textContent = current;
+      document.getElementById("guests-count-label").textContent =
+        current === 1 ? "persona (Solo yo)" : `personas (Yo + ${current - 1} acompañante${current - 1 > 1 ? "s" : ""})`;
+    };
+
+    // RSVP Form Submission
+    document.getElementById("rsvp-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("guest-name").value.trim();
+      const attending = document.querySelector('input[name="attending"]:checked').value;
+      const guestsCount = attending === "si" ? parseInt(document.getElementById("guests-count").value, 10) : 0;
+      const message = document.getElementById("guest-message").value.trim();
+
+      if (!name) {
+        showToast("Por favor escribe tu nombre completo.");
+        return;
+      }
+
+      // Check if guest already picked gifts directly in Boutique before submitting RSVP
+      const previouslyClaimed = appState.gifts
+        .filter(g => g.claimedBy.some(person => person.toLowerCase() === name.toLowerCase()))
+        .map(g => g.name);
+
+      const sessionGiftNames = appState.currentSessionGifts.map(g => `${g.name}${g.qty > 1 ? ` (x${g.qty})` : ""}`);
+      const allGuestGifts = [...new Set([...sessionGiftNames, ...previouslyClaimed])];
+
+      const giftsLabel = allGuestGifts.length > 0
+        ? allGuestGifts.join(", ")
+        : "Por elegir en la lista";
+
+      const newEntry = {
+        id: "rsvp_" + Date.now(),
+        name,
+        attending,
+        guestsCount,
+        gifts: giftsLabel,
+        message,
+        createdAt: new Date().toLocaleDateString("es-CO")
+      };
+
+      appState.rsvps.push(newEntry);
+      await persistState();
+
+      // Populate & Show VIP Ticket
+      document.getElementById("ticket-name").textContent = name;
+      document.getElementById("ticket-status").textContent = attending === "si"
+        ? `Confirmado (${guestsCount} ${guestsCount === 1 ? "cupo" : "cupos"})`
+        : "No asiste (Envía buenos deseos)";
+      document.getElementById("ticket-gift").textContent = giftsLabel;
+
+      const nudgeBox = document.getElementById("vip-gift-nudge");
+      if (allGuestGifts.length > 0) {
+        nudgeBox.classList.add("hidden");
+      } else {
+        nudgeBox.classList.remove("hidden");
+      }
+
+      const vipModal = document.getElementById("vip-modal");
+      vipModal.classList.remove("hidden");
+      vipModal.classList.add("flex");
+
+      // Reset form & stepper
+      e.target.reset();
+      document.getElementById("guests-count").value = "1";
+      document.getElementById("guests-count-display").textContent = "1";
+      document.getElementById("guests-count-label").textContent = "persona (Solo yo)";
+      document.getElementById("guests-count-wrapper").classList.remove("opacity-40", "pointer-events-none");
+      appState.currentSessionGifts = [];
+      updateRegistryStats();
+      showToast("¡Asistencia confirmada con éxito!");
+    });
+
+    window.goToGiftsFromTicket = function() {
+      closeVipModal();
       setTimeout(() => {
-        document.getElementById("rsvp").scrollIntoView({ behavior: "smooth" });
-      }, 600);
+        document.getElementById("boutique").scrollIntoView({ behavior: "smooth" });
+      }, 250);
+    };
+
+    window.openHelpModal = function() {
+      const m = document.getElementById("help-modal");
+      m.classList.remove("hidden");
+      m.classList.add("flex");
+    };
+
+    window.closeHelpModal = function() {
+      const m = document.getElementById("help-modal");
+      m.classList.add("hidden");
+      m.classList.remove("flex");
     };
 
     // RSVP Form Submission
@@ -1592,19 +1880,34 @@
     window.switchAdminTab = function(tab) {
       const guestsTab = document.getElementById("admin-tab-guests");
       const giftsTab = document.getElementById("admin-tab-gifts");
+      const cloudTab = document.getElementById("admin-tab-cloud");
       const btnGuests = document.getElementById("tab-btn-guests");
       const btnGifts = document.getElementById("tab-btn-gifts");
+      const btnCloud = document.getElementById("tab-btn-cloud");
+
+      const activeCls = "px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-plum-900 text-ivory";
+      const inactiveCls = "px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-plum-800 border border-gold-200";
+
+      guestsTab.classList.add("hidden");
+      giftsTab.classList.add("hidden");
+      cloudTab.classList.add("hidden");
+      btnGuests.className = inactiveCls;
+      btnGifts.className = inactiveCls;
+      btnCloud.className = inactiveCls;
 
       if (tab === "guests") {
         guestsTab.classList.remove("hidden");
-        giftsTab.classList.add("hidden");
-        btnGuests.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-plum-900 text-ivory";
-        btnGifts.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-plum-800 border border-gold-200";
-      } else {
-        guestsTab.classList.add("hidden");
+        btnGuests.className = activeCls;
+      } else if (tab === "gifts") {
         giftsTab.classList.remove("hidden");
-        btnGifts.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-plum-900 text-ivory";
-        btnGuests.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-plum-800 border border-gold-200";
+        btnGifts.className = activeCls;
+      } else {
+        cloudTab.classList.remove("hidden");
+        btnCloud.className = activeCls;
+        if (customRtdbUrl) {
+          document.getElementById("firebase-db-url-input").value = customRtdbUrl;
+          document.getElementById("cloud-status-badge").textContent = "✅ Conectado a la nube: " + customRtdbUrl;
+        }
       }
     };
 
@@ -1810,6 +2113,111 @@
       }
       draw();
     }
+
+    // ==================== GENTLE CELESTIAL MUSIC BOX SYNTHESIZER (WEB AUDIO API) ====================
+    let audioCtx = null;
+    let isMusicPlaying = false;
+    let lullabyTimer = null;
+    let noteStep = 0;
+
+    // Brahms Lullaby & Celestial Music Box Notes (Hz)
+    const LULLABY_NOTES = [
+      329.63, 329.63, 392.00, 0,
+      329.63, 329.63, 392.00, 0,
+      329.63, 392.00, 523.25, 493.88,
+      440.00, 440.00, 392.00, 0,
+      293.66, 329.63, 349.23, 293.66,
+      293.66, 329.63, 349.23, 0,
+      293.66, 349.23, 493.88, 440.00,
+      392.00, 493.88, 523.25, 0
+    ];
+
+    function playCelestialNote(freq) {
+      if (!freq || !audioCtx || !isMusicPlaying) return;
+      const now = audioCtx.currentTime;
+
+      const osc = audioCtx.createOscillator();
+      const harmonic = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(freq, now);
+
+      harmonic.type = "triangle";
+      harmonic.frequency.setValueAtTime(freq * 2, now);
+
+      const harmonicGain = audioCtx.createGain();
+      harmonicGain.gain.setValueAtTime(0.015, now);
+      harmonicGain.gain.exponentialRampToValueAtTime(0.0001, now + 1.1);
+
+      gain.gain.setValueAtTime(0.001, now);
+      gain.gain.linearRampToValueAtTime(0.065, now + 0.04);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.45);
+
+      osc.connect(gain);
+      harmonic.connect(harmonicGain);
+      harmonicGain.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start(now);
+      harmonic.start(now);
+      osc.stop(now + 1.5);
+      harmonic.stop(now + 1.5);
+    }
+
+    function startLullabyLoop() {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContextClass();
+      }
+      if (audioCtx.state === "suspended") {
+        audioCtx.resume();
+      }
+      isMusicPlaying = true;
+      updateMusicButtonUI();
+
+      if (lullabyTimer) clearInterval(lullabyTimer);
+      playCelestialNote(LULLABY_NOTES[noteStep % LULLABY_NOTES.length]);
+      noteStep++;
+
+      lullabyTimer = setInterval(() => {
+        if (!isMusicPlaying) return;
+        playCelestialNote(LULLABY_NOTES[noteStep % LULLABY_NOTES.length]);
+        noteStep++;
+      }, 680);
+    }
+
+    function stopLullabyLoop() {
+      isMusicPlaying = false;
+      if (lullabyTimer) clearInterval(lullabyTimer);
+      updateMusicButtonUI();
+    }
+
+    function updateMusicButtonUI() {
+      const icon = document.getElementById("music-icon");
+      const label = document.getElementById("music-label");
+      if (isMusicPlaying) {
+        icon.textContent = "🎵";
+        label.textContent = "Música: Activada";
+      } else {
+        icon.textContent = "🔇";
+        label.textContent = "Activar Música";
+      }
+    }
+
+    window.toggleLullabyMusic = function() {
+      if (isMusicPlaying) {
+        stopLullabyLoop();
+      } else {
+        startLullabyLoop();
+      }
+    };
+
+    window.openRoyalInvitation = function() {
+      const overlay = document.getElementById("welcome-envelope-overlay");
+      overlay.classList.add("opened");
+      startLullabyLoop();
+    };
 
     // Helpers
     function showToast(msg) {
