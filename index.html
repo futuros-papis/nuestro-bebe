@@ -69,6 +69,10 @@
       overflow-x: hidden;
     }
 
+    button, a {
+      touch-action: manipulation;
+    }
+
     @keyframes floatSlow {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
       50% { transform: translateY(-10px) rotate(1.5deg); }
@@ -82,14 +86,14 @@
       100% { background-position: 200% center; }
     }
     @keyframes fadeSlideUp {
-      from { opacity: 0; transform: translateY(16px); }
+      from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     .animate-float-slow { animation: floatSlow 6s ease-in-out infinite; }
     .animate-twinkle { animation: twinkle 3.2s ease-in-out infinite; }
     .animate-twinkle-delay { animation: twinkle 4.1s ease-in-out 1.4s infinite; }
-    .guided-section:not(.hidden) { animation: fadeSlideUp 0.45s ease-out; }
+    .guided-section:not(.hidden) { animation: fadeSlideUp 0.25s ease-out; }
 
     .gold-shimmer-text {
       background: linear-gradient(90deg, #A8813B 0%, #DFBE7B 30%, #C9A25B 55%, #F0D9A3 75%, #A8813B 100%);
@@ -100,9 +104,9 @@
     }
 
     .glass-card {
-      background: rgba(255, 253, 249, 0.88);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(255, 253, 249, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(201, 162, 91, 0.28);
     }
 
@@ -120,11 +124,11 @@
     ::-webkit-scrollbar-thumb:hover { background: #C9A25B; }
 
     #welcome-envelope-overlay {
-      transition: opacity 0.85s ease, transform 0.85s ease, visibility 0.85s ease;
+      transition: opacity 0.45s ease, transform 0.45s ease, visibility 0.45s ease;
     }
     #welcome-envelope-overlay.opened {
       opacity: 0;
-      transform: scale(1.06);
+      transform: scale(1.04);
       visibility: hidden;
       pointer-events: none;
     }
@@ -163,7 +167,7 @@
           <button
             type="button"
             onclick="openRoyalInvitation()"
-            class="w-full py-4 px-6 rounded-full bg-gradient-to-r from-plum-900 via-plum-800 to-plum-900 text-ivory font-bold text-base sm:text-lg shadow-xl hover:shadow-gold-glow hover:-translate-y-0.5 transition flex items-center justify-center gap-3 cursor-pointer"
+            class="w-full py-4 px-6 rounded-full bg-gradient-to-r from-plum-900 via-plum-800 to-plum-900 text-ivory font-bold text-base sm:text-lg shadow-xl hover:shadow-gold-glow active:scale-[0.99] transition flex items-center justify-center gap-3 cursor-pointer"
           >
             <span>Abrir Invitación</span>
             <svg class="w-5 h-5 text-gold-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
@@ -185,7 +189,7 @@
       type="button"
       id="music-toggle-btn"
       onclick="toggleLullabyMusic()"
-      class="px-4 py-3 rounded-full bg-white/95 border-2 border-gold-300 text-plum-900 shadow-lg hover:bg-gold-100 transition flex items-center gap-2 text-xs sm:text-sm font-bold"
+      class="px-4 py-3 rounded-full bg-white/95 border-2 border-gold-300 text-plum-900 shadow-lg hover:bg-gold-100 active:scale-95 transition flex items-center gap-2 text-xs sm:text-sm font-bold"
       title="Activar o pausar música"
     >
       <span id="music-icon" class="text-base">🎵</span>
@@ -195,7 +199,7 @@
     <button
       type="button"
       onclick="openHelpModal()"
-      class="px-4 py-3 rounded-full bg-plum-900 text-ivory border border-gold-300 shadow-lg hover:bg-plum-800 transition flex items-center gap-2 text-xs sm:text-sm font-bold"
+      class="px-4 py-3 rounded-full bg-plum-900 text-ivory border border-gold-300 shadow-lg hover:bg-plum-800 active:scale-95 transition flex items-center gap-2 text-xs sm:text-sm font-bold"
     >
       <span class="w-5 h-5 rounded-full bg-gold-400 text-plum-900 flex items-center justify-center font-bold text-xs">?</span>
       <span>¿Cómo confirmar?</span>
@@ -232,13 +236,13 @@
       </nav>
 
       <div class="flex items-center gap-2">
-        <button type="button" id="my-confirmation-btn" onclick="openMyConfirmationModal()" class="hidden px-3.5 py-2.5 rounded-full bg-emerald-600 text-white text-xs sm:text-sm font-bold shadow-md hover:bg-emerald-700 transition">
+        <button type="button" id="my-confirmation-btn" onclick="openMyConfirmationModal()" class="hidden px-3.5 py-2.5 rounded-full bg-emerald-600 text-white text-xs sm:text-sm font-bold shadow-md hover:bg-emerald-700 active:scale-95 transition">
           ✅ Mi Confirmación
         </button>
-        <button type="button" onclick="openStepWizardModal()" class="px-4 sm:px-5 py-2.5 rounded-full bg-gradient-to-r from-blush-500 to-blush-400 text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition duration-200">
+        <button type="button" onclick="openStepWizardModal()" class="px-4 sm:px-5 py-2.5 rounded-full bg-gradient-to-r from-blush-500 to-blush-400 text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg active:scale-95 transition duration-150">
           ✨ Ventana Paso a Paso
         </button>
-        <button type="button" onclick="openAdminLogin()" title="Acceso Papás" class="p-3 rounded-full border border-gold-300/80 bg-white/90 text-gold-500 hover:bg-gold-100 transition" aria-label="Panel de Control Papás">
+        <button type="button" onclick="openAdminLogin()" title="Acceso Papás" class="p-3 rounded-full border border-gold-300/80 bg-white/90 text-gold-500 hover:bg-gold-100 active:scale-95 transition" aria-label="Panel de Control Papás">
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
             <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
@@ -266,7 +270,7 @@
       <div class="flex items-center gap-2 shrink-0">
         <span id="live-sync-indicator" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-bold">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span>Sincronizado</span>
+          <span>En vivo</span>
         </span>
         <button type="button" onclick="toggleShowAllSections()" id="toggle-all-btn" class="px-3 py-1.5 rounded-full bg-gold-100 hover:bg-gold-200 text-plum-900 text-xs font-bold transition">
           Ver todo de una vez
@@ -296,14 +300,14 @@
         </p>
 
         <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5">
-          <button type="button" onclick="openStepWizardModal()" class="w-full sm:w-auto px-7 py-4 rounded-full bg-gradient-to-r from-plum-900 to-plum-800 text-ivory font-bold text-base shadow-lg hover:shadow-gold-glow hover:-translate-y-0.5 transition flex items-center justify-center gap-2 cursor-pointer">
+          <button type="button" onclick="openStepWizardModal()" class="w-full sm:w-auto px-7 py-4 rounded-full bg-gradient-to-r from-plum-900 to-plum-800 text-ivory font-bold text-base shadow-lg hover:shadow-gold-glow active:scale-[0.99] transition flex items-center justify-center gap-2 cursor-pointer">
             <span>✨ Comenzar Paso a Paso</span>
           </button>
-          <button type="button" onclick="goToStep(4)" class="w-full sm:w-auto px-7 py-4 rounded-full bg-gradient-to-r from-blush-500 to-blush-400 text-white font-bold text-base shadow-lg shadow-blush-300/50 hover:shadow-xl hover:-translate-y-0.5 transition flex items-center justify-center gap-2.5 cursor-pointer">
+          <button type="button" onclick="goToStep(4)" class="w-full sm:w-auto px-7 py-4 rounded-full bg-gradient-to-r from-blush-500 to-blush-400 text-white font-bold text-base shadow-lg shadow-blush-300/50 hover:shadow-xl active:scale-[0.99] transition flex items-center justify-center gap-2.5 cursor-pointer">
             <span class="w-6 h-6 rounded-full bg-white text-blush-500 text-xs font-extrabold flex items-center justify-center">1</span>
             <span>Confirmar Asistencia</span>
           </button>
-          <button type="button" onclick="goToStep(5)" class="w-full sm:w-auto px-7 py-4 rounded-full bg-white border-2 border-gold-400 text-plum-900 font-bold text-base hover:bg-gold-100/70 transition flex items-center justify-center gap-2.5 shadow-sm cursor-pointer">
+          <button type="button" onclick="goToStep(5)" class="w-full sm:w-auto px-7 py-4 rounded-full bg-white border-2 border-gold-400 text-plum-900 font-bold text-base hover:bg-gold-100/70 active:scale-[0.99] transition flex items-center justify-center gap-2.5 shadow-sm cursor-pointer">
             <span class="w-6 h-6 rounded-full bg-gold-400 text-plum-900 text-xs font-extrabold flex items-center justify-center">2</span>
             <span>Elegir Regalo</span>
           </button>
@@ -744,7 +748,7 @@
               <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-gold-500 flex items-center gap-1.5">
                 🎁 Regalo obligatorio seleccionado para Zoe:
               </span>
-              <button type="button" onclick="openGiftPickerPopup()" class="px-4 py-2 rounded-full bg-blush-500 text-white text-xs sm:text-sm font-bold hover:bg-blush-400 transition shadow-sm">
+              <button type="button" onclick="openGiftPickerPopup()" class="px-4 py-2 rounded-full bg-blush-500 text-white text-xs sm:text-sm font-bold hover:bg-blush-400 active:scale-95 transition shadow-sm">
                 Elegir Regalo Aquí
               </button>
             </div>
@@ -767,7 +771,8 @@
 
           <button
             type="submit"
-            class="w-full py-5 px-8 rounded-full bg-gradient-to-r from-plum-900 via-plum-800 to-plum-900 text-ivory font-bold text-base sm:text-lg shadow-xl hover:shadow-gold-glow hover:-translate-y-0.5 transition duration-200 flex items-center justify-center gap-2.5 cursor-pointer"
+            id="rsvp-submit-btn"
+            class="w-full py-5 px-8 rounded-full bg-gradient-to-r from-plum-900 via-plum-800 to-plum-900 text-ivory font-bold text-base sm:text-lg shadow-xl hover:shadow-gold-glow active:scale-[0.99] transition duration-150 flex items-center justify-center gap-2.5 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
           >
             <span>Enviar mi Confirmación Ahora</span>
             <svg class="w-6 h-6 text-gold-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
@@ -891,7 +896,7 @@
           </select>
         </div>
 
-        <button type="button" onclick="confirmGiftSelection()" class="w-full py-4 rounded-full bg-gradient-to-r from-blush-500 to-blush-400 text-white font-bold text-base shadow-lg hover:shadow-xl transition">
+        <button type="button" id="confirm-gift-submit-btn" onclick="confirmGiftSelection()" class="w-full py-4 rounded-full bg-gradient-to-r from-blush-500 to-blush-400 text-white font-bold text-base shadow-lg hover:shadow-xl active:scale-[0.99] transition disabled:opacity-60 disabled:cursor-not-allowed">
           Confirmar y Apartar Regalo
         </button>
       </div>
@@ -1084,7 +1089,7 @@
           <h3 class="font-serif text-3xl sm:text-4xl font-bold text-plum-900">Panel de los Papás</h3>
         </div>
         <div class="flex flex-wrap items-center gap-2.5">
-          <button type="button" onclick="resetAllEventData()" class="px-4 py-2.5 rounded-xl bg-red-600 text-white text-xs sm:text-sm font-bold shadow hover:bg-red-700 transition">
+          <button type="button" id="reset-all-btn" onclick="resetAllEventData()" class="px-4 py-2.5 rounded-xl bg-red-600 text-white text-xs sm:text-sm font-bold shadow hover:bg-red-700 transition">
             🗑️ Vaciar Todo e Iniciar en Cero
           </button>
           <button type="button" onclick="exportGuestsCSV()" class="px-4 py-2.5 rounded-xl bg-emerald-600 text-white text-xs sm:text-sm font-bold shadow hover:bg-emerald-700 transition">
@@ -1222,7 +1227,7 @@
     ];
 
     function buildFreshGifts() {
-      return JSON.parse(JSON.stringify(INITIAL_GIFTS)).map(g => ({ ...g, claimedBy: [] }));
+      return INITIAL_GIFTS.map(g => ({ ...g, claimedBy: [] }));
     }
 
     let appState = {
@@ -1234,6 +1239,17 @@
       activeCategory: "todos",
       selectedGiftForModal: null
     };
+
+    let isSubmittingGift = false;
+    let isSubmittingRsvp = false;
+    let isFetchingCloud = false;
+    let lastRenderedSignature = "";
+
+    function fetchWithTimeout(url, options = {}, timeoutMs = 3500) {
+      const controller = new AbortController();
+      const id = setTimeout(() => controller.abort(), timeoutMs);
+      return fetch(url, { ...options, signal: controller.signal }).finally(() => clearTimeout(id));
+    }
 
     const STORAGE_KEY = "zoe_isabella_babyshower_v2";
     const CUSTOM_RTDB_KEY = "zoe_isabella_rtdb_url";
@@ -1248,15 +1264,14 @@
       broadcastChannel.onmessage = (event) => {
         if (event.data && event.data.type === "STATE_UPDATED") {
           loadFromLocal();
-          renderAll();
-          showToast("¡Actualización recibida en tiempo real!");
+          renderAll(true);
         }
       };
     }
 
     async function initStorage() {
       loadFromLocal();
-      renderAll();
+      renderAll(true);
 
       if (customRtdbUrl) {
         startCustomRtdbSync();
@@ -1312,7 +1327,8 @@
     }
 
     async function fetchCustomRtdb() {
-      if (!customRtdbUrl) return;
+      if (!customRtdbUrl || isFetchingCloud) return;
+      isFetchingCloud = true;
       try {
         const cleanUrl = customRtdbUrl.replace(/\/$/, "");
         const isAppsScript = cleanUrl.includes("script.google.com");
@@ -1321,7 +1337,7 @@
           ? `${cleanUrl}${separator}t=${Date.now()}`
           : `${cleanUrl}/babyshower_zoe.json?t=${Date.now()}`;
 
-        const res = await fetch(endpoint, { cache: "no-store" });
+        const res = await fetchWithTimeout(endpoint, { cache: "no-store" }, 3500);
         if (res.ok) {
           const data = await res.json();
           if (data && typeof data === "object") {
@@ -1340,7 +1356,7 @@
               appState.lastConfirmedGuest = null;
               appState.currentSessionGifts = [];
               saveToLocal(false);
-              renderAll();
+              renderAll(true);
               setSyncStatus("En vivo");
               return;
             }
@@ -1371,22 +1387,24 @@
               appState.rsvps = Array.from(byId.values());
             }
             saveToLocal(false);
-            renderAll();
+            renderAll(false);
             setSyncStatus("En vivo");
           }
         }
       } catch (e) {
         console.warn("Cloud fetch warning:", e);
+      } finally {
+        isFetchingCloud = false;
       }
     }
 
     function startCustomRtdbSync() {
       fetchCustomRtdb();
       if (window._cloudSyncInterval) clearInterval(window._cloudSyncInterval);
-      window._cloudSyncInterval = setInterval(fetchCustomRtdb, 2000);
+      window._cloudSyncInterval = setInterval(fetchCustomRtdb, 4000);
     }
 
-    window.saveCustomCloudUrl = async function() {
+    window.saveCustomCloudUrl = function() {
       const input = document.getElementById("firebase-db-url-input");
       const url = (input ? input.value : customRtdbUrl || "").trim();
       if (!url || !url.startsWith("http")) {
@@ -1395,16 +1413,16 @@
       }
       customRtdbUrl = url.replace(/\/$/, "");
       localStorage.setItem(CUSTOM_RTDB_KEY, customRtdbUrl);
-      await persistState();
+      persistState();
       startCustomRtdbSync();
       const badge = document.getElementById("cloud-status-badge");
       if (badge) badge.textContent = "✅ Conectado en tiempo real: " + customRtdbUrl;
       showToast("¡Base de datos conectada!");
     };
 
-    window.testCloudConnectionNow = async function() {
-      await window.saveCustomCloudUrl();
-      await fetchCustomRtdb();
+    window.testCloudConnectionNow = function() {
+      window.saveCustomCloudUrl();
+      fetchCustomRtdb();
       showToast("Prueba enviada a la nube / hoja de cálculo.");
     };
 
@@ -1453,9 +1471,9 @@
       }
     }
 
-    async function persistState() {
+    function persistState() {
       saveToLocal(true);
-      renderAll();
+      renderAll(true);
 
       const payload = {
         gifts: appState.gifts.map(g => ({ id: g.id, claimedBy: g.claimedBy })),
@@ -1466,53 +1484,54 @@
       };
 
       if (customRtdbUrl) {
-        try {
-          const cleanUrl = customRtdbUrl.replace(/\/$/, "");
-          const isAppsScript = cleanUrl.includes("script.google.com");
-          if (isAppsScript) {
-            await fetch(cleanUrl, {
-              method: "POST",
-              mode: "no-cors",
-              cache: "no-store",
-              headers: { "Content-Type": "text/plain;charset=utf-8" },
-              body: JSON.stringify(payload)
-            });
-            try {
-              const encoded = encodeURIComponent(JSON.stringify(payload));
-              if (encoded.length < 7500) {
-                const sep = cleanUrl.includes("?") ? "&" : "?";
-                await fetch(`${cleanUrl}${sep}action=sync&data=${encoded}&t=${Date.now()}`, {
-                  method: "GET",
-                  mode: "no-cors",
-                  cache: "no-store"
-                });
+        (async () => {
+          try {
+            const cleanUrl = customRtdbUrl.replace(/\/$/, "");
+            const isAppsScript = cleanUrl.includes("script.google.com");
+            if (isAppsScript) {
+              await fetchWithTimeout(cleanUrl, {
+                method: "POST",
+                mode: "no-cors",
+                cache: "no-store",
+                headers: { "Content-Type": "text/plain;charset=utf-8" },
+                body: JSON.stringify(payload)
+              }, 4000);
+              try {
+                const encoded = encodeURIComponent(JSON.stringify(payload));
+                if (encoded.length < 7500) {
+                  const sep = cleanUrl.includes("?") ? "&" : "?";
+                  await fetchWithTimeout(`${cleanUrl}${sep}action=sync&data=${encoded}&t=${Date.now()}`, {
+                    method: "GET",
+                    mode: "no-cors",
+                    cache: "no-store"
+                  }, 4000);
+                }
+              } catch (getErr) {
+                console.warn("GET sync fallback warning:", getErr);
               }
-            } catch (getErr) {
-              console.warn("GET sync fallback warning:", getErr);
+            } else {
+              await fetchWithTimeout(`${cleanUrl}/babyshower_zoe.json`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+              }, 4000);
             }
-            setTimeout(fetchCustomRtdb, 900);
-          } else {
-            await fetch(`${cleanUrl}/babyshower_zoe.json`, {
-              method: "PUT",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(payload)
-            });
+          } catch (e) {
+            setSyncStatus("🔴 Error guardando en nube", "text-blush-500");
+            console.warn("Cloud write error:", e);
           }
-        } catch (e) {
-          setSyncStatus("🔴 Error guardando en nube", "text-blush-500");
-          console.warn("Cloud write error:", e);
-        }
+        })();
       }
 
       if (useCloud && db) {
         try {
           const stateDocRef = doc(db, "artifacts", appId, "public", "data", "babyshower", "mainState");
-          await setDoc(stateDocRef, {
+          setDoc(stateDocRef, {
             gifts: appState.gifts.map(g => ({ id: g.id, claimedBy: g.claimedBy })),
             rsvps: appState.rsvps,
             resetAt: appState.resetAt || 0,
             updatedAt: new Date().toISOString()
-          });
+          }).catch(e => console.warn("Cloud write error:", e));
         } catch (e) {
           console.warn("Cloud write error:", e);
         }
@@ -1609,7 +1628,7 @@
         const claimedNames = [...new Set(gift.claimedBy)].join(", ");
 
         return `
-          <div class="rounded-3xl p-6 transition duration-300 flex flex-col justify-between ${
+          <div class="rounded-3xl p-6 transition duration-200 flex flex-col justify-between ${
             isSoldOut
               ? "bg-cream/60 border border-gold-200/50 opacity-75"
               : "glass-card shadow-luxury hover:-translate-y-1 border border-gold-300/60"
@@ -1637,7 +1656,7 @@
                   ? `<div class="w-full py-3 px-4 rounded-xl bg-blush-50 text-blush-500 text-xs font-semibold text-center">
                        Ya fue elegido${claimedNames ? ` por ${claimedNames}` : ""} ✨
                      </div>`
-                  : `<button type="button" onclick="openGiftModal('${gift.id}')" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-plum-900 to-plum-800 text-ivory text-xs sm:text-sm font-semibold hover:shadow-gold-glow transition flex items-center justify-center gap-2">
+                  : `<button type="button" onclick="openGiftModal('${gift.id}')" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-plum-900 to-plum-800 text-ivory text-xs sm:text-sm font-semibold hover:shadow-gold-glow active:scale-[0.98] transition flex items-center justify-center gap-2">
                        <span>Elegir este Regalo</span>
                        <svg class="w-4 h-4 text-gold-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                          <path d="M12 5v14M5 12h14" stroke-linecap="round"/>
@@ -1698,8 +1717,7 @@
       `).join("");
     }
 
-    window.openGiftModal = async function(giftId) {
-      await fetchCustomRtdb();
+    window.openGiftModal = function(giftId) {
       const gift = appState.gifts.find(g => g.id === giftId);
       if (!gift) return;
 
@@ -1733,6 +1751,7 @@
       const modal = document.getElementById("gift-modal");
       modal.classList.remove("hidden");
       modal.classList.add("flex");
+      fetchCustomRtdb();
     };
 
     window.closeGiftModal = function() {
@@ -1741,55 +1760,70 @@
       modal.classList.remove("flex");
     };
 
-    window.confirmGiftSelection = async function() {
+    window.confirmGiftSelection = function() {
+      if (isSubmittingGift) return;
+
       const guestName = document.getElementById("modal-gift-guest-name").value.trim();
       if (!guestName) {
         showToast("Por favor escribe tu nombre para apartar el regalo.");
         return;
       }
 
-      await fetchCustomRtdb();
+      const btn = document.getElementById("confirm-gift-submit-btn");
+      isSubmittingGift = true;
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = "Apartando regalo...";
+      }
 
-      const giftId = appState.selectedGiftForModal?.id;
-      const gift = appState.gifts.find(g => g.id === giftId);
-      if (!gift) return;
+      try {
+        const giftId = appState.selectedGiftForModal?.id;
+        const gift = appState.gifts.find(g => g.id === giftId);
+        if (!gift) return;
 
-      const qty = parseInt(document.getElementById("modal-gift-qty").value || "1", 10);
-      const remaining = gift.unlimited ? 99 : Math.max(0, gift.totalQty - gift.claimedBy.length);
+        const qty = parseInt(document.getElementById("modal-gift-qty").value || "1", 10);
+        const remaining = gift.unlimited ? 99 : Math.max(0, gift.totalQty - gift.claimedBy.length);
 
-      if (!gift.unlimited && remaining <= 0) {
-        const who = gift.claimedBy[0] ? ` por ${gift.claimedBy[0]}` : "";
+        if (!gift.unlimited && remaining <= 0) {
+          const who = gift.claimedBy[0] ? ` por ${gift.claimedBy[0]}` : "";
+          closeGiftModal();
+          renderGifts();
+          showToast(`¡Uy! Alguien acaba de apartar "${gift.name}"${who}. Por favor elige otro regalo.`);
+          return;
+        }
+
+        if (!gift.unlimited && qty > remaining) {
+          showToast(`Solo quedan ${remaining} unidad(es) disponibles de este regalo.`);
+          return;
+        }
+
+        for (let i = 0; i < qty; i++) {
+          gift.claimedBy.push(guestName);
+        }
+
+        const rsvpNameInput = document.getElementById("guest-name");
+        if (!rsvpNameInput.value.trim()) {
+          rsvpNameInput.value = guestName;
+        }
+
+        appState.currentSessionGifts.push({ id: gift.id, name: gift.name, qty });
+
+        persistState();
         closeGiftModal();
-        renderGifts();
-        showToast(`¡Uy! Alguien acaba de apartar "${gift.name}"${who}. Por favor elige otro regalo.`);
-        return;
-      }
+        showToast(`¡Gracias ${guestName}! Apartaste: ${gift.name}`);
 
-      if (!gift.unlimited && qty > remaining) {
-        showToast(`Solo quedan ${remaining} unidad(es) disponibles de este regalo.`);
-        return;
-      }
-
-      for (let i = 0; i < qty; i++) {
-        gift.claimedBy.push(guestName);
-      }
-
-      const rsvpNameInput = document.getElementById("guest-name");
-      if (!rsvpNameInput.value.trim()) {
-        rsvpNameInput.value = guestName;
-      }
-
-      appState.currentSessionGifts.push({ id: gift.id, name: gift.name, qty });
-
-      await persistState();
-      closeGiftModal();
-      showToast(`¡Gracias ${guestName}! Apartaste: ${gift.name}`);
-
-      const alreadyConfirmed = appState.rsvps.some(r => r.name.toLowerCase() === guestName.toLowerCase());
-      if (!alreadyConfirmed) {
-        setTimeout(() => {
-          goToStep(4);
-        }, 650);
+        const alreadyConfirmed = appState.rsvps.some(r => r.name.toLowerCase() === guestName.toLowerCase());
+        if (!alreadyConfirmed) {
+          setTimeout(() => {
+            goToStep(4);
+          }, 350);
+        }
+      } finally {
+        isSubmittingGift = false;
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = "Confirmar y Apartar Regalo";
+        }
       }
     };
 
@@ -1807,7 +1841,7 @@
       closeVipModal();
       setTimeout(() => {
         goToStep(5);
-      }, 250);
+      }, 150);
     };
 
     window.openHelpModal = function() {
@@ -1860,7 +1894,7 @@
       if (targetId) {
         const el = document.getElementById(targetId);
         if (el) {
-          setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "start" }), 80);
+          requestAnimationFrame(() => el.scrollIntoView({ behavior: "smooth", block: "start" }));
         }
       }
     };
@@ -1908,7 +1942,7 @@
               </div>
               <p class="font-serif italic text-sm text-plum-800/80">"${g.quote}"</p>
             </div>
-            <button type="button" onclick="closeGiftPickerPopup(); openGiftModal('${g.id}');" class="w-full py-2.5 rounded-xl bg-plum-900 text-ivory text-xs font-bold hover:bg-plum-800 transition">
+            <button type="button" onclick="closeGiftPickerPopup(); openGiftModal('${g.id}');" class="w-full py-2.5 rounded-xl bg-plum-900 text-ivory text-xs font-bold hover:bg-plum-800 active:scale-[0.98] transition">
               Apartar ${g.name}
             </button>
           </div>
@@ -2043,8 +2077,10 @@
       }
     };
 
-    document.getElementById("rsvp-form").addEventListener("submit", async (e) => {
+    document.getElementById("rsvp-form").addEventListener("submit", (e) => {
       e.preventDefault();
+      if (isSubmittingRsvp) return;
+
       const name = document.getElementById("guest-name").value.trim();
       const attending = document.querySelector('input[name="attending"]:checked').value;
       const guestsCount = attending === "si" ? parseInt(document.getElementById("guests-count").value, 10) : 0;
@@ -2055,73 +2091,101 @@
         return;
       }
 
-      await fetchCustomRtdb();
-
-      const previouslyClaimed = appState.gifts
-        .filter(g => g.claimedBy.some(person => person.toLowerCase() === name.toLowerCase()))
-        .map(g => g.name);
-
-      const sessionGiftNames = appState.currentSessionGifts
-        .filter(item => {
-          const g = appState.gifts.find(x => x.id === item.id);
-          if (!g) return false;
-          if (g.unlimited) return true;
-          return g.claimedBy.includes(name);
-        })
-        .map(g => `${g.name}${g.qty > 1 ? ` (x${g.qty})` : ""}`);
-
-      const allGuestGifts = [...new Set([...sessionGiftNames, ...previouslyClaimed])];
-
-      if (allGuestGifts.length === 0) {
-        showToast("El regalo elegido ya fue tomado por alguien más o falta elegir uno. Elige uno disponible.");
-        openGiftPickerPopup();
-        return;
+      const submitBtn = document.getElementById("rsvp-submit-btn");
+      isSubmittingRsvp = true;
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<span>Enviando confirmación...</span>`;
       }
 
-      const giftsLabel = allGuestGifts.join(", ");
+      try {
+        const alreadyExists = appState.rsvps.find(
+          r => r.name.trim().toLowerCase() === name.toLowerCase() && r.attending === attending
+        );
+        if (alreadyExists) {
+          appState.lastConfirmedGuest = alreadyExists;
+          openMyConfirmationModal();
+          showToast("¡Tu confirmación ya estaba registrada!");
+          return;
+        }
 
-      const newEntry = {
-        id: "rsvp_" + Date.now(),
-        name,
-        attending,
-        guestsCount,
-        gifts: giftsLabel,
-        message,
-        createdAt: new Date().toLocaleDateString("es-CO")
-      };
+        const previouslyClaimed = appState.gifts
+          .filter(g => g.claimedBy.some(person => person.toLowerCase() === name.toLowerCase()))
+          .map(g => g.name);
 
-      appState.rsvps.push(newEntry);
-      appState.lastConfirmedGuest = newEntry;
-      await persistState();
+        const sessionGiftNames = appState.currentSessionGifts
+          .filter(item => {
+            const g = appState.gifts.find(x => x.id === item.id);
+            if (!g) return false;
+            if (g.unlimited) return true;
+            return g.claimedBy.some(person => person.toLowerCase() === name.toLowerCase());
+          })
+          .map(g => `${g.name}${g.qty > 1 ? ` (x${g.qty})` : ""}`);
 
-      document.getElementById("ticket-name").textContent = name;
-      document.getElementById("ticket-status").textContent = attending === "si"
-        ? `Confirmado (${guestsCount} ${guestsCount === 1 ? "cupo" : "cupos"})`
-        : "No asiste (Envía buenos deseos)";
-      document.getElementById("ticket-gift").textContent = giftsLabel;
+        const allGuestGifts = [...new Set([...sessionGiftNames, ...previouslyClaimed])];
 
-      const msgBox = document.getElementById("ticket-message-box");
-      if (message) {
-        msgBox.classList.remove("hidden");
-        document.getElementById("ticket-message").textContent = `"${message}"`;
-      } else {
-        msgBox.classList.add("hidden");
+        if (allGuestGifts.length === 0) {
+          showToast("El regalo elegido ya fue tomado por alguien más o falta elegir uno. Elige uno disponible.");
+          openGiftPickerPopup();
+          return;
+        }
+
+        const giftsLabel = allGuestGifts.join(", ");
+
+        const newEntry = {
+          id: "rsvp_" + Date.now(),
+          name,
+          attending,
+          guestsCount,
+          gifts: giftsLabel,
+          message,
+          createdAt: new Date().toLocaleDateString("es-CO")
+        };
+
+        appState.rsvps.push(newEntry);
+        appState.lastConfirmedGuest = newEntry;
+        persistState();
+
+        document.getElementById("ticket-name").textContent = name;
+        document.getElementById("ticket-status").textContent = attending === "si"
+          ? `Confirmado (${guestsCount} ${guestsCount === 1 ? "cupo" : "cupos"})`
+          : "No asiste (Envía buenos deseos)";
+        document.getElementById("ticket-gift").textContent = giftsLabel;
+
+        const msgBox = document.getElementById("ticket-message-box");
+        if (message) {
+          msgBox.classList.remove("hidden");
+          document.getElementById("ticket-message").textContent = `"${message}"`;
+        } else {
+          msgBox.classList.add("hidden");
+        }
+
+        document.getElementById("vip-gift-nudge").classList.add("hidden");
+
+        const vipModal = document.getElementById("vip-modal");
+        vipModal.classList.remove("hidden");
+        vipModal.classList.add("flex");
+
+        e.target.reset();
+        document.getElementById("guests-count").value = "1";
+        document.getElementById("guests-count-display").textContent = "1";
+        document.getElementById("guests-count-label").textContent = "persona (Solo yo)";
+        document.getElementById("guests-count-wrapper").classList.remove("opacity-40", "pointer-events-none");
+        appState.currentSessionGifts = [];
+        updateRegistryStats();
+        showToast("¡Confirmación enviada y guardada con éxito!");
+      } finally {
+        isSubmittingRsvp = false;
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = `
+            <span>Enviar mi Confirmación Ahora</span>
+            <svg class="w-6 h-6 text-gold-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          `;
+        }
       }
-
-      document.getElementById("vip-gift-nudge").classList.add("hidden");
-
-      const vipModal = document.getElementById("vip-modal");
-      vipModal.classList.remove("hidden");
-      vipModal.classList.add("flex");
-
-      e.target.reset();
-      document.getElementById("guests-count").value = "1";
-      document.getElementById("guests-count-display").textContent = "1";
-      document.getElementById("guests-count-label").textContent = "persona (Solo yo)";
-      document.getElementById("guests-count-wrapper").classList.remove("opacity-40", "pointer-events-none");
-      appState.currentSessionGifts = [];
-      updateRegistryStats();
-      showToast("¡Confirmación enviada y guardada con éxito!");
     });
 
     document.querySelectorAll('input[name="attending"]').forEach(radio => {
@@ -2161,7 +2225,7 @@
       const modal = document.getElementById("admin-login-modal");
       modal.classList.remove("hidden");
       modal.classList.add("flex");
-      setTimeout(() => document.getElementById("admin-pin-input").focus(), 100);
+      setTimeout(() => document.getElementById("admin-pin-input").focus(), 60);
     };
 
     window.closeAdminLogin = function() {
@@ -2292,7 +2356,7 @@
       }).join("");
     };
 
-    window.deleteRsvp = async function(id) {
+    window.deleteRsvp = function(id) {
       const target = appState.rsvps.find(r => r.id === id);
       if (target && target.name) {
         const targetLower = target.name.trim().toLowerCase();
@@ -2305,16 +2369,30 @@
         appState.lastConfirmedGuest = null;
       }
       appState.resetAt = Date.now();
-      await persistState();
+      persistState();
       renderAdminTables();
       showToast("Invitado eliminado y regalos liberados.");
     };
 
-    window.resetAllEventData = async function() {
-      const firstCheck = window.confirm("⚠️ ¿Estás seguro de que quieres BORRAR TODOS los invitados, mensajes y regalos apartados para iniciar la página en cero?");
-      if (!firstCheck) return;
-      const secondCheck = window.confirm("Confirma nuevamente: se vaciarán todos los registros de la web y de la hoja de cálculo para dejar todo limpio.");
-      if (!secondCheck) return;
+    let resetConfirmStep = 0;
+    let resetConfirmTimer = null;
+
+    window.resetAllEventData = function() {
+      const btn = document.getElementById("reset-all-btn");
+      if (resetConfirmStep === 0) {
+        resetConfirmStep = 1;
+        if (btn) btn.textContent = "⚠️ Toca de nuevo para confirmar borrado total";
+        clearTimeout(resetConfirmTimer);
+        resetConfirmTimer = setTimeout(() => {
+          resetConfirmStep = 0;
+          if (btn) btn.textContent = "🗑️ Vaciar Todo e Iniciar en Cero";
+        }, 4500);
+        return;
+      }
+
+      clearTimeout(resetConfirmTimer);
+      resetConfirmStep = 0;
+      if (btn) btn.textContent = "🗑️ Vaciar Todo e Iniciar en Cero";
 
       appState.gifts = buildFreshGifts();
       appState.rsvps = [];
@@ -2326,17 +2404,17 @@
         localStorage.removeItem(STORAGE_KEY);
       } catch (e) {}
 
-      await persistState();
+      persistState();
       renderAdminTables();
       showToast("✅ Todo fue vaciado correctamente. El evento inició en cero.");
     };
 
-    window.releaseGiftUnit = async function(giftId) {
+    window.releaseGiftUnit = function(giftId) {
       const gift = appState.gifts.find(g => g.id === giftId);
       if (gift && gift.claimedBy.length > 0) {
         gift.claimedBy.pop();
         appState.resetAt = Date.now();
-        await persistState();
+        persistState();
         renderAdminTables();
         showToast("Unidad liberada nuevamente en la boutique.");
       }
@@ -2428,7 +2506,7 @@
         height = canvas.height = window.innerHeight;
       });
 
-      const particles = Array.from({ length: 28 }, () => ({
+      const particles = Array.from({ length: 22 }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
         r: Math.random() * 4 + 2,
@@ -2569,7 +2647,7 @@
       document.getElementById("toast-msg").textContent = msg;
       toast.classList.remove("hidden");
       clearTimeout(window._toastTimer);
-      window._toastTimer = setTimeout(() => toast.classList.add("hidden"), 3800);
+      window._toastTimer = setTimeout(() => toast.classList.add("hidden"), 3400);
     }
 
     function escapeHTML(str) {
@@ -2580,7 +2658,17 @@
         .replace(/"/g, "&quot;");
     }
 
-    function renderAll() {
+    function renderAll(force = false) {
+      const sig = JSON.stringify({
+        g: appState.gifts.map(x => [x.id, x.claimedBy]),
+        r: appState.rsvps.map(x => [x.id, x.name, x.attending, x.guestsCount, x.gifts, x.message]),
+        c: appState.activeCategory,
+        s: appState.currentSessionGifts,
+        l: appState.lastConfirmedGuest?.id || null
+      });
+      if (!force && sig === lastRenderedSignature) return;
+      lastRenderedSignature = sig;
+
       renderGifts();
       updateRegistryStats();
       renderWishesWall();
