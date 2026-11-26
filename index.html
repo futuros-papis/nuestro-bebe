@@ -1308,25 +1308,36 @@
       try {
         const cleanUrl = customRtdbUrl.replace(/\/$/, "");
         const isAppsScript = cleanUrl.includes("script.google.com");
-        const endpoint = isAppsScript ? cleanUrl : `${cleanUrl}/babyshower_zoe.json`;
-        const res = await fetch(endpoint);
+        const separator = cleanUrl.includes("?") ? "&" : "?";
+        const endpoint = isAppsScript
+          ? `${cleanUrl}${separator}t=${Date.now()}`
+          : `${cleanUrl}/babyshower_zoe.json?t=${Date.now()}`;
+
+        const res = await fetch(endpoint, {
+          method: "GET",
+          cache: "no-store"
+        });
+
         if (res.ok) {
           const data = await res.json();
-          if (data) {
-            if (data.gifts) appState.gifts = mergeGiftCatalog(data.gifts);
-            if (data.rsvps) appState.rsvps = data.rsvps;
+          if (data && (Array.isArray(data.gifts) || Array.isArray(data.rsvps))) {
+            if (Array.isArray(data.gifts)) appState.gifts = mergeGiftCatalog(data.gifts);
+            if (Array.isArray(data.rsvps)) appState.rsvps = data.rsvps;
             saveToLocal(false);
             renderAll();
+            setSyncStatus("🟢 Sincronizado con Google Sheets", "text-emerald-700");
           }
         }
       } catch (e) {
+        setSyncStatus("🟡 Revisando conexión con Hoja...", "text-amber-700");
         console.warn("RTDB/Sheet fetch warning:", e);
       }
     }
 
     function startCustomRtdbSync() {
       fetchCustomRtdb();
-      setInterval(fetchCustomRtdb, 5000);
+      if (window._cloudSyncInterval) clearInterval(window._cloudSyncInterval);
+      window._cloudSyncInterval = setInterval(fetchCustomRtdb, 3500);
     }
 
     window.saveCustomCloudUrl = async function() {
@@ -1375,6 +1386,13 @@
       } catch (e) {}
     }
 
+    function setSyncStatus(text, colorClass) {
+      const badge = document.getElementById("live-sync-indicator");
+      if (!badge) return;
+      badge.className = `inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white border border-gold-200 text-[11px] font-bold ${colorClass}`;
+      badge.innerHTML = `<span>${text}</span>`;
+    }
+
     async function persistState() {
       saveToLocal(true);
       renderAll();
@@ -1392,9 +1410,11 @@
             await fetch(cleanUrl, {
               method: "POST",
               mode: "no-cors",
+              cache: "no-store",
               headers: { "Content-Type": "text/plain;charset=utf-8" },
               body: JSON.stringify(payload)
             });
+            setTimeout(fetchCustomRtdb, 900);
           } else {
             await fetch(`${cleanUrl}/babyshower_zoe.json`, {
               method: "PUT",
@@ -1403,6 +1423,7 @@
             });
           }
         } catch (e) {
+          setSyncStatus("🔴 Error guardando en nube", "text-blush-500");
           console.warn("Cloud write error:", e);
         }
       }
