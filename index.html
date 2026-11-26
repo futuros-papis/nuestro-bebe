@@ -648,6 +648,19 @@
 
         <!-- Embedded Interactive Map -->
         <div class="lg:col-span-7">
+          <div class="rounded-3xl overflow-hidden border border-gold-300/80 shadow-md h-72 sm:h-80 bg-cream">
+            <iframe
+              title="Mapa Conjunto Rosales de Nueva Castilla - Calle 7 #90-81"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-74.162%2C4.635%2C-74.142%2C4.652&layer=mapnik&marker=4.6435%2C-74.152"
+              class="w-full h-full border-0"
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ==================== RSVP & CONFIRMATION SECTION (STEP 1 - ULTRA CLEAR FOR ALL AGES) ==================== -->
   <section id="rsvp" class="relative z-10 py-14 sm:py-20 px-4 sm:px-6">
     <div class="max-w-3xl mx-auto">
@@ -827,69 +840,75 @@
   </section>
 
   <!-- ==================== GUEST WISHES WALL ==================== -->
-        <div class="mt-5 pt-4 border-t border-dashed border-gold-300 flex items-center justify-between text-xs text-plum-800">
-          <span>¡Te esperamos con mucha ilusión!</span>
-          <button onclick="downloadICS()" class="font-bold text-gold-500 underline">+ Guardar en Calendario</button>
-        </div>
+  <section id="deseos" class="relative z-10 py-14 sm:py-20 px-4 sm:px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-10 space-y-2">
+        <span class="text-xs uppercase tracking-[0.26em] text-gold-500 font-semibold">Libro de Firmas Digital</span>
+        <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-plum-900">Deseos para Zoe Isabella</h2>
       </div>
-
-      <!-- Prompt to pick a gift if they haven't chosen one yet -->
-      <div id="vip-gift-nudge" class="bg-white/95 rounded-2xl p-4 border border-gold-300 text-center space-y-2.5 shadow-lg">
-        <p class="text-sm font-semibold text-plum-900">¿Deseas apartar de una vez tu regalo para Zoe Isabella?</p>
-        <button onclick="goToGiftsFromTicket()" class="w-full py-3 px-4 rounded-xl bg-blush-500 text-white font-bold text-sm hover:bg-blush-400 transition">
-          Ir a Elegir mi Regalo →
-        </button>
+      <div id="wishes-wall" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Populated dynamically via JS -->
       </div>
+    </div>
+  </section>
 
-      <div class="flex gap-3">
-        <button onclick="window.print()" class="flex-1 py-3.5 rounded-full bg-gold-400 text-plum-900 font-bold text-sm shadow-lg hover:bg-gold-300 transition">
-          Guardar / Imprimir Pase
-        </button>
-        <button onclick="closeVipModal()" class="px-6 py-3.5 rounded-full bg-white text-plum-900 font-bold text-sm shadow-lg">
-          Listo
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="relative z-10 border-t border-gold-200/80 bg-ivory/90 py-10 px-4 sm:px-6 text-center">
+    <div class="max-w-4xl mx-auto space-y-3">
+      <p class="font-serif italic text-3xl font-bold text-plum-900">Zoe Isabella</p>
+      <p class="text-xs sm:text-sm text-plum-800/80">
+        Domingo 06 de Diciembre de 2026 • 2:00 PM • Conjunto Rosales de Nueva Castilla - Calle 7 #90-81 (Salón Comunal)
+      </p>
+      <div class="pt-2">
+        <button onclick="openAdminLogin()" class="text-xs text-gold-500 hover:text-plum-900 font-bold underline underline-offset-4">
+          Acceso Panel de Control Papás
         </button>
       </div>
     </div>
+  </footer>
+
+  <!-- Toast Notification Banner -->
+  <div id="toast" class="fixed top-20 right-4 z-50 hidden max-w-sm bg-plum-900 text-ivory px-5 py-3.5 rounded-2xl shadow-2xl border border-gold-300/60 flex items-center gap-3">
+    <span class="text-lg">✨</span>
+    <p id="toast-msg" class="text-xs sm:text-sm font-semibold"></p>
   </div>
 
-  <!-- ==================== MODAL 2B: EASY HELP GUIDE FOR SENIORS ==================== -->
-  <div id="help-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-plum-900/70 backdrop-blur-sm">
+  <!-- ==================== MODAL 1: CLAIM GIFT MODAL ==================== -->
+  <div id="gift-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-plum-900/70 backdrop-blur-sm">
     <div class="bg-ivory rounded-3xl max-w-md w-full p-7 shadow-2xl border-2 border-gold-300 relative space-y-5">
-      <button onclick="closeHelpModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-cream text-plum-900 font-bold flex items-center justify-center">✕</button>
-      <div class="text-center">
-        <span class="text-xs uppercase tracking-widest text-gold-500 font-bold">Guía Rápida</span>
-        <h3 class="font-serif text-3xl font-bold text-plum-900 mt-1">¿Cómo funciona la invitación?</h3>
+      <button onclick="closeGiftModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-cream text-plum-900 font-bold flex items-center justify-center">✕</button>
+      <div class="text-center space-y-1.5">
+        <span class="text-xs uppercase tracking-widest text-gold-500 font-bold">Apartar Detalle</span>
+        <h3 id="modal-gift-title" class="font-serif text-3xl font-bold text-plum-900">Regalo</h3>
+        <p id="modal-gift-quote" class="font-serif italic text-base text-plum-800/80"></p>
       </div>
 
-      <div class="space-y-4 text-sm sm:text-base text-plum-900">
-        <div class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-white border border-gold-200">
-          <span class="w-8 h-8 rounded-full bg-blush-500 text-white font-bold flex items-center justify-center shrink-0">1</span>
-          <div>
-            <p class="font-bold">Confirma tu asistencia</p>
-            <p class="text-xs sm:text-sm text-plum-800/80 mt-0.5">Escribe tu nombre, toca los botones <strong>+</strong> o <strong>−</strong> para elegir cuántas personas van y presiona <strong>"Confirmar mi Asistencia"</strong>.</p>
-          </div>
+      <div class="space-y-4">
+        <div>
+          <label for="modal-gift-guest-name" class="block text-xs font-bold uppercase tracking-wider text-plum-900 mb-1.5">
+            Tu Nombre Completo *
+          </label>
+          <input
+            type="text"
+            id="modal-gift-guest-name"
+            placeholder="Escribe tu nombre"
+            class="w-full px-4 py-3.5 rounded-2xl bg-white border border-gold-300 text-plum-900 text-base focus:outline-none focus:ring-2 focus:ring-blush-400"
+          />
         </div>
 
-        <div class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-white border border-gold-200">
-          <span class="w-8 h-8 rounded-full bg-gold-400 text-plum-900 font-bold flex items-center justify-center shrink-0">2</span>
-          <div>
-            <p class="font-bold">Elige un regalo (sin repetir)</p>
-            <p class="text-xs sm:text-sm text-plum-800/80 mt-0.5">Baja a la sección de regalos, toca <strong>"Elegir este Regalo"</strong> y escribe tu nombre para dejarlo apartado.</p>
-          </div>
+        <div id="modal-gift-qty-box" class="hidden">
+          <label for="modal-gift-qty" class="block text-xs font-bold uppercase tracking-wider text-plum-900 mb-1.5">
+            ¿Cuántas unidades deseas apartar?
+          </label>
+          <select id="modal-gift-qty" class="w-full px-4 py-3 rounded-2xl bg-white border border-gold-300 text-plum-900 text-sm">
+            <option value="1">1 unidad(es)</option>
+          </select>
         </div>
 
-        <div class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-white border border-gold-200">
-          <span class="w-8 h-8 rounded-full bg-plum-900 text-ivory font-bold flex items-center justify-center shrink-0">3</span>
-          <div>
-            <p class="font-bold">¿Cómo llegar al lugar?</p>
-            <p class="text-xs sm:text-sm text-plum-800/80 mt-0.5">Toca el botón negro <strong>"Abrir en Google Maps"</strong> en la sección de Lugar y Hora para que tu celular te guíe hasta la puerta.</p>
-          </div>
-        </div>
+        <button onclick="confirmGiftSelection()" class="w-full py-4 rounded-full bg-gradient-to-r from-blush-500 to-blush-400 text-white font-bold text-base shadow-lg hover:shadow-xl transition">
+          Confirmar y Apartar Regalo
+        </button>
       </div>
-
-      <button onclick="closeHelpModal()" class="w-full py-3.5 rounded-full bg-plum-900 text-ivory font-bold text-base">
-        ¡Entendido, gracias!
-      </button>
     </div>
   </div>
 
@@ -953,165 +972,11 @@
     </div>
   </div>
 
-  <!-- ==================== MODAL 3: PARENTS ADMIN LOGIN (PIN: 0122) ==================== -->
-  <div id="admin-login-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-plum-900/70 backdrop-blur-sm">
-    <div class="bg-ivory rounded-3xl max-w-sm w-full p-7 shadow-2xl border border-gold-300 text-center relative">
-      <button onclick="closeAdminLogin()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-cream text-plum-800 flex items-center justify-center">✕</button>
-      <div class="w-12 h-12 rounded-2xl bg-gold-100 text-gold-500 flex items-center justify-center mx-auto mb-3 border border-gold-300">
-        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-        </svg>
-      </div>
-      <h3 class="font-serif text-2xl font-semibold text-plum-900">Panel de Control Papás</h3>
-      <p class="text-xs text-plum-800/75 mt-1 mb-5">Ingresa la contraseña de acceso para ver invitados y regalos.</p>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-      <form onsubmit="verifyAdminPin(event)" class="space-y-4">
-        <input
-          type="password"
-          id="admin-pin-input"
-          maxlength="10"
-          placeholder="••••"
-          class="w-full text-center tracking-[0.5em] text-xl font-bold py-3 rounded-2xl bg-white border border-gold-300 focus:outline-none focus:ring-2 focus:ring-gold-400"
-        />
-        <p id="admin-pin-error" class="text-xs text-blush-500 font-semibold hidden">Contraseña incorrecta. Intenta de nuevo.</p>
-        <button type="submit" class="w-full py-3.5 rounded-full bg-plum-900 text-ivory font-semibold text-sm hover:bg-plum-800 transition">
-          Desbloquear Panel
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- ==================== MODAL 4: PARENTS FULL DASHBOARD ==================== -->
-  <div id="admin-dashboard-modal" class="fixed inset-0 z-50 hidden bg-plum-900/75 backdrop-blur-md overflow-y-auto p-3 sm:p-6">
-    <div class="max-w-6xl mx-auto bg-ivory rounded-[2rem] border border-gold-300 shadow-2xl overflow-hidden my-4">
-      <!-- Top Bar -->
-      <div class="bg-plum-900 text-ivory px-6 py-5 flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <span class="text-[10px] uppercase tracking-[0.25em] text-gold-300 font-semibold">Centro de Mando • Baby Shower</span>
-          <h2 class="font-serif text-2xl sm:text-3xl font-semibold">Panel de Zoe Isabella</h2>
-        </div>
-        <div class="flex items-center gap-2.5">
-          <button onclick="exportGuestsCSV()" class="px-4 py-2 rounded-full bg-gold-400 text-plum-900 text-xs font-bold hover:bg-gold-300 transition">
-            Exportar Lista (CSV)
-          </button>
-          <button onclick="closeAdminDashboard()" class="px-4 py-2 rounded-full bg-white/10 text-ivory text-xs font-semibold hover:bg-white/20 transition">
-            Cerrar Panel
-          </button>
-        </div>
-      </div>
-
-      <div class="p-6 sm:p-8 space-y-8">
-        <!-- KPI Summary Cards -->
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <div class="p-5 rounded-2xl bg-white border border-gold-200 shadow-sm">
-            <span class="text-xs text-plum-800/70 font-medium">Total Personas Confirmadas</span>
-            <p id="kpi-total-people" class="font-serif text-4xl font-bold text-plum-900 mt-1">0</p>
-            <span class="text-[11px] text-emerald-600 font-semibold">Asistentes totales</span>
-          </div>
-          <div class="p-5 rounded-2xl bg-white border border-gold-200 shadow-sm">
-            <span class="text-xs text-plum-800/70 font-medium">Familias / Invitados Sí</span>
-            <p id="kpi-families-yes" class="font-serif text-4xl font-bold text-blush-500 mt-1">0</p>
-            <span class="text-[11px] text-plum-800/60">Registros confirmados</span>
-          </div>
-          <div class="p-5 rounded-2xl bg-white border border-gold-200 shadow-sm">
-            <span class="text-xs text-plum-800/70 font-medium">No Asisten</span>
-            <p id="kpi-families-no" class="font-serif text-4xl font-bold text-plum-800 mt-1">0</p>
-            <span class="text-[11px] text-plum-800/60">Excusados</span>
-          </div>
-          <div class="p-5 rounded-2xl bg-white border border-gold-200 shadow-sm">
-            <span class="text-xs text-plum-800/70 font-medium">Regalos Apartados</span>
-            <p id="kpi-gifts-claimed" class="font-serif text-4xl font-bold text-gold-500 mt-1">0</p>
-            <span id="kpi-gifts-percent" class="text-[11px] text-gold-500 font-semibold">0% del inventario</span>
-          </div>
-        </div>
-
-        <!-- Tabs inside Admin -->
-        <div class="flex flex-wrap gap-2 border-b border-gold-200 pb-3">
-          <button onclick="switchAdminTab('guests')" id="tab-btn-guests" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-plum-900 text-ivory">
-            Lista de Asistentes
-          </button>
-          <button onclick="switchAdminTab('gifts')" id="tab-btn-gifts" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-plum-800 border border-gold-200">
-            Control de Regalos &amp; Stock
-          </button>
-          <button onclick="switchAdminTab('cloud')" id="tab-btn-cloud" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-plum-800 border border-gold-200">
-            ☁️ Conexión en la Nube
-          </button>
-        </div>
-
-        <!-- Tab 1: Guests Table -->
-        <div id="admin-tab-guests" class="space-y-4">
-          <div class="flex flex-col sm:flex-row justify-between gap-3">
-            <input type="text" id="admin-search-guest" oninput="renderAdminTables()" placeholder="Buscar invitado por nombre o regalo..." class="px-4 py-2.5 rounded-xl bg-white border border-gold-300 text-sm w-full sm:w-80" />
-          </div>
-
-          <div class="overflow-x-auto rounded-2xl border border-gold-200 bg-white">
-            <table class="w-full text-left border-collapse text-xs sm:text-sm">
-              <thead>
-                <tr class="bg-cream border-b border-gold-200 text-plum-900 uppercase text-[11px] tracking-wider">
-                  <th class="py-3.5 px-4">Invitado</th>
-                  <th class="py-3.5 px-4">Asistencia</th>
-                  <th class="py-3.5 px-4">Cupos</th>
-                  <th class="py-3.5 px-4">Regalo(s)</th>
-                  <th class="py-3.5 px-4">Mensaje para Zoe</th>
-                  <th class="py-3.5 px-4 text-right">Acción</th>
-                </tr>
-              </thead>
-              <tbody id="admin-guests-tbody" class="divide-y divide-gold-100">
-                <!-- Dynamic rows -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Tab 2: Gifts Inventory Manager -->
-        <div id="admin-tab-gifts" class="hidden space-y-4">
-          <p class="text-xs text-plum-800/75">Aquí puedes ver quién apartó cada regalo o liberar una unidad si alguien cambió de opinión.</p>
-          <div class="overflow-x-auto rounded-2xl border border-gold-200 bg-white">
-            <table class="w-full text-left border-collapse text-xs sm:text-sm">
-              <thead>
-                <tr class="bg-cream border-b border-gold-200 text-plum-900 uppercase text-[11px] tracking-wider">
-                  <th class="py-3.5 px-4">Artículo</th>
-                  <th class="py-3.5 px-4">Categoría</th>
-                  <th class="py-3.5 px-4">Disponibilidad</th>
-                  <th class="py-3.5 px-4">Apartado por</th>
-                  <th class="py-3.5 px-4 text-right">Gestión</th>
-                </tr>
-              </thead>
-              <tbody id="admin-gifts-tbody" class="divide-y divide-gold-100">
-                <!-- Dynamic rows -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Tab 3: Cloud Sync Configuration (Firebase Realtime Database URL) -->
-        <div id="admin-tab-cloud" class="hidden space-y-4">
-          <div class="p-5 rounded-2xl bg-white border border-gold-200 space-y-4">
-            <div>
-              <h4 class="font-serif text-2xl font-bold text-plum-900">Sincronización Compartida entre Todos los Invitados</h4>
-              <p class="text-xs sm:text-sm text-plum-800/80 mt-1">
-                Para que cuando la tía María aparte la <strong>Cuna</strong> en su celular, al primo Juan le salga bloqueada al instante en el suyo, pega aquí la URL de tu base de datos gratuita de <strong>Firebase Realtime Database</strong> (termina en <code>.firebaseio.com</code>):
-              </p>
-            </div>
-            <div class="flex flex-col sm:flex-row gap-3">
-              <input
-                type="url"
-                id="firebase-db-url-input"
-                placeholder="https://baby-shower-zoe-default-rtdb.firebaseio.com"
-                class="flex-1 px-4 py-3 rounded-xl bg-ivory border border-gold-300 text-sm"
-              />
-              <button onclick="saveCustomCloudUrl()" class="px-6 py-3 rounded-xl bg-plum-900 text-ivory font-bold text-sm hover:bg-plum-800 transition">
-                Conectar Base de Datos
-              </button>
-            </div>
-            <p id="cloud-status-badge" class="text-xs font-semibold text-gold-500">
-              Estado actual: Modo local activo (listo para conectar URL compartida).
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
     // Simple, Clear, Everyday Gift Names (Senior-Friendly, Zero Jargon)
     const INITIAL_GIFTS = [
       {
@@ -2215,13 +2080,16 @@
 
     window.openRoyalInvitation = function() {
       const overlay = document.getElementById("welcome-envelope-overlay");
-      overlay.classList.add("opened");
+      if (overlay) {
+        overlay.classList.add("opened");
+      }
       startLullabyLoop();
     };
 
     // Helpers
     function showToast(msg) {
       const toast = document.getElementById("toast");
+      if (!toast) return;
       document.getElementById("toast-msg").textContent = msg;
       toast.classList.remove("hidden");
       clearTimeout(window._toastTimer);
