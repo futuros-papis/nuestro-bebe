@@ -1,1034 +1,1844 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baby Shower de Zoe Isabella 🎀</title>
-    
-    <!-- PREVISUALIZACIÓN EN REDES SOCIALES (OPEN GRAPH / OG) -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="🎀 Baby Shower de Zoe Isabella | ¡Estás Invitado/a! ✨">
-    <meta property="og:description" content="Acompáñanos este domingo 6 de diciembre a celebrar la dulce espera de nuestra princesa Zoe Isabella. Confirma tu asistencia aquí.">
-    <meta property="og:image" content="https://futuros-papis.github.io/nuestro-bebe/visualizacion.jpeg">
-    <meta property="og:image:secure_url" content="https://futuros-papis.github.io/nuestro-bebe/visualizacion.jpeg">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-
-    <!-- ICONO DE LA PESTAÑA -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎀</text></svg>">
-
-    <!-- Fuentes y Librerías -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
-
-    <style>
-        :root {
-            --bg-color: #fdf8fc;
-            --primary-pink: #d97aa6;
-            --primary-lavender: #a472c6;
-            --soft-pink-bg: #fceef5;
-            --soft-lavender-bg: #f6edfa;
-            --gold-accent: #e8b85a;
-            --text-dark: #3a2d3d;
-            --text-muted: #7d6b80;
-            --card-border: #f0dced;
-            --card-shadow: 0 15px 35px rgba(217, 122, 166, 0.13);
-        }
-
-        * { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
-            -webkit-tap-highlight-color: transparent; 
-        }
-        
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Quicksand', sans-serif;
-            background-color: var(--bg-color);
-            background-image: 
-                radial-gradient(circle at 15% 15%, #fce8f3 0%, transparent 45%),
-                radial-gradient(circle at 85% 85%, #f3e6fa 0%, transparent 45%);
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* --- PANTALLA INICIAL DE LA CARTA / SOBRE ANIMADO --- */
-        #welcomeOverlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100vh;
-            background: linear-gradient(135deg, rgba(217, 122, 166, 0.96), rgba(164, 114, 198, 0.96));
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 9999;
-            display: flex; justify-content: center; align-items: center;
-            padding: 20px;
-            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .envelope-card {
-            background: #ffffff; width: 100%; max-width: 420px;
-            border-radius: 30px; padding: 35px 25px; text-align: center;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.22);
-            border: 3px solid rgba(255, 255, 255, 0.9);
-            animation: bounceIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .envelope-card img {
-            width: 100%; max-height: 230px; object-fit: cover;
-            border-radius: 20px; margin-bottom: 18px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-        }
-
-        .envelope-card h2 { font-size: 23px; color: var(--primary-pink); margin-bottom: 8px; font-weight: 700; }
-        .envelope-card p { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; font-weight: 600; }
-
-        .open-btn {
-            background: linear-gradient(135deg, var(--primary-pink), var(--primary-lavender));
-            color: #fff; border: none; padding: 16px 32px; font-size: 15px; font-weight: 700;
-            border-radius: 50px; cursor: pointer; box-shadow: 0 10px 25px rgba(217, 122, 166, 0.4);
-            width: 100%; text-transform: uppercase; letter-spacing: 1px;
-            animation: pulseGlow 2s infinite;
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 10px 25px rgba(217, 122, 166, 0.4); }
-            50% { box-shadow: 0 15px 35px rgba(164, 114, 198, 0.6); }
-        }
-        
-        @keyframes bounceIn {
-            0% { transform: scale(0.5); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .fade-out { opacity: 0; transform: scale(1.08); pointer-events: none; }
-
-        /* --- DECORACIONES FLOTANTES --- */
-        .bg-decorations { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
-        .floating-item { position: absolute; opacity: 0.35; animation: floatUp 12s infinite ease-in-out; }
-
-        @keyframes floatUp {
-            0% { transform: translate3d(0, 105vh, 0) rotate(0deg); opacity: 0; }
-            20% { opacity: 0.45; } 80% { opacity: 0.45; }
-            100% { transform: translate3d(0, -10vh, 0) rotate(25deg); opacity: 0; }
-        }
-
-        .container { max-width: 760px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
-
-        /* BOTÓN DE MÚSICA */
-        .music-btn {
-            position: fixed; bottom: 20px; right: 20px; background: #ffffff;
-            border: 2px solid var(--card-border); padding: 11px 18px; border-radius: 50px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12); cursor: pointer; z-index: 998;
-            display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700;
-            color: var(--text-dark);
-        }
-
-        .music-indicator {
-            display: inline-block; width: 8px; height: 8px; border-radius: 50%;
-            background-color: #cbd5e1;
-        }
-
-        .music-btn.playing .music-indicator {
-            background-color: #22c55e; box-shadow: 0 0 8px #22c55e;
-            animation: pulseWave 1.5s infinite ease-in-out;
-        }
-
-        @keyframes pulseWave {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.4); }
-        }
-
-        @keyframes fadeSlideUp {
-            0% { opacity: 0; transform: translate3d(0, 30px, 0) scale(0.98); }
-            100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
-        }
-
-        .step-section { display: none; }
-        .step-section.active {
-            display: block;
-            animation: fadeSlideUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        .hero { min-height: 82vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 25px 15px; }
-        .subtitle-tag { font-size: 11px; text-transform: uppercase; letter-spacing: 2.5px; color: var(--primary-lavender); margin-bottom: 10px; font-weight: 700; display: block; }
-        
-        .hero h1 { 
-            font-size: clamp(36px, 8vw, 56px); font-weight: 700; 
-            background: linear-gradient(135deg, var(--primary-pink), var(--primary-lavender));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            line-height: 1.15; margin-bottom: 12px; 
-        }
-
-        .reveal-badge {
-            display: inline-block; background: var(--soft-pink-bg); color: var(--primary-pink);
-            border: 1.5px solid #f5cde0; padding: 6px 16px; border-radius: 50px;
-            font-size: 13px; font-weight: 700; margin-bottom: 18px;
-        }
-
-        .baby-image-container {
-            margin: 10px 0 22px; width: 100%; max-width: 460px; border-radius: 28px;
-            overflow: hidden; background: rgba(255, 255, 255, 0.55); padding: 10px;
-            border: 2px solid var(--card-border); box-shadow: 0 12px 30px rgba(217, 122, 166, 0.12);
-        }
-        
-        .baby-image-container img { 
-            width: 100%; height: auto; display: block; border-radius: 20px;
-            animation: floatSoft 5s ease-in-out infinite;
-        }
-
-        @keyframes floatSoft {
-            0%, 100% { transform: translate3d(0, 0, 0); }
-            50% { transform: translate3d(0, -8px, 0); }
-        }
-
-        .hero p { font-size: 15px; color: var(--text-muted); max-width: 500px; margin-bottom: 25px; font-weight: 600; }
-
-        .btn-main {
-            display: inline-block; background: linear-gradient(135deg, var(--primary-pink), var(--primary-lavender));
-            color: #fff; padding: 16px 34px; border-radius: 50px; text-decoration: none;
-            font-size: 13px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
-            transition: transform 0.25s ease, box-shadow 0.25s ease; 
-            box-shadow: 0 10px 25px rgba(217, 122, 166, 0.35);
-            border: none; cursor: pointer; text-align: center;
-        }
-        .btn-main:hover { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(217, 122, 166, 0.45); }
-        .btn-main:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
-
-        .btn-view-data {
-            display: inline-block; background: #ffffff; color: var(--primary-lavender);
-            padding: 14px 28px; border-radius: 50px; text-decoration: none;
-            font-size: 13px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase;
-            border: 2px solid var(--card-border); cursor: pointer; text-align: center;
-        }
-
-        .btn-maps {
-            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            background-color: #ea4335; color: #ffffff; padding: 12px 24px; border-radius: 50px;
-            font-weight: 700; font-size: 13px; text-decoration: none; margin-top: 12px;
-            box-shadow: 0 6px 18px rgba(234, 67, 53, 0.25);
-        }
-
-        .btn-secondary {
-            background: #ffffff; color: var(--text-dark); border: 2px solid var(--card-border);
-            padding: 10px 20px; border-radius: 50px; font-size: 12px; font-weight: 700;
-            cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
-        }
-
-        .section-card {
-            background: #ffffff; border-radius: 28px; padding: 32px 22px; margin: 28px 0;
-            box-shadow: var(--card-shadow); text-align: center; border: 2px solid var(--card-border);
-        }
-        .section-title { font-size: 25px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
-
-        .countdown { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
-        .time-box { 
-            background: var(--soft-pink-bg); padding: 12px 8px; border-radius: 16px; min-width: 68px; 
-            border: 1.5px solid #f5cde0;
-        }
-        .time-box .num { font-size: 26px; font-weight: 700; display: block; color: var(--primary-pink); }
-        .time-box .label { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); font-weight: 700; }
-
-        .info-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
-        @media (min-width: 560px) { .info-grid.two-cols { grid-template-columns: 1fr 1fr; } }
-        .info-item { padding: 16px; background: var(--bg-color); border-radius: 18px; border: 1.5px solid var(--card-border); }
-        .info-item h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--primary-lavender); margin-bottom: 4px; }
-        .info-item p { font-size: 15px; font-weight: 700; color: var(--text-dark); }
-
-        .deadline-alert {
-            margin-top: 16px; padding: 12px 16px; border-radius: 14px;
-            background: #fffbeb; border: 1.5px dashed #f59e0b; color: #92400e;
-            font-size: 13px; font-weight: 700;
-        }
-
-        /* --- TIENDA / LISTA DE DESEOS --- */
-        .gift-intro {
-            font-size: 14px; color: var(--text-muted); font-weight: 600;
-            max-width: 560px; margin: 0 auto 18px;
-        }
-
-        .category-tabs {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; margin-bottom: 20px;
-        }
-
-        .cat-pill {
-            background: var(--bg-color); border: 1.5px solid var(--card-border);
-            color: var(--text-muted); padding: 8px 13px; border-radius: 50px;
-            font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s ease;
-        }
-        .cat-pill.active, .cat-pill:hover {
-            background: var(--primary-pink); color: #fff; border-color: var(--primary-pink);
-        }
-
-        .gift-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
-            gap: 12px;
-            text-align: left;
-            margin-top: 10px;
-        }
-
-        .gift-card {
-            background: #ffffff;
-            border: 2px solid var(--card-border);
-            border-radius: 20px;
-            padding: 15px 12px;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            user-select: none;
-        }
-
-        .gift-card:hover:not(.reserved) {
-            transform: translateY(-3px);
-            border-color: var(--primary-pink);
-            box-shadow: 0 8px 20px rgba(217, 122, 166, 0.16);
-        }
-
-        .gift-card.selected {
-            border-color: var(--primary-pink);
-            background: var(--soft-pink-bg);
-            box-shadow: 0 8px 22px rgba(217, 122, 166, 0.25);
-        }
-
-        .gift-card.selected::after {
-            content: "✓ Elegido";
-            position: absolute; top: 10px; right: 10px;
-            background: var(--primary-pink); color: #fff;
-            font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 20px;
-        }
-
-        .gift-card.reserved {
-            background: #f8fafc;
-            border-color: #e2e8f0;
-            opacity: 0.62;
-            cursor: not-allowed;
-        }
-
-        .gift-icon { font-size: 28px; margin-bottom: 8px; display: block; }
-        .gift-name { font-size: 13.5px; font-weight: 700; color: var(--text-dark); line-height: 1.3; margin-bottom: 4px; }
-        .gift-desc { font-size: 11px; color: var(--text-muted); font-weight: 600; margin-bottom: 10px; line-height: 1.35; }
-
-        .gift-badge {
-            display: inline-block; font-size: 10px; font-weight: 700;
-            padding: 4px 8px; border-radius: 8px; width: fit-content;
-        }
-        .badge-unique { background: #f3e8ff; color: #7e22ce; }
-        .badge-multi { background: #dcfce7; color: #15803d; }
-        .badge-reserved { background: #e2e8f0; color: #475569; }
-
-        .selected-gift-banner {
-            margin-top: 18px; padding: 14px 16px; border-radius: 16px;
-            background: var(--soft-lavender-bg); border: 2px dashed var(--primary-lavender);
-            color: var(--text-dark); font-size: 13px; font-weight: 700;
-            display: none; text-align: center;
-        }
-
-        /* FORMULARIO */
-        .form-group { text-align: left; margin-bottom: 18px; }
-        .form-group label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 6px; font-weight: 700; }
-        .form-input, .form-select, .form-textarea {
-            width: 100%; padding: 14px 18px; border-radius: 14px;
-            border: 1.5px solid var(--card-border); font-family: inherit;
-            font-size: 15px; font-weight: 600; background: #fff; outline: none; color: var(--text-dark);
-        }
-        .form-input:focus, .form-select:focus, .form-textarea:focus { 
-            border-color: var(--primary-pink); 
-            box-shadow: 0 0 0 4px rgba(217, 122, 166, 0.15);
-        }
-
-        .success-message {
-            display: none; padding: 30px 20px; background: #f0fdf4;
-            border: 2px solid #bbf7d0; border-radius: 20px; color: #166534; margin-bottom: 10px;
-        }
-
-        /* --- PANEL ADMINISTRADOR OCULTO --- */
-        .admin-trigger-container { text-align: center; margin: 40px 0 20px; }
-        .admin-section {
-            display: none; background: #2b212e; color: #fff; border-radius: 28px;
-            padding: 32px 20px; margin: 20px 0; text-align: center;
-        }
-
-        .admin-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 10px; margin: 20px 0; }
-        .metric-card { background: #3f3144; padding: 14px 10px; border-radius: 16px; }
-        .metric-card .value { font-size: 22px; font-weight: 700; display: block; }
-        .metric-card .label { font-size: 10px; text-transform: uppercase; color: #e2d4e6; }
-
-        .table-wrapper { overflow-x: auto; margin-top: 18px; }
-        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 12px; }
-        th, td { padding: 10px 8px; border-bottom: 1px solid #3f3144; }
-        th { background: #1d1620; color: #f3d9eb; text-transform: uppercase; font-size: 10px; }
-    </style>
-</head>
-<body>
-
-    <!-- PANTALLA INICIAL -->
-    <div id="welcomeOverlay">
-        <div class="envelope-card">
-            <img src="visualizacion.jpeg" alt="Invitación Baby Shower Zoe Isabella">
-            <h2>¡Baby Shower de Zoe Isabella! 🎀</h2>
-            <p>¡Era niña! 💜 Ahora acompáñanos a celebrar su próxima llegada con mucho amor.</p>
-            <button class="open-btn" id="openInvitationBtn">Abrir Invitación 💌</button>
-        </div>
-    </div>
-
-    <!-- DECORACIONES FLOTANTES -->
-    <div class="bg-decorations" id="bgDecorations">
-        <div class="floating-item" style="left: 6%; animation-delay: 0s; font-size: 24px;">🎀</div>
-        <div class="floating-item" style="left: 22%; animation-delay: 3s; font-size: 20px;">✨</div>
-        <div class="floating-item" style="left: 50%; animation-delay: 6s; font-size: 22px;">🌸</div>
-        <div class="floating-item" style="left: 75%; animation-delay: 2s; font-size: 22px;">🍼</div>
-        <div class="floating-item" style="left: 88%; animation-delay: 7s; font-size: 20px;">💜</div>
-    </div>
-
-    <!-- BOTÓN DE MÚSICA -->
-    <button class="music-btn" id="musicToggle">
-        <span class="music-indicator"></span> 🎵 <span id="musicText">Música pausada</span>
-    </button>
-
-    <div class="container">
-
-        <!-- PASO 1: PORTADA -->
-        <section id="step1" class="step-section active hero">
-            <span class="subtitle-tag">✨ ¡La dulce espera continúa! ✨</span>
-            
-            <h1>Zoe Isabella</h1>
-            <div class="reveal-badge">🎀 Nuestro Baby Shower 🎀</div>
-
-            <div class="baby-image-container">
-                <img src="bebes.png" alt="Zoe Isabella">
-            </div>
-
-            <p>Después de descubrir juntos que viene una hermosa princesa en camino, queremos celebrar su llegada en una tarde llena de cariño, juegos y alegría.</p>
-            
-            <div style="display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 390px; margin: 0 auto;">
-                <button type="button" class="btn-main" onclick="unlockNextStep('step2')">Ver detalles del evento 📜</button>
-                <button type="button" class="btn-view-data" onclick="irADatosInvitacion()">Ya confirmé (Ver dirección y hora) 📍</button>
-            </div>
-        </section>
-
-        <!-- PASO 2: CUENTA REGRESIVA -->
-        <section id="step2" class="step-section section-card">
-            <span class="subtitle-tag">Cuenta regresiva</span>
-            <h2 class="section-title">¡Falta muy poco para celebrar!</h2>
-            <p style="color: var(--text-muted); font-size: 14px; font-weight: 600;">Cada día estamos más cerca de tener a Zoe Isabella en nuestros brazos:</p>
-
-            <div class="countdown" id="countdownBox">
-                <div class="time-box"><span class="num" id="cdDays">00</span><span class="label">Días</span></div>
-                <div class="time-box"><span class="num" id="cdHours">00</span><span class="label">Horas</span></div>
-                <div class="time-box"><span class="num" id="cdMinutes">00</span><span class="label">Min</span></div>
-                <div class="time-box"><span class="num" id="cdSeconds">00</span><span class="label">Seg</span></div>
-            </div>
-
-            <button type="button" class="btn-main" style="margin-top: 25px;" onclick="unlockNextStep('step3')">Ver fecha y lugar 📍</button>
-        </section>
-
-        <!-- PASO 3: DETALLES DEL EVENTO -->
-        <section id="step3" class="step-section section-card">
-            <span class="subtitle-tag">Agenda el día</span>
-            <h2 class="section-title">¿Dónde y Cuándo?</h2>
-            <div class="info-grid two-cols">
-                <div class="info-item">
-                    <h4>📅 Fecha</h4>
-                    <p>Domingo, 6 de Diciembre de 2026</p>
-                </div>
-                <div class="info-item">
-                    <h4>🕑 Hora</h4>
-                    <p>2:00 PM</p>
-                </div>
-            </div>
-            <div class="info-grid" style="margin-top: 12px;">
-                <div class="info-item">
-                    <h4>📍 Lugar del Evento</h4>
-                    <p>Salón Comunal — Conjunto Residencial Rosales de Nueva Castilla<br>Calle 7 # 90-81</p>
-                    <a href="https://maps.google.com/?q=Conjunto+Residencial+Rosales+de+Nueva+Castilla+Calle+7+90-81+Bogota" target="_blank" rel="noopener noreferrer" class="btn-maps">
-                        📍 Abrir ubicación en Google Maps
-                    </a>
-                </div>
-            </div>
-
-            <div class="deadline-alert">
-                ⏳ Por favor confirma tu asistencia a más tardar el <strong>sábado 5 de diciembre</strong> para organizar todo con mucho cariño.
-            </div>
-
-            <button type="button" id="btnIrAConfirmar" class="btn-main" style="margin-top: 22px;" onclick="abrirFormularioYTienda()">Confirmar asistencia y ver ideas de regalo 🎁</button>
-        </section>
-
-        <!-- PASO 4: CONFIRMACIÓN + VITRINA DE REGALOS -->
-        <section id="step4" class="step-section section-card">
-            <form id="rsvpForm">
-                <span class="subtitle-tag">Tu Confirmación</span>
-                <h2 class="section-title" style="font-size: 23px; margin-bottom: 18px;">Confirma tu Asistencia</h2>
-
-                <!-- NOMBRE -->
-                <div class="form-group">
-                    <label for="nombre">Nombre Completo</label>
-                    <input type="text" id="nombre" class="form-input" placeholder="Ej. Camila Morales" required>
-                </div>
-
-                <!-- ASISTENCIA -->
-                <div class="form-group">
-                    <label for="asistencia">¿Nos acompañarás este día?</label>
-                    <select id="asistencia" class="form-select" onchange="handleAsistenciaChange()" required>
-                        <option value="" disabled selected>Selecciona una opción...</option>
-                        <option value="Sí">¡Sí! Ahí estaré para celebrar con Zoe Isabella 🥳</option>
-                        <option value="No">Lo siento, no podré asistir 😔</option>
-                    </select>
-                </div>
-
-                <!-- CAMPOS SI ASISTE -->
-                <div id="camposAsistente" style="display: none;">
-                    <div class="form-group">
-                        <label for="acompanantes">¿Cuántos acompañantes van contigo? (No te cuentes a ti)</label>
-                        <select id="acompanantes" class="form-select" onchange="toggleAcompanantesInput()">
-                            <option value="0">0 acompañantes (Iré solo/a)</option>
-                            <option value="1">1 acompañante</option>
-                            <option value="2">2 acompañantes</option>
-                            <option value="3">3 acompañantes</option>
-                            <option value="otro">Más de 3 acompañantes</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group" id="grupoOtroAcomp" style="display: none;">
-                        <label for="inputOtroAcomp">Escribe la cantidad exacta de acompañantes:</label>
-                        <input type="number" id="inputOtroAcomp" class="form-input" min="4" placeholder="Ej. 4">
-                    </div>
-
-                    <!-- VITRINA / TIENDA DE REGALOS -->
-                    <div style="margin-top: 28px; border-top: 2px dashed var(--card-border); padding-top: 24px;">
-                        <span class="subtitle-tag">Opcional · Ideas para Zoe Isabella</span>
-                        <h3 style="font-size: 21px; font-weight: 700; color: var(--text-dark); margin-bottom: 6px;">🛍️ Lista de Deseos</h3>
-                        <p class="gift-intro">
-                            Tu compañía es nuestro mejor regalo. Si deseas tener un detalle con Zoe Isabella, aquí dejamos algunas ideas; los artículos marcados como <strong>Artículo único</strong> se reservan automáticamente para que nadie los repita.
-                        </p>
-
-                        <!-- FILTRO DE CATEGORÍAS -->
-                        <div class="category-tabs">
-                            <button type="button" class="cat-pill active" onclick="filtrarRegalos('todos', this)">Todos (28)</button>
-                            <button type="button" class="cat-pill" onclick="filtrarRegalos('habitacion', this)">Habitación y Cuna</button>
-                            <button type="button" class="cat-pill" onclick="filtrarRegalos('paseo', this)">Paseo y Salidas</button>
-                            <button type="button" class="cat-pill" onclick="filtrarRegalos('bano', this)">Baño y Cuidado</button>
-                            <button type="button" class="cat-pill" onclick="filtrarRegalos('alimentacion', this)">Alimentación</button>
-                            <button type="button" class="cat-pill" onclick="filtrarRegalos('ropita', this)">Ropita Niña</button>
-                            <button type="button" class="cat-pill" onclick="filtrarRegalos('basicos', this)">Pañales y Aseo</button>
-                        </div>
-
-                        <div id="giftLoadingMsg" style="font-size: 12px; color: var(--primary-lavender); font-weight: 700; margin-bottom: 10px;">
-                            🔄 Consultando disponibilidad...
-                        </div>
-
-                        <!-- GRID DE REGALOS -->
-                        <div class="gift-grid" id="giftGrid"></div>
-
-                        <!-- BANNER DE REGALO ELEGIDO -->
-                        <div id="selectedGiftBanner" class="selected-gift-banner"></div>
-                    </div>
-
-                    <!-- MENSAJE PARA ZOE ISABELLA -->
-                    <div class="form-group" style="margin-top: 22px;">
-                        <label for="mensaje">💌 Déjale un deseo o consejo a Zoe Isabella (Opcional)</label>
-                        <textarea id="mensaje" class="form-textarea" rows="2" placeholder="Ej. ¡Te esperamos con los brazos abiertos, princesa!"></textarea>
-                    </div>
-                </div>
-
-                <button type="submit" id="submitBtn" class="btn-main" style="width: 100%; margin-top: 15px; display: none;">
-                    Confirmar Asistencia 🚀
-                </button>
-            </form>
-
-            <!-- MENSAJE DE ÉXITO -->
-            <div id="successMessage" class="success-message">
-                <span style="font-size: 42px; display: block; margin-bottom: 10px;">🎀</span>
-                <h3 style="font-size: 24px; font-weight: 700; color: #15803d; margin-bottom: 8px;">¡Confirmación Registrada!</h3>
-                <p id="successText" style="font-size: 15px; font-weight: 600; color: #166534;">Muchas gracias por acompañarnos en este día tan especial para Zoe Isabella.</p>
-            </div>
-        </section>
-
-        <!-- PANEL DE CONTROL -->
-        <div class="admin-trigger-container">
-            <button type="button" class="btn-secondary" onclick="toggleAdminPanel()">
-                ⚙️ Panel de Control (Papás)
-            </button>
-        </div>
-
-        <section class="admin-section" id="adminSection">
-            <span class="subtitle-tag" style="color: #d8b4e2;">Área Privada</span>
-            <h2>📊 Control de Invitados y Regalos</h2>
-            
-            <div id="loginAdmin">
-                <p style="font-size: 12px; color: #e2d4e6; margin-bottom: 15px;">Ingresa tu contraseña para ver los confirmados:</p>
-                <input type="password" id="adminKey" class="form-input" style="max-width: 180px; margin: 0 auto 15px; text-align: center;" placeholder="Clave">
-                <br>
-                <button type="button" onclick="verificarClave()" class="btn-main" style="padding: 10px 25px; font-size: 12px;">Ingresar</button>
-            </div>
-
-            <div id="adminContent" style="display: none;">
-                <div class="admin-metrics">
-                    <div class="metric-card"><span class="value" id="totalAsistentes">0</span><span class="label">Personas Total</span></div>
-                    <div class="metric-card"><span class="value" id="totalFamilias" style="color: #f9a8d4;">0</span><span class="label">Confirmados</span></div>
-                    <div class="metric-card"><span class="value" id="regalosUnicosReservados" style="color: #d8b4e2;">0</span><span class="label">Regalos Únicos</span></div>
-                    <div class="metric-card"><span class="value" id="regalosBasicos" style="color: #86efac;">0</span><span class="label">Pañales/Aseo</span></div>
-                </div>
-
-                <h3 style="margin-top: 25px; text-align: left; font-size: 15px;">Lista de Confirmados — Baby Shower</h3>
-                <div class="table-wrapper">
-                    <table>
-                        <thead>
-                            <tr><th>Nombre</th><th>Asiste</th><th>Acomp.</th><th>Detalle Elegido</th><th>Mensaje</th></tr>
-                        </thead>
-                        <tbody id="tablaInvitados">
-                            <tr><td colspan="5" style="text-align: center;">Cargando datos...</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 18px;">
-                    <button type="button" onclick="cargarDatosAdmin()" class="btn-main" style="padding: 10px 20px; font-size: 11px;">Actualizar Lista 🔄</button>
-                </div>
-            </div>
-        </section>
-
-        <div style="text-align: center; font-size: 12px; color: var(--text-muted); margin-bottom: 30px; font-weight: 600;">
-            ✨ Hecho con mucho amor para la llegada de Zoe Isabella ✨
-        </div>
-    </div>
-
-    <!-- JAVASCRIPT -->
-    <script>
-        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxhi6jPTfIY41libNe0V7de241JmBMw3aaU3iV3OErRf6mEiNU7tMkHKEAvmvrPymJR/exec";
-
-        // CATÁLOGO COMPLETO PARA NIÑA (unique: true = se bloquea al elegirse 1 vez | unique: false = abierto para varios)
-        const CATALOGO_REGALOS = [
-            // 1. HABITACIÓN Y DESCANSO (Únicos)
-            { id: "cuna_corral", nombre: "Cuna / Corral Colecho", desc: "Para sus noches de descanso seguro", categoria: "habitacion", icon: "🛏️", unique: true },
-            { id: "juego_sabanas", nombre: "Juego de Sábanas y Edredón de Cuna", desc: "Tonos rosados o pastel suaves", categoria: "habitacion", icon: "🌸", unique: true },
-            { id: "nido_colecho", nombre: "Nido Colecho / Almohada Antirreflujo", desc: "Ideal para recién nacida", categoria: "habitacion", icon: "☁️", unique: true },
-            { id: "movil_musical", nombre: "Móvil Musical para Cuna", desc: "Con melodías relajantes y figuras", categoria: "habitacion", icon: "🎶", unique: true },
-            { id: "monitor_bebe", nombre: "Monitor / Cámara de Bebé", desc: "Para vigilar su sueño desde otra habitación", categoria: "habitacion", icon: "📷", unique: true },
-            { id: "set_cobijas", nombre: "Set de Cobijas Térmicas y Muselinas", desc: "Mantitas ligeras y abrigadas", categoria: "habitacion", icon: "🧶", unique: true },
-
-            // 2. PASEO Y SALIDAS (Únicos)
-            { id: "coche_paseo", nombre: "Coche de Paseo", desc: "Plegable y cómodo para salir", categoria: "paseo", icon: "🛒", unique: true },
-            { id: "silla_carro", nombre: "Silla Portabebé para Carro", desc: "Seguridad para viajes en vehículo", categoria: "paseo", icon: "🚗", unique: true },
-            { id: "canguro_ergo", nombre: "Fular o Canguro Ergonómico", desc: "Para llevarla cerquita del corazón", categoria: "paseo", icon: "🦘", unique: true },
-            { id: "panalera_morral", nombre: "Maleta Pañalera Tipo Morral", desc: "Con bolsillos térmicos y cambiador", categoria: "paseo", icon: "🎒", unique: true },
-
-            // 3. BAÑO Y CUIDADO (Únicos)
-            { id: "banera_bebe", nombre: "Bañera Ergonómica con Soporte", desc: "Para bañarla con total comodidad", categoria: "bano", icon: "🛁", unique: true },
-            { id: "toallas_capucha", nombre: "Set de Toallas con Capucha", desc: "100% algodón suave para bebé", categoria: "bano", icon: "🧖‍♀️", unique: true },
-            { id: "kit_aseo", nombre: "Kit de Cuidado y Termómetro", desc: "Cortaúñas, cepillo suave, aspirador nasal", categoria: "bano", icon: "🩺", unique: true },
-            { id: "cambiador_acolchado", nombre: "Cambiador Acolchado Impermeable", desc: "Práctico para cambiar pañales en casa", categoria: "bano", icon: "🧷", unique: true },
-
-            // 4. ALIMENTACIÓN Y LACTANCIA (Únicos)
-            { id: "cojin_lactancia", nombre: "Cojín de Lactancia", desc: "Soporte ergonómico para mamá y bebé", categoria: "alimentacion", icon: "🌙", unique: true },
-            { id: "set_teteros", nombre: "Set de Teteros Anticólicos", desc: "Biberones de flujo lento y cepillo", categoria: "alimentacion", icon: "🍼", unique: true },
-            { id: "esterilizador", nombre: "Esterilizador de Teteros", desc: "Para mantener todo libre de bacterias", categoria: "alimentacion", icon: "✨", unique: true },
-            { id: "silla_comedor", nombre: "Silla Comedor Portátil", desc: "Para cuando empiece su alimentación", categoria: "alimentacion", icon: "🥣", unique: true },
-
-            // 5. ROPITA Y ACCESORIOS NIÑA
-            { id: "ropita_0_3", nombre: "Conjunto Ropita (0 a 3 meses)", desc: "Bodies, pijamitas o enterizos de algodón", categoria: "ropita", icon: "👶", unique: false },
-            { id: "ropita_3_6", nombre: "Conjunto Ropita (3 a 6 meses)", desc: "Vestiditos o conjuntos cómodos", categoria: "ropita", icon: "👗", unique: false },
-            { id: "ropita_6_12", nombre: "Conjunto Ropita (6 a 12 meses)", desc: "Para cuando esté más grandecita", categoria: "ropita", icon: "🎀", unique: false },
-            { id: "accesorios_nina", nombre: "Set de Medias, Gorritos y Balacas", desc: "Accesorios tiernos y abrigados para niña", categoria: "ropita", icon: "🧦", unique: true },
-            { id: "baberos_panuelos", nombre: "Set de Baberos y Pañuelos de Algodón", desc: "Súper útiles para todos los días", categoria: "ropita", icon: "🧣", unique: true },
-
-            // 6. PAÑALES Y ASEO DIARIO (Abiertos para varios invitados)
-            { id: "panales_e1", nombre: "Pañales Etapa 1", desc: "Para sus primeros meses", categoria: "basicos", icon: "🧸", unique: false },
-            { id: "panales_e2", nombre: "Pañales Etapa 2", desc: "Ideales para tener reserva", categoria: "basicos", icon: "🍼", unique: false },
-            { id: "panales_e3", nombre: "Pañales Etapa 3", desc: "Para cuando crezca un poquito", categoria: "basicos", icon: "🌸", unique: false },
-            { id: "aseo_diario", nombre: "Pañitos Húmedos, Crema y Jabón Bebé", desc: "Productos hipoalergénicos de aseo", categoria: "basicos", icon: "🧴", unique: false },
-            { id: "detalle_libre", nombre: "Sorpresa / Detalle Libre", desc: "Quiero elegir algo especial por mi cuenta", categoria: "basicos", icon: "🎁", unique: false }
-        ];
-
-        let regalosReservadosIds = new Set();
-        let regaloSeleccionado = null;
-        let categoriaActual = "todos";
-
-        // MÚSICA Y BIENVENIDA
-        const musicBtn = document.getElementById('musicToggle');
-        const musicText = document.getElementById('musicText');
-        const openInvitationBtn = document.getElementById('openInvitationBtn');
-        const welcomeOverlay = document.getElementById('welcomeOverlay');
-        const songPath = new URL('indigo.mp3', window.location.href).href;
-
-        const sound = new Howl({
-            src: [songPath, 'indigo.mp3', './indigo.mp3'],
-            loop: true, volume: 0.8, html5: true,
-            onplay: function() { 
-                musicText.innerText = "Reproduciendo: Índigo 🎵"; 
-                musicBtn.classList.add('playing');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zoe Isabella — Baby Shower & Boutique de Deseos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            ivory: '#FFFDF9',
+            cream: '#FDF6F0',
+            blush: {
+              50: '#FFF5F7',
+              100: '#FCE8EC',
+              200: '#F8D0D9',
+              300: '#F1AAB9',
+              400: '#E57D95',
+              500: '#D45674',
             },
-            onpause: function() { 
-                musicText.innerText = "Música pausada"; 
-                musicBtn.classList.remove('playing');
+            gold: {
+              100: '#FBF5E6',
+              200: '#F3E3BE',
+              300: '#E5C887',
+              400: '#C9A25B',
+              500: '#A8813B',
+            },
+            plum: {
+              800: '#3D2E35',
+              900: '#2A1F24',
             }
-        });
-
-        function rafagaConfetiInicio() {
-            const count = 180;
-            const defaults = { origin: { y: 0.7 }, colors: ['#d97aa6', '#a472c6', '#e8b85a', '#ffffff'] };
-            function fire(particleRatio, opts) {
-                confetti(Object.assign({}, defaults, opts, { particleCount: Math.floor(count * particleRatio) }));
-            }
-            fire(0.25, { spread: 26, startVelocity: 55 });
-            fire(0.2, { spread: 60 });
-            fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
-            fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+          },
+          boxShadow: {
+            'luxury': '0 20px 50px -12px rgba(201, 162, 91, 0.16), 0 8px 24px -8px rgba(42, 31, 36, 0.06)',
+            'gold-glow': '0 10px 30px -5px rgba(201, 162, 91, 0.35)',
+          }
         }
+      }
+    };
+  </script>
 
-        openInvitationBtn.addEventListener('click', () => {
-            sound.play();
-            rafagaConfetiInicio();
-            welcomeOverlay.classList.add('fade-out');
-            setTimeout(() => { welcomeOverlay.style.display = 'none'; }, 800);
-        });
+  <style>
+    body {
+      background-color: #FFFDF9;
+      color: #2A1F24;
+      overflow-x: hidden;
+    }
 
-        musicBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (sound.playing()) { sound.pause(); } else { sound.play(); }
-        });
+    /* Ambient floating animations */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(1.5deg); }
+    }
+    @keyframes floatReverse {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(8px) rotate(-1.5deg); }
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.35; transform: scale(0.92); }
+      50% { opacity: 1; transform: scale(1.12); }
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
 
-        // NAVEGACIÓN
-        function unlockNextStep(nextStepId) {
-            const nextEl = document.getElementById(nextStepId);
-            if (nextEl && !nextEl.classList.contains('active')) {
-                nextEl.classList.add('active');
-                setTimeout(() => {
-                    nextEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 150);
-            }
-        }
+    .animate-float-slow { animation: floatSlow 6s ease-in-out infinite; }
+    .animate-float-reverse { animation: floatReverse 7s ease-in-out infinite; }
+    .animate-twinkle { animation: twinkle 3.2s ease-in-out infinite; }
+    .animate-twinkle-delay { animation: twinkle 4.1s ease-in-out 1.4s infinite; }
 
-        function irADatosInvitacion() {
-            document.getElementById('step2').classList.add('active');
-            document.getElementById('step3').classList.add('active');
-            document.getElementById('step4').style.display = 'none';
-            const btnConfirmar = document.getElementById('btnIrAConfirmar');
-            if (btnConfirmar) btnConfirmar.style.display = 'none';
+    .gold-shimmer-text {
+      background: linear-gradient(90deg, #A8813B 0%, #DFBE7B 30%, #C9A25B 55%, #F0D9A3 75%, #A8813B 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 6s linear infinite;
+    }
 
-            setTimeout(() => {
-                document.getElementById('step3').scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 100);
-        }
+    .glass-card {
+      background: rgba(255, 253, 249, 0.84);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(201, 162, 91, 0.25);
+    }
 
-        function abrirFormularioYTienda() {
-            unlockNextStep('step4');
-            cargarDisponibilidadRegalos();
-        }
+    .floral-bg-pattern {
+      background-image:
+        radial-gradient(circle at 12% 18%, rgba(248, 208, 217, 0.35) 0%, transparent 38%),
+        radial-gradient(circle at 88% 12%, rgba(243, 227, 190, 0.38) 0%, transparent 40%),
+        radial-gradient(circle at 82% 78%, rgba(248, 208, 217, 0.28) 0%, transparent 42%),
+        radial-gradient(circle at 15% 85%, rgba(243, 227, 190, 0.30) 0%, transparent 38%);
+    }
 
-        // CUENTA REGRESIVA AL 6 DE DICIEMBRE DE 2026 A LAS 2:00 PM
-        const targetDate = new Date(2026, 11, 6, 14, 0, 0).getTime(); 
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #FDF6F0; }
+    ::-webkit-scrollbar-thumb { background: #E5C887; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #C9A25B; }
 
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const diff = targetDate - now;
+    /* Print styles for VIP Ticket */
+    @media print {
+      body * { visibility: hidden; }
+      #vip-ticket-printable, #vip-ticket-printable * { visibility: visible; }
+      #vip-ticket-printable {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        max-width: 480px;
+      }
+    }
+  </style>
+</head>
+<body class="font-sans antialiased selection:bg-blush-200 selection:text-plum-900 floral-bg-pattern">
 
-            if (diff > 0) {
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+  <!-- Ambient Floating Petals / Sparkles Canvas -->
+  <canvas id="ambient-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-70"></canvas>
 
-                document.getElementById("cdDays").innerText = days < 10 ? '0' + days : days;
-                document.getElementById("cdHours").innerText = hours < 10 ? '0' + hours : hours;
-                document.getElementById("cdMinutes").innerText = minutes < 10 ? '0' + minutes : minutes;
-                document.getElementById("cdSeconds").innerText = seconds < 10 ? '0' + seconds : seconds;
-            } else {
-                document.getElementById("countdownBox").innerHTML = "<h3>¡Hoy celebramos a Zoe Isabella! 🎀</h3>";
-            }
-        }
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
+  <!-- Subtle Floating Top Navbar -->
+  <header class="sticky top-0 z-40 glass-card border-b border-gold-200/60">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="#inicio" class="flex items-center gap-2.5 group">
+        <span class="w-9 h-9 rounded-full bg-gradient-to-br from-blush-200 to-gold-200 flex items-center justify-center border border-gold-300 shadow-sm group-hover:scale-105 transition">
+          <svg class="w-5 h-5 text-gold-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" fill="rgba(201,162,91,0.2)"/>
+            <path d="M19 3v4M21 5h-4" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <div>
+          <span class="font-serif italic text-xl font-semibold text-plum-900 tracking-wide">Zoe Isabella</span>
+          <span class="hidden sm:inline-block text-[11px] uppercase tracking-[0.2em] text-gold-500 ml-2 border-l border-gold-300 pl-2">Baby Shower</span>
+        </div>
+      </a>
 
-        // SINCRONIZACIÓN DE REGALOS CON GOOGLE APPS SCRIPT
-        async function cargarDisponibilidadRegalos() {
-            const loadingMsg = document.getElementById('giftLoadingMsg');
-            loadingMsg.style.display = 'block';
-            renderizarRegalos();
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-plum-800">
+        <a href="#historia" class="hover:text-gold-500 transition">Mi Historia</a>
+        <a href="#itinerario" class="hover:text-gold-500 transition">Lo que Haremos</a>
+        <a href="#ubicacion" class="hover:text-gold-500 transition">Lugar & Fecha</a>
+        <a href="#boutique" class="hover:text-gold-500 transition flex items-center gap-1.5">
+          <span>Boutique de Regalos</span>
+          <span id="nav-gift-badge" class="px-2 py-0.5 text-[11px] rounded-full bg-blush-100 text-blush-500 font-semibold">17</span>
+        </a>
+      </nav>
 
-            try {
-                const res = await fetch(APPS_SCRIPT_URL);
-                const data = await res.json();
-                regalosReservadosIds.clear();
+      <div class="flex items-center gap-2.5">
+        <a href="#rsvp" class="px-4 py-2 rounded-full bg-gradient-to-r from-plum-900 to-plum-800 text-ivory text-xs sm:text-sm font-medium shadow-md hover:shadow-gold-glow hover:-translate-y-0.5 transition duration-200">
+          Confirmar Asistencia
+        </a>
+        <button onclick="openAdminLogin()" title="Acceso Papás" class="p-2.5 rounded-full border border-gold-300/70 bg-white/80 text-gold-500 hover:bg-gold-100 transition" aria-label="Panel de Control Papás">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
 
-                if (Array.isArray(data)) {
-                    data.forEach(row => {
-                        if (row.asistencia === "Sí" && row.regalo_id) {
-                            const itemCatalogo = CATALOGO_REGALOS.find(g => g.id === row.regalo_id);
-                            if (itemCatalogo && itemCatalogo.unique) {
-                                regalosReservadosIds.add(row.regalo_id);
-                            }
-                        }
-                    });
-                }
-                loadingMsg.style.display = 'none';
-                renderizarRegalos();
-            } catch (err) {
-                loadingMsg.innerText = "✨ Elige el detalle que más te guste:";
-                renderizarRegalos();
-            }
-        }
+  <!-- ==================== HERO SECTION ==================== -->
+  <section id="inicio" class="relative z-10 pt-10 pb-16 sm:pt-16 sm:pb-24 px-4 sm:px-6">
+    <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+      
+      <!-- Left Editorial Copy -->
+      <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-gold-300/80 shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-blush-400 animate-ping"></span>
+          <span class="text-xs font-semibold uppercase tracking-[0.22em] text-gold-500">Dulce Espera • 06 de Diciembre, 2026</span>
+        </div>
 
-        function filtrarRegalos(categoria, btnEl) {
-            categoriaActual = categoria;
-            document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
-            if (btnEl) btnEl.classList.add('active');
-            renderizarRegalos();
-        }
+        <div class="space-y-2">
+          <p class="font-serif italic text-2xl sm:text-3xl text-blush-500">Una pequeña princesa está en camino...</p>
+          <h1 class="font-serif text-5xl sm:text-7xl lg:text-[5.2rem] font-semibold leading-[1.03] text-plum-900 tracking-tight">
+            Zoe <span class="italic font-normal gold-shimmer-text">Isabella</span>
+          </h1>
+        </div>
 
-        function renderizarRegalos() {
-            const grid = document.getElementById('giftGrid');
-            grid.innerHTML = "";
+        <p class="text-base sm:text-lg text-plum-800/85 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
+          "Aún no nos conocemos, pero ya siento todo el amor que me rodea. Ven a celebrar mi pronta llegada en una tarde llena de magia, juegos, sonrisas y abrazos que guardaré para siempre en mi corazón."
+        </p>
 
-            const filtrados = categoriaActual === "todos" 
-                ? CATALOGO_REGALOS 
-                : CATALOGO_REGALOS.filter(item => item.categoria === categoriaActual);
+        <!-- Live Countdown Timer -->
+        <div class="pt-2">
+          <p class="text-[11px] uppercase tracking-[0.25em] text-gold-500 font-semibold mb-3">Falta muy poco para abrazarnos</p>
+          <div class="grid grid-cols-4 gap-2.5 sm:gap-4 max-w-md mx-auto lg:mx-0">
+            <div class="glass-card rounded-2xl p-3 sm:p-4 text-center shadow-luxury">
+              <div id="cd-days" class="font-serif text-3xl sm:text-4xl font-bold text-plum-900">00</div>
+              <div class="text-[11px] uppercase tracking-widest text-plum-800/70 mt-1">Días</div>
+            </div>
+            <div class="glass-card rounded-2xl p-3 sm:p-4 text-center shadow-luxury">
+              <div id="cd-hours" class="font-serif text-3xl sm:text-4xl font-bold text-plum-900">00</div>
+              <div class="text-[11px] uppercase tracking-widest text-plum-800/70 mt-1">Horas</div>
+            </div>
+            <div class="glass-card rounded-2xl p-3 sm:p-4 text-center shadow-luxury">
+              <div id="cd-minutes" class="font-serif text-3xl sm:text-4xl font-bold text-plum-900">00</div>
+              <div class="text-[11px] uppercase tracking-widest text-plum-800/70 mt-1">Min</div>
+            </div>
+            <div class="glass-card rounded-2xl p-3 sm:p-4 text-center shadow-luxury">
+              <div id="cd-seconds" class="font-serif text-3xl sm:text-4xl font-bold text-blush-500">00</div>
+              <div class="text-[11px] uppercase tracking-widest text-plum-800/70 mt-1">Seg</div>
+            </div>
+          </div>
+        </div>
 
-            filtrados.forEach(item => {
-                const estaReservado = item.unique && regalosReservadosIds.has(item.id);
-                const estaSeleccionado = regaloSeleccionado && regaloSeleccionado.id === item.id;
+        <!-- Primary Action Buttons + Calendar Hook -->
+        <div class="pt-3 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5">
+          <a href="#rsvp" class="w-full sm:w-auto px-7 py-4 rounded-full bg-gradient-to-r from-blush-500 to-blush-400 text-white font-semibold text-sm shadow-lg shadow-blush-300/50 hover:shadow-xl hover:-translate-y-0.5 transition flex items-center justify-center gap-2">
+            <span>Reservar mi Lugar</span>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="#boutique" class="w-full sm:w-auto px-7 py-4 rounded-full bg-white border border-gold-300 text-plum-900 font-semibold text-sm hover:bg-gold-100/60 transition flex items-center justify-center gap-2">
+            <svg class="w-4 h-4 text-gold-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+            </svg>
+            <span>Ver Boutique de Regalos</span>
+          </a>
+        </div>
 
-                const card = document.createElement('div');
-                card.className = `gift-card ${estaReservado ? 'reserved' : ''} ${estaSeleccionado ? 'selected' : ''}`;
+        <!-- Subtle Psychological Memory Trigger: Add to Calendar -->
+        <div class="pt-1 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs text-plum-800/80">
+          <button onclick="downloadICS()" class="inline-flex items-center gap-1.5 text-gold-500 hover:text-plum-900 font-semibold underline decoration-gold-300 underline-offset-4 transition">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            <span>Guardar recordatorio en mi celular (.ics)</span>
+          </button>
+          <span class="hidden sm:inline text-gold-300">•</span>
+          <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Baby+Shower+de+Zoe+Isabella&dates=20261206T190000Z/20261206T233000Z&details=Celebremos+juntos+la+pronta+llegada+de+Zoe+Isabella.+No+olvides+revisar+tu+regalo+elegido+en+la+invitaci%C3%B3n.&location=Conjunto+Rosales+de+Nueva+Castilla+-+Calle+7+%2390-81+(Sal%C3%B3n+comunal),+Bogot%C3%A1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-plum-800 hover:text-gold-500 font-medium transition">
+            <span>+ Google Calendar</span>
+          </a>
+        </div>
+      </div>
 
-                let badgeHtml = '';
-                if (estaReservado) {
-                    badgeHtml = `<span class="gift-badge badge-reserved">✨ Ya elegido</span>`;
-                } else if (item.unique) {
-                    badgeHtml = `<span class="gift-badge badge-unique">Artículo único</span>`;
+      <!-- Right Bespoke Celestial Hero Illustration -->
+      <div class="lg:col-span-5 flex justify-center">
+        <div class="relative w-full max-w-[440px] aspect-square flex items-center justify-center">
+          <!-- Soft Halo Glow -->
+          <div class="absolute inset-6 rounded-full bg-gradient-to-tr from-blush-200/60 via-gold-100/70 to-blush-100/50 blur-2xl"></div>
+          
+          <!-- Custom Multi-Layer SVG Illustration: Celestial Cradle, Crescent Moon, Roses & Golden Stars -->
+          <svg viewBox="0 0 500 500" class="relative w-full h-full drop-shadow-xl animate-float-slow" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#F3E3BE"/>
+                <stop offset="45%" stop-color="#C9A25B"/>
+                <stop offset="100%" stop-color="#A8813B"/>
+              </linearGradient>
+              <linearGradient id="roseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FCE8EC"/>
+                <stop offset="50%" stop-color="#F1AAB9"/>
+                <stop offset="100%" stop-color="#D45674"/>
+              </linearGradient>
+              <linearGradient id="cloudGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#FFFFFF"/>
+                <stop offset="100%" stop-color="#FDF2F4"/>
+              </linearGradient>
+              <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#FBF5E6" stop-opacity="0.9"/>
+                <stop offset="100%" stop-color="#FBF5E6" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+
+            <!-- Outer Botanical Wreath Rings -->
+            <circle cx="250" cy="250" r="215" stroke="url(#goldGrad)" stroke-width="1.2" stroke-dasharray="4 6" opacity="0.7"/>
+            <circle cx="250" cy="250" r="198" stroke="url(#goldGrad)" stroke-width="1.8" opacity="0.85"/>
+            <circle cx="250" cy="250" r="165" fill="url(#moonGlow)"/>
+
+            <!-- Golden Crescent Moon -->
+            <path d="M295 110 C225 118, 175 182, 185 256 C195 330, 260 382, 332 372 C275 362, 232 312, 226 248 C220 184, 250 132, 295 110 Z" fill="url(#goldGrad)" opacity="0.92"/>
+
+            <!-- Hanging Golden Stars -->
+            <g class="animate-twinkle">
+              <line x1="325" y1="145" x2="325" y2="195" stroke="#C9A25B" stroke-width="1.3"/>
+              <path d="M325 192 L329 203 L340 207 L329 211 L325 222 L321 211 L310 207 L321 203 Z" fill="url(#goldGrad)"/>
+            </g>
+            <g class="animate-twinkle-delay">
+              <line x1="360" y1="185" x2="360" y2="230" stroke="#C9A25B" stroke-width="1.1"/>
+              <path d="M360 228 L363 236 L371 239 L363 242 L360 250 L357 242 L349 239 L357 236 Z" fill="#E5C887"/>
+            </g>
+            <g class="animate-twinkle">
+              <path d="M145 160 L148 169 L157 172 L148 175 L145 184 L142 175 L133 172 L142 169 Z" fill="#C9A25B"/>
+              <circle cx="170" cy="135" r="3" fill="#E57D95"/>
+              <circle cx="345" cy="128" r="3.5" fill="#C9A25B"/>
+            </g>
+
+            <!-- Vintage Royal Baby Carriage / Cradle nestled in Clouds -->
+            <g transform="translate(155, 195)">
+              <!-- Canopy Hood -->
+              <path d="M35 85 C35 32, 85 15, 118 25 L105 85 Z" fill="url(#roseGrad)" stroke="#A8813B" stroke-width="1.5"/>
+              <path d="M58 26 L88 85 M88 22 L102 85" stroke="#FFFDF9" stroke-width="1.2" opacity="0.65"/>
+              <!-- Scalloped Lace Trim -->
+              <path d="M105 26 Q114 38 104 48 Q113 58 103 68 Q112 78 102 85" stroke="#FFFDF9" stroke-width="2.5" fill="none"/>
+              <!-- Carriage Bassinet Body -->
+              <path d="M25 85 L165 85 C160 128, 128 145, 95 145 C62 145, 30 128, 25 85 Z" fill="#FFFDF9" stroke="url(#goldGrad)" stroke-width="2.5"/>
+              <path d="M38 102 C65 116, 125 116, 152 102" stroke="#F1AAB9" stroke-width="2" fill="none"/>
+              <!-- Golden Ribbon Bow on Side -->
+              <circle cx="95" cy="112" r="5" fill="#C9A25B"/>
+              <path d="M95 112 C82 102, 76 115, 95 112 C108 102, 114 115, 95 112" fill="#E5C887"/>
+              <!-- Push Handle -->
+              <path d="M162 85 C182 82, 188 62, 178 52" stroke="#A8813B" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="177" cy="51" r="4.5" fill="#C9A25B"/>
+              <!-- Delicate Spoked Wheels -->
+              <g transform="translate(58, 156)">
+                <circle cx="0" cy="0" r="22" fill="#FFFDF9" stroke="#C9A25B" stroke-width="2.5"/>
+                <circle cx="0" cy="0" r="16" stroke="#F1AAB9" stroke-width="1"/>
+                <line x1="-20" y1="0" x2="20" y2="0" stroke="#C9A25B" stroke-width="1"/>
+                <line x1="0" y1="-20" x2="0" y2="20" stroke="#C9A25B" stroke-width="1"/>
+                <line x1="-14" y1="-14" x2="14" y2="14" stroke="#C9A25B" stroke-width="1"/>
+                <line x1="-14" y1="14" x2="14" y2="-14" stroke="#C9A25B" stroke-width="1"/>
+                <circle cx="0" cy="0" r="4" fill="#D45674"/>
+              </g>
+              <g transform="translate(132, 156)">
+                <circle cx="0" cy="0" r="22" fill="#FFFDF9" stroke="#C9A25B" stroke-width="2.5"/>
+                <circle cx="0" cy="0" r="16" stroke="#F1AAB9" stroke-width="1"/>
+                <line x1="-20" y1="0" x2="20" y2="0" stroke="#C9A25B" stroke-width="1"/>
+                <line x1="0" y1="-20" x2="0" y2="20" stroke="#C9A25B" stroke-width="1"/>
+                <line x1="-14" y1="-14" x2="14" y2="14" stroke="#C9A25B" stroke-width="1"/>
+                <line x1="-14" y1="14" x2="14" y2="-14" stroke="#C9A25B" stroke-width="1"/>
+                <circle cx="0" cy="0" r="4" fill="#D45674"/>
+              </g>
+            </g>
+
+            <!-- Dreamy Soft Clouds at Base -->
+            <path d="M95 375 C95 352, 122 340, 145 352 C158 330, 195 328, 212 348 C230 332, 268 332, 285 348 C305 328, 342 332, 355 354 C378 344, 405 356, 405 378 C405 396, 388 408, 365 408 L135 408 C112 408, 95 395, 95 375 Z" fill="url(#cloudGrad)" stroke="#F3E3BE" stroke-width="1.5"/>
+
+            <!-- Botanical Rose Clusters on Wreath -->
+            <g transform="translate(115, 345)">
+              <path d="M-18 -8 C-32 -18, -36 -2, -16 4 Z" fill="#9BB59E"/>
+              <path d="M18 -10 C32 -20, 36 -4, 16 4 Z" fill="#9BB59E"/>
+              <circle cx="0" cy="0" r="16" fill="#F1AAB9"/>
+              <circle cx="-3" cy="-2" r="10" fill="#E57D95"/>
+              <path d="M-5 -2 C-2 -7, 5 -5, 4 1 C3 6, -4 5, -5 -2 Z" stroke="#FFFDF9" stroke-width="1.4" fill="none"/>
+            </g>
+            <g transform="translate(382, 342)">
+              <path d="M-18 -8 C-32 -18, -36 -2, -16 4 Z" fill="#9BB59E"/>
+              <path d="M18 -10 C32 -20, 36 -4, 16 4 Z" fill="#9BB59E"/>
+              <circle cx="0" cy="0" r="15" fill="#F8D0D9"/>
+              <circle cx="2" cy="-2" r="9" fill="#E57D95"/>
+              <path d="M-4 -2 C-1 -6, 5 -4, 4 1 C3 5, -3 4, -4 -2 Z" stroke="#FFFDF9" stroke-width="1.3" fill="none"/>
+            </g>
+
+            <!-- Monogram Emblem at Top -->
+            <circle cx="250" cy="52" r="24" fill="#FFFDF9" stroke="url(#goldGrad)" stroke-width="2"/>
+            <text x="250" y="58" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-weight="700" font-size="19" fill="#A8813B">Z &amp; I</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== EMOTIONAL STORYTELLING LETTER ==================== -->
+  <section id="historia" class="relative z-10 py-14 px-4 sm:px-6">
+    <div class="max-w-4xl mx-auto glass-card rounded-[2rem] p-8 sm:p-12 shadow-luxury relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-40 h-40 bg-blush-100/60 rounded-bl-full pointer-events-none"></div>
+      <div class="text-center space-y-5 relative">
+        <span class="text-xs uppercase tracking-[0.28em] text-gold-500 font-semibold">Una Carta Desde el Cielo</span>
+        <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-plum-900">
+          "Ya casi estoy lista para conocerlos"
+        </h2>
+        <div class="w-20 h-0.5 bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto"></div>
+        <p class="font-serif italic text-xl sm:text-2xl text-plum-800/90 leading-relaxed max-w-2xl mx-auto">
+          "Dicen que los bebés elegimos a la familia más bonita antes de nacer... y yo tuve la suerte de tener también a los mejores tíos, abuelos y amigos del mundo. Mamá y papá están preparando cada detalle con mucho amor, pero esta fiesta no estará completa sin tu sonrisa."
+        </p>
+        <p class="text-sm font-medium text-blush-500 tracking-wide pt-1">— Con todo mi amor, Zoe Isabella 💕</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== LO QUE HAREMOS (CUSTOM SVG ILLUSTRATIONS) ==================== -->
+  <section id="itinerario" class="relative z-10 py-16 sm:py-20 px-4 sm:px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-14 space-y-3">
+        <span class="text-xs uppercase tracking-[0.26em] text-gold-500 font-semibold">Programa Especial</span>
+        <h2 class="font-serif text-4xl sm:text-5xl font-semibold text-plum-900">Lo que Haremos Juntos</h2>
+        <p class="text-plum-800/80 text-sm sm:text-base">
+          Hemos diseñado una tarde inolvidable llena de momentos especiales para compartir, reír y consentir a Zoe Isabella.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Activity 1: Bienvenida & Brindis -->
+        <div class="glass-card rounded-3xl p-6 text-center shadow-luxury hover:-translate-y-1.5 transition duration-300 flex flex-col items-center">
+          <div class="w-28 h-28 mb-4 rounded-2xl bg-gradient-to-b from-blush-50 to-gold-100/60 flex items-center justify-center p-3 border border-gold-200/70">
+            <!-- Custom SVG: Sparkling Toast Glasses & Floral Arch -->
+            <svg viewBox="0 0 120 120" class="w-full h-full" fill="none">
+              <path d="M22 98 C22 45, 98 45, 98 98" stroke="#E5C887" stroke-width="2" stroke-dasharray="3 3"/>
+              <circle cx="34" cy="58" r="7" fill="#F1AAB9"/>
+              <circle cx="86" cy="58" r="7" fill="#F1AAB9"/>
+              <circle cx="60" cy="46" r="8" fill="#E57D95"/>
+              <!-- Left Glass -->
+              <g transform="rotate(-10 48 75)">
+                <path d="M38 56 L54 56 L51 74 C50 79, 42 79, 41 74 Z" fill="#FCE8EC" stroke="#C9A25B" stroke-width="1.8"/>
+                <path d="M40 64 L52 64 L51 74 C50 78, 42 78, 41 74 Z" fill="#F1AAB9"/>
+                <line x1="46" y1="78" x2="46" y2="94" stroke="#C9A25B" stroke-width="1.8"/>
+                <line x1="39" y1="94" x2="53" y2="94" stroke="#C9A25B" stroke-width="1.8" stroke-linecap="round"/>
+              </g>
+              <!-- Right Glass -->
+              <g transform="rotate(10 72 75)">
+                <path d="M66 56 L82 56 L79 74 C78 79, 70 79, 69 74 Z" fill="#FCE8EC" stroke="#C9A25B" stroke-width="1.8"/>
+                <path d="M68 64 L80 64 L79 74 C78 78, 70 78, 69 74 Z" fill="#F1AAB9"/>
+                <line x1="74" y1="78" x2="74" y2="94" stroke="#C9A25B" stroke-width="1.8"/>
+                <line x1="67" y1="94" x2="81" y2="94" stroke="#C9A25B" stroke-width="1.8" stroke-linecap="round"/>
+              </g>
+              <!-- Sparkles -->
+              <path d="M60 22 L62 28 L68 30 L62 32 L60 38 L58 32 L52 30 L58 28 Z" fill="#C9A25B"/>
+            </svg>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-gold-100 text-gold-500 text-xs font-bold tracking-wider mb-2">14:00 HRS</span>
+          <h3 class="font-serif text-2xl font-semibold text-plum-900 mb-2">Bienvenida &amp; Brindis</h3>
+          <p class="text-xs sm:text-sm text-plum-800/80 leading-relaxed">
+            Recepción con bebidas refrescantes, fotos en nuestro rincón celestial y un brindis por la vida de Zoe.
+          </p>
+        </div>
+
+        <!-- Activity 2: Juegos & Dinámicas -->
+        <div class="glass-card rounded-3xl p-6 text-center shadow-luxury hover:-translate-y-1.5 transition duration-300 flex flex-col items-center">
+          <div class="w-28 h-28 mb-4 rounded-2xl bg-gradient-to-b from-blush-50 to-gold-100/60 flex items-center justify-center p-3 border border-gold-200/70">
+            <!-- Custom SVG: Baby Blocks, Rattle & Confetti -->
+            <svg viewBox="0 0 120 120" class="w-full h-full" fill="none">
+              <!-- Block Z -->
+              <rect x="24" y="56" width="32" height="32" rx="6" fill="#FCE8EC" stroke="#C9A25B" stroke-width="1.8"/>
+              <text x="40" y="78" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="20" fill="#D45674">Z</text>
+              <!-- Block O -->
+              <rect x="60" y="56" width="32" height="32" rx="6" fill="#FBF5E6" stroke="#C9A25B" stroke-width="1.8"/>
+              <text x="76" y="78" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="20" fill="#A8813B">O</text>
+              <!-- Block E on Top -->
+              <rect x="42" y="24" width="32" height="32" rx="6" fill="#FFFDF9" stroke="#E57D95" stroke-width="1.8"/>
+              <text x="58" y="46" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="20" fill="#2A1F24">E</text>
+              <!-- Confetti dots -->
+              <circle cx="24" cy="34" r="3" fill="#E57D95"/>
+              <circle cx="94" cy="36" r="3.5" fill="#C9A25B"/>
+              <path d="M88 22 L92 26 M28 45 L32 42" stroke="#C9A25B" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-gold-100 text-gold-500 text-xs font-bold tracking-wider mb-2">15:00 HRS</span>
+          <h3 class="font-serif text-2xl font-semibold text-plum-900 mb-2">Juegos &amp; Risas</h3>
+          <p class="text-xs sm:text-sm text-plum-800/80 leading-relaxed">
+            Dinámicas divertidas en equipo, concursos para futuros expertos en bebés y premios sorpresa para los ganadores.
+          </p>
+        </div>
+
+        <!-- Activity 3: Apertura de Regalos & Deseos -->
+        <div class="glass-card rounded-3xl p-6 text-center shadow-luxury hover:-translate-y-1.5 transition duration-300 flex flex-col items-center">
+          <div class="w-28 h-28 mb-4 rounded-2xl bg-gradient-to-b from-blush-50 to-gold-100/60 flex items-center justify-center p-3 border border-gold-200/70">
+            <!-- Custom SVG: Luxury Gift Box with Silk Ribbon & Floating Hearts -->
+            <svg viewBox="0 0 120 120" class="w-full h-full" fill="none">
+              <!-- Box Base -->
+              <rect x="30" y="54" width="60" height="42" rx="6" fill="#FCE8EC" stroke="#C9A25B" stroke-width="1.8"/>
+              <!-- Box Lid -->
+              <rect x="26" y="44" width="68" height="12" rx="4" fill="#F8D0D9" stroke="#C9A25B" stroke-width="1.8"/>
+              <!-- Vertical Silk Ribbon -->
+              <rect x="55" y="44" width="10" height="52" fill="#C9A25B"/>
+              <!-- Bow -->
+              <path d="M60 44 C44 26, 34 40, 60 44 C76 26, 86 40, 60 44" fill="#E5C887" stroke="#A8813B" stroke-width="1.5"/>
+              <!-- Floating Hearts -->
+              <path d="M42 26 C42 22, 48 22, 48 26 C48 30, 42 34, 42 34 C42 34, 36 30, 36 26 C36 22, 42 22, 42 26 Z" fill="#E57D95"/>
+              <path d="M78 22 C78 19, 83 19, 83 22 C83 25, 78 28, 78 28 C78 28, 73 25, 73 22 C73 19, 78 19, 78 22 Z" fill="#D45674"/>
+            </svg>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-gold-100 text-gold-500 text-xs font-bold tracking-wider mb-2">16:30 HRS</span>
+          <h3 class="font-serif text-2xl font-semibold text-plum-900 mb-2">Regalos &amp; Buenos Deseos</h3>
+          <p class="text-xs sm:text-sm text-plum-800/80 leading-relaxed">
+            Abriremos cada detalle elegido con tanto cariño para Zoe y leeremos los mensajes especiales que dejaron para ella.
+          </p>
+        </div>
+
+        <!-- Activity 4: Mesa Dulce & Pastel -->
+        <div class="glass-card rounded-3xl p-6 text-center shadow-luxury hover:-translate-y-1.5 transition duration-300 flex flex-col items-center">
+          <div class="w-28 h-28 mb-4 rounded-2xl bg-gradient-to-b from-blush-50 to-gold-100/60 flex items-center justify-center p-3 border border-gold-200/70">
+            <!-- Custom SVG: Tiered Floral Celebration Cake -->
+            <svg viewBox="0 0 120 120" class="w-full h-full" fill="none">
+              <!-- Cake Stand -->
+              <path d="M26 94 L94 94 M60 94 L60 104 M44 104 L76 104" stroke="#C9A25B" stroke-width="2.2" stroke-linecap="round"/>
+              <!-- Bottom Tier -->
+              <rect x="32" y="68" width="56" height="26" rx="5" fill="#FCE8EC" stroke="#C9A25B" stroke-width="1.8"/>
+              <path d="M32 76 Q41 82 50 76 Q60 82 70 76 Q79 82 88 76" stroke="#E57D95" stroke-width="1.6" fill="none"/>
+              <!-- Top Tier -->
+              <rect x="42" y="46" width="36" height="22" rx="4" fill="#FFFDF9" stroke="#C9A25B" stroke-width="1.8"/>
+              <!-- Floral & Heart Topper -->
+              <line x1="60" y1="30" x2="60" y2="46" stroke="#C9A25B" stroke-width="1.6"/>
+              <path d="M60 22 C60 18, 67 18, 67 22 C67 27, 60 32, 60 32 C60 32, 53 27, 53 22 C53 18, 60 18, 60 22 Z" fill="#D45674"/>
+              <circle cx="44" cy="68" r="4.5" fill="#F1AAB9"/>
+              <circle cx="76" cy="68" r="4.5" fill="#F1AAB9"/>
+            </svg>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-gold-100 text-gold-500 text-xs font-bold tracking-wider mb-2">17:30 HRS</span>
+          <h3 class="font-serif text-2xl font-semibold text-plum-900 mb-2">Mesa Dulce &amp; Pastel</h3>
+          <p class="text-xs sm:text-sm text-plum-800/80 leading-relaxed">
+            Compartiremos delicias artesanales, pastel de celebración y un recuerdo especial para agradecer tu compañía.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== LOCATION & DATE DETAILS ==================== -->
+  <section id="ubicacion" class="relative z-10 py-14 px-4 sm:px-6">
+    <div class="max-w-6xl mx-auto glass-card rounded-[2.2rem] p-6 sm:p-10 shadow-luxury">
+      <div class="grid lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-5 space-y-6">
+          <div>
+            <span class="text-xs uppercase tracking-[0.26em] text-gold-500 font-semibold">Coordenadas del Encuentro</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-plum-900 mt-1">¿Cuándo y Dónde?</h2>
+          </div>
+
+          <div class="space-y-4">
+            <div class="flex items-start gap-4 p-4 rounded-2xl bg-white/80 border border-gold-200/60">
+              <div class="w-11 h-11 rounded-xl bg-blush-100 text-blush-500 flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-plum-900 text-sm">Domingo, 06 de Diciembre de 2026</h4>
+                <p class="text-xs sm:text-sm text-plum-800/75 mt-0.5">Hora de inicio: <strong class="text-plum-900">2:00 PM (14:00 hrs)</strong></p>
+                <p class="text-[11px] text-blush-500 font-medium mt-1">✨ Por favor confirma antes del 05/12/2026</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4 p-4 rounded-2xl bg-white/80 border border-gold-200/60">
+              <div class="w-11 h-11 rounded-xl bg-gold-100 text-gold-500 flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-plum-900 text-sm">Conjunto Rosales de Nueva Castilla</h4>
+                <p class="text-xs sm:text-sm text-plum-800/75 mt-0.5">Calle 7 #90-81 • <strong class="text-plum-900">Salón Comunal</strong></p>
+                <p class="text-xs text-plum-800/60 mt-0.5">Bogotá, Colombia</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-3 pt-1">
+            <a href="https://www.google.com/maps/search/?api=1&query=Conjunto+Rosales+de+Nueva+Castilla+Calle+7+%2390-81+Bogota" target="_blank" rel="noopener noreferrer" class="flex-1 py-3.5 px-5 rounded-xl bg-plum-900 text-ivory text-xs sm:text-sm font-semibold text-center hover:bg-plum-800 transition flex items-center justify-center gap-2 shadow-md">
+              <svg class="w-4 h-4 text-gold-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="3 11 22 2 13 21 11 13 3 11"/>
+              </svg>
+              <span>Abrir en Google Maps</span>
+            </a>
+            <a href="https://waze.com/ul?q=Conjunto%20Rosales%20de%20Nueva%20Castilla%20Calle%207%2090-81%20Bogota&navigate=yes" target="_blank" rel="noopener noreferrer" class="flex-1 py-3.5 px-5 rounded-xl bg-white border border-gold-300 text-plum-900 text-xs sm:text-sm font-semibold text-center hover:bg-gold-100/70 transition flex items-center justify-center gap-2">
+              <span>Ir con Waze</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Embedded Interactive Map -->
+        <div class="lg:col-span-7">
+          <div class="rounded-3xl overflow-hidden border-2 border-gold-200/80 shadow-inner h-72 sm:h-80 bg-cream relative">
+            <iframe
+              title="Ubicación Conjunto Rosales de Nueva Castilla"
+              src="https://maps.google.com/maps?q=Calle%207%20%2390-81%2C%20Bogota%2C%20Colombia&t=&z=16&ie=UTF8&iwloc=&output=embed"
+              class="w-full h-full border-0"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== BOUTIQUE DE REGALOS (ANTI-DUPLICATE INVENTORY) ==================== -->
+  <section id="boutique" class="relative z-10 py-16 sm:py-24 px-4 sm:px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto space-y-3 mb-10">
+        <span class="text-xs uppercase tracking-[0.26em] text-gold-500 font-semibold">Lista Inteligente Sin Repetidos</span>
+        <h2 class="font-serif text-4xl sm:text-5xl font-semibold text-plum-900">La Boutique de Zoe Isabella</h2>
+        <p class="text-plum-800/80 text-sm sm:text-base leading-relaxed">
+          Muchos nos han preguntado qué necesita Zoe para su llegada. Creamos esta boutique especial para que elijas el detalle que más te nazca; <strong class="text-plum-900">al apartar un regalo exclusivo (como su cuna o coche), se bloquea automáticamente</strong> para evitar regalos repetidos.
+        </p>
+
+        <!-- Emotional Progress Bar -->
+        <div class="pt-4 max-w-xl mx-auto">
+          <div class="flex items-center justify-between text-xs font-semibold mb-1.5">
+            <span class="text-plum-800">Preparando el nidito de Zoe Isabella</span>
+            <span id="registry-progress-text" class="text-gold-500">0% completado</span>
+          </div>
+          <div class="w-full h-3 bg-blush-100 rounded-full overflow-hidden p-0.5 border border-gold-200/70">
+            <div id="registry-progress-bar" class="h-full rounded-full bg-gradient-to-r from-blush-400 via-gold-400 to-blush-500 transition-all duration-700" style="width: 4%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div id="category-filters" class="flex flex-wrap items-center justify-center gap-2 mb-10">
+        <button data-cat="todos" class="cat-btn active px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-plum-900 text-ivory shadow-sm transition">
+          Todos los Regalos
+        </button>
+        <button data-cat="descanso" class="cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white/85 border border-gold-200 text-plum-800 hover:bg-gold-100/70 transition">
+          Descanso y Paseo
+        </button>
+        <button data-cat="cuidado" class="cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white/85 border border-gold-200 text-plum-800 hover:bg-gold-100/70 transition">
+          Baño y Cuidado
+        </button>
+        <button data-cat="alimentacion" class="cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white/85 border border-gold-200 text-plum-800 hover:bg-gold-100/70 transition">
+          Alimentación
+        </button>
+        <button data-cat="ropita" class="cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white/85 border border-gold-200 text-plum-800 hover:bg-gold-100/70 transition">
+          Ropita y Pañales
+        </button>
+        <button data-cat="sobres" class="cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white/85 border border-gold-200 text-plum-800 hover:bg-gold-100/70 transition">
+          Lluvia de Sobres ✉️
+        </button>
+      </div>
+
+      <!-- Gift Grid -->
+      <div id="gift-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Populated dynamically via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== RSVP & CONFIRMATION SECTION ==================== -->
+  <section id="rsvp" class="relative z-10 py-16 sm:py-24 px-4 sm:px-6">
+    <div class="max-w-3xl mx-auto">
+      <div class="glass-card rounded-[2.4rem] p-7 sm:p-12 shadow-luxury border border-gold-300/60 relative overflow-hidden">
+        <!-- Decorative Top Banner -->
+        <div class="text-center space-y-3 mb-8">
+          <span class="inline-block px-4 py-1 rounded-full bg-blush-100 text-blush-500 text-xs font-bold tracking-wider uppercase">
+            Confirma antes del 05 de Diciembre, 2026
+          </span>
+          <h2 class="font-serif text-4xl sm:text-5xl font-semibold text-plum-900">Confirma tu Asistencia</h2>
+          <p class="text-sm text-plum-800/80 max-w-lg mx-auto">
+            Tu presencia es nuestro mayor regalo. Completa tus datos para reservar tus lugares y generar tu Pase VIP de Invitado.
+          </p>
+        </div>
+
+        <form id="rsvp-form" class="space-y-6">
+          <!-- Full Name -->
+          <div>
+            <label for="guest-name" class="block text-xs font-bold uppercase tracking-wider text-plum-900 mb-2">
+              Nombre Completo *
+            </label>
+            <input
+              type="text"
+              id="guest-name"
+              required
+              placeholder="Ej. Camila Andrea Rodríguez"
+              class="w-full px-4 py-3.5 rounded-2xl bg-white/95 border border-gold-300/80 text-plum-900 placeholder:text-plum-800/40 focus:outline-none focus:ring-2 focus:ring-blush-400 transition"
+            />
+          </div>
+
+          <!-- Attendance Toggle -->
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-plum-900 mb-2">
+              ¿Nos acompañarás en este día tan especial? *
+            </label>
+            <div class="grid grid-cols-2 gap-3">
+              <label class="cursor-pointer">
+                <input type="radio" name="attending" value="si" checked class="peer sr-only" />
+                <div class="p-4 rounded-2xl border-2 border-gold-200 bg-white/80 text-center peer-checked:border-blush-500 peer-checked:bg-blush-50/90 transition">
+                  <span class="block text-lg mb-0.5">💖</span>
+                  <span class="font-semibold text-sm text-plum-900">¡Sí, allí estaré!</span>
+                </div>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="attending" value="no" class="peer sr-only" />
+                <div class="p-4 rounded-2xl border-2 border-gold-200 bg-white/80 text-center peer-checked:border-plum-800 peer-checked:bg-cream transition">
+                  <span class="block text-lg mb-0.5">🕊️</span>
+                  <span class="font-semibold text-sm text-plum-800">No podré asistir</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Number of Attendees -->
+          <div id="guests-count-wrapper">
+            <label for="guests-count" class="block text-xs font-bold uppercase tracking-wider text-plum-900 mb-2">
+              ¿Cuántas personas asistirán en total? (Incluyéndote) *
+            </label>
+            <select
+              id="guests-count"
+              class="w-full px-4 py-3.5 rounded-2xl bg-white/95 border border-gold-300/80 text-plum-900 focus:outline-none focus:ring-2 focus:ring-blush-400 transition"
+            >
+              <option value="1">1 persona (Solo yo)</option>
+              <option value="2">2 personas (Yo + 1 acompañante)</option>
+              <option value="3">3 personas (Familia de 3)</option>
+              <option value="4">4 personas (Familia de 4)</option>
+              <option value="5">5 personas (Familia de 5)</option>
+            </select>
+          </div>
+
+          <!-- Selected Gifts Summary Box inside RSVP -->
+          <div class="p-4 sm:p-5 rounded-2xl bg-gold-100/60 border border-gold-300/80">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-gold-500 flex items-center gap-1.5">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/>
+                </svg>
+                Regalo(s) seleccionado(s) para Zoe:
+              </span>
+              <a href="#boutique" class="text-xs font-semibold text-blush-500 hover:underline">+ Elegir en Boutique</a>
+            </div>
+            <div id="rsvp-selected-gifts" class="text-xs sm:text-sm text-plum-800/80">
+              Aún no has seleccionado un regalo en la boutique (puedes elegirlo arriba antes de confirmar).
+            </div>
+          </div>
+
+          <!-- Sweet Message for Zoe Isabella -->
+          <div>
+            <label for="guest-message" class="block text-xs font-bold uppercase tracking-wider text-plum-900 mb-2">
+              Déjale un deseo o consejo de vida a Zoe Isabella ✨
+            </label>
+            <textarea
+              id="guest-message"
+              rows="3"
+              placeholder="Escribe unas palabras bonitas que Zoe leerá cuando crezca..."
+              class="w-full px-4 py-3 rounded-2xl bg-white/95 border border-gold-300/80 text-plum-900 placeholder:text-plum-800/40 focus:outline-none focus:ring-2 focus:ring-blush-400 transition"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full py-4 px-8 rounded-full bg-gradient-to-r from-plum-900 via-plum-800 to-plum-900 text-ivory font-semibold text-base shadow-lg hover:shadow-gold-glow hover:-translate-y-0.5 transition duration-200 flex items-center justify-center gap-2"
+          >
+            <span>Confirmar Asistencia y Generar mi Pase VIP</span>
+            <svg class="w-5 h-5 text-gold-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== GUEST WISHES WALL ==================== -->
+  <section id="muro-deseos" class="relative z-10 py-12 px-4 sm:px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-8">
+        <span class="text-xs uppercase tracking-[0.25em] text-gold-500 font-semibold">Recuerdos Eternos</span>
+        <h3 class="font-serif text-3xl sm:text-4xl font-semibold text-plum-900 mt-1">Mensajes de Amor para Zoe</h3>
+      </div>
+      <div id="wishes-wall" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Populated dynamically -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="relative z-10 border-t border-gold-200/70 bg-white/70 backdrop-blur-md py-10 px-4 sm:px-6 mt-12">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <div>
+        <p class="font-serif italic text-2xl font-semibold text-plum-900">Zoe Isabella</p>
+        <p class="text-xs text-plum-800/70 mt-0.5">06 de Diciembre, 2026 • Salón Comunal Rosales de Nueva Castilla</p>
+      </div>
+      <div class="flex items-center gap-4">
+        <button onclick="openAdminLogin()" class="inline-flex items-center gap-1.5 text-xs font-medium text-plum-800/70 hover:text-gold-500 transition px-3 py-1.5 rounded-full border border-gold-200 bg-ivory">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <span>Panel de Control Papás</span>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MODAL 1: QUICK GIFT RESERVATION ==================== -->
+  <div id="gift-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-plum-900/60 backdrop-blur-sm">
+    <div class="bg-ivory rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-gold-300 relative animate-fade-in">
+      <button onclick="closeGiftModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-cream text-plum-800 hover:bg-blush-100 flex items-center justify-center">✕</button>
+      <div class="text-center space-y-2 mb-5">
+        <span class="text-xs uppercase tracking-widest text-gold-500 font-bold">Apartar Regalo Exclusivo</span>
+        <h3 id="modal-gift-title" class="font-serif text-2xl sm:text-3xl font-semibold text-plum-900">Nombre del Regalo</h3>
+        <p id="modal-gift-quote" class="font-serif italic text-base text-blush-500">"Frase del bebé"</p>
+      </div>
+
+      <div class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-plum-900 mb-1.5">Tu Nombre Completo *</label>
+          <input type="text" id="modal-gift-guest-name" placeholder="Para registrar que este regalo es de tu parte" class="w-full px-4 py-3 rounded-xl bg-white border border-gold-300 text-sm focus:outline-none focus:ring-2 focus:ring-blush-400" />
+        </div>
+
+        <div id="modal-gift-qty-box" class="hidden">
+          <label class="block text-xs font-bold uppercase tracking-wider text-plum-900 mb-1.5">Cantidad a regalar</label>
+          <select id="modal-gift-qty" class="w-full px-4 py-3 rounded-xl bg-white border border-gold-300 text-sm"></select>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-blush-50 border border-blush-200 text-xs text-plum-800 leading-relaxed">
+          💡 Al apartarlo, este regalo quedará reservado a tu nombre para que nadie más lo repita. ¡Luego solo completa tu asistencia abajo!
+        </div>
+
+        <button onclick="confirmGiftSelection()" class="w-full py-3.5 rounded-full bg-gradient-to-r from-blush-500 to-blush-400 text-white font-semibold text-sm shadow-md hover:shadow-lg transition">
+          Apartar este Regalo para Zoe ✨
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 2: VIP GOLDEN TICKET KEEPSAKE ==================== -->
+  <div id="vip-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-plum-900/70 backdrop-blur-md overflow-y-auto">
+    <div class="max-w-md w-full my-auto space-y-4">
+      <div id="vip-ticket-printable" class="bg-gradient-to-br from-ivory via-cream to-blush-50 rounded-[2rem] p-7 border-2 border-gold-400 shadow-2xl relative overflow-hidden">
+        <!-- Corner ornaments -->
+        <div class="flex items-center justify-between border-b border-dashed border-gold-300 pb-4 mb-5">
+          <div>
+            <span class="text-[10px] uppercase tracking-[0.28em] text-gold-500 font-bold">Pase Oficial de Invitado</span>
+            <h3 class="font-serif italic text-3xl font-bold text-plum-900">Zoe Isabella</h3>
+          </div>
+          <div class="w-12 h-12 rounded-full bg-gold-100 border border-gold-300 flex items-center justify-center font-serif italic font-bold text-gold-500 text-lg">
+            VIP
+          </div>
+        </div>
+
+        <div class="space-y-3 text-sm">
+          <div>
+            <span class="text-[10px] uppercase tracking-widest text-plum-800/60 block">Invitado(a) Especial</span>
+            <p id="ticket-name" class="font-serif text-2xl font-semibold text-plum-900">Nombre Invitado</p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 pt-1">
+            <div class="p-3 rounded-xl bg-white/80 border border-gold-200">
+              <span class="text-[10px] uppercase tracking-wider text-plum-800/60 block">Estado &amp; Cupos</span>
+              <p id="ticket-status" class="font-bold text-blush-500 text-xs sm:text-sm mt-0.5">Confirmado (2 cupos)</p>
+            </div>
+            <div class="p-3 rounded-xl bg-white/80 border border-gold-200">
+              <span class="text-[10px] uppercase tracking-wider text-plum-800/60 block">Fecha &amp; Hora</span>
+              <p class="font-bold text-plum-900 text-xs sm:text-sm mt-0.5">06 Dic • 2:00 PM</p>
+            </div>
+          </div>
+
+          <div class="p-3 rounded-xl bg-white/80 border border-gold-200">
+            <span class="text-[10px] uppercase tracking-wider text-plum-800/60 block">Lugar del Evento</span>
+            <p class="font-semibold text-plum-900 text-xs mt-0.5">Conjunto Rosales de Nueva Castilla - Calle 7 #90-81 (Salón Comunal)</p>
+          </div>
+
+          <div class="p-3 rounded-xl bg-gold-100/70 border border-gold-300">
+            <span class="text-[10px] uppercase tracking-wider text-gold-500 font-bold block">Tu Regalo Reservado para Zoe</span>
+            <p id="ticket-gift" class="font-semibold text-plum-900 text-xs sm:text-sm mt-0.5">Ninguno seleccionado aún</p>
+          </div>
+        </div>
+
+        <div class="mt-5 pt-4 border-t border-dashed border-gold-300 flex items-center justify-between text-[11px] text-plum-800/75">
+          <span>¡Te esperamos con mucha ilusión!</span>
+          <button onclick="downloadICS()" class="font-bold text-gold-500 underline">+ Guardar en Calendario</button>
+        </div>
+      </div>
+
+      <div class="flex gap-3">
+        <button onclick="window.print()" class="flex-1 py-3.5 rounded-full bg-gold-400 text-plum-900 font-bold text-xs sm:text-sm shadow-lg hover:bg-gold-300 transition">
+          Guardar / Imprimir Pase
+        </button>
+        <button onclick="closeVipModal()" class="px-6 py-3.5 rounded-full bg-white text-plum-900 font-semibold text-xs sm:text-sm shadow-lg">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 3: PARENTS ADMIN LOGIN (PIN: 0122) ==================== -->
+  <div id="admin-login-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-plum-900/70 backdrop-blur-sm">
+    <div class="bg-ivory rounded-3xl max-w-sm w-full p-7 shadow-2xl border border-gold-300 text-center relative">
+      <button onclick="closeAdminLogin()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-cream text-plum-800 flex items-center justify-center">✕</button>
+      <div class="w-12 h-12 rounded-2xl bg-gold-100 text-gold-500 flex items-center justify-center mx-auto mb-3 border border-gold-300">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+      <h3 class="font-serif text-2xl font-semibold text-plum-900">Panel de Control Papás</h3>
+      <p class="text-xs text-plum-800/75 mt-1 mb-5">Ingresa la contraseña de acceso para ver invitados y regalos.</p>
+
+      <form onsubmit="verifyAdminPin(event)" class="space-y-4">
+        <input
+          type="password"
+          id="admin-pin-input"
+          maxlength="10"
+          placeholder="••••"
+          class="w-full text-center tracking-[0.5em] text-xl font-bold py-3 rounded-2xl bg-white border border-gold-300 focus:outline-none focus:ring-2 focus:ring-gold-400"
+        />
+        <p id="admin-pin-error" class="text-xs text-blush-500 font-semibold hidden">Contraseña incorrecta. Intenta de nuevo.</p>
+        <button type="submit" class="w-full py-3.5 rounded-full bg-plum-900 text-ivory font-semibold text-sm hover:bg-plum-800 transition">
+          Desbloquear Panel
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 4: PARENTS FULL DASHBOARD ==================== -->
+  <div id="admin-dashboard-modal" class="fixed inset-0 z-50 hidden bg-plum-900/75 backdrop-blur-md overflow-y-auto p-3 sm:p-6">
+    <div class="max-w-6xl mx-auto bg-ivory rounded-[2rem] border border-gold-300 shadow-2xl overflow-hidden my-4">
+      <!-- Top Bar -->
+      <div class="bg-plum-900 text-ivory px-6 py-5 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <span class="text-[10px] uppercase tracking-[0.25em] text-gold-300 font-semibold">Centro de Mando • Baby Shower</span>
+          <h2 class="font-serif text-2xl sm:text-3xl font-semibold">Panel de Zoe Isabella</h2>
+        </div>
+        <div class="flex items-center gap-2.5">
+          <button onclick="exportGuestsCSV()" class="px-4 py-2 rounded-full bg-gold-400 text-plum-900 text-xs font-bold hover:bg-gold-300 transition">
+            Exportar Lista (CSV)
+          </button>
+          <button onclick="closeAdminDashboard()" class="px-4 py-2 rounded-full bg-white/10 text-ivory text-xs font-semibold hover:bg-white/20 transition">
+            Cerrar Panel
+          </button>
+        </div>
+      </div>
+
+      <div class="p-6 sm:p-8 space-y-8">
+        <!-- KPI Summary Cards -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="p-5 rounded-2xl bg-white border border-gold-200 shadow-sm">
+            <span class="text-xs text-plum-800/70 font-medium">Total Personas Confirmadas</span>
+            <p id="kpi-total-people" class="font-serif text-4xl font-bold text-plum-900 mt-1">0</p>
+            <span class="text-[11px] text-emerald-600 font-semibold">Asistentes totales</span>
+          </div>
+          <div class="p-5 rounded-2xl bg-white border border-gold-200 shadow-sm">
+            <span class="text-xs text-plum-800/70 font-medium">Familias / Invitados Sí</span>
+            <p id="kpi-families-yes" class="font-serif text-4xl font-bold text-blush-500 mt-1">0</p>
+            <span class="text-[11px] text-plum-800/60">Registros confirmados</span>
+          </div>
+          <div class="p-5 rounded-2xl bg-white border border-gold-200 shadow-sm">
+            <span class="text-xs text-plum-800/70 font-medium">No Asisten</span>
+            <p id="kpi-families-no" class="font-serif text-4xl font-bold text-plum-800 mt-1">0</p>
+            <span class="text-[11px] text-plum-800/60">Excusados</span>
+          </div>
+          <div class="p-5 rounded-2xl bg-white border border-gold-200 shadow-sm">
+            <span class="text-xs text-plum-800/70 font-medium">Regalos Apartados</span>
+            <p id="kpi-gifts-claimed" class="font-serif text-4xl font-bold text-gold-500 mt-1">0</p>
+            <span id="kpi-gifts-percent" class="text-[11px] text-gold-500 font-semibold">0% del inventario</span>
+          </div>
+        </div>
+
+        <!-- Tabs inside Admin -->
+        <div class="flex gap-2 border-b border-gold-200 pb-3">
+          <button onclick="switchAdminTab('guests')" id="tab-btn-guests" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-plum-900 text-ivory">
+            Lista de Asistentes
+          </button>
+          <button onclick="switchAdminTab('gifts')" id="tab-btn-gifts" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-plum-800 border border-gold-200">
+            Control de Regalos &amp; Stock
+          </button>
+        </div>
+
+        <!-- Tab 1: Guests Table -->
+        <div id="admin-tab-guests" class="space-y-4">
+          <div class="flex flex-col sm:flex-row justify-between gap-3">
+            <input type="text" id="admin-search-guest" oninput="renderAdminTables()" placeholder="Buscar invitado por nombre o regalo..." class="px-4 py-2.5 rounded-xl bg-white border border-gold-300 text-sm w-full sm:w-80" />
+          </div>
+
+          <div class="overflow-x-auto rounded-2xl border border-gold-200 bg-white">
+            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+              <thead>
+                <tr class="bg-cream border-b border-gold-200 text-plum-900 uppercase text-[11px] tracking-wider">
+                  <th class="py-3.5 px-4">Invitado</th>
+                  <th class="py-3.5 px-4">Asistencia</th>
+                  <th class="py-3.5 px-4">Cupos</th>
+                  <th class="py-3.5 px-4">Regalo(s)</th>
+                  <th class="py-3.5 px-4">Mensaje para Zoe</th>
+                  <th class="py-3.5 px-4 text-right">Acción</th>
+                </tr>
+              </thead>
+              <tbody id="admin-guests-tbody" class="divide-y divide-gold-100">
+                <!-- Dynamic rows -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tab 2: Gifts Inventory Manager -->
+        <div id="admin-tab-gifts" class="hidden space-y-4">
+          <p class="text-xs text-plum-800/75">Aquí puedes ver quién apartó cada regalo o liberar una unidad si alguien cambió de opinión.</p>
+          <div class="overflow-x-auto rounded-2xl border border-gold-200 bg-white">
+            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+              <thead>
+                <tr class="bg-cream border-b border-gold-200 text-plum-900 uppercase text-[11px] tracking-wider">
+                  <th class="py-3.5 px-4">Artículo</th>
+                  <th class="py-3.5 px-4">Categoría</th>
+                  <th class="py-3.5 px-4">Disponibilidad</th>
+                  <th class="py-3.5 px-4">Apartado por</th>
+                  <th class="py-3.5 px-4 text-right">Gestión</th>
+                </tr>
+              </thead>
+              <tbody id="admin-gifts-tbody" class="divide-y divide-gold-100">
+                <!-- Dynamic rows -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 hidden max-w-sm bg-plum-900 text-ivory px-5 py-3.5 rounded-2xl shadow-2xl border border-gold-400 text-xs sm:text-sm flex items-center gap-3">
+    <span class="text-gold-300 text-lg">✨</span>
+    <span id="toast-msg">Acción completada</span>
+  </div>
+
+  <!-- ==================== FIREBASE + APPLICATION LOGIC ==================== -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, doc, setDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    // Curated Luxury Baby Shower Gift Catalog (Anti-Duplicate Stock Control)
+    const INITIAL_GIFTS = [
+      {
+        id: "cuna-colecho",
+        name: "Cuna Colecho de Madera",
+        category: "descanso",
+        totalQty: 1,
+        quote: "Para mis primeras siestas y sueños más dulces junto a mamá y papá.",
+        icon: "crib"
+      },
+      {
+        id: "coche-travel",
+        name: "Coche de Paseo Travel System 3 en 1",
+        category: "descanso",
+        totalQty: 1,
+        quote: "Para salir a descubrir el mundo y pasear en familia con total comodidad.",
+        icon: "stroller"
+      },
+      {
+        id: "silla-comedor",
+        name: "Silla Comedor Evolutiva",
+        category: "alimentacion",
+        totalQty: 1,
+        quote: "Para mis primeras papillas y compartir la mesa junto a quienes más amo.",
+        icon: "chair"
+      },
+      {
+        id: "banera-ergonomica",
+        name: "Bañera Ergonómica con Soporte y Termómetro",
+        category: "cuidado",
+        totalQty: 1,
+        quote: "Para disfrutar mis baños tibios y chapoteos relajantes antes de dormir.",
+        icon: "bath"
+      },
+      {
+        id: "gimnasio-musical",
+        name: "Gimnasio Musical de Estimulación",
+        category: "descanso",
+        totalQty: 1,
+        quote: "Para jugar, explorar colores y desarrollar mis primeros sentidos.",
+        icon: "gym"
+      },
+      {
+        id: "extractor-leche",
+        name: "Extractor de Leche Eléctrico Doble",
+        category: "alimentacion",
+        totalQty: 1,
+        quote: "Un aliado maravilloso para ayudar a mamá en mi etapa de lactancia.",
+        icon: "bottle"
+      },
+      {
+        id: "monitor-bebe",
+        name: "Monitor de Bebé con Cámara HD Nocturna",
+        category: "descanso",
+        totalQty: 1,
+        quote: "Para que mamá y papá puedan verme dormir tranquila desde cualquier lugar.",
+        icon: "monitor"
+      },
+      {
+        id: "esterilizador-biberones",
+        name: "Esterilizador y Calentador de Biberones",
+        category: "alimentacion",
+        totalQty: 1,
+        quote: "Para mantener siempre listos y protegidos mis teteros a toda hora.",
+        icon: "sterilizer"
+      },
+      {
+        id: "movil-proyector",
+        name: "Móvil Musical de Cuna con Proyector de Estrellas",
+        category: "descanso",
+        totalQty: 1,
+        quote: "Para arrullarme con melodías suaves bajo un cielo estrellado.",
+        icon: "moon"
+      },
+      {
+        id: "fular-portabebes",
+        name: "Fular / Canguro Ergonómico Portabebés",
+        category: "descanso",
+        totalQty: 1,
+        quote: "Para ir cerquita del corazón de mamá y papá en cada salida.",
+        icon: "carrier"
+      },
+      {
+        id: "set-biberones",
+        name: "Set de Biberones Anticólicos + Cepillos",
+        category: "alimentacion",
+        totalQty: 2,
+        quote: "Para mis tomas felices y pancita siempre contenta.",
+        icon: "bottle"
+      },
+      {
+        id: "kit-aseo",
+        name: "Kit Completo de Aseo y Cuidado Recién Nacido",
+        category: "cuidado",
+        totalQty: 2,
+        quote: "Para mantener mis uñitas, cabello y piel siempre impecables.",
+        icon: "care"
+      },
+      {
+        id: "ropita-algodon",
+        name: "Set de Ropita Algodón Pima (0 a 3 Meses)",
+        category: "ropita",
+        totalQty: 4,
+        quote: "Para estrenar pintas suaves, calientitas y adorables en mis primeros meses.",
+        icon: "onesie"
+      },
+      {
+        id: "cobija-muselina",
+        name: "Cobija Térmica de Muselina + Peluche de Apego",
+        category: "descanso",
+        totalQty: 3,
+        quote: "Para sentirme abrazadita y segura en cada siesta.",
+        icon: "blanket"
+      },
+      {
+        id: "panales-etapa1",
+        name: "Pañales Etapa 1 / Recién Nacido (Paquete Grande)",
+        category: "ropita",
+        totalQty: 8,
+        quote: "¡El tesoro más usado de todos! Siempre estaré sequita y feliz.",
+        icon: "diaper"
+      },
+      {
+        id: "panitos-humedos",
+        name: "Pañitos Húmedos Recién Nacido (Caja x 6)",
+        category: "cuidado",
+        totalQty: 6,
+        quote: "Suavidad pura para cuidar mi piel delicada en cada cambio.",
+        icon: "care"
+      },
+      {
+        id: "lluvia-sobres",
+        name: "Lluvia de Sobres / Aporte para el Futuro de Zoe",
+        category: "sobres",
+        totalQty: 99,
+        unlimited: true,
+        quote: "Si prefieres darme un detalle en sobre el día del evento, ¡lo recibiré con enorme gratitud!",
+        icon: "envelope"
+      }
+    ];
+
+    // App State
+    let appState = {
+      gifts: JSON.parse(JSON.stringify(INITIAL_GIFTS)).map(g => ({ ...g, claimedBy: [] })),
+      rsvps: [],
+      currentSessionGifts: [],
+      activeCategory: "todos",
+      selectedGiftForModal: null
+    };
+
+    const STORAGE_KEY = "zoe_isabella_babyshower_v1";
+    let db = null;
+    let useCloud = false;
+    const appId = typeof __app_id !== "undefined" ? __app_id : "zoe-isabella-shower";
+
+    // Initialize Persistence (Firebase Firestore if available + instant local sync)
+    async function initStorage() {
+      loadFromLocal();
+      renderAll();
+
+      try {
+        if (typeof __firebase_config !== "undefined" && __firebase_config) {
+          const firebaseConfig = JSON.parse(__firebase_config);
+          const app = initializeApp(firebaseConfig);
+          const auth = getAuth(app);
+          db = getFirestore(app);
+
+          if (typeof __initial_auth_token !== "undefined" && __initial_auth_token) {
+            await signInWithCustomToken(auth, __initial_auth_token);
+          } else {
+            await signInAnonymously(auth);
+          }
+
+          if (auth.currentUser) {
+            useCloud = true;
+            const stateDocRef = doc(db, "artifacts", appId, "public", "data", "babyshower", "mainState");
+            onSnapshot(
+              stateDocRef,
+              (snap) => {
+                if (snap.exists()) {
+                  const data = snap.data();
+                  if (data.gifts) appState.gifts = mergeGiftCatalog(data.gifts);
+                  if (data.rsvps) appState.rsvps = data.rsvps;
+                  saveToLocal();
+                  renderAll();
                 } else {
-                    badgeHtml = `<span class="gift-badge badge-multi">Disponible</span>`;
+                  persistState();
                 }
+              },
+              (err) => {
+                console.warn("Firestore sync fallback active:", err);
+              }
+            );
+          }
+        }
+      } catch (e) {
+        console.warn("Running in standalone local mode:", e);
+      }
+    }
 
-                card.innerHTML = `
-                    <div>
-                        <span class="gift-icon">${item.icon}</span>
-                        <div class="gift-name">${item.nombre}</div>
-                        <div class="gift-desc">${item.desc}</div>
-                    </div>
-                    ${badgeHtml}
-                `;
+    function mergeGiftCatalog(savedGifts) {
+      return INITIAL_GIFTS.map(base => {
+        const found = savedGifts.find(s => s.id === base.id);
+        return found ? { ...base, claimedBy: found.claimedBy || [] } : { ...base, claimedBy: [] };
+      });
+    }
 
-                if (!estaReservado) {
-                    card.onclick = () => seleccionarRegalo(item);
-                }
+    function loadFromLocal() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed.gifts) appState.gifts = mergeGiftCatalog(parsed.gifts);
+          if (parsed.rsvps) appState.rsvps = parsed.rsvps;
+        }
+      } catch (e) {}
+    }
 
-                grid.appendChild(card);
-            });
+    function saveToLocal() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          gifts: appState.gifts.map(g => ({ id: g.id, claimedBy: g.claimedBy })),
+          rsvps: appState.rsvps
+        }));
+      } catch (e) {}
+    }
+
+    async function persistState() {
+      saveToLocal();
+      renderAll();
+      if (useCloud && db) {
+        try {
+          const stateDocRef = doc(db, "artifacts", appId, "public", "data", "babyshower", "mainState");
+          await setDoc(stateDocRef, {
+            gifts: appState.gifts.map(g => ({ id: g.id, claimedBy: g.claimedBy })),
+            rsvps: appState.rsvps,
+            updatedAt: new Date().toISOString()
+          });
+        } catch (e) {
+          console.warn("Cloud write error:", e);
+        }
+      }
+    }
+
+    // Custom Vector Icons for Gifts
+    function getGiftSVG(type) {
+      const icons = {
+        crib: `<svg viewBox="0 0 64 64" class="w-10 h-10" fill="none" stroke="#C9A25B" stroke-width="2"><rect x="10" y="22" width="44" height="24" rx="4" fill="#FCE8EC"/><line x1="18" y1="22" x2="18" y2="46"/><line x1="27" y1="22" x2="27" y2="46"/><line x1="37" y1="22" x2="37" y2="46"/><line x1="46" y1="22" x2="46" y2="46"/><line x1="10" y1="18" x2="10" y2="52"/><line x1="54" y1="18" x2="54" y2="52"/></svg>`,
+        stroller: `<svg viewBox="0 0 64 64" class="w-10 h-10" fill="none" stroke="#C9A25B" stroke-width="2"><path d="M14 32 H48 C46 42 38 46 31 46 C24 46 16 42 14 32 Z" fill="#FCE8EC"/><path d="M16 32 C16 20 26 16 34 18 L31 32 Z" fill="#F8D0D9"/><circle cx="22" cy="51" r="4.5" fill="#FFFDF9"/><circle cx="40" cy="51" r="4.5" fill="#FFFDF9"/><path d="M48 32 L54 22" stroke-linecap="round"/></svg>`,
+        chair: `<svg viewBox="0 0 64 64" class="w-10 h-10" fill="none" stroke="#C9A25B" stroke-width="2"><rect x="20" y="14" width="24" height="22" rx="4" fill="#FCE8EC"/><line x1="16" y1="30" x2="48" y2="30" stroke="#D45674" stroke-width="2.5"/><line x1="22" y1="36" x2="16" y2="54"/><line x1="42" y1="36" x2="48" y2="54"/></svg>`,
+        bath: `<svg viewBox="0 0 64 64" class="w-10 h-10" fill="none" stroke="#C9A25B" stroke-width="2"><path d="M12 30 H52 L48 46 C47 50 42 52 32 52 C22 52 17 50 16 46 Z" fill="#FCE8EC"/><circle cx="24" cy="20" r="3" fill="#F1AAB9"/><circle cx="34" cy="15" r="4" fill="#F8D0D9"/><circle cx="42" cy="22" r="2.5" fill="#E5C887"/></svg>`,
+        gym: `<svg viewBox="0 0 64 64" class="w-10 h-10" fill="none" stroke="#C9A25B" stroke-width="2"><path d="M12 48 L32 16 L52 48" stroke-linecap="round"/><line x1="32" y1="16" x2="32" y2="30"/><circle cx="32" cy="33" r="4" fill="#F1AAB9"/><line x1="24" y1="28" x2="24" y2="38"/><circle cx="24" cy="40" r="3" fill="#E5C887"/></svg>`,
+        bottle: `<svg viewBox="0 0 64 64" class="w-10 h-10" fill="none" stroke="#C9A25B" stroke-width="2"><rect x="24" y="24" width="16" height="28" rx="4" fill="#FCE8EC"/><rect x="26" y="18" width="12" height="6" rx="2" fill="#F8D0D9"/><path d="M29 18 C29 12 35 12 35 18" fill="#E5C887"/></svg>`,
+        monitor: `<svg viewBox="0 0 64 64" class="w-10 h-10" fill="none" stroke="#C9A25B" stroke-width="2"><rect x="14" y="16" width="36" height="26" rx="5" fill="#FCE8EC"/><circle cx="32" cy="29" r="6" fill="#FFFDF9"/><path d="M24 48 H40" stroke-linecap="round"/></svg>`,
+        sterilizer: `<svg viewBox="0 0 64 64" class="w-10 h-10" fill="none" stroke="#C9A25B" stroke-width="2"><rect x="18" y="20" width="28" height="32" rx="6" fill="#FCE8EC"/><path d="M22 20 C22 14 42 14 42 20" fill="#F8D0D9"/><circle cx="32" cy="38" r="4" fill="#D45674"/></svg>`,
+        moon: `<svg viewBox="0 0 64 64" class="w-10 h-10" fill="none" stroke="#C9A25B" stroke-width="2"><path d="M38 14 C26 16 18 26 20 38 C22 48 32 54 42 52 C34 49 28 41 28 32 C28 23 32 17 38 14 Z" fill="#FBF5E6"/><circle cx="44" cy="24" r="2.5" fill="#E57D95"/></svg>`,
+        carrier: `<svg viewBox="0 0 64 64" class="w-10 h-10" fill="none" stroke="#C9A25B" stroke-width="2"><path d="M20 14 L26 28 H38 L44 14" stroke-linecap="round"/><rect x="22" y="28" width="20" height="22" rx="8" fill="#FCE8EC"/></svg>`,
+        care: `<svg viewBox="0 0 64 64" class="w-10 h-10" fill="none" stroke="#C9A25B" stroke-width="2"><rect x="16" y="22" width="32" height="26" rx="5" fill="#FCE8EC"/><path d="M32 29 V41 M26 35 H38" stroke="#D45674" stroke-width="2.5" stroke-linecap="round"/></svg>`,
+        onesie: `<svg viewBox="0 0 64 64" class="w-10 h-10" fill="none" stroke="#C9A25B" stroke-width="2"><path d="M20 16 L12 24 L18 30 L22 26 V46 C22 50 42 50 42 46 V26 L46 30 L52 24 L44 16 C40 20 24 20 20 16 Z" fill="#FCE8EC"/></svg>`,
+        blanket: `<svg viewBox="0 0 64 64" class="w-10 h-10" fill="none" stroke="#C9A25B" stroke-width="2"><rect x="16" y="18" width="32" height="28" rx="4" fill="#FCE8EC"/><path d="M16 26 H48 M16 38 H48" stroke="#F1AAB9"/></svg>`,
+        diaper: `<svg viewBox="0 0 64 64" class="w-10 h-10" fill="none" stroke="#C9A25B" stroke-width="2"><path d="M16 22 H48 V34 C48 44 38 48 32 48 C26 48 16 44 16 34 Z" fill="#FCE8EC"/><path d="M16 30 C24 30 28 38 28 47 M48 30 C40 30 36 38 36 47" stroke="#E57D95"/></svg>`,
+        envelope: `<svg viewBox="0 0 64 64" class="w-10 h-10" fill="none" stroke="#C9A25B" stroke-width="2"><rect x="12" y="20" width="40" height="26" rx="4" fill="#FBF5E6"/><path d="M12 22 L32 36 L52 22"/><circle cx="32" cy="35" r="4" fill="#D45674" stroke="none"/></svg>`
+      };
+      return icons[type] || icons.envelope;
+    }
+
+    // Render Gift Grid
+    function renderGifts() {
+      const grid = document.getElementById("gift-grid");
+      const filtered = appState.activeCategory === "todos"
+        ? appState.gifts
+        : appState.gifts.filter(g => g.category === appState.activeCategory);
+
+      grid.innerHTML = filtered.map(gift => {
+        const claimedCount = gift.claimedBy.length;
+        const remaining = gift.unlimited ? 99 : Math.max(0, gift.totalQty - claimedCount);
+        const isSoldOut = !gift.unlimited && remaining === 0;
+
+        let badgeHTML = "";
+        if (gift.unlimited) {
+          badgeHTML = `<span class="px-3 py-1 rounded-full bg-gold-100 text-gold-500 text-[11px] font-bold">Disponible siempre ✨</span>`;
+        } else if (isSoldOut) {
+          badgeHTML = `<span class="px-3 py-1 rounded-full bg-blush-100 text-blush-500 text-[11px] font-bold">Apartado con amor 💖</span>`;
+        } else if (gift.totalQty === 1) {
+          badgeHTML = `<span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-bold">Exclusivo • 1 disponible</span>`;
+        } else {
+          badgeHTML = `<span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-bold">Quedan ${remaining} de ${gift.totalQty}</span>`;
         }
 
-        function seleccionarRegalo(item) {
-            const banner = document.getElementById('selectedGiftBanner');
-            if (regaloSeleccionado && regaloSeleccionado.id === item.id) {
-                regaloSeleccionado = null;
-                banner.style.display = 'none';
-            } else {
-                regaloSeleccionado = item;
-                banner.style.display = 'block';
-                banner.innerHTML = `🎁 Has seleccionado: <strong>${item.nombre}</strong> ${item.unique ? '(Se reservará exclusivamente para ti al confirmar)' : ''}`;
-            }
-            renderizarRegalos();
+        const claimedNames = [...new Set(gift.claimedBy)].join(", ");
+
+        return `
+          <div class="rounded-3xl p-6 transition duration-300 flex flex-col justify-between ${
+            isSoldOut
+              ? "bg-cream/60 border border-gold-200/50 opacity-75"
+              : "glass-card shadow-luxury hover:-translate-y-1 border border-gold-300/60"
+          }">
+            <div>
+              <div class="flex items-start justify-between gap-3 mb-4">
+                <div class="w-14 h-14 rounded-2xl bg-white border border-gold-200 flex items-center justify-center shadow-sm shrink-0">
+                  ${getGiftSVG(gift.icon)}
+                </div>
+                ${badgeHTML}
+              </div>
+
+              <h3 class="font-serif text-2xl font-semibold text-plum-900 leading-snug mb-2">
+                ${gift.name}
+              </h3>
+
+              <p class="font-serif italic text-base text-plum-800/80 leading-relaxed mb-4">
+                "${gift.quote}"
+              </p>
+            </div>
+
+            <div class="pt-3 border-t border-gold-200/60">
+              ${
+                isSoldOut
+                  ? `<div class="w-full py-3 px-4 rounded-xl bg-blush-50 text-blush-500 text-xs font-semibold text-center">
+                       Ya fue elegido${claimedNames ? ` por ${claimedNames}` : ""} ✨
+                     </div>`
+                  : `<button onclick="openGiftModal('${gift.id}')" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-plum-900 to-plum-800 text-ivory text-xs sm:text-sm font-semibold hover:shadow-gold-glow transition flex items-center justify-center gap-2">
+                       <span>Elegir este Regalo</span>
+                       <svg class="w-4 h-4 text-gold-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                         <path d="M12 5v14M5 12h14" stroke-linecap="round"/>
+                       </svg>
+                     </button>`
+              }
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    // Update Registry Progress Bar & RSVP Summary
+    function updateRegistryStats() {
+      const finiteGifts = appState.gifts.filter(g => !g.unlimited);
+      const totalUnits = finiteGifts.reduce((acc, g) => acc + g.totalQty, 0);
+      const claimedUnits = finiteGifts.reduce((acc, g) => acc + Math.min(g.totalQty, g.claimedBy.length), 0);
+      const pct = totalUnits > 0 ? Math.round((claimedUnits / totalUnits) * 100) : 0;
+
+      document.getElementById("registry-progress-text").textContent = `${pct}% completado (${claimedUnits}/${totalUnits} detalles)`;
+      document.getElementById("registry-progress-bar").style.width = `${Math.max(4, pct)}%`;
+
+      const availableCount = finiteGifts.filter(g => g.claimedBy.length < g.totalQty).length + 1;
+      document.getElementById("nav-gift-badge").textContent = availableCount;
+
+      // Update RSVP selected gifts summary
+      const summaryBox = document.getElementById("rsvp-selected-gifts");
+      if (appState.currentSessionGifts.length === 0) {
+        summaryBox.innerHTML = `Aún no has seleccionado un regalo en la boutique (puedes elegirlo arriba antes de confirmar).`;
+      } else {
+        summaryBox.innerHTML = appState.currentSessionGifts
+          .map(item => `<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-gold-300 text-plum-900 font-semibold text-xs mr-2 mb-1">🎁 ${item.name} ${item.qty > 1 ? `(x${item.qty})` : ""}</span>`)
+          .join("");
+      }
+    }
+
+    // Render Public Guest Wishes Wall
+    function renderWishesWall() {
+      const wall = document.getElementById("wishes-wall");
+      const wishes = appState.rsvps.filter(r => r.message && r.message.trim().length > 0);
+
+      if (wishes.length === 0) {
+        wall.innerHTML = `
+          <div class="col-span-full text-center p-8 rounded-3xl glass-card border border-gold-200/70">
+            <p class="font-serif italic text-xl text-plum-800/75">
+              Sé el primero en dejarle un hermoso deseo de bienvenida a Zoe Isabella al confirmar tu asistencia ✨
+            </p>
+          </div>
+        `;
+        return;
+      }
+
+      wall.innerHTML = wishes.slice().reverse().map(w => `
+        <div class="glass-card rounded-2xl p-5 shadow-sm border border-gold-200/80 flex flex-col justify-between">
+          <p class="font-serif italic text-lg text-plum-900 leading-relaxed mb-3">"${escapeHTML(w.message)}"</p>
+          <div class="flex items-center justify-between text-xs text-gold-500 font-semibold border-t border-gold-100 pt-2.5">
+            <span>— ${escapeHTML(w.name)}</span>
+            <span>💖</span>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    // Gift Modal Handlers
+    window.openGiftModal = function(giftId) {
+      const gift = appState.gifts.find(g => g.id === giftId);
+      if (!gift) return;
+
+      const remaining = gift.unlimited ? 5 : Math.max(0, gift.totalQty - gift.claimedBy.length);
+      if (!gift.unlimited && remaining <= 0) {
+        showToast("Este regalo acaba de ser apartado por otro invitado.");
+        return;
+      }
+
+      appState.selectedGiftForModal = gift;
+      document.getElementById("modal-gift-title").textContent = gift.name;
+      document.getElementById("modal-gift-quote").textContent = `"${gift.quote}"`;
+
+      const existingName = document.getElementById("guest-name").value.trim();
+      if (existingName) {
+        document.getElementById("modal-gift-guest-name").value = existingName;
+      }
+
+      const qtyBox = document.getElementById("modal-gift-qty-box");
+      const qtySelect = document.getElementById("modal-gift-qty");
+      if (!gift.unlimited && remaining > 1) {
+        qtyBox.classList.remove("hidden");
+        qtySelect.innerHTML = Array.from({ length: remaining }, (_, i) => `<option value="${i + 1}">${i + 1} unidad(es)</option>`).join("");
+      } else {
+        qtyBox.classList.add("hidden");
+        qtySelect.innerHTML = `<option value="1">1</option>`;
+      }
+
+      const modal = document.getElementById("gift-modal");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+    };
+
+    window.closeGiftModal = function() {
+      const modal = document.getElementById("gift-modal");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    };
+
+    window.confirmGiftSelection = async function() {
+      const guestName = document.getElementById("modal-gift-guest-name").value.trim();
+      if (!guestName) {
+        showToast("Por favor escribe tu nombre para apartar el regalo.");
+        return;
+      }
+
+      const gift = appState.selectedGiftForModal;
+      if (!gift) return;
+
+      const qty = parseInt(document.getElementById("modal-gift-qty").value || "1", 10);
+      const remaining = gift.unlimited ? 99 : Math.max(0, gift.totalQty - gift.claimedBy.length);
+
+      if (!gift.unlimited && qty > remaining) {
+        showToast("No hay suficientes unidades disponibles.");
+        return;
+      }
+
+      // Lock units immediately in catalog
+      for (let i = 0; i < qty; i++) {
+        gift.claimedBy.push(guestName);
+      }
+
+      // Sync guest name to RSVP input if empty
+      const rsvpNameInput = document.getElementById("guest-name");
+      if (!rsvpNameInput.value.trim()) {
+        rsvpNameInput.value = guestName;
+      }
+
+      appState.currentSessionGifts.push({ id: gift.id, name: gift.name, qty });
+
+      await persistState();
+      closeGiftModal();
+      showToast(`¡Gracias ${guestName}! Apartaste: ${gift.name}`);
+
+      // Smoothly scroll to RSVP so they complete seat reservation
+      setTimeout(() => {
+        document.getElementById("rsvp").scrollIntoView({ behavior: "smooth" });
+      }, 600);
+    };
+
+    // RSVP Form Submission
+    document.getElementById("rsvp-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("guest-name").value.trim();
+      const attending = document.querySelector('input[name="attending"]:checked').value;
+      const guestsCount = attending === "si" ? parseInt(document.getElementById("guests-count").value, 10) : 0;
+      const message = document.getElementById("guest-message").value.trim();
+
+      if (!name) {
+        showToast("Por favor ingresa tu nombre completo.");
+        return;
+      }
+
+      const giftsLabel = appState.currentSessionGifts.length > 0
+        ? appState.currentSessionGifts.map(g => `${g.name}${g.qty > 1 ? ` (x${g.qty})` : ""}`).join(", ")
+        : "Por definir / Lluvia de sobres";
+
+      const newEntry = {
+        id: "rsvp_" + Date.now(),
+        name,
+        attending,
+        guestsCount,
+        gifts: giftsLabel,
+        message,
+        createdAt: new Date().toLocaleDateString("es-CO")
+      };
+
+      appState.rsvps.push(newEntry);
+      await persistState();
+
+      // Populate & Show VIP Ticket
+      document.getElementById("ticket-name").textContent = name;
+      document.getElementById("ticket-status").textContent = attending === "si"
+        ? `Confirmado (${guestsCount} ${guestsCount === 1 ? "cupo" : "cupos"})`
+        : "No asiste (Envía buenos deseos)";
+      document.getElementById("ticket-gift").textContent = giftsLabel;
+
+      const vipModal = document.getElementById("vip-modal");
+      vipModal.classList.remove("hidden");
+      vipModal.classList.add("flex");
+
+      // Reset form & session gifts
+      e.target.reset();
+      appState.currentSessionGifts = [];
+      updateRegistryStats();
+      showToast("¡Confirmación guardada con éxito!");
+    });
+
+    // Toggle guests count visibility when selecting "No podré asistir"
+    document.querySelectorAll('input[name="attending"]').forEach(radio => {
+      radio.addEventListener("change", (e) => {
+        const wrapper = document.getElementById("guests-count-wrapper");
+        if (e.target.value === "no") {
+          wrapper.classList.add("opacity-40", "pointer-events-none");
+        } else {
+          wrapper.classList.remove("opacity-40", "pointer-events-none");
         }
+      });
+    });
 
-        // LÓGICA DEL FORMULARIO
-        function handleAsistenciaChange() {
-            const val = document.getElementById('asistencia').value;
-            const camposAsistente = document.getElementById('camposAsistente');
-            const submitBtn = document.getElementById('submitBtn');
+    window.closeVipModal = function() {
+      const vipModal = document.getElementById("vip-modal");
+      vipModal.classList.add("hidden");
+      vipModal.classList.remove("flex");
+    };
 
-            if (val === 'Sí') {
-                camposAsistente.style.display = 'block';
-                submitBtn.style.display = 'block';
-                submitBtn.innerText = "Confirmar Asistencia 🚀";
-                cargarDisponibilidadRegalos();
-            } else if (val === 'No') {
-                camposAsistente.style.display = 'none';
-                submitBtn.style.display = 'block';
-                submitBtn.innerText = "Enviar Respuesta 💌";
-            }
-        }
-
-        function toggleAcompanantesInput() {
-            const select = document.getElementById('acompanantes').value;
-            const grupoOtro = document.getElementById('grupoOtroAcomp');
-            if (select === 'otro') {
-                grupoOtro.style.display = 'block';
-                document.getElementById('inputOtroAcomp').focus();
-            } else {
-                grupoOtro.style.display = 'none';
-                document.getElementById('inputOtroAcomp').value = '';
-            }
-        }
-
-        // ENVÍO HACIA GOOGLE APPS SCRIPT
-        const rsvpForm = document.getElementById('rsvpForm');
-        rsvpForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const nombre = document.getElementById('nombre').value.trim();
-            const asistencia = document.getElementById('asistencia').value;
-            const mensaje = document.getElementById('mensaje').value.trim() || "Sin mensaje";
-            let acompanantes = "0";
-            let regaloId = "sin_seleccion";
-            let regaloNombre = "No especificado / Por definir";
-            let isUnique = false;
-
-            if (asistencia === "Sí") {
-                const selectAcomp = document.getElementById('acompanantes').value;
-                if (selectAcomp === 'otro') {
-                    const valOtro = document.getElementById('inputOtroAcomp').value.trim();
-                    if (!valOtro || parseInt(valOtro) < 4) {
-                        alert("Por favor indica una cantidad válida de acompañantes (mínimo 4).");
-                        return;
-                    }
-                    acompanantes = valOtro;
-                } else {
-                    acompanantes = selectAcomp;
-                }
-
-                if (regaloSeleccionado) {
-                    regaloId = regaloSeleccionado.id;
-                    regaloNombre = regaloSeleccionado.nombre;
-                    isUnique = regaloSeleccionado.unique;
-                }
-            } else {
-                regaloId = "no_asiste";
-                regaloNombre = "No asiste";
-            }
-
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.innerText = "Guardando confirmación...";
-            submitBtn.disabled = true;
-
-            try {
-                const response = await fetch(APPS_SCRIPT_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                    body: JSON.stringify({
-                        nombre: nombre,
-                        asistencia: asistencia,
-                        acompanantes: acompanantes,
-                        regalo_id: regaloId,
-                        regalo: regaloNombre,
-                        is_unique: isUnique,
-                        mensaje: mensaje
-                    })
-                });
-
-                const result = await response.json();
-
-                if (result.status === "duplicate") {
-                    alert(`¡Ups! Justo hace un instante otro invitado reservó "${regaloNombre}". Por favor elige otro detalle de la lista.`);
-                    regaloSeleccionado = null;
-                    document.getElementById('selectedGiftBanner').style.display = 'none';
-                    await cargarDisponibilidadRegalos();
-                    submitBtn.innerText = "Confirmar Asistencia 🚀";
-                    submitBtn.disabled = false;
-                    return;
-                }
-
-                if (result.status !== "success") {
-                    throw new Error(result.message || "Error al guardar");
-                }
-
-                if (asistencia === "Sí") {
-                    confetti({ particleCount: 160, spread: 100, origin: { y: 0.6 }, colors: ['#d97aa6', '#a472c6', '#e8b85a'] });
-                    if (regaloSeleccionado) {
-                        document.getElementById('successText').innerHTML = `Muchas gracias <strong>${nombre}</strong>. Tu asistencia quedó confirmada y anotamos tu detalle (<strong>${regaloNombre}</strong>). ¡Te esperamos el 6 de diciembre!`;
-                    }
-                } else {
-                    document.getElementById('successText').innerHTML = `Gracias por avisarnos, <strong>${nombre}</strong>. ¡Te tendremos muy presente en este día especial!`;
-                }
-
-                rsvpForm.style.opacity = '0';
-                setTimeout(() => {
-                    rsvpForm.style.display = 'none';
-                    document.getElementById('successMessage').style.display = 'block';
-                }, 300);
-
-            } catch (error) {
-                alert("Hubo un problema al guardar. Revisa que el script de Apps Script esté publicado como 'Cualquier persona'.");
-                submitBtn.innerText = "Confirmar Asistencia 🚀";
-                submitBtn.disabled = false;
-            }
+    // Category Filter Tabs
+    document.querySelectorAll(".cat-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".cat-btn").forEach(b => {
+          b.classList.remove("bg-plum-900", "text-ivory", "shadow-sm");
+          b.classList.add("bg-white/85", "border", "border-gold-200", "text-plum-800");
         });
+        btn.classList.add("bg-plum-900", "text-ivory", "shadow-sm");
+        btn.classList.remove("bg-white/85", "border", "border-gold-200", "text-plum-800");
+        appState.activeCategory = btn.dataset.cat;
+        renderGifts();
+      });
+    });
 
-        // PANEL DE CONTROL (CLAVE: 1234)
-        const CLAVE_ADMIN = "1234"; 
+    // ==================== PARENTS ADMIN PANEL (PIN: 0122) ====================
+    window.openAdminLogin = function() {
+      document.getElementById("admin-pin-input").value = "";
+      document.getElementById("admin-pin-error").classList.add("hidden");
+      const modal = document.getElementById("admin-login-modal");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      setTimeout(() => document.getElementById("admin-pin-input").focus(), 100);
+    };
 
-        function toggleAdminPanel() {
-            const adminSec = document.getElementById('adminSection');
-            if (adminSec.style.display === 'none' || adminSec.style.display === '') {
-                adminSec.style.display = 'block';
-                adminSec.scrollIntoView({ behavior: 'smooth' });
-            } else {
-                adminSec.style.display = 'none';
-            }
-        }
+    window.closeAdminLogin = function() {
+      const modal = document.getElementById("admin-login-modal");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    };
 
-        function verificarClave() {
-            if (document.getElementById('adminKey').value === CLAVE_ADMIN) {
-                document.getElementById('loginAdmin').style.display = 'none';
-                document.getElementById('adminContent').style.display = 'block';
-                cargarDatosAdmin();
-            } else {
-                alert("Clave incorrecta.");
-            }
-        }
+    window.verifyAdminPin = function(e) {
+      e.preventDefault();
+      const pin = document.getElementById("admin-pin-input").value.trim();
+      if (pin === "0122") {
+        closeAdminLogin();
+        openAdminDashboard();
+      } else {
+        document.getElementById("admin-pin-error").classList.remove("hidden");
+      }
+    };
 
-        function cargarDatosAdmin() {
-            const tabla = document.getElementById('tablaInvitados');
-            tabla.innerHTML = `<tr><td colspan="5" style="text-align: center;">Cargando datos...</td></tr>`;
+    window.openAdminDashboard = function() {
+      renderAdminTables();
+      const modal = document.getElementById("admin-dashboard-modal");
+      modal.classList.remove("hidden");
+      modal.classList.add("block");
+    };
 
-            fetch(APPS_SCRIPT_URL)
-            .then(response => response.json())
-            .then(registros => {
-                let totalPersonas = 0, totalFamilias = 0, unicosCount = 0, basicosCount = 0;
-                tabla.innerHTML = "";
+    window.closeAdminDashboard = function() {
+      const modal = document.getElementById("admin-dashboard-modal");
+      modal.classList.add("hidden");
+      modal.classList.remove("block");
+    };
 
-                if (!registros || registros.length === 0) {
-                    tabla.innerHTML = `<tr><td colspan="5" style="text-align: center;">Aún no hay confirmaciones para el Baby Shower.</td></tr>`;
-                    return;
-                }
+    window.switchAdminTab = function(tab) {
+      const guestsTab = document.getElementById("admin-tab-guests");
+      const giftsTab = document.getElementById("admin-tab-gifts");
+      const btnGuests = document.getElementById("tab-btn-guests");
+      const btnGifts = document.getElementById("tab-btn-gifts");
 
-                registros.forEach(item => {
-                    let numAcomp = parseInt(item.acompanantes) || 0;
-                    if (item.asistencia === "Sí") {
-                        totalFamilias++;
-                        totalPersonas += (1 + numAcomp);
-                        const catItem = CATALOGO_REGALOS.find(g => g.id === item.regalo_id);
-                        if (catItem && catItem.unique) unicosCount++;
-                        if (catItem && catItem.categoria === "basicos" && catItem.id !== "detalle_libre") basicosCount++;
-                    }
+      if (tab === "guests") {
+        guestsTab.classList.remove("hidden");
+        giftsTab.classList.add("hidden");
+        btnGuests.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-plum-900 text-ivory";
+        btnGifts.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-plum-800 border border-gold-200";
+      } else {
+        guestsTab.classList.add("hidden");
+        giftsTab.classList.remove("hidden");
+        btnGifts.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-plum-900 text-ivory";
+        btnGuests.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-plum-800 border border-gold-200";
+      }
+    };
 
-                    let tr = document.createElement('tr');
-                    tr.innerHTML = `
-                        <td><strong>${item.nombre}</strong></td>
-                        <td>${item.asistencia === "Sí" ? "✅ Sí" : "❌ No"}</td>
-                        <td>+${numAcomp}</td>
-                        <td>${item.regalo || '-'}</td>
-                        <td>${item.mensaje || '-'}</td>
-                    `;
-                    tabla.appendChild(tr);
-                });
+    window.renderAdminTables = function() {
+      // Update KPIs
+      const yesRsvps = appState.rsvps.filter(r => r.attending === "si");
+      const noRsvps = appState.rsvps.filter(r => r.attending === "no");
+      const totalPeople = yesRsvps.reduce((sum, r) => sum + (r.guestsCount || 1), 0);
 
-                document.getElementById('totalAsistentes').innerText = totalPersonas;
-                document.getElementById('totalFamilias').innerText = totalFamilias;
-                document.getElementById('regalosUnicosReservados').innerText = unicosCount;
-                document.getElementById('regalosBasicos').innerText = basicosCount;
-            })
-            .catch(() => {
-                tabla.innerHTML = `<tr><td colspan="5" style="text-align: center; color: #fca5a5;">Error al conectar con Google Apps Script.</td></tr>`;
-            });
-        }
-    </script>
+      const finiteGifts = appState.gifts.filter(g => !g.unlimited);
+      const totalUnits = finiteGifts.reduce((acc, g) => acc + g.totalQty, 0);
+      const claimedUnits = finiteGifts.reduce((acc, g) => acc + Math.min(g.totalQty, g.claimedBy.length), 0);
+      const pct = totalUnits > 0 ? Math.round((claimedUnits / totalUnits) * 100) : 0;
+
+      document.getElementById("kpi-total-people").textContent = totalPeople;
+      document.getElementById("kpi-families-yes").textContent = yesRsvps.length;
+      document.getElementById("kpi-families-no").textContent = noRsvps.length;
+      document.getElementById("kpi-gifts-claimed").textContent = `${claimedUnits}/${totalUnits}`;
+      document.getElementById("kpi-gifts-percent").textContent = `${pct}% del inventario`;
+
+      // Guests Table
+      const query = (document.getElementById("admin-search-guest").value || "").toLowerCase();
+      const filteredRsvps = appState.rsvps.filter(r =>
+        r.name.toLowerCase().includes(query) || (r.gifts && r.gifts.toLowerCase().includes(query))
+      );
+
+      const guestsTbody = document.getElementById("admin-guests-tbody");
+      if (filteredRsvps.length === 0) {
+        guestsTbody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-plum-800/60">Aún no hay confirmaciones registradas.</td></tr>`;
+      } else {
+        guestsTbody.innerHTML = filteredRsvps.slice().reverse().map(r => `
+          <tr class="hover:bg-cream/50">
+            <td class="py-3.5 px-4 font-semibold text-plum-900">${escapeHTML(r.name)}</td>
+            <td class="py-3.5 px-4">
+              ${r.attending === "si"
+                ? `<span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 font-bold text-[11px]">Sí asiste</span>`
+                : `<span class="px-2.5 py-1 rounded-full bg-gray-100 text-gray-600 font-bold text-[11px]">No asiste</span>`}
+            </td>
+            <td class="py-3.5 px-4 font-bold text-plum-900">${r.attending === "si" ? r.guestsCount : 0}</td>
+            <td class="py-3.5 px-4 text-plum-800">${escapeHTML(r.gifts || "-")}</td>
+            <td class="py-3.5 px-4 text-plum-800/75 italic max-w-xs truncate">${escapeHTML(r.message || "-")}</td>
+            <td class="py-3.5 px-4 text-right">
+              <button onclick="deleteRsvp('${r.id}')" class="text-xs text-blush-500 hover:underline font-semibold">Eliminar</button>
+            </td>
+          </tr>
+        `).join("");
+      }
+
+      // Gifts Inventory Table
+      const giftsTbody = document.getElementById("admin-gifts-tbody");
+      giftsTbody.innerHTML = appState.gifts.map(g => {
+        const claimed = g.claimedBy.length;
+        const statusText = g.unlimited ? `${claimed} aportes` : `${claimed} / ${g.totalQty} apartados`;
+        const byWhom = claimed > 0 ? g.claimedBy.join(", ") : "Disponible";
+        return `
+          <tr class="hover:bg-cream/50">
+            <td class="py-3.5 px-4 font-semibold text-plum-900">${g.name}</td>
+            <td class="py-3.5 px-4 uppercase text-[11px] text-gold-500 font-bold">${g.category}</td>
+            <td class="py-3.5 px-4 font-bold ${!g.unlimited && claimed >= g.totalQty ? "text-blush-500" : "text-emerald-700"}">${statusText}</td>
+            <td class="py-3.5 px-4 text-plum-800">${escapeHTML(byWhom)}</td>
+            <td class="py-3.5 px-4 text-right">
+              ${claimed > 0
+                ? `<button onclick="releaseGiftUnit('${g.id}')" class="px-3 py-1 rounded-lg bg-blush-50 text-blush-500 text-xs font-semibold hover:bg-blush-100">Liberar 1</button>`
+                : `<span class="text-xs text-gray-400">—</span>`}
+            </td>
+          </tr>
+        `;
+      }).join("");
+    };
+
+    window.deleteRsvp = async function(id) {
+      appState.rsvps = appState.rsvps.filter(r => r.id !== id);
+      await persistState();
+      renderAdminTables();
+      showToast("Registro eliminado.");
+    };
+
+    window.releaseGiftUnit = async function(giftId) {
+      const gift = appState.gifts.find(g => g.id === giftId);
+      if (gift && gift.claimedBy.length > 0) {
+        gift.claimedBy.pop();
+        await persistState();
+        renderAdminTables();
+        showToast("Unidad liberada nuevamente en la boutique.");
+      }
+    };
+
+    window.exportGuestsCSV = function() {
+      const headers = ["Nombre", "Asistencia", "Cupos", "Regalos", "Mensaje", "Fecha"];
+      const rows = appState.rsvps.map(r => [
+        `"${(r.name || "").replace(/"/g, '""')}"`,
+        r.attending === "si" ? "Si" : "No",
+        r.guestsCount,
+        `"${(r.gifts || "").replace(/"/g, '""')}"`,
+        `"${(r.message || "").replace(/"/g, '""')}"`,
+        r.createdAt || ""
+      ]);
+      const csvContent = "data:text/csv;charset=utf-8," + [headers.join(","), ...rows.map(e => e.join(","))].join("\n");
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", "invitados_baby_shower_zoe_isabella.csv");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
+
+    // ==================== CALENDAR (.ICS) GENERATOR ====================
+    window.downloadICS = function() {
+      const icsContent = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//Baby Shower Zoe Isabella//ES",
+        "BEGIN:VEVENT",
+        "UID:zoe-isabella-20261206@babyshower",
+        "DTSTAMP:20261125T120000Z",
+        "DTSTART:20261206T140000",
+        "DTEND:20261206T183000",
+        "SUMMARY:Baby Shower de Zoe Isabella 👑✨",
+        "DESCRIPTION:¡Nos vemos para celebrar la pronta llegada de Zoe Isabella! No olvides revisar el regalo que elegiste en la boutique.",
+        "LOCATION:Conjunto Rosales de Nueva Castilla - Calle 7 #90-81 (Salón comunal), Bogotá",
+        "BEGIN:VALARM",
+        "TRIGGER:-P1D",
+        "ACTION:DISPLAY",
+        "DESCRIPTION:Mañana es el Baby Shower de Zoe Isabella 💕",
+        "END:VALARM",
+        "END:VEVENT",
+        "END:VCALENDAR"
+      ].join("\r\n");
+
+      const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Baby_Shower_Zoe_Isabella.ics";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast("Recordatorio guardado en tu calendario 📅");
+    };
+
+    // ==================== LIVE COUNTDOWN TIMER ====================
+    function startCountdown() {
+      const targetDate = new Date("2026-12-06T14:00:00-05:00").getTime();
+
+      function update() {
+        const now = Date.now();
+        const diff = Math.max(0, targetDate - now);
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / 1000 / 60) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        document.getElementById("cd-days").textContent = String(days).padStart(2, "0");
+        document.getElementById("cd-hours").textContent = String(hours).padStart(2, "0");
+        document.getElementById("cd-minutes").textContent = String(minutes).padStart(2, "0");
+        document.getElementById("cd-seconds").textContent = String(seconds).padStart(2, "0");
+      }
+      update();
+      setInterval(update, 1000);
+    }
+
+    // ==================== AMBIENT FLOATING PETALS CANVAS ====================
+    function initAmbientCanvas() {
+      const canvas = document.getElementById("ambient-canvas");
+      const ctx = canvas.getContext("2d");
+      let width = (canvas.width = window.innerWidth);
+      let height = (canvas.height = window.innerHeight);
+
+      window.addEventListener("resize", () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+
+      const particles = Array.from({ length: 28 }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: Math.random() * 4 + 2,
+        speedY: Math.random() * 0.45 + 0.15,
+        speedX: (Math.random() - 0.5) * 0.35,
+        color: Math.random() > 0.45 ? "rgba(241, 170, 185, 0.45)" : "rgba(201, 162, 91, 0.35)",
+        angle: Math.random() * Math.PI * 2
+      }));
+
+      function draw() {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(p => {
+          p.y += p.speedY;
+          p.x += Math.sin(p.angle) * 0.3 + p.speedX;
+          p.angle += 0.015;
+          if (p.y > height + 10) {
+            p.y = -10;
+            p.x = Math.random() * width;
+          }
+          ctx.beginPath();
+          ctx.ellipse(p.x, p.y, p.r, p.r * 0.65, p.angle, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.fill();
+        });
+        requestAnimationFrame(draw);
+      }
+      draw();
+    }
+
+    // Helpers
+    function showToast(msg) {
+      const toast = document.getElementById("toast");
+      document.getElementById("toast-msg").textContent = msg;
+      toast.classList.remove("hidden");
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => toast.classList.add("hidden"), 3800);
+    }
+
+    function escapeHTML(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function renderAll() {
+      renderGifts();
+      updateRegistryStats();
+      renderWishesWall();
+    }
+
+    window.addEventListener("load", () => {
+      initStorage();
+      startCountdown();
+      initAmbientCanvas();
+    });
+  </script>
 </body>
 </html>
