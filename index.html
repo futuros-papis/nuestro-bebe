@@ -69,14 +69,9 @@
       overflow-x: hidden;
     }
 
-    /* Ambient floating animations */
     @keyframes floatSlow {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
       50% { transform: translateY(-10px) rotate(1.5deg); }
-    }
-    @keyframes floatReverse {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(8px) rotate(-1.5deg); }
     }
     @keyframes twinkle {
       0%, 100% { opacity: 0.35; transform: scale(0.92); }
@@ -86,11 +81,15 @@
       0% { background-position: -200% center; }
       100% { background-position: 200% center; }
     }
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     .animate-float-slow { animation: floatSlow 6s ease-in-out infinite; }
-    .animate-float-reverse { animation: floatReverse 7s ease-in-out infinite; }
     .animate-twinkle { animation: twinkle 3.2s ease-in-out infinite; }
     .animate-twinkle-delay { animation: twinkle 4.1s ease-in-out 1.4s infinite; }
+    .guided-section:not(.hidden) { animation: fadeSlideUp 0.45s ease-out; }
 
     .gold-shimmer-text {
       background: linear-gradient(90deg, #A8813B 0%, #DFBE7B 30%, #C9A25B 55%, #F0D9A3 75%, #A8813B 100%);
@@ -101,10 +100,10 @@
     }
 
     .glass-card {
-      background: rgba(255, 253, 249, 0.84);
+      background: rgba(255, 253, 249, 0.88);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(201, 162, 91, 0.25);
+      border: 1px solid rgba(201, 162, 91, 0.28);
     }
 
     .floral-bg-pattern {
@@ -115,13 +114,11 @@
         radial-gradient(circle at 15% 85%, rgba(243, 227, 190, 0.30) 0%, transparent 38%);
     }
 
-    /* Custom Scrollbar */
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: #FDF6F0; }
     ::-webkit-scrollbar-thumb { background: #E5C887; border-radius: 9999px; }
     ::-webkit-scrollbar-thumb:hover { background: #C9A25B; }
 
-    /* Print styles for VIP Ticket */
     @media print {
       body * { visibility: hidden; }
       #vip-ticket-printable, #vip-ticket-printable * { visibility: visible; }
@@ -135,7 +132,6 @@
       }
     }
 
-    /* Royal Envelope Opening Transition */
     #welcome-envelope-overlay {
       transition: opacity 0.85s ease, transform 0.85s ease, visibility 0.85s ease;
     }
@@ -149,10 +145,9 @@
 </head>
 <body class="font-sans antialiased selection:bg-blush-200 selection:text-plum-900 floral-bg-pattern text-base">
 
-  <!-- ==================== ROYAL ENVELOPE WELCOME OVERLAY (TRIGGERS MUSIC & MAGIC) ==================== -->
+  <!-- ==================== SOBRE DE BIENVENIDA INTERACTIVO ==================== -->
   <div id="welcome-envelope-overlay" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gradient-to-br from-ivory via-blush-50 to-gold-100">
     <div class="max-w-md w-full bg-white/95 rounded-[2.2rem] p-7 sm:p-10 shadow-2xl border-2 border-gold-300 text-center relative overflow-hidden">
-      <!-- Decorative Corner Arcs -->
       <div class="absolute -top-12 -left-12 w-32 h-32 rounded-full bg-blush-100/70 pointer-events-none"></div>
       <div class="absolute -bottom-12 -right-12 w-32 h-32 rounded-full bg-gold-100/80 pointer-events-none"></div>
 
@@ -161,7 +156,6 @@
           Tienes una Invitación Especial
         </span>
 
-        <!-- Wax Seal / Royal Crown Emblem -->
         <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-blush-400 via-blush-500 to-gold-500 p-1 shadow-gold-glow animate-float-slow">
           <div class="w-full h-full rounded-full bg-ivory flex flex-col items-center justify-center border border-gold-300">
             <svg class="w-9 h-9 text-gold-500" viewBox="0 0 64 64" fill="none">
@@ -180,6 +174,7 @@
 
         <div class="pt-2">
           <button
+            type="button"
             onclick="openRoyalInvitation()"
             class="w-full py-4 px-6 rounded-full bg-gradient-to-r from-plum-900 via-plum-800 to-plum-900 text-ivory font-bold text-base sm:text-lg shadow-xl hover:shadow-gold-glow hover:-translate-y-0.5 transition flex items-center justify-center gap-3 cursor-pointer"
           >
@@ -197,9 +192,10 @@
     </div>
   </div>
 
-  <!-- Floating Music & Easy Help Controls (Senior-Friendly & Accessible) -->
+  <!-- Controles Flotantes de Música y Ayuda -->
   <div class="fixed bottom-4 left-4 z-40 flex flex-col sm:flex-row items-start sm:items-center gap-2">
     <button
+      type="button"
       id="music-toggle-btn"
       onclick="toggleLullabyMusic()"
       class="px-4 py-3 rounded-full bg-white/95 border-2 border-gold-300 text-plum-900 shadow-lg hover:bg-gold-100 transition flex items-center gap-2 text-xs sm:text-sm font-bold"
@@ -210,6 +206,7 @@
     </button>
 
     <button
+      type="button"
       onclick="openHelpModal()"
       class="px-4 py-3 rounded-full bg-plum-900 text-ivory border border-gold-300 shadow-lg hover:bg-plum-800 transition flex items-center gap-2 text-xs sm:text-sm font-bold"
     >
@@ -218,13 +215,13 @@
     </button>
   </div>
 
-  <!-- Ambient Floating Petals / Sparkles Canvas -->
+  <!-- Canvas de Pétalos y Destellos -->
   <canvas id="ambient-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-70"></canvas>
 
-  <!-- Subtle Floating Top Navbar -->
+  <!-- Barra Superior -->
   <header class="sticky top-0 z-30 glass-card border-b border-gold-200/60">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
-      <a href="#inicio" class="flex items-center gap-2.5 group">
+      <a href="#inicio" onclick="goToStep(1)" class="flex items-center gap-2.5 group">
         <span class="w-10 h-10 rounded-full bg-gradient-to-br from-blush-200 to-gold-200 flex items-center justify-center border border-gold-300 shadow-sm group-hover:scale-105 transition">
           <svg class="w-5 h-5 text-gold-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
             <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" fill="rgba(201,162,91,0.2)"/>
@@ -238,20 +235,20 @@
       </a>
 
       <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-plum-900">
-        <a href="#itinerario" class="hover:text-gold-500 transition">Actividades</a>
-        <a href="#ubicacion" class="hover:text-gold-500 transition">Lugar y Hora</a>
-        <a href="#rsvp" class="hover:text-gold-500 transition">1. Confirmar Asistencia</a>
-        <a href="#boutique" class="hover:text-gold-500 transition flex items-center gap-1.5">
-          <span>2. Lista de Regalos</span>
-          <span id="nav-gift-badge" class="px-2.5 py-0.5 text-xs rounded-full bg-blush-100 text-blush-500 font-bold">17</span>
+        <a href="#itinerario" onclick="goToStep(2)" class="hover:text-gold-500 transition">1. Actividades</a>
+        <a href="#ubicacion" onclick="goToStep(3)" class="hover:text-gold-500 transition">2. Lugar y Hora</a>
+        <a href="#rsvp" onclick="goToStep(4)" class="hover:text-gold-500 transition">3. Confirmar</a>
+        <a href="#boutique" onclick="goToStep(5)" class="hover:text-gold-500 transition flex items-center gap-1.5">
+          <span>4. Regalos</span>
+          <span id="nav-gift-badge" class="px-2.5 py-0.5 text-xs rounded-full bg-blush-100 text-blush-500 font-bold">19</span>
         </a>
       </nav>
 
       <div class="flex items-center gap-2.5">
-        <a href="#rsvp" class="px-4 sm:px-5 py-2.5 rounded-full bg-gradient-to-r from-plum-900 to-plum-800 text-ivory text-xs sm:text-sm font-bold shadow-md hover:shadow-gold-glow hover:-translate-y-0.5 transition duration-200">
-          Confirmar Asistencia
-        </a>
-        <button onclick="openAdminLogin()" title="Acceso Papás" class="p-3 rounded-full border border-gold-300/80 bg-white/90 text-gold-500 hover:bg-gold-100 transition" aria-label="Panel de Control Papás">
+        <button type="button" onclick="openStepWizardModal()" class="px-4 sm:px-5 py-2.5 rounded-full bg-gradient-to-r from-blush-500 to-blush-400 text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition duration-200">
+          ✨ Ventana Paso a Paso
+        </button>
+        <button type="button" onclick="openAdminLogin()" title="Acceso Papás" class="p-3 rounded-full border border-gold-300/80 bg-white/90 text-gold-500 hover:bg-gold-100 transition" aria-label="Panel de Control Papás">
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
             <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
@@ -261,11 +258,36 @@
     </div>
   </header>
 
-  <!-- ==================== HERO SECTION ==================== -->
-  <section id="inicio" class="relative z-10 pt-8 pb-14 sm:pt-14 sm:pb-20 px-4 sm:px-6">
+  <!-- Barra de Avance Paso a Paso para no mostrar todo amontonado de golpe -->
+  <div id="step-progress-strip" class="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 pt-4">
+    <div class="glass-card rounded-2xl p-3 sm:p-4 border border-gold-300/80 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0 text-xs font-bold">
+        <button type="button" onclick="goToStep(1)" id="pill-step-1" class="step-pill px-3 py-1.5 rounded-full bg-plum-900 text-ivory shrink-0 transition">1. Bienvenida</button>
+        <span class="text-gold-400">›</span>
+        <button type="button" onclick="goToStep(2)" id="pill-step-2" class="step-pill px-3 py-1.5 rounded-full bg-white text-plum-900 border border-gold-200 shrink-0 transition">2. Actividades</button>
+        <span class="text-gold-400">›</span>
+        <button type="button" onclick="goToStep(3)" id="pill-step-3" class="step-pill px-3 py-1.5 rounded-full bg-white text-plum-900 border border-gold-200 shrink-0 transition">3. Lugar</button>
+        <span class="text-gold-400">›</span>
+        <button type="button" onclick="goToStep(4)" id="pill-step-4" class="step-pill px-3 py-1.5 rounded-full bg-white text-plum-900 border border-gold-200 shrink-0 transition">4. Asistencia</button>
+        <span class="text-gold-400">›</span>
+        <button type="button" onclick="goToStep(5)" id="pill-step-5" class="step-pill px-3 py-1.5 rounded-full bg-white text-plum-900 border border-gold-200 shrink-0 transition">5. Regalos</button>
+      </div>
+
+      <div class="flex items-center gap-2 shrink-0">
+        <span id="live-sync-indicator" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-bold">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>Sincronizado</span>
+        </span>
+        <button type="button" onclick="toggleShowAllSections()" id="toggle-all-btn" class="px-3 py-1.5 rounded-full bg-gold-100 hover:bg-gold-200 text-plum-900 text-xs font-bold transition">
+          Ver todo de una vez
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== PORTADA PRINCIPAL ==================== -->
+  <section id="inicio" class="relative z-10 pt-8 pb-14 sm:pt-12 sm:pb-16 px-4 sm:px-6">
     <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-      
-      <!-- Left Editorial Copy (High Contrast & Large Readable Fonts) -->
       <div class="lg:col-span-7 text-center lg:text-left space-y-6">
         <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/95 border border-gold-300 shadow-sm">
           <span class="w-2.5 h-2.5 rounded-full bg-blush-500 animate-ping"></span>
@@ -283,19 +305,21 @@
           "Aún no nos conocemos, pero ya siento todo el amor que me rodea. Ven a celebrar mi pronta llegada en una tarde llena de alegría, juegos y abrazos que guardaré para siempre en mi corazón."
         </p>
 
-        <!-- Easy 2-Step Action Buttons (Very clear for Seniors & All Guests) -->
-        <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-          <a href="#rsvp" class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-blush-500 to-blush-400 text-white font-bold text-base shadow-lg shadow-blush-300/50 hover:shadow-xl hover:-translate-y-0.5 transition flex items-center justify-center gap-2.5">
+        <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5">
+          <button type="button" onclick="openStepWizardModal()" class="w-full sm:w-auto px-7 py-4 rounded-full bg-gradient-to-r from-plum-900 to-plum-800 text-ivory font-bold text-base shadow-lg hover:shadow-gold-glow hover:-translate-y-0.5 transition flex items-center justify-center gap-2 cursor-pointer">
+            <span>✨ Comenzar Paso a Paso</span>
+          </button>
+          <button type="button" onclick="goToStep(4)" class="w-full sm:w-auto px-7 py-4 rounded-full bg-gradient-to-r from-blush-500 to-blush-400 text-white font-bold text-base shadow-lg shadow-blush-300/50 hover:shadow-xl hover:-translate-y-0.5 transition flex items-center justify-center gap-2.5 cursor-pointer">
             <span class="w-6 h-6 rounded-full bg-white text-blush-500 text-xs font-extrabold flex items-center justify-center">1</span>
-            <span>Confirmar mi Asistencia</span>
-          </a>
-          <a href="#boutique" class="w-full sm:w-auto px-8 py-4 rounded-full bg-white border-2 border-gold-400 text-plum-900 font-bold text-base hover:bg-gold-100/70 transition flex items-center justify-center gap-2.5 shadow-sm">
+            <span>Confirmar Asistencia</span>
+          </button>
+          <button type="button" onclick="goToStep(5)" class="w-full sm:w-auto px-7 py-4 rounded-full bg-white border-2 border-gold-400 text-plum-900 font-bold text-base hover:bg-gold-100/70 transition flex items-center justify-center gap-2.5 shadow-sm cursor-pointer">
             <span class="w-6 h-6 rounded-full bg-gold-400 text-plum-900 text-xs font-extrabold flex items-center justify-center">2</span>
-            <span>Elegir un Regalo</span>
-          </a>
+            <span>Elegir Regalo</span>
+          </button>
         </div>
 
-        <!-- Live Countdown Timer -->
+        <!-- Cuenta Regresiva -->
         <div class="pt-2">
           <p class="text-xs uppercase tracking-[0.22em] text-gold-500 font-bold mb-3">Falta muy poco para abrazarnos</p>
           <div class="grid grid-cols-4 gap-2.5 sm:gap-4 max-w-md mx-auto lg:mx-0">
@@ -318,9 +342,9 @@
           </div>
         </div>
 
-        <!-- Calendar Reminder Buttons -->
+        <!-- Recordatorio Calendario -->
         <div class="pt-1 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-sm text-plum-900">
-          <button onclick="downloadICS()" class="inline-flex items-center gap-2 text-gold-500 hover:text-plum-900 font-bold underline decoration-gold-400 underline-offset-4 transition">
+          <button type="button" onclick="downloadICS()" class="inline-flex items-center gap-2 text-gold-500 hover:text-plum-900 font-bold underline decoration-gold-400 underline-offset-4 transition">
             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
             </svg>
@@ -333,13 +357,10 @@
         </div>
       </div>
 
-      <!-- Right Bespoke Celestial Hero Illustration -->
+      <!-- Ilustración Central -->
       <div class="lg:col-span-5 flex justify-center">
-        <div class="relative w-full max-w-[440px] aspect-square flex items-center justify-center">
-          <!-- Soft Halo Glow -->
+        <div class="relative w-full max-w-[430px] aspect-square flex items-center justify-center">
           <div class="absolute inset-6 rounded-full bg-gradient-to-tr from-blush-200/60 via-gold-100/70 to-blush-100/50 blur-2xl"></div>
-          
-          <!-- Custom Multi-Layer SVG Illustration: Celestial Cradle, Crescent Moon, Roses & Golden Stars -->
           <svg viewBox="0 0 500 500" class="relative w-full h-full drop-shadow-xl animate-float-slow" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -362,15 +383,12 @@
               </radialGradient>
             </defs>
 
-            <!-- Outer Botanical Wreath Rings -->
             <circle cx="250" cy="250" r="215" stroke="url(#goldGrad)" stroke-width="1.2" stroke-dasharray="4 6" opacity="0.7"/>
             <circle cx="250" cy="250" r="198" stroke="url(#goldGrad)" stroke-width="1.8" opacity="0.85"/>
             <circle cx="250" cy="250" r="165" fill="url(#moonGlow)"/>
 
-            <!-- Golden Crescent Moon -->
             <path d="M295 110 C225 118, 175 182, 185 256 C195 330, 260 382, 332 372 C275 362, 232 312, 226 248 C220 184, 250 132, 295 110 Z" fill="url(#goldGrad)" opacity="0.92"/>
 
-            <!-- Hanging Golden Stars -->
             <g class="animate-twinkle">
               <line x1="325" y1="145" x2="325" y2="195" stroke="#C9A25B" stroke-width="1.3"/>
               <path d="M325 192 L329 203 L340 207 L329 211 L325 222 L321 211 L310 207 L321 203 Z" fill="url(#goldGrad)"/>
@@ -385,23 +403,16 @@
               <circle cx="345" cy="128" r="3.5" fill="#C9A25B"/>
             </g>
 
-            <!-- Vintage Royal Baby Carriage / Cradle nestled in Clouds -->
             <g transform="translate(155, 195)">
-              <!-- Canopy Hood -->
               <path d="M35 85 C35 32, 85 15, 118 25 L105 85 Z" fill="url(#roseGrad)" stroke="#A8813B" stroke-width="1.5"/>
               <path d="M58 26 L88 85 M88 22 L102 85" stroke="#FFFDF9" stroke-width="1.2" opacity="0.65"/>
-              <!-- Scalloped Lace Trim -->
               <path d="M105 26 Q114 38 104 48 Q113 58 103 68 Q112 78 102 85" stroke="#FFFDF9" stroke-width="2.5" fill="none"/>
-              <!-- Carriage Bassinet Body -->
               <path d="M25 85 L165 85 C160 128, 128 145, 95 145 C62 145, 30 128, 25 85 Z" fill="#FFFDF9" stroke="url(#goldGrad)" stroke-width="2.5"/>
               <path d="M38 102 C65 116, 125 116, 152 102" stroke="#F1AAB9" stroke-width="2" fill="none"/>
-              <!-- Golden Ribbon Bow on Side -->
               <circle cx="95" cy="112" r="5" fill="#C9A25B"/>
               <path d="M95 112 C82 102, 76 115, 95 112 C108 102, 114 115, 95 112" fill="#E5C887"/>
-              <!-- Push Handle -->
               <path d="M162 85 C182 82, 188 62, 178 52" stroke="#A8813B" stroke-width="3" stroke-linecap="round"/>
               <circle cx="177" cy="51" r="4.5" fill="#C9A25B"/>
-              <!-- Delicate Spoked Wheels -->
               <g transform="translate(58, 156)">
                 <circle cx="0" cy="0" r="22" fill="#FFFDF9" stroke="#C9A25B" stroke-width="2.5"/>
                 <circle cx="0" cy="0" r="16" stroke="#F1AAB9" stroke-width="1"/>
@@ -422,10 +433,8 @@
               </g>
             </g>
 
-            <!-- Dreamy Soft Clouds at Base -->
             <path d="M95 375 C95 352, 122 340, 145 352 C158 330, 195 328, 212 348 C230 332, 268 332, 285 348 C305 328, 342 332, 355 354 C378 344, 405 356, 405 378 C405 396, 388 408, 365 408 L135 408 C112 408, 95 395, 95 375 Z" fill="url(#cloudGrad)" stroke="#F3E3BE" stroke-width="1.5"/>
 
-            <!-- Botanical Rose Clusters on Wreath -->
             <g transform="translate(115, 345)">
               <path d="M-18 -8 C-32 -18, -36 -2, -16 4 Z" fill="#9BB59E"/>
               <path d="M18 -10 C32 -20, 36 -4, 16 4 Z" fill="#9BB59E"/>
@@ -441,7 +450,6 @@
               <path d="M-4 -2 C-1 -6, 5 -4, 4 1 C3 5, -3 4, -4 -2 Z" stroke="#FFFDF9" stroke-width="1.3" fill="none"/>
             </g>
 
-            <!-- Monogram Emblem at Top -->
             <circle cx="250" cy="52" r="24" fill="#FFFDF9" stroke="url(#goldGrad)" stroke-width="2"/>
             <text x="250" y="58" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-weight="700" font-size="19" fill="#A8813B">Z &amp; I</text>
           </svg>
@@ -450,12 +458,12 @@
     </div>
   </section>
 
-  <!-- ==================== EMOTIONAL STORYTELLING LETTER ==================== -->
-  <section id="historia" class="relative z-10 py-14 px-4 sm:px-6">
+  <!-- ==================== CARTA EMOCIONAL ==================== -->
+  <section id="historia" class="guided-section hidden relative z-10 py-10 px-4 sm:px-6">
     <div class="max-w-4xl mx-auto glass-card rounded-[2rem] p-8 sm:p-12 shadow-luxury relative overflow-hidden">
       <div class="absolute top-0 right-0 w-40 h-40 bg-blush-100/60 rounded-bl-full pointer-events-none"></div>
       <div class="text-center space-y-5 relative">
-        <span class="text-xs uppercase tracking-[0.28em] text-gold-500 font-semibold">Una Carta Desde el Cielo</span>
+        <span class="text-xs uppercase tracking-[0.28em] text-gold-500 font-semibold">Una Carta Desde el Corazón</span>
         <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-plum-900">
           "Ya casi estoy lista para conocerlos"
         </h2>
@@ -468,11 +476,11 @@
     </div>
   </section>
 
-  <!-- ==================== LO QUE HAREMOS (CUSTOM SVG ILLUSTRATIONS) ==================== -->
-  <section id="itinerario" class="relative z-10 py-16 sm:py-20 px-4 sm:px-6">
+  <!-- ==================== PASO 2: ACTIVIDADES ==================== -->
+  <section id="itinerario" class="guided-section hidden relative z-10 py-12 sm:py-16 px-4 sm:px-6">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center max-w-2xl mx-auto mb-14 space-y-3">
-        <span class="text-xs uppercase tracking-[0.26em] text-gold-500 font-semibold">Programa Especial</span>
+      <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+        <span class="text-xs uppercase tracking-[0.26em] text-gold-500 font-semibold">Paso 2 • Programa Especial</span>
         <h2 class="font-serif text-4xl sm:text-5xl font-semibold text-plum-900">Lo que Haremos Juntos</h2>
         <p class="text-plum-800/80 text-sm sm:text-base">
           Hemos diseñado una tarde inolvidable llena de momentos especiales para compartir, reír y consentir a Zoe Isabella.
@@ -480,30 +488,25 @@
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Activity 1: Bienvenida & Brindis -->
         <div class="glass-card rounded-3xl p-6 text-center shadow-luxury hover:-translate-y-1.5 transition duration-300 flex flex-col items-center">
           <div class="w-28 h-28 mb-4 rounded-2xl bg-gradient-to-b from-blush-50 to-gold-100/60 flex items-center justify-center p-3 border border-gold-200/70">
-            <!-- Custom SVG: Sparkling Toast Glasses & Floral Arch -->
             <svg viewBox="0 0 120 120" class="w-full h-full" fill="none">
               <path d="M22 98 C22 45, 98 45, 98 98" stroke="#E5C887" stroke-width="2" stroke-dasharray="3 3"/>
               <circle cx="34" cy="58" r="7" fill="#F1AAB9"/>
               <circle cx="86" cy="58" r="7" fill="#F1AAB9"/>
               <circle cx="60" cy="46" r="8" fill="#E57D95"/>
-              <!-- Left Glass -->
               <g transform="rotate(-10 48 75)">
                 <path d="M38 56 L54 56 L51 74 C50 79, 42 79, 41 74 Z" fill="#FCE8EC" stroke="#C9A25B" stroke-width="1.8"/>
                 <path d="M40 64 L52 64 L51 74 C50 78, 42 78, 41 74 Z" fill="#F1AAB9"/>
                 <line x1="46" y1="78" x2="46" y2="94" stroke="#C9A25B" stroke-width="1.8"/>
                 <line x1="39" y1="94" x2="53" y2="94" stroke="#C9A25B" stroke-width="1.8" stroke-linecap="round"/>
               </g>
-              <!-- Right Glass -->
               <g transform="rotate(10 72 75)">
                 <path d="M66 56 L82 56 L79 74 C78 79, 70 79, 69 74 Z" fill="#FCE8EC" stroke="#C9A25B" stroke-width="1.8"/>
                 <path d="M68 64 L80 64 L79 74 C78 78, 70 78, 69 74 Z" fill="#F1AAB9"/>
                 <line x1="74" y1="78" x2="74" y2="94" stroke="#C9A25B" stroke-width="1.8"/>
                 <line x1="67" y1="94" x2="81" y2="94" stroke="#C9A25B" stroke-width="1.8" stroke-linecap="round"/>
               </g>
-              <!-- Sparkles -->
               <path d="M60 22 L62 28 L68 30 L62 32 L60 38 L58 32 L52 30 L58 28 Z" fill="#C9A25B"/>
             </svg>
           </div>
@@ -514,21 +517,15 @@
           </p>
         </div>
 
-        <!-- Activity 2: Juegos & Dinámicas -->
         <div class="glass-card rounded-3xl p-6 text-center shadow-luxury hover:-translate-y-1.5 transition duration-300 flex flex-col items-center">
           <div class="w-28 h-28 mb-4 rounded-2xl bg-gradient-to-b from-blush-50 to-gold-100/60 flex items-center justify-center p-3 border border-gold-200/70">
-            <!-- Custom SVG: Baby Blocks, Rattle & Confetti -->
             <svg viewBox="0 0 120 120" class="w-full h-full" fill="none">
-              <!-- Block Z -->
               <rect x="24" y="56" width="32" height="32" rx="6" fill="#FCE8EC" stroke="#C9A25B" stroke-width="1.8"/>
               <text x="40" y="78" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="20" fill="#D45674">Z</text>
-              <!-- Block O -->
               <rect x="60" y="56" width="32" height="32" rx="6" fill="#FBF5E6" stroke="#C9A25B" stroke-width="1.8"/>
               <text x="76" y="78" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="20" fill="#A8813B">O</text>
-              <!-- Block E on Top -->
               <rect x="42" y="24" width="32" height="32" rx="6" fill="#FFFDF9" stroke="#E57D95" stroke-width="1.8"/>
               <text x="58" y="46" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="20" fill="#2A1F24">E</text>
-              <!-- Confetti dots -->
               <circle cx="24" cy="34" r="3" fill="#E57D95"/>
               <circle cx="94" cy="36" r="3.5" fill="#C9A25B"/>
               <path d="M88 22 L92 26 M28 45 L32 42" stroke="#C9A25B" stroke-width="2" stroke-linecap="round"/>
@@ -541,20 +538,13 @@
           </p>
         </div>
 
-        <!-- Activity 3: Apertura de Regalos & Deseos -->
         <div class="glass-card rounded-3xl p-6 text-center shadow-luxury hover:-translate-y-1.5 transition duration-300 flex flex-col items-center">
           <div class="w-28 h-28 mb-4 rounded-2xl bg-gradient-to-b from-blush-50 to-gold-100/60 flex items-center justify-center p-3 border border-gold-200/70">
-            <!-- Custom SVG: Luxury Gift Box with Silk Ribbon & Floating Hearts -->
             <svg viewBox="0 0 120 120" class="w-full h-full" fill="none">
-              <!-- Box Base -->
               <rect x="30" y="54" width="60" height="42" rx="6" fill="#FCE8EC" stroke="#C9A25B" stroke-width="1.8"/>
-              <!-- Box Lid -->
               <rect x="26" y="44" width="68" height="12" rx="4" fill="#F8D0D9" stroke="#C9A25B" stroke-width="1.8"/>
-              <!-- Vertical Silk Ribbon -->
               <rect x="55" y="44" width="10" height="52" fill="#C9A25B"/>
-              <!-- Bow -->
               <path d="M60 44 C44 26, 34 40, 60 44 C76 26, 86 40, 60 44" fill="#E5C887" stroke="#A8813B" stroke-width="1.5"/>
-              <!-- Floating Hearts -->
               <path d="M42 26 C42 22, 48 22, 48 26 C48 30, 42 34, 42 34 C42 34, 36 30, 36 26 C36 22, 42 22, 42 26 Z" fill="#E57D95"/>
               <path d="M78 22 C78 19, 83 19, 83 22 C83 25, 78 28, 78 28 C78 28, 73 25, 73 22 C73 19, 78 19, 78 22 Z" fill="#D45674"/>
             </svg>
@@ -566,19 +556,13 @@
           </p>
         </div>
 
-        <!-- Activity 4: Mesa Dulce & Pastel -->
         <div class="glass-card rounded-3xl p-6 text-center shadow-luxury hover:-translate-y-1.5 transition duration-300 flex flex-col items-center">
           <div class="w-28 h-28 mb-4 rounded-2xl bg-gradient-to-b from-blush-50 to-gold-100/60 flex items-center justify-center p-3 border border-gold-200/70">
-            <!-- Custom SVG: Tiered Floral Celebration Cake -->
             <svg viewBox="0 0 120 120" class="w-full h-full" fill="none">
-              <!-- Cake Stand -->
               <path d="M26 94 L94 94 M60 94 L60 104 M44 104 L76 104" stroke="#C9A25B" stroke-width="2.2" stroke-linecap="round"/>
-              <!-- Bottom Tier -->
               <rect x="32" y="68" width="56" height="26" rx="5" fill="#FCE8EC" stroke="#C9A25B" stroke-width="1.8"/>
               <path d="M32 76 Q41 82 50 76 Q60 82 70 76 Q79 82 88 76" stroke="#E57D95" stroke-width="1.6" fill="none"/>
-              <!-- Top Tier -->
               <rect x="42" y="46" width="36" height="22" rx="4" fill="#FFFDF9" stroke="#C9A25B" stroke-width="1.8"/>
-              <!-- Floral & Heart Topper -->
               <line x1="60" y1="30" x2="60" y2="46" stroke="#C9A25B" stroke-width="1.6"/>
               <path d="M60 22 C60 18, 67 18, 67 22 C67 27, 60 32, 60 32 C60 32, 53 27, 53 22 C53 18, 60 18, 60 22 Z" fill="#D45674"/>
               <circle cx="44" cy="68" r="4.5" fill="#F1AAB9"/>
@@ -592,16 +576,23 @@
           </p>
         </div>
       </div>
+
+      <div class="mt-10 flex justify-center">
+        <button type="button" onclick="goToStep(3)" class="px-7 py-3.5 rounded-full bg-plum-900 text-ivory font-bold text-sm sm:text-base shadow-lg hover:bg-plum-800 transition flex items-center gap-2">
+          <span>Siguiente: Ver dónde y a qué hora es</span>
+          <span>↓</span>
+        </button>
+      </div>
     </div>
   </section>
 
-  <!-- ==================== LOCATION & DATE DETAILS ==================== -->
-  <section id="ubicacion" class="relative z-10 py-14 px-4 sm:px-6">
+  <!-- ==================== PASO 3: LUGAR Y MAPA EXACTO ==================== -->
+  <section id="ubicacion" class="guided-section hidden relative z-10 py-12 px-4 sm:px-6">
     <div class="max-w-6xl mx-auto glass-card rounded-[2.2rem] p-6 sm:p-10 shadow-luxury">
       <div class="grid lg:grid-cols-12 gap-8 items-center">
         <div class="lg:col-span-5 space-y-6">
           <div>
-            <span class="text-xs uppercase tracking-[0.26em] text-gold-500 font-semibold">Coordenadas del Encuentro</span>
+            <span class="text-xs uppercase tracking-[0.26em] text-gold-500 font-semibold">Paso 3 • Coordenadas del Encuentro</span>
             <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-plum-900 mt-1">¿Cuándo y Dónde?</h2>
           </div>
 
@@ -646,29 +637,35 @@
           </div>
         </div>
 
-        <!-- Embedded Interactive Map -->
         <div class="lg:col-span-7">
           <div class="rounded-3xl overflow-hidden border border-gold-300/80 shadow-md h-72 sm:h-80 bg-cream">
             <iframe
               title="Mapa Conjunto Rosales de Nueva Castilla - Calle 7 #90-81"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=-74.162%2C4.635%2C-74.142%2C4.652&layer=mapnik&marker=4.6435%2C-74.152"
+              src="https://www.google.com/maps?q=Conjunto+Rosales+de+Nueva+Castilla+Calle+7+%2390-81+Bogota&output=embed"
               class="w-full h-full border-0"
               loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
             ></iframe>
           </div>
         </div>
       </div>
+
+      <div class="mt-8 pt-6 border-t border-gold-200/70 flex justify-center">
+        <button type="button" onclick="goToStep(4)" class="px-8 py-4 rounded-full bg-gradient-to-r from-blush-500 to-blush-400 text-white font-bold text-sm sm:text-base shadow-lg hover:shadow-xl transition flex items-center gap-2">
+          <span>Siguiente Paso: Confirmar mi Asistencia</span>
+          <span>↓</span>
+        </button>
+      </div>
     </div>
   </section>
 
-  <!-- ==================== RSVP & CONFIRMATION SECTION (STEP 1 - ULTRA CLEAR FOR ALL AGES) ==================== -->
-  <section id="rsvp" class="relative z-10 py-14 sm:py-20 px-4 sm:px-6">
+  <!-- ==================== PASO 4: CONFIRMACIÓN DE ASISTENCIA ==================== -->
+  <section id="rsvp" class="guided-section hidden relative z-10 py-12 sm:py-16 px-4 sm:px-6">
     <div class="max-w-3xl mx-auto">
       <div class="glass-card rounded-[2.4rem] p-6 sm:p-12 shadow-luxury border-2 border-gold-300/80 relative overflow-hidden">
-        <!-- Decorative Top Banner -->
         <div class="text-center space-y-3 mb-8">
           <span class="inline-block px-4 py-1.5 rounded-full bg-blush-100 text-blush-500 text-xs sm:text-sm font-bold tracking-wider uppercase">
-            Paso 1 • Confirma antes del 05 de Diciembre, 2026
+            Paso 4 • Confirma antes del 05 de Diciembre, 2026
           </span>
           <h2 class="font-serif text-4xl sm:text-5xl font-bold text-plum-900">Confirma tu Asistencia</h2>
           <p class="text-base text-plum-800 max-w-lg mx-auto">
@@ -677,7 +674,6 @@
         </div>
 
         <form id="rsvp-form" class="space-y-6">
-          <!-- Full Name -->
           <div>
             <label for="guest-name" class="block text-sm font-bold uppercase tracking-wider text-plum-900 mb-2">
               1. Tu Nombre Completo *
@@ -691,7 +687,6 @@
             />
           </div>
 
-          <!-- Attendance Toggle -->
           <div>
             <label class="block text-sm font-bold uppercase tracking-wider text-plum-900 mb-2">
               2. ¿Podrás acompañarnos? *
@@ -714,7 +709,6 @@
             </div>
           </div>
 
-          <!-- Senior-Friendly Big +/- Stepper for Number of Attendees -->
           <div id="guests-count-wrapper">
             <label class="block text-sm font-bold uppercase tracking-wider text-plum-900 mb-2">
               3. ¿Cuántas personas asistirán en total? (Incluyéndote) *
@@ -744,22 +738,20 @@
             </div>
           </div>
 
-          <!-- Selected Gifts Summary Box inside RSVP -->
           <div class="p-5 rounded-2xl bg-gold-100/80 border-2 border-gold-300">
             <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
               <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-gold-500 flex items-center gap-1.5">
                 🎁 Regalo(s) seleccionado(s) para Zoe:
               </span>
-              <a href="#boutique" class="px-3.5 py-1.5 rounded-full bg-white border border-gold-300 text-xs sm:text-sm font-bold text-blush-500 hover:bg-blush-50 transition">
+              <button type="button" onclick="goToStep(5)" class="px-3.5 py-1.5 rounded-full bg-white border border-gold-300 text-xs sm:text-sm font-bold text-blush-500 hover:bg-blush-50 transition">
                 Ver Lista de Regalos ↓
-              </a>
+              </button>
             </div>
             <div id="rsvp-selected-gifts" class="text-sm text-plum-900">
-              Aún no has elegido un regalo. Puedes confirmar tu asistencia aquí y luego elegir tu regalo abajo.
+              Aún no has elegido un regalo. Puedes confirmar tu asistencia aquí o elegir tu regalo en el siguiente paso.
             </div>
           </div>
 
-          <!-- Sweet Message for Zoe Isabella -->
           <div>
             <label for="guest-message" class="block text-sm font-bold uppercase tracking-wider text-plum-900 mb-2">
               4. Déjale un mensaje bonito a Zoe Isabella (Opcional)
@@ -786,19 +778,18 @@
     </div>
   </section>
 
-  <!-- ==================== BOUTIQUE DE REGALOS (STEP 2 - SIMPLE & CLEAR GIFT NAMES) ==================== -->
-  <section id="boutique" class="relative z-10 py-14 sm:py-20 px-4 sm:px-6">
+  <!-- ==================== PASO 5: LISTA DE REGALOS SIN REPETIDOS ==================== -->
+  <section id="boutique" class="guided-section hidden relative z-10 py-12 sm:py-16 px-4 sm:px-6">
     <div class="max-w-6xl mx-auto">
       <div class="text-center max-w-3xl mx-auto space-y-3 mb-10">
         <span class="inline-block px-4 py-1.5 rounded-full bg-gold-100 text-gold-500 text-xs sm:text-sm font-bold uppercase tracking-[0.2em]">
-          Paso 2 • Lista Sin Regalos Repetidos
+          Paso 5 • Lista Sin Regalos Repetidos
         </span>
         <h2 class="font-serif text-4xl sm:text-5xl font-bold text-plum-900">Regalos para Zoe Isabella</h2>
         <p class="text-plum-900/85 text-base leading-relaxed">
           Toca el botón <strong class="text-plum-900">"Elegir este Regalo"</strong> en el detalle que desees obsequiar. Cuando alguien elige un regalo único (como la cuna o el coche), se marca automáticamente como apartado para que no se repita.
         </p>
 
-        <!-- Emotional Progress Bar -->
         <div class="pt-4 max-w-xl mx-auto">
           <div class="flex items-center justify-between text-xs sm:text-sm font-bold mb-1.5">
             <span class="text-plum-900">Preparando el cuarto de Zoe Isabella</span>
@@ -810,49 +801,43 @@
         </div>
       </div>
 
-      <!-- Category Filter Pills -->
       <div id="category-filters" class="flex flex-wrap items-center justify-center gap-2.5 mb-10">
-        <button data-cat="todos" class="cat-btn active px-5 py-2.5 rounded-full text-sm font-bold bg-plum-900 text-ivory shadow-sm transition">
+        <button type="button" data-cat="todos" class="cat-btn active px-5 py-2.5 rounded-full text-sm font-bold bg-plum-900 text-ivory shadow-sm transition">
           Todos los Regalos
         </button>
-        <button data-cat="descanso" class="cat-btn px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-gold-300 text-plum-900 hover:bg-gold-100/70 transition">
+        <button type="button" data-cat="descanso" class="cat-btn px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-gold-300 text-plum-900 hover:bg-gold-100/70 transition">
           Descanso y Paseo
         </button>
-        <button data-cat="cuidado" class="cat-btn px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-gold-300 text-plum-900 hover:bg-gold-100/70 transition">
+        <button type="button" data-cat="cuidado" class="cat-btn px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-gold-300 text-plum-900 hover:bg-gold-100/70 transition">
           Baño y Aseo
         </button>
-        <button data-cat="alimentacion" class="cat-btn px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-gold-300 text-plum-900 hover:bg-gold-100/70 transition">
+        <button type="button" data-cat="alimentacion" class="cat-btn px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-gold-300 text-plum-900 hover:bg-gold-100/70 transition">
           Alimentación
         </button>
-        <button data-cat="ropita" class="cat-btn px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-gold-300 text-plum-900 hover:bg-gold-100/70 transition">
+        <button type="button" data-cat="ropita" class="cat-btn px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-gold-300 text-plum-900 hover:bg-gold-100/70 transition">
           Ropita y Pañales
         </button>
-        <button data-cat="sobres" class="cat-btn px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-gold-300 text-plum-900 hover:bg-gold-100/70 transition">
+        <button type="button" data-cat="sobres" class="cat-btn px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-gold-300 text-plum-900 hover:bg-gold-100/70 transition">
           Lluvia de Sobres ✉️
         </button>
       </div>
 
-      <!-- Gift Grid -->
-      <div id="gift-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Populated dynamically via JS -->
-      </div>
+      <div id="gift-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </div>
   </section>
 
-  <!-- ==================== GUEST WISHES WALL ==================== -->
-  <section id="deseos" class="relative z-10 py-14 sm:py-20 px-4 sm:px-6">
+  <!-- ==================== MURO DE DESEOS ==================== -->
+  <section id="deseos" class="guided-section hidden relative z-10 py-12 sm:py-16 px-4 sm:px-6">
     <div class="max-w-6xl mx-auto">
       <div class="text-center max-w-2xl mx-auto mb-10 space-y-2">
         <span class="text-xs uppercase tracking-[0.26em] text-gold-500 font-semibold">Libro de Firmas Digital</span>
         <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-plum-900">Deseos para Zoe Isabella</h2>
       </div>
-      <div id="wishes-wall" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        <!-- Populated dynamically via JS -->
-      </div>
+      <div id="wishes-wall" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
     </div>
   </section>
 
-  <!-- ==================== FOOTER ==================== -->
+  <!-- ==================== PIE DE PÁGINA ==================== -->
   <footer class="relative z-10 border-t border-gold-200/80 bg-ivory/90 py-10 px-4 sm:px-6 text-center">
     <div class="max-w-4xl mx-auto space-y-3">
       <p class="font-serif italic text-3xl font-bold text-plum-900">Zoe Isabella</p>
@@ -860,23 +845,23 @@
         Domingo 06 de Diciembre de 2026 • 2:00 PM • Conjunto Rosales de Nueva Castilla - Calle 7 #90-81 (Salón Comunal)
       </p>
       <div class="pt-2">
-        <button onclick="openAdminLogin()" class="text-xs text-gold-500 hover:text-plum-900 font-bold underline underline-offset-4">
+        <button type="button" onclick="openAdminLogin()" class="text-xs text-gold-500 hover:text-plum-900 font-bold underline underline-offset-4">
           Acceso Panel de Control Papás
         </button>
       </div>
     </div>
   </footer>
 
-  <!-- Toast Notification Banner -->
+  <!-- Notificación Toast -->
   <div id="toast" class="fixed top-20 right-4 z-50 hidden max-w-sm bg-plum-900 text-ivory px-5 py-3.5 rounded-2xl shadow-2xl border border-gold-300/60 flex items-center gap-3">
     <span class="text-lg">✨</span>
     <p id="toast-msg" class="text-xs sm:text-sm font-semibold"></p>
   </div>
 
-  <!-- ==================== MODAL 1: CLAIM GIFT MODAL ==================== -->
+  <!-- ==================== MODAL 1: APARTAR REGALO ==================== -->
   <div id="gift-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-plum-900/70 backdrop-blur-sm">
     <div class="bg-ivory rounded-3xl max-w-md w-full p-7 shadow-2xl border-2 border-gold-300 relative space-y-5">
-      <button onclick="closeGiftModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-cream text-plum-900 font-bold flex items-center justify-center">✕</button>
+      <button type="button" onclick="closeGiftModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-cream text-plum-900 font-bold flex items-center justify-center">✕</button>
       <div class="text-center space-y-1.5">
         <span class="text-xs uppercase tracking-widest text-gold-500 font-bold">Apartar Detalle</span>
         <h3 id="modal-gift-title" class="font-serif text-3xl font-bold text-plum-900">Regalo</h3>
@@ -905,18 +890,17 @@
           </select>
         </div>
 
-        <button onclick="confirmGiftSelection()" class="w-full py-4 rounded-full bg-gradient-to-r from-blush-500 to-blush-400 text-white font-bold text-base shadow-lg hover:shadow-xl transition">
+        <button type="button" onclick="confirmGiftSelection()" class="w-full py-4 rounded-full bg-gradient-to-r from-blush-500 to-blush-400 text-white font-bold text-base shadow-lg hover:shadow-xl transition">
           Confirmar y Apartar Regalo
         </button>
       </div>
     </div>
   </div>
 
-  <!-- ==================== MODAL 2: VIP GOLDEN TICKET KEEPSAKE ==================== -->
+  <!-- ==================== MODAL 2: PASE VIP ==================== -->
   <div id="vip-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-plum-900/70 backdrop-blur-md overflow-y-auto">
     <div class="max-w-md w-full my-auto space-y-4">
       <div id="vip-ticket-printable" class="bg-gradient-to-br from-ivory via-cream to-blush-50 rounded-[2rem] p-7 border-2 border-gold-400 shadow-2xl relative overflow-hidden">
-        <!-- Corner ornaments -->
         <div class="flex items-center justify-between border-b border-dashed border-gold-300 pb-4 mb-5">
           <div>
             <span class="text-[10px] uppercase tracking-[0.28em] text-gold-500 font-bold">Pase Oficial de Invitado</span>
@@ -936,7 +920,7 @@
           <div class="grid grid-cols-2 gap-3 pt-1">
             <div class="p-3 rounded-xl bg-white/80 border border-gold-200">
               <span class="text-[10px] uppercase tracking-wider text-plum-800/60 block">Estado &amp; Cupos</span>
-              <p id="ticket-status" class="font-bold text-blush-500 text-xs sm:text-sm mt-0.5">Confirmado (2 cupos)</p>
+              <p id="ticket-status" class="font-bold text-blush-500 text-xs sm:text-sm mt-0.5">Confirmado (1 cupo)</p>
             </div>
             <div class="p-3 rounded-xl bg-white/80 border border-gold-200">
               <span class="text-[10px] uppercase tracking-wider text-plum-800/60 block">Fecha &amp; Hora</span>
@@ -951,31 +935,38 @@
 
           <div class="p-3 rounded-xl bg-gold-100/70 border border-gold-300">
             <span class="text-[10px] uppercase tracking-wider text-gold-500 font-bold block">Tu Regalo Reservado para Zoe</span>
-            <p id="ticket-gift" class="font-semibold text-plum-900 text-xs sm:text-sm mt-0.5">Ninguno seleccionado aún</p>
+            <p id="ticket-gift" class="font-semibold text-plum-900 text-xs sm:text-sm mt-0.5">Por elegir en la lista</p>
+          </div>
+
+          <div id="vip-gift-nudge" class="p-3 rounded-xl bg-blush-50 border border-blush-200 text-center">
+            <p class="text-xs text-plum-900 font-semibold mb-1.5">¿Aún no eliges un detalle para Zoe Isabella?</p>
+            <button type="button" onclick="goToGiftsFromTicket()" class="px-4 py-1.5 rounded-full bg-blush-500 text-white text-xs font-bold hover:bg-blush-400 transition">
+              Ver Lista de Regalos 🎁
+            </button>
           </div>
         </div>
 
         <div class="mt-5 pt-4 border-t border-dashed border-gold-300 flex items-center justify-between text-[11px] text-plum-800/75">
           <span>¡Te esperamos con mucha ilusión!</span>
-          <button onclick="downloadICS()" class="font-bold text-gold-500 underline">+ Guardar en Calendario</button>
+          <button type="button" onclick="downloadICS()" class="font-bold text-gold-500 underline">+ Guardar en Calendario</button>
         </div>
       </div>
 
       <div class="flex gap-3">
-        <button onclick="window.print()" class="flex-1 py-3.5 rounded-full bg-gold-400 text-plum-900 font-bold text-xs sm:text-sm shadow-lg hover:bg-gold-300 transition">
+        <button type="button" onclick="window.print()" class="flex-1 py-3.5 rounded-full bg-gold-400 text-plum-900 font-bold text-xs sm:text-sm shadow-lg hover:bg-gold-300 transition">
           Guardar / Imprimir Pase
         </button>
-        <button onclick="closeVipModal()" class="px-6 py-3.5 rounded-full bg-white text-plum-900 font-semibold text-xs sm:text-sm shadow-lg">
+        <button type="button" onclick="closeVipModal()" class="px-6 py-3.5 rounded-full bg-white text-plum-900 font-semibold text-xs sm:text-sm shadow-lg">
           Cerrar
         </button>
       </div>
     </div>
   </div>
 
-  <!-- ==================== MODAL 3: EASY HELP GUIDE FOR ALL AGES ==================== -->
+  <!-- ==================== MODAL 3: GUÍA RÁPIDA DE AYUDA ==================== -->
   <div id="help-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-plum-900/70 backdrop-blur-sm">
     <div class="bg-ivory rounded-3xl max-w-md w-full p-7 shadow-2xl border-2 border-gold-300 relative space-y-5">
-      <button onclick="closeHelpModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-cream text-plum-900 font-bold flex items-center justify-center">✕</button>
+      <button type="button" onclick="closeHelpModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-cream text-plum-900 font-bold flex items-center justify-center">✕</button>
       <div class="text-center space-y-1">
         <span class="text-xs uppercase tracking-widest text-gold-500 font-bold">Guía Paso a Paso</span>
         <h3 class="font-serif text-3xl font-bold text-plum-900">¿Cómo confirmar?</h3>
@@ -996,16 +987,38 @@
         </div>
       </div>
 
-      <button onclick="closeHelpModal()" class="w-full py-3.5 rounded-full bg-plum-900 text-ivory font-bold text-sm shadow-lg">
+      <button type="button" onclick="closeHelpModal()" class="w-full py-3.5 rounded-full bg-plum-900 text-ivory font-bold text-sm shadow-lg">
         ¡Entendido, gracias!
       </button>
     </div>
   </div>
 
-  <!-- ==================== MODAL 4: ADMIN PIN LOGIN (0122) ==================== -->
+  <!-- ==================== MODAL 3B: VENTANA FLOTANTE PASO A PASO ==================== -->
+  <div id="wizard-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-plum-900/75 backdrop-blur-sm">
+    <div class="bg-ivory rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border-2 border-gold-300 relative space-y-5">
+      <button type="button" onclick="closeStepWizardModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-cream text-plum-900 font-bold flex items-center justify-center">✕</button>
+      <div class="text-center space-y-1">
+        <span id="wizard-step-tag" class="text-xs uppercase tracking-widest text-gold-500 font-bold">Ventana 1 de 3</span>
+        <h3 id="wizard-step-title" class="font-serif text-3xl font-bold text-plum-900">¿Quién confirma?</h3>
+      </div>
+
+      <div id="wizard-step-content" class="space-y-4"></div>
+
+      <div class="flex items-center justify-between gap-3 pt-2">
+        <button type="button" id="wizard-prev-btn" onclick="prevWizardStep()" class="px-5 py-3 rounded-full bg-white border border-gold-300 text-plum-900 font-bold text-xs sm:text-sm">
+          ← Anterior
+        </button>
+        <button type="button" id="wizard-next-btn" onclick="nextWizardStep()" class="flex-1 py-3.5 px-6 rounded-full bg-gradient-to-r from-plum-900 to-plum-800 text-ivory font-bold text-xs sm:text-sm shadow-lg">
+          Siguiente →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 4: LOGIN PAPÁS (0122) ==================== -->
   <div id="admin-login-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-plum-900/70 backdrop-blur-sm">
     <div class="bg-ivory rounded-3xl max-w-sm w-full p-7 shadow-2xl border-2 border-gold-300 relative space-y-5">
-      <button onclick="closeAdminLogin()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-cream text-plum-900 font-bold flex items-center justify-center">✕</button>
+      <button type="button" onclick="closeAdminLogin()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-cream text-plum-900 font-bold flex items-center justify-center">✕</button>
       <div class="text-center space-y-1">
         <span class="text-xs uppercase tracking-widest text-gold-500 font-bold">Acceso Privado Papás</span>
         <h3 class="font-serif text-3xl font-bold text-plum-900">Panel de Control</h3>
@@ -1037,7 +1050,7 @@
     </div>
   </div>
 
-  <!-- ==================== MODAL 5: PARENTS ADMIN DASHBOARD ==================== -->
+  <!-- ==================== MODAL 5: PANEL DE CONTROL DE LOS PAPÁS ==================== -->
   <div id="admin-dashboard-modal" class="fixed inset-0 z-50 hidden bg-plum-900/75 backdrop-blur-sm overflow-y-auto p-4 sm:p-6">
     <div class="max-w-6xl mx-auto bg-ivory rounded-[2rem] p-6 sm:p-8 shadow-2xl border-2 border-gold-300 space-y-6 my-4">
       <div class="flex flex-wrap items-center justify-between gap-4 border-b border-gold-200 pb-4">
@@ -1046,16 +1059,15 @@
           <h3 class="font-serif text-3xl sm:text-4xl font-bold text-plum-900">Panel de los Papás</h3>
         </div>
         <div class="flex items-center gap-2.5">
-          <button onclick="exportGuestsCSV()" class="px-4 py-2.5 rounded-xl bg-emerald-600 text-white text-xs sm:text-sm font-bold shadow hover:bg-emerald-700 transition">
+          <button type="button" onclick="exportGuestsCSV()" class="px-4 py-2.5 rounded-xl bg-emerald-600 text-white text-xs sm:text-sm font-bold shadow hover:bg-emerald-700 transition">
             Descargar Excel (CSV)
           </button>
-          <button onclick="closeAdminDashboard()" class="px-4 py-2.5 rounded-xl bg-plum-900 text-ivory text-xs sm:text-sm font-bold hover:bg-plum-800 transition">
+          <button type="button" onclick="closeAdminDashboard()" class="px-4 py-2.5 rounded-xl bg-plum-900 text-ivory text-xs sm:text-sm font-bold hover:bg-plum-800 transition">
             Cerrar Panel
           </button>
         </div>
       </div>
 
-      <!-- KPI Cards -->
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <div class="p-4 rounded-2xl bg-white border border-gold-200 shadow-sm">
           <span class="text-xs uppercase font-bold text-plum-800/60">Total Asistentes</span>
@@ -1076,20 +1088,18 @@
         </div>
       </div>
 
-      <!-- Tabs -->
       <div class="flex flex-wrap gap-2">
-        <button id="tab-btn-guests" onclick="switchAdminTab('guests')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-plum-900 text-ivory">
+        <button type="button" id="tab-btn-guests" onclick="switchAdminTab('guests')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-plum-900 text-ivory">
           Invitados y Cupos
         </button>
-        <button id="tab-btn-gifts" onclick="switchAdminTab('gifts')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-plum-800 border border-gold-200">
+        <button type="button" id="tab-btn-gifts" onclick="switchAdminTab('gifts')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-plum-800 border border-gold-200">
           Inventario de Regalos
         </button>
-        <button id="tab-btn-cloud" onclick="switchAdminTab('cloud')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-plum-800 border border-gold-200">
+        <button type="button" id="tab-btn-cloud" onclick="switchAdminTab('cloud')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-plum-800 border border-gold-200">
           Conexión en la Nube
         </button>
       </div>
 
-      <!-- Tab 1: Guests -->
       <div id="admin-tab-guests" class="space-y-4">
         <input
           type="text"
@@ -1115,7 +1125,6 @@
         </div>
       </div>
 
-      <!-- Tab 2: Gifts -->
       <div id="admin-tab-gifts" class="hidden overflow-x-auto rounded-2xl border border-gold-200 bg-white">
         <table class="w-full text-left border-collapse text-xs sm:text-sm">
           <thead class="bg-cream border-b border-gold-200 text-plum-900 font-bold">
@@ -1131,7 +1140,6 @@
         </table>
       </div>
 
-      <!-- Tab 3: Cloud Connection -->
       <div id="admin-tab-cloud" class="hidden p-5 rounded-2xl bg-white border border-gold-200 space-y-4">
         <h4 class="font-bold text-plum-900 text-base">Sincronización en Tiempo Real (Firebase Realtime Database)</h4>
         <p class="text-xs sm:text-sm text-plum-800/80">
@@ -1144,12 +1152,12 @@
             placeholder="https://tu-proyecto.firebaseio.com"
             class="flex-1 px-4 py-3 rounded-xl bg-ivory border border-gold-300 text-sm text-plum-900"
           />
-          <button onclick="saveCustomCloudUrl()" class="px-5 py-3 rounded-xl bg-plum-900 text-ivory text-sm font-bold hover:bg-plum-800 transition">
+          <button type="button" onclick="saveCustomCloudUrl()" class="px-5 py-3 rounded-xl bg-plum-900 text-ivory text-sm font-bold hover:bg-plum-800 transition">
             Conectar Base de Datos
           </button>
         </div>
         <p id="cloud-status-badge" class="text-xs font-semibold text-gold-500">
-          Modo actual: Guardado local del dispositivo (listo para conectar a la nube).
+          Modo actual: Sincronización entre pestañas + guardado local (listo para conectar a la nube).
         </p>
       </div>
     </div>
@@ -1160,164 +1168,28 @@
     import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
     import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-    // Simple, Clear, Everyday Gift Names (Senior-Friendly, Zero Jargon)
     const INITIAL_GIFTS = [
-      {
-        id: "cuna",
-        name: "Cuna",
-        category: "descanso",
-        totalQty: 1,
-        quote: "Para mis primeras siestas y sueños más dulces junto a mamá y papá.",
-        icon: "crib"
-      },
-      {
-        id: "coche",
-        name: "Coche",
-        category: "descanso",
-        totalQty: 1,
-        quote: "Para salir a descubrir el mundo y pasear en familia con total comodidad.",
-        icon: "stroller"
-      },
-      {
-        id: "banera",
-        name: "Bañera",
-        category: "cuidado",
-        totalQty: 1,
-        quote: "Para disfrutar mis baños tibios y chapoteos relajantes antes de dormir.",
-        icon: "bath"
-      },
-      {
-        id: "silla-comer",
-        name: "Silla de Comer",
-        category: "alimentacion",
-        totalQty: 1,
-        quote: "Para mis primeras papillas y compartir la mesa junto a quienes más amo.",
-        icon: "chair"
-      },
-      {
-        id: "corral",
-        name: "Corral",
-        category: "descanso",
-        totalQty: 1,
-        quote: "Un espacio seguro y cómodo para descansar y jugar mientras crezco.",
-        icon: "crib"
-      },
-      {
-        id: "silla-carro",
-        name: "Silla para el Carro",
-        category: "descanso",
-        totalQty: 1,
-        quote: "Para viajar siempre segura y protegida en cada paseo en carro.",
-        icon: "carrier"
-      },
-      {
-        id: "gimnasio-juegos",
-        name: "Gimnasio de Juegos",
-        category: "descanso",
-        totalQty: 1,
-        quote: "Para jugar, explorar colores y desarrollar mis primeros sentidos.",
-        icon: "gym"
-      },
-      {
-        id: "movil-cuna",
-        name: "Móvil Musical para Cuna",
-        category: "descanso",
-        totalQty: 1,
-        quote: "Para arrullarme con melodías suaves bajo un cielo estrellado.",
-        icon: "moon"
-      },
-      {
-        id: "monitor-bebe",
-        name: "Cámara / Monitor de Bebé",
-        category: "descanso",
-        totalQty: 1,
-        quote: "Para que mamá y papá puedan verme dormir tranquila desde cualquier cuarto.",
-        icon: "monitor"
-      },
-      {
-        id: "esterilizador",
-        name: "Esterilizador de Biberones",
-        category: "alimentacion",
-        totalQty: 1,
-        quote: "Para mantener siempre limpios y protegidos mis teteros a toda hora.",
-        icon: "sterilizer"
-      },
-      {
-        id: "biberones-chupos",
-        name: "Biberones y Chupos",
-        category: "alimentacion",
-        totalQty: 2,
-        quote: "Para mis tomas felices y pancita siempre contenta.",
-        icon: "bottle"
-      },
-      {
-        id: "kit-aseo",
-        name: "Kit de Aseo (Crema, Shampoo y Jabón)",
-        category: "cuidado",
-        totalQty: 3,
-        quote: "Para cuidar mi piel delicada y oler siempre delicioso.",
-        icon: "care"
-      },
-      {
-        id: "toallas-capucha",
-        name: "Toallas con Capucha",
-        category: "cuidado",
-        totalQty: 2,
-        quote: "Para arroparme calientita apenas salga de mi baño.",
-        icon: "blanket"
-      },
-      {
-        id: "cobijas-sabanas",
-        name: "Cobijas y Sábanas",
-        category: "descanso",
-        totalQty: 3,
-        quote: "Para sentirme abrazadita y abrigada en cada siesta.",
-        icon: "blanket"
-      },
-      {
-        id: "ropita",
-        name: "Ropita (0 a 6 meses)",
-        category: "ropita",
-        totalQty: 5,
-        quote: "Para estrenar pintas suaves, calientitas y adorables en mis primeros meses.",
-        icon: "onesie"
-      },
-      {
-        id: "panales-etapa1",
-        name: "Pañales Etapa 1",
-        category: "ropita",
-        totalQty: 6,
-        quote: "¡El tesoro más usado de todos! Siempre estaré sequita y feliz.",
-        icon: "diaper"
-      },
-      {
-        id: "panales-etapa2",
-        name: "Pañales Etapa 2",
-        category: "ropita",
-        totalQty: 6,
-        quote: "Para cuando empiece a crecer rapidito y moverme por todas partes.",
-        icon: "diaper"
-      },
-      {
-        id: "panitos-humedos",
-        name: "Pañitos Húmedos",
-        category: "cuidado",
-        totalQty: 6,
-        quote: "Suavidad pura para cuidar mi piel en cada cambio de pañal.",
-        icon: "care"
-      },
-      {
-        id: "lluvia-sobres",
-        name: "Lluvia de Sobres (Aporte en Efectivo)",
-        category: "sobres",
-        totalQty: 99,
-        unlimited: true,
-        quote: "Si prefieres darme un detalle en sobre el día del evento, ¡lo recibiré con enorme gratitud!",
-        icon: "envelope"
-      }
+      { id: "cuna", name: "Cuna", category: "descanso", totalQty: 1, quote: "Para mis primeras siestas y sueños más dulces junto a mamá y papá.", icon: "crib" },
+      { id: "coche", name: "Coche", category: "descanso", totalQty: 1, quote: "Para salir a descubrir el mundo y pasear en familia con total comodidad.", icon: "stroller" },
+      { id: "banera", name: "Bañera", category: "cuidado", totalQty: 1, quote: "Para disfrutar mis baños tibios y chapoteos relajantes antes de dormir.", icon: "bath" },
+      { id: "silla-comer", name: "Silla de Comer", category: "alimentacion", totalQty: 1, quote: "Para mis primeras papillas y compartir la mesa junto a quienes más amo.", icon: "chair" },
+      { id: "corral", name: "Corral", category: "descanso", totalQty: 1, quote: "Un espacio seguro y cómodo para descansar y jugar mientras crezco.", icon: "crib" },
+      { id: "silla-carro", name: "Silla para el Carro", category: "descanso", totalQty: 1, quote: "Para viajar siempre segura y protegida en cada paseo en carro.", icon: "carrier" },
+      { id: "gimnasio-juegos", name: "Gimnasio de Juegos", category: "descanso", totalQty: 1, quote: "Para jugar, explorar colores y desarrollar mis primeros sentidos.", icon: "gym" },
+      { id: "movil-cuna", name: "Móvil Musical para Cuna", category: "descanso", totalQty: 1, quote: "Para arrullarme con melodías suaves bajo un cielo estrellado.", icon: "moon" },
+      { id: "monitor-bebe", name: "Cámara / Monitor de Bebé", category: "descanso", totalQty: 1, quote: "Para que mamá y papá puedan verme dormir tranquila desde cualquier cuarto.", icon: "monitor" },
+      { id: "esterilizador", name: "Esterilizador de Biberones", category: "alimentacion", totalQty: 1, quote: "Para mantener siempre limpios y protegidos mis teteros a toda hora.", icon: "sterilizer" },
+      { id: "biberones-chupos", name: "Biberones y Chupos", category: "alimentacion", totalQty: 2, quote: "Para mis tomas felices y pancita siempre contenta.", icon: "bottle" },
+      { id: "kit-aseo", name: "Kit de Aseo (Crema, Shampoo y Jabón)", category: "cuidado", totalQty: 3, quote: "Para cuidar mi piel delicada y oler siempre delicioso.", icon: "care" },
+      { id: "toallas-capucha", name: "Toallas con Capucha", category: "cuidado", totalQty: 2, quote: "Para arroparme calientita apenas salga de mi baño.", icon: "blanket" },
+      { id: "cobijas-sabanas", name: "Cobijas y Sábanas", category: "descanso", totalQty: 3, quote: "Para sentirme abrazadita y abrigada en cada siesta.", icon: "blanket" },
+      { id: "ropita", name: "Ropita (0 a 6 meses)", category: "ropita", totalQty: 5, quote: "Para estrenar pintas suaves, calientitas y adorables en mis primeros meses.", icon: "onesie" },
+      { id: "panales-etapa1", name: "Pañales Etapa 1", category: "ropita", totalQty: 6, quote: "¡El tesoro más usado de todos! Siempre estaré sequita y feliz.", icon: "diaper" },
+      { id: "panales-etapa2", name: "Pañales Etapa 2", category: "ropita", totalQty: 6, quote: "Para cuando empiece a crecer rapidito y moverme por todas partes.", icon: "diaper" },
+      { id: "panitos-humedos", name: "Pañitos Húmedos", category: "cuidado", totalQty: 6, quote: "Suavidad pura para cuidar mi piel en cada cambio de pañal.", icon: "care" },
+      { id: "lluvia-sobres", name: "Lluvia de Sobres (Aporte en Efectivo)", category: "sobres", totalQty: 99, unlimited: true, quote: "Si prefieres darme un detalle en sobre el día del evento, ¡lo recibiré con enorme gratitud!", icon: "envelope" }
     ];
 
-    // App State
     let appState = {
       gifts: JSON.parse(JSON.stringify(INITIAL_GIFTS)).map(g => ({ ...g, claimedBy: [] })),
       rsvps: [],
@@ -1332,8 +1204,18 @@
     let useCloud = false;
     let customRtdbUrl = localStorage.getItem(CUSTOM_RTDB_KEY) || "";
     const appId = typeof __app_id !== "undefined" ? __app_id : "zoe-isabella-shower";
+    const broadcastChannel = typeof BroadcastChannel !== "undefined" ? new BroadcastChannel("zoe_isabella_live_sync") : null;
 
-    // Initialize Persistence (Supports Environment Firestore OR Custom Firebase RTDB URL + Local Backup)
+    if (broadcastChannel) {
+      broadcastChannel.onmessage = (event) => {
+        if (event.data && event.data.type === "STATE_UPDATED") {
+          loadFromLocal();
+          renderAll();
+          showToast("¡Actualización recibida en tiempo real!");
+        }
+      };
+    }
+
     async function initStorage() {
       loadFromLocal();
       renderAll();
@@ -1366,7 +1248,7 @@
                   const data = snap.data();
                   if (data.gifts) appState.gifts = mergeGiftCatalog(data.gifts);
                   if (data.rsvps) appState.rsvps = data.rsvps;
-                  saveToLocal();
+                  saveToLocal(false);
                   renderAll();
                 } else {
                   persistState();
@@ -1379,7 +1261,7 @@
           }
         }
       } catch (e) {
-        console.warn("Running in standalone local mode:", e);
+        console.warn("Running in standalone local + tab sync mode:", e);
       }
     }
 
@@ -1393,7 +1275,7 @@
           if (data) {
             if (data.gifts) appState.gifts = mergeGiftCatalog(data.gifts);
             if (data.rsvps) appState.rsvps = data.rsvps;
-            saveToLocal();
+            saveToLocal(false);
             renderAll();
           }
         }
@@ -1439,17 +1321,20 @@
       } catch (e) {}
     }
 
-    function saveToLocal() {
+    function saveToLocal(notifyTabs = true) {
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify({
           gifts: appState.gifts.map(g => ({ id: g.id, claimedBy: g.claimedBy })),
           rsvps: appState.rsvps
         }));
+        if (notifyTabs && broadcastChannel) {
+          broadcastChannel.postMessage({ type: "STATE_UPDATED", timestamp: Date.now() });
+        }
       } catch (e) {}
     }
 
     async function persistState() {
-      saveToLocal();
+      saveToLocal(true);
       renderAll();
 
       if (customRtdbUrl) {
@@ -1483,7 +1368,6 @@
       }
     }
 
-    // Custom Vector Icons for Gifts
     function getGiftSVG(type) {
       const icons = {
         crib: `<svg viewBox="0 0 64 64" class="w-10 h-10" fill="none" stroke="#C9A25B" stroke-width="2"><rect x="10" y="22" width="44" height="24" rx="4" fill="#FCE8EC"/><line x1="18" y1="22" x2="18" y2="46"/><line x1="27" y1="22" x2="27" y2="46"/><line x1="37" y1="22" x2="37" y2="46"/><line x1="46" y1="22" x2="46" y2="46"/><line x1="10" y1="18" x2="10" y2="52"/><line x1="54" y1="18" x2="54" y2="52"/></svg>`,
@@ -1505,7 +1389,6 @@
       return icons[type] || icons.envelope;
     }
 
-    // Render Gift Grid
     function renderGifts() {
       const grid = document.getElementById("gift-grid");
       const filtered = appState.activeCategory === "todos"
@@ -1559,7 +1442,7 @@
                   ? `<div class="w-full py-3 px-4 rounded-xl bg-blush-50 text-blush-500 text-xs font-semibold text-center">
                        Ya fue elegido${claimedNames ? ` por ${claimedNames}` : ""} ✨
                      </div>`
-                  : `<button onclick="openGiftModal('${gift.id}')" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-plum-900 to-plum-800 text-ivory text-xs sm:text-sm font-semibold hover:shadow-gold-glow transition flex items-center justify-center gap-2">
+                  : `<button type="button" onclick="openGiftModal('${gift.id}')" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-plum-900 to-plum-800 text-ivory text-xs sm:text-sm font-semibold hover:shadow-gold-glow transition flex items-center justify-center gap-2">
                        <span>Elegir este Regalo</span>
                        <svg class="w-4 h-4 text-gold-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                          <path d="M12 5v14M5 12h14" stroke-linecap="round"/>
@@ -1572,7 +1455,6 @@
       }).join("");
     }
 
-    // Update Registry Progress Bar & RSVP Summary
     function updateRegistryStats() {
       const finiteGifts = appState.gifts.filter(g => !g.unlimited);
       const totalUnits = finiteGifts.reduce((acc, g) => acc + g.totalQty, 0);
@@ -1585,10 +1467,9 @@
       const availableCount = finiteGifts.filter(g => g.claimedBy.length < g.totalQty).length + 1;
       document.getElementById("nav-gift-badge").textContent = availableCount;
 
-      // Update RSVP selected gifts summary
       const summaryBox = document.getElementById("rsvp-selected-gifts");
       if (appState.currentSessionGifts.length === 0) {
-        summaryBox.innerHTML = `Aún no has seleccionado un regalo en la boutique (puedes elegirlo arriba antes de confirmar).`;
+        summaryBox.innerHTML = `Aún no has seleccionado un regalo en la boutique (puedes elegirlo en el Paso 5 antes o después de confirmar).`;
       } else {
         summaryBox.innerHTML = appState.currentSessionGifts
           .map(item => `<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-gold-300 text-plum-900 font-semibold text-xs mr-2 mb-1">🎁 ${item.name} ${item.qty > 1 ? `(x${item.qty})` : ""}</span>`)
@@ -1596,7 +1477,6 @@
       }
     }
 
-    // Render Public Guest Wishes Wall
     function renderWishesWall() {
       const wall = document.getElementById("wishes-wall");
       const wishes = appState.rsvps.filter(r => r.message && r.message.trim().length > 0);
@@ -1623,7 +1503,6 @@
       `).join("");
     }
 
-    // Gift Modal Handlers
     window.openGiftModal = function(giftId) {
       const gift = appState.gifts.find(g => g.id === giftId);
       if (!gift) return;
@@ -1682,12 +1561,10 @@
         return;
       }
 
-      // Lock units immediately in catalog
       for (let i = 0; i < qty; i++) {
         gift.claimedBy.push(guestName);
       }
 
-      // Sync guest name to RSVP input if empty
       const rsvpNameInput = document.getElementById("guest-name");
       if (!rsvpNameInput.value.trim()) {
         rsvpNameInput.value = guestName;
@@ -1699,16 +1576,14 @@
       closeGiftModal();
       showToast(`¡Gracias ${guestName}! Apartaste: ${gift.name}`);
 
-      // Smoothly scroll to RSVP if they haven't confirmed yet
       const alreadyConfirmed = appState.rsvps.some(r => r.name.toLowerCase() === guestName.toLowerCase());
       if (!alreadyConfirmed) {
         setTimeout(() => {
-          document.getElementById("rsvp").scrollIntoView({ behavior: "smooth" });
+          goToStep(4);
         }, 650);
       }
     };
 
-    // Senior-Friendly Big +/- Stepper Logic
     window.changeGuestCount = function(delta) {
       const hiddenInput = document.getElementById("guests-count");
       let current = parseInt(hiddenInput.value || "1", 10);
@@ -1719,7 +1594,179 @@
         current === 1 ? "persona (Solo yo)" : `personas (Yo + ${current - 1} acompañante${current - 1 > 1 ? "s" : ""})`;
     };
 
-    // RSVP Form Submission
+    window.goToGiftsFromTicket = function() {
+      closeVipModal();
+      setTimeout(() => {
+        goToStep(5);
+      }, 250);
+    };
+
+    window.openHelpModal = function() {
+      const m = document.getElementById("help-modal");
+      m.classList.remove("hidden");
+      m.classList.add("flex");
+    };
+
+    window.closeHelpModal = function() {
+      const m = document.getElementById("help-modal");
+      m.classList.add("hidden");
+      m.classList.remove("flex");
+    };
+
+    // ==================== NAVEGACIÓN PASO A PASO Y VENTANA FLOTANTE ====================
+    let allSectionsExpanded = false;
+    let wizardStep = 1;
+
+    window.goToStep = function(stepNum) {
+      const stepMap = {
+        1: ["inicio"],
+        2: ["historia", "itinerario"],
+        3: ["ubicacion"],
+        4: ["rsvp"],
+        5: ["boutique", "deseos"]
+      };
+
+      const sectionsToShow = new Set(["inicio"]);
+      for (let s = 2; s <= stepNum; s++) {
+        (stepMap[s] || []).forEach(id => sectionsToShow.add(id));
+      }
+
+      document.querySelectorAll(".guided-section").forEach(sec => {
+        if (allSectionsExpanded || sectionsToShow.has(sec.id)) {
+          sec.classList.remove("hidden");
+        } else {
+          sec.classList.add("hidden");
+        }
+      });
+
+      document.querySelectorAll(".step-pill").forEach((pill, idx) => {
+        const current = idx + 1;
+        if (current <= stepNum || allSectionsExpanded) {
+          pill.className = "step-pill px-3 py-1.5 rounded-full bg-plum-900 text-ivory shrink-0 transition";
+        } else {
+          pill.className = "step-pill px-3 py-1.5 rounded-full bg-white text-plum-900 border border-gold-200 shrink-0 transition";
+        }
+      });
+
+      const targetId = stepNum === 1 ? "inicio" : (stepMap[stepNum] && stepMap[stepNum][stepMap[stepNum].length - 1]);
+      if (targetId) {
+        const el = document.getElementById(targetId);
+        if (el) {
+          setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "start" }), 80);
+        }
+      }
+    };
+
+    window.toggleShowAllSections = function() {
+      allSectionsExpanded = !allSectionsExpanded;
+      const btn = document.getElementById("toggle-all-btn");
+      if (allSectionsExpanded) {
+        document.querySelectorAll(".guided-section").forEach(sec => sec.classList.remove("hidden"));
+        document.querySelectorAll(".step-pill").forEach(pill => {
+          pill.className = "step-pill px-3 py-1.5 rounded-full bg-plum-900 text-ivory shrink-0 transition";
+        });
+        btn.textContent = "Modo paso a paso";
+      } else {
+        btn.textContent = "Ver todo de una vez";
+        goToStep(1);
+      }
+    };
+
+    window.openStepWizardModal = function() {
+      wizardStep = 1;
+      renderWizardModal();
+      const modal = document.getElementById("wizard-modal");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+    };
+
+    window.closeStepWizardModal = function() {
+      const modal = document.getElementById("wizard-modal");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    };
+
+    function renderWizardModal() {
+      const tag = document.getElementById("wizard-step-tag");
+      const title = document.getElementById("wizard-step-title");
+      const content = document.getElementById("wizard-step-content");
+      const prevBtn = document.getElementById("wizard-prev-btn");
+      const nextBtn = document.getElementById("wizard-next-btn");
+
+      prevBtn.classList.toggle("invisible", wizardStep === 1);
+      nextBtn.textContent = wizardStep === 3 ? "Ir a Confirmar y Regalos ✓" : "Siguiente →";
+
+      if (wizardStep === 1) {
+        tag.textContent = "Ventana 1 de 3 • Fecha y Lugar";
+        title.textContent = "¡Nos vemos muy pronto!";
+        content.innerHTML = `
+          <div class="p-4 rounded-2xl bg-white border border-gold-200 space-y-2 text-sm text-plum-900">
+            <p>📅 <strong>Fecha:</strong> Domingo 06 de Diciembre de 2026</p>
+            <p>⏰ <strong>Hora:</strong> 2:00 PM (14:00 hrs)</p>
+            <p>📍 <strong>Lugar:</strong> Conjunto Rosales de Nueva Castilla - Calle 7 #90-81 (Salón Comunal)</p>
+          </div>
+          <p class="text-xs text-plum-800/80 text-center">Confirma tu asistencia antes del 05/12/2026.</p>
+        `;
+      } else if (wizardStep === 2) {
+        tag.textContent = "Ventana 2 de 3 • Tu Nombre y Cupos";
+        title.textContent = "¿Cuántos asistirán?";
+        const currentVal = document.getElementById("guest-name").value;
+        const currentCount = parseInt(document.getElementById("guests-count").value || "1", 10);
+        content.innerHTML = `
+          <div>
+            <label class="block text-xs font-bold uppercase text-plum-900 mb-1">Tu Nombre Completo</label>
+            <input id="wizard-name-input" type="text" value="${escapeHTML(currentVal)}" placeholder="Ej. María González" class="w-full px-4 py-3 rounded-xl bg-white border-2 border-gold-300 text-plum-900 text-base" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-plum-900 mb-1">Personas que asisten</label>
+            <div class="flex items-center justify-between bg-white border-2 border-gold-300 rounded-2xl p-3">
+              <button type="button" onclick="changeGuestCount(-1); document.getElementById('wizard-count-num').textContent = document.getElementById('guests-count').value;" class="w-12 h-12 rounded-xl bg-blush-100 text-plum-900 font-bold text-2xl">−</button>
+              <span id="wizard-count-num" class="font-serif text-3xl font-bold text-plum-900">${currentCount}</span>
+              <button type="button" onclick="changeGuestCount(1); document.getElementById('wizard-count-num').textContent = document.getElementById('guests-count').value;" class="w-12 h-12 rounded-xl bg-gold-200 text-plum-900 font-bold text-2xl">+</button>
+            </div>
+          </div>
+        `;
+      } else {
+        tag.textContent = "Ventana 3 de 3 • Regalos sin Repetidos";
+        title.textContent = "¿Quieres apartar un regalo?";
+        const availableGifts = appState.gifts.filter(g => g.unlimited || g.claimedBy.length < g.totalQty).slice(0, 6);
+        content.innerHTML = `
+          <p class="text-xs sm:text-sm text-plum-800/85">Toca cualquier regalo disponible para apartarlo al instante:</p>
+          <div class="grid grid-cols-2 gap-2.5">
+            ${availableGifts.map(g => `
+              <button type="button" onclick="closeStepWizardModal(); goToStep(5); setTimeout(() => openGiftModal('${g.id}'), 250);" class="p-3 rounded-2xl bg-white border border-gold-300 hover:bg-blush-50 text-left transition">
+                <span class="block font-bold text-xs sm:text-sm text-plum-900">${g.name}</span>
+                <span class="text-[11px] text-emerald-700 font-semibold">Disponible</span>
+              </button>
+            `).join("")}
+          </div>
+        `;
+      }
+    }
+
+    window.nextWizardStep = function() {
+      if (wizardStep === 2) {
+        const wName = document.getElementById("wizard-name-input");
+        if (wName && wName.value.trim()) {
+          document.getElementById("guest-name").value = wName.value.trim();
+        }
+      }
+      if (wizardStep < 3) {
+        wizardStep++;
+        renderWizardModal();
+      } else {
+        closeStepWizardModal();
+        goToStep(4);
+      }
+    };
+
+    window.prevWizardStep = function() {
+      if (wizardStep > 1) {
+        wizardStep--;
+        renderWizardModal();
+      }
+    };
+
     document.getElementById("rsvp-form").addEventListener("submit", async (e) => {
       e.preventDefault();
       const name = document.getElementById("guest-name").value.trim();
@@ -1732,7 +1779,6 @@
         return;
       }
 
-      // Check if guest already picked gifts directly in Boutique before submitting RSVP
       const previouslyClaimed = appState.gifts
         .filter(g => g.claimedBy.some(person => person.toLowerCase() === name.toLowerCase()))
         .map(g => g.name);
@@ -1757,7 +1803,6 @@
       appState.rsvps.push(newEntry);
       await persistState();
 
-      // Populate & Show VIP Ticket
       document.getElementById("ticket-name").textContent = name;
       document.getElementById("ticket-status").textContent = attending === "si"
         ? `Confirmado (${guestsCount} ${guestsCount === 1 ? "cupo" : "cupos"})`
@@ -1775,7 +1820,6 @@
       vipModal.classList.remove("hidden");
       vipModal.classList.add("flex");
 
-      // Reset form & stepper
       e.target.reset();
       document.getElementById("guests-count").value = "1";
       document.getElementById("guests-count-display").textContent = "1";
@@ -1786,74 +1830,6 @@
       showToast("¡Asistencia confirmada con éxito!");
     });
 
-    window.goToGiftsFromTicket = function() {
-      closeVipModal();
-      setTimeout(() => {
-        document.getElementById("boutique").scrollIntoView({ behavior: "smooth" });
-      }, 250);
-    };
-
-    window.openHelpModal = function() {
-      const m = document.getElementById("help-modal");
-      m.classList.remove("hidden");
-      m.classList.add("flex");
-    };
-
-    window.closeHelpModal = function() {
-      const m = document.getElementById("help-modal");
-      m.classList.add("hidden");
-      m.classList.remove("flex");
-    };
-
-    // RSVP Form Submission
-    document.getElementById("rsvp-form").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const name = document.getElementById("guest-name").value.trim();
-      const attending = document.querySelector('input[name="attending"]:checked').value;
-      const guestsCount = attending === "si" ? parseInt(document.getElementById("guests-count").value, 10) : 0;
-      const message = document.getElementById("guest-message").value.trim();
-
-      if (!name) {
-        showToast("Por favor ingresa tu nombre completo.");
-        return;
-      }
-
-      const giftsLabel = appState.currentSessionGifts.length > 0
-        ? appState.currentSessionGifts.map(g => `${g.name}${g.qty > 1 ? ` (x${g.qty})` : ""}`).join(", ")
-        : "Por definir / Lluvia de sobres";
-
-      const newEntry = {
-        id: "rsvp_" + Date.now(),
-        name,
-        attending,
-        guestsCount,
-        gifts: giftsLabel,
-        message,
-        createdAt: new Date().toLocaleDateString("es-CO")
-      };
-
-      appState.rsvps.push(newEntry);
-      await persistState();
-
-      // Populate & Show VIP Ticket
-      document.getElementById("ticket-name").textContent = name;
-      document.getElementById("ticket-status").textContent = attending === "si"
-        ? `Confirmado (${guestsCount} ${guestsCount === 1 ? "cupo" : "cupos"})`
-        : "No asiste (Envía buenos deseos)";
-      document.getElementById("ticket-gift").textContent = giftsLabel;
-
-      const vipModal = document.getElementById("vip-modal");
-      vipModal.classList.remove("hidden");
-      vipModal.classList.add("flex");
-
-      // Reset form & session gifts
-      e.target.reset();
-      appState.currentSessionGifts = [];
-      updateRegistryStats();
-      showToast("¡Confirmación guardada con éxito!");
-    });
-
-    // Toggle guests count visibility when selecting "No podré asistir"
     document.querySelectorAll('input[name="attending"]').forEach(radio => {
       radio.addEventListener("change", (e) => {
         const wrapper = document.getElementById("guests-count-wrapper");
@@ -1871,21 +1847,20 @@
       vipModal.classList.remove("flex");
     };
 
-    // Category Filter Tabs
     document.querySelectorAll(".cat-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         document.querySelectorAll(".cat-btn").forEach(b => {
           b.classList.remove("bg-plum-900", "text-ivory", "shadow-sm");
-          b.classList.add("bg-white/85", "border", "border-gold-200", "text-plum-800");
+          b.classList.add("bg-white", "border", "border-gold-300", "text-plum-900");
         });
         btn.classList.add("bg-plum-900", "text-ivory", "shadow-sm");
-        btn.classList.remove("bg-white/85", "border", "border-gold-200", "text-plum-800");
+        btn.classList.remove("bg-white", "border", "border-gold-300", "text-plum-900");
         appState.activeCategory = btn.dataset.cat;
         renderGifts();
       });
     });
 
-    // ==================== PARENTS ADMIN PANEL (PIN: 0122) ====================
+    // ==================== PANEL DE CONTROL PAPÁS (CONTRASEÑA: 0122) ====================
     window.openAdminLogin = function() {
       document.getElementById("admin-pin-input").value = "";
       document.getElementById("admin-pin-error").classList.add("hidden");
@@ -1960,7 +1935,6 @@
     };
 
     window.renderAdminTables = function() {
-      // Update KPIs
       const yesRsvps = appState.rsvps.filter(r => r.attending === "si");
       const noRsvps = appState.rsvps.filter(r => r.attending === "no");
       const totalPeople = yesRsvps.reduce((sum, r) => sum + (r.guestsCount || 1), 0);
@@ -1976,7 +1950,6 @@
       document.getElementById("kpi-gifts-claimed").textContent = `${claimedUnits}/${totalUnits}`;
       document.getElementById("kpi-gifts-percent").textContent = `${pct}% del inventario`;
 
-      // Guests Table
       const query = (document.getElementById("admin-search-guest").value || "").toLowerCase();
       const filteredRsvps = appState.rsvps.filter(r =>
         r.name.toLowerCase().includes(query) || (r.gifts && r.gifts.toLowerCase().includes(query))
@@ -1998,13 +1971,12 @@
             <td class="py-3.5 px-4 text-plum-800">${escapeHTML(r.gifts || "-")}</td>
             <td class="py-3.5 px-4 text-plum-800/75 italic max-w-xs truncate">${escapeHTML(r.message || "-")}</td>
             <td class="py-3.5 px-4 text-right">
-              <button onclick="deleteRsvp('${r.id}')" class="text-xs text-blush-500 hover:underline font-semibold">Eliminar</button>
+              <button type="button" onclick="deleteRsvp('${r.id}')" class="text-xs text-blush-500 hover:underline font-semibold">Eliminar</button>
             </td>
           </tr>
         `).join("");
       }
 
-      // Gifts Inventory Table
       const giftsTbody = document.getElementById("admin-gifts-tbody");
       giftsTbody.innerHTML = appState.gifts.map(g => {
         const claimed = g.claimedBy.length;
@@ -2018,7 +1990,7 @@
             <td class="py-3.5 px-4 text-plum-800">${escapeHTML(byWhom)}</td>
             <td class="py-3.5 px-4 text-right">
               ${claimed > 0
-                ? `<button onclick="releaseGiftUnit('${g.id}')" class="px-3 py-1 rounded-lg bg-blush-50 text-blush-500 text-xs font-semibold hover:bg-blush-100">Liberar 1</button>`
+                ? `<button type="button" onclick="releaseGiftUnit('${g.id}')" class="px-3 py-1 rounded-lg bg-blush-50 text-blush-500 text-xs font-semibold hover:bg-blush-100">Liberar 1</button>`
                 : `<span class="text-xs text-gray-400">—</span>`}
             </td>
           </tr>
@@ -2063,7 +2035,6 @@
       document.body.removeChild(link);
     };
 
-    // ==================== CALENDAR (.ICS) GENERATOR ====================
     window.downloadICS = function() {
       const icsContent = [
         "BEGIN:VCALENDAR",
@@ -2098,7 +2069,6 @@
       showToast("Recordatorio guardado en tu calendario 📅");
     };
 
-    // ==================== LIVE COUNTDOWN TIMER ====================
     function startCountdown() {
       const targetDate = new Date("2026-12-06T14:00:00-05:00").getTime();
 
@@ -2120,7 +2090,6 @@
       setInterval(update, 1000);
     }
 
-    // ==================== AMBIENT FLOATING PETALS CANVAS ====================
     function initAmbientCanvas() {
       const canvas = document.getElementById("ambient-canvas");
       const ctx = canvas.getContext("2d");
@@ -2162,13 +2131,11 @@
       draw();
     }
 
-    // ==================== GENTLE CELESTIAL MUSIC BOX SYNTHESIZER (WEB AUDIO API) ====================
     let audioCtx = null;
     let isMusicPlaying = false;
     let lullabyTimer = null;
     let noteStep = 0;
 
-    // Brahms Lullaby & Celestial Music Box Notes (Hz)
     const LULLABY_NOTES = [
       329.63, 329.63, 392.00, 0,
       329.63, 329.63, 392.00, 0,
@@ -2269,7 +2236,6 @@
       startLullabyLoop();
     };
 
-    // Helpers
     function showToast(msg) {
       const toast = document.getElementById("toast");
       if (!toast) return;
