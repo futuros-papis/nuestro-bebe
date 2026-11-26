@@ -244,7 +244,10 @@
         </a>
       </nav>
 
-      <div class="flex items-center gap-2.5">
+      <div class="flex items-center gap-2">
+        <button type="button" id="my-confirmation-btn" onclick="openMyConfirmationModal()" class="hidden px-3.5 py-2.5 rounded-full bg-emerald-600 text-white text-xs sm:text-sm font-bold shadow-md hover:bg-emerald-700 transition">
+          🎟️ Mi Confirmación
+        </button>
         <button type="button" onclick="openStepWizardModal()" class="px-4 sm:px-5 py-2.5 rounded-full bg-gradient-to-r from-blush-500 to-blush-400 text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition duration-200">
           ✨ Ventana Paso a Paso
         </button>
@@ -258,7 +261,7 @@
     </div>
   </header>
 
-  <!-- Barra de Avance Paso a Paso para no mostrar todo amontonado de golpe -->
+  <!-- Barra de Avance Paso a Paso -->
   <div id="step-progress-strip" class="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 pt-4">
     <div class="glass-card rounded-2xl p-3 sm:p-4 border border-gold-300/80 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
       <div class="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0 text-xs font-bold">
@@ -316,6 +319,17 @@
           <button type="button" onclick="goToStep(5)" class="w-full sm:w-auto px-7 py-4 rounded-full bg-white border-2 border-gold-400 text-plum-900 font-bold text-base hover:bg-gold-100/70 transition flex items-center justify-center gap-2.5 shadow-sm cursor-pointer">
             <span class="w-6 h-6 rounded-full bg-gold-400 text-plum-900 text-xs font-extrabold flex items-center justify-center">2</span>
             <span>Elegir Regalo</span>
+          </button>
+        </div>
+
+        <!-- Banner de Confirmación Ya Registrada (Aparece cuando el invitado ya confirmó) -->
+        <div id="already-confirmed-banner" class="hidden p-4 rounded-2xl bg-emerald-50 border-2 border-emerald-300 text-left flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <div>
+            <p class="text-xs font-extrabold uppercase tracking-wider text-emerald-700">✅ ¡Tu asistencia ya está registrada!</p>
+            <p id="banner-confirmation-summary" class="text-sm font-semibold text-plum-900 mt-0.5"></p>
+          </div>
+          <button type="button" onclick="openMyConfirmationModal()" class="px-4 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition shrink-0">
+            Ver Mis Datos y Lugar
           </button>
         </div>
 
@@ -669,7 +683,7 @@
           </span>
           <h2 class="font-serif text-4xl sm:text-5xl font-bold text-plum-900">Confirma tu Asistencia</h2>
           <p class="text-base text-plum-800 max-w-lg mx-auto">
-            Escribe tu nombre y dinos cuántas personas vendrán contigo. ¡Es muy fácil y rápido!
+            Escribe tu nombre, dinos cuántas personas vendrán contigo y elige un regalo para Zoe Isabella.
           </p>
         </div>
 
@@ -897,7 +911,7 @@
     </div>
   </div>
 
-  <!-- ==================== MODAL 2: PASE VIP ==================== -->
+  <!-- ==================== MODAL 2: PASE VIP Y CONSULTA DE CONFIRMACIÓN ==================== -->
   <div id="vip-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-plum-900/70 backdrop-blur-md overflow-y-auto">
     <div class="max-w-md w-full my-auto space-y-4">
       <div id="vip-ticket-printable" class="bg-gradient-to-br from-ivory via-cream to-blush-50 rounded-[2rem] p-7 border-2 border-gold-400 shadow-2xl relative overflow-hidden">
@@ -931,6 +945,9 @@
           <div class="p-3 rounded-xl bg-white/80 border border-gold-200">
             <span class="text-[10px] uppercase tracking-wider text-plum-800/60 block">Lugar del Evento</span>
             <p class="font-semibold text-plum-900 text-xs mt-0.5">Conjunto Rosales de Nueva Castilla - Calle 7 #90-81 (Salón Comunal)</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Conjunto+Rosales+de+Nueva+Castilla+Calle+7+%2390-81+Bogota" target="_blank" rel="noopener noreferrer" class="inline-block text-[11px] font-bold text-gold-500 underline mt-1">
+              Ver dirección en Google Maps →
+            </a>
           </div>
 
           <div class="p-3 rounded-xl bg-gold-100/70 border border-gold-300">
@@ -938,8 +955,13 @@
             <p id="ticket-gift" class="font-semibold text-plum-900 text-xs sm:text-sm mt-0.5">Por elegir en la lista</p>
           </div>
 
-          <div id="vip-gift-nudge" class="p-3 rounded-xl bg-blush-50 border border-blush-200 text-center">
-            <p class="text-xs text-plum-900 font-semibold mb-1.5">¿Aún no eliges un detalle para Zoe Isabella?</p>
+          <div id="ticket-message-box" class="hidden p-3 rounded-xl bg-white/80 border border-gold-200">
+            <span class="text-[10px] uppercase tracking-wider text-plum-800/60 block">Tu Mensaje para Zoe</span>
+            <p id="ticket-message" class="font-serif italic text-sm text-plum-900 mt-0.5"></p>
+          </div>
+
+          <div id="vip-gift-nudge" class="hidden p-3 rounded-xl bg-blush-50 border border-blush-200 text-center">
+            <p class="text-xs text-plum-900 font-semibold mb-1.5">¿Deseas elegir otro detalle para Zoe Isabella?</p>
             <button type="button" onclick="goToGiftsFromTicket()" class="px-4 py-1.5 rounded-full bg-blush-500 text-white text-xs font-bold hover:bg-blush-400 transition">
               Ver Lista de Regalos 🎁
             </button>
@@ -975,15 +997,15 @@
       <div class="space-y-3.5 text-sm text-plum-900">
         <div class="p-3.5 rounded-2xl bg-white border border-gold-200 flex items-start gap-3">
           <span class="w-7 h-7 rounded-full bg-blush-500 text-white font-bold flex items-center justify-center shrink-0">1</span>
-          <p><strong>Escribe tu nombre y cupos:</strong> Ve a <em>Confirmar Asistencia</em>, pon tu nombre y usa los botones <strong>+</strong> o <strong>−</strong> para elegir cuántas personas van.</p>
+          <p><strong>Escribe tu nombre y cupos:</strong> Pon tu nombre y usa los botones <strong>+</strong> o <strong>−</strong> para elegir cuántas personas van.</p>
         </div>
         <div class="p-3.5 rounded-2xl bg-white border border-gold-200 flex items-start gap-3">
           <span class="w-7 h-7 rounded-full bg-gold-400 text-plum-900 font-bold flex items-center justify-center shrink-0">2</span>
-          <p><strong>Elige un regalo (opcional):</strong> Toca <em>Elegir este Regalo</em> en la lista de regalos para apartarlo y que no se repita.</p>
+          <p><strong>Elige un regalo (obligatorio):</strong> Toca <em>Elegir Regalo Aquí</em> para apartar tu detalle y que no se repita.</p>
         </div>
         <div class="p-3.5 rounded-2xl bg-white border border-gold-200 flex items-start gap-3">
           <span class="w-7 h-7 rounded-full bg-plum-900 text-ivory font-bold flex items-center justify-center shrink-0">3</span>
-          <p><strong>Listo:</strong> Presiona <em>Confirmar mi Asistencia Ahora</em>. Te aparecerá tu pase listo para guardar o imprimir.</p>
+          <p><strong>Listo:</strong> Presiona <em>Confirmar mi Asistencia Ahora</em>. Podrás ver <em>Mi Confirmación</em> y el lugar cuando quieras.</p>
         </div>
       </div>
 
@@ -1155,15 +1177,15 @@
       </div>
 
       <div id="admin-tab-cloud" class="hidden p-5 rounded-2xl bg-white border border-gold-200 space-y-4">
-        <h4 class="font-bold text-plum-900 text-base">Sincronización en Tiempo Real (Firebase Realtime Database)</h4>
+        <h4 class="font-bold text-plum-900 text-base">Sincronización en Tiempo Real (Hoja de Cálculo / Firebase)</h4>
         <p class="text-xs sm:text-sm text-plum-800/80">
-          Si conectas la URL de tu base de datos de Firebase (por ejemplo <code class="bg-cream px-1.5 py-0.5 rounded">https://tu-proyecto-default-rtdb.firebaseio.com</code>), todos los invitados verán en tiempo real los regalos apartados desde cualquier celular.
+          Pega aquí la URL de tu <strong>Firebase Realtime Database</strong> (ej. <code class="bg-cream px-1.5 py-0.5 rounded">https://tu-proyecto.firebaseio.com</code>) o la URL de tu <strong>Google Apps Script (Web App)</strong> conectada a tu hoja de Google Sheets.
         </p>
         <div class="flex flex-col sm:flex-row gap-3">
           <input
             type="url"
             id="firebase-db-url-input"
-            placeholder="https://tu-proyecto.firebaseio.com"
+            placeholder="https://tu-proyecto.firebaseio.com o https://script.google.com/macros/s/.../exec"
             class="flex-1 px-4 py-3 rounded-xl bg-ivory border border-gold-300 text-sm text-plum-900"
           />
           <button type="button" onclick="saveCustomCloudUrl()" class="px-5 py-3 rounded-xl bg-plum-900 text-ivory text-sm font-bold hover:bg-plum-800 transition">
@@ -1171,7 +1193,7 @@
           </button>
         </div>
         <p id="cloud-status-badge" class="text-xs font-semibold text-gold-500">
-          Modo actual: Sincronización entre pestañas + guardado local (listo para conectar a la nube).
+          Modo actual: Sincronización entre pestañas + guardado local (listo para conectar tu hoja/nube).
         </p>
       </div>
     </div>
@@ -1207,6 +1229,7 @@
     let appState = {
       gifts: JSON.parse(JSON.stringify(INITIAL_GIFTS)).map(g => ({ ...g, claimedBy: [] })),
       rsvps: [],
+      lastConfirmedGuest: null,
       currentSessionGifts: [],
       activeCategory: "todos",
       selectedGiftForModal: null
@@ -1283,7 +1306,9 @@
       if (!customRtdbUrl) return;
       try {
         const cleanUrl = customRtdbUrl.replace(/\/$/, "");
-        const res = await fetch(`${cleanUrl}/babyshower_zoe.json`);
+        const isAppsScript = cleanUrl.includes("script.google.com");
+        const endpoint = isAppsScript ? cleanUrl : `${cleanUrl}/babyshower_zoe.json`;
+        const res = await fetch(endpoint);
         if (res.ok) {
           const data = await res.json();
           if (data) {
@@ -1294,27 +1319,27 @@
           }
         }
       } catch (e) {
-        console.warn("RTDB fetch warning:", e);
+        console.warn("RTDB/Sheet fetch warning:", e);
       }
     }
 
     function startCustomRtdbSync() {
       fetchCustomRtdb();
-      setInterval(fetchCustomRtdb, 6000);
+      setInterval(fetchCustomRtdb, 5000);
     }
 
     window.saveCustomCloudUrl = async function() {
       const input = document.getElementById("firebase-db-url-input").value.trim();
       if (!input || !input.startsWith("http")) {
-        showToast("Por favor pega una URL válida de Firebase.");
+        showToast("Por favor pega una URL válida de Firebase o Google Apps Script.");
         return;
       }
       customRtdbUrl = input.replace(/\/$/, "");
       localStorage.setItem(CUSTOM_RTDB_KEY, customRtdbUrl);
       await persistState();
       startCustomRtdbSync();
-      document.getElementById("cloud-status-badge").textContent = "✅ Conectado a la nube en tiempo real: " + customRtdbUrl;
-      showToast("¡Base de datos en la nube conectada!");
+      document.getElementById("cloud-status-badge").textContent = "✅ Conectado en tiempo real: " + customRtdbUrl;
+      showToast("¡Conexión en tiempo real activada!");
     };
 
     function mergeGiftCatalog(savedGifts) {
@@ -1331,6 +1356,7 @@
           const parsed = JSON.parse(raw);
           if (parsed.gifts) appState.gifts = mergeGiftCatalog(parsed.gifts);
           if (parsed.rsvps) appState.rsvps = parsed.rsvps;
+          if (parsed.lastConfirmedGuest) appState.lastConfirmedGuest = parsed.lastConfirmedGuest;
         }
       } catch (e) {}
     }
@@ -1339,7 +1365,8 @@
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify({
           gifts: appState.gifts.map(g => ({ id: g.id, claimedBy: g.claimedBy })),
-          rsvps: appState.rsvps
+          rsvps: appState.rsvps,
+          lastConfirmedGuest: appState.lastConfirmedGuest
         }));
         if (notifyTabs && broadcastChannel) {
           broadcastChannel.postMessage({ type: "STATE_UPDATED", timestamp: Date.now() });
@@ -1354,17 +1381,28 @@
       if (customRtdbUrl) {
         try {
           const cleanUrl = customRtdbUrl.replace(/\/$/, "");
-          await fetch(`${cleanUrl}/babyshower_zoe.json`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              gifts: appState.gifts.map(g => ({ id: g.id, claimedBy: g.claimedBy })),
-              rsvps: appState.rsvps,
-              updatedAt: new Date().toISOString()
-            })
-          });
+          const isAppsScript = cleanUrl.includes("script.google.com");
+          const payload = {
+            gifts: appState.gifts.map(g => ({ id: g.id, claimedBy: g.claimedBy })),
+            rsvps: appState.rsvps,
+            updatedAt: new Date().toISOString()
+          };
+          if (isAppsScript) {
+            await fetch(cleanUrl, {
+              method: "POST",
+              mode: "no-cors",
+              headers: { "Content-Type": "text/plain;charset=utf-8" },
+              body: JSON.stringify(payload)
+            });
+          } else {
+            await fetch(`${cleanUrl}/babyshower_zoe.json`, {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload)
+            });
+          }
         } catch (e) {
-          console.warn("RTDB write error:", e);
+          console.warn("Cloud write error:", e);
         }
       }
 
@@ -1381,6 +1419,50 @@
         }
       }
     }
+
+    function updateConfirmationUI() {
+      const btn = document.getElementById("my-confirmation-btn");
+      const banner = document.getElementById("already-confirmed-banner");
+      const summary = document.getElementById("banner-confirmation-summary");
+      const entry = appState.lastConfirmedGuest;
+
+      if (entry) {
+        btn.classList.remove("hidden");
+        banner.classList.remove("hidden");
+        const cuposText = entry.attending === "si" ? `${entry.guestsCount} cupo(s)` : "No asiste";
+        summary.textContent = `${entry.name} • ${cuposText} • Regalo: ${entry.gifts}`;
+      } else {
+        btn.classList.add("hidden");
+        banner.classList.add("hidden");
+      }
+    }
+
+    window.openMyConfirmationModal = function() {
+      const entry = appState.lastConfirmedGuest;
+      if (!entry) {
+        goToStep(4);
+        return;
+      }
+      document.getElementById("ticket-name").textContent = entry.name;
+      document.getElementById("ticket-status").textContent = entry.attending === "si"
+        ? `Confirmado (${entry.guestsCount} ${entry.guestsCount === 1 ? "cupo" : "cupos"})`
+        : "No asiste (Envía buenos deseos)";
+      document.getElementById("ticket-gift").textContent = entry.gifts || "Seleccionado";
+
+      const msgBox = document.getElementById("ticket-message-box");
+      if (entry.message && entry.message.trim()) {
+        msgBox.classList.remove("hidden");
+        document.getElementById("ticket-message").textContent = `"${entry.message}"`;
+      } else {
+        msgBox.classList.add("hidden");
+      }
+
+      document.getElementById("vip-gift-nudge").classList.remove("hidden");
+
+      const vipModal = document.getElementById("vip-modal");
+      vipModal.classList.remove("hidden");
+      vipModal.classList.add("flex");
+    };
 
     function getGiftSVG(type) {
       const icons = {
@@ -1483,7 +1565,7 @@
 
       const summaryBox = document.getElementById("rsvp-selected-gifts");
       if (appState.currentSessionGifts.length === 0) {
-        summaryBox.innerHTML = `Aún no has seleccionado un regalo en la boutique (puedes elegirlo en el Paso 5 antes o después de confirmar).`;
+        summaryBox.innerHTML = `Obligatorio: Aún no has elegido un regalo. Toca "Elegir Regalo Aquí" para seleccionar uno.`;
       } else {
         summaryBox.innerHTML = appState.currentSessionGifts
           .map(item => `<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-gold-300 text-plum-900 font-semibold text-xs mr-2 mb-1">🎁 ${item.name} ${item.qty > 1 ? `(x${item.qty})` : ""}</span>`)
@@ -1627,7 +1709,6 @@
       m.classList.remove("flex");
     };
 
-    // ==================== NAVEGACIÓN PASO A PASO Y VENTANA FLOTANTE ====================
     let allSectionsExpanded = false;
     let wizardStep = 1;
 
@@ -1887,6 +1968,7 @@
       };
 
       appState.rsvps.push(newEntry);
+      appState.lastConfirmedGuest = newEntry;
       await persistState();
 
       document.getElementById("ticket-name").textContent = name;
@@ -1895,12 +1977,15 @@
         : "No asiste (Envía buenos deseos)";
       document.getElementById("ticket-gift").textContent = giftsLabel;
 
-      const nudgeBox = document.getElementById("vip-gift-nudge");
-      if (allGuestGifts.length > 0) {
-        nudgeBox.classList.add("hidden");
+      const msgBox = document.getElementById("ticket-message-box");
+      if (message) {
+        msgBox.classList.remove("hidden");
+        document.getElementById("ticket-message").textContent = `"${message}"`;
       } else {
-        nudgeBox.classList.remove("hidden");
+        msgBox.classList.add("hidden");
       }
+
+      document.getElementById("vip-gift-nudge").classList.add("hidden");
 
       const vipModal = document.getElementById("vip-modal");
       vipModal.classList.remove("hidden");
@@ -2015,7 +2100,7 @@
         btnCloud.className = activeCls;
         if (customRtdbUrl) {
           document.getElementById("firebase-db-url-input").value = customRtdbUrl;
-          document.getElementById("cloud-status-badge").textContent = "✅ Conectado a la nube: " + customRtdbUrl;
+          document.getElementById("cloud-status-badge").textContent = "✅ Conectado en tiempo real: " + customRtdbUrl;
         }
       }
     };
@@ -2086,6 +2171,9 @@
 
     window.deleteRsvp = async function(id) {
       appState.rsvps = appState.rsvps.filter(r => r.id !== id);
+      if (appState.lastConfirmedGuest && appState.lastConfirmedGuest.id === id) {
+        appState.lastConfirmedGuest = null;
+      }
       await persistState();
       renderAdminTables();
       showToast("Registro eliminado.");
@@ -2343,6 +2431,7 @@
       renderGifts();
       updateRegistryStats();
       renderWishesWall();
+      updateConfirmationUI();
       if (document.getElementById("admin-dashboard-modal") && !document.getElementById("admin-dashboard-modal").classList.contains("hidden")) {
         renderAdminTables();
       }
