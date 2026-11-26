@@ -1320,12 +1320,47 @@
         if (res.ok) {
           const data = await res.json();
           if (data && typeof data === "object") {
-            if (Array.isArray(data.gifts)) appState.gifts = mergeGiftCatalog(data.gifts);
-            if (Array.isArray(data.rsvps)) appState.rsvps = data.rsvps;
+            if (Array.isArray(data.gifts)) {
+              const merged = mergeGiftCatalog(data.gifts);
+              // Keep any local session claim if not yet synced, unless a finite gift is already full by someone else
+              appState.gifts = INITIAL_GIFTS.map(base => {
+                const remoteGift = merged.find(m => m.id === base.id) || { ...base, claimedBy: [] };
+                const localGift = appState.gifts.find(l => l.id === base.id);
+                if (!localGift || base.unlimited) return remoteGift;
+                const localOnlyClaims = localGift.claimedBy.filter(
+                  person => !remoteGift.claimedBy.includes(person)
+                );
+                const combined = [...remoteGift.claimedBy];
+                for (const person of localOnlyClaims) {
+                  if (combined.length < base.totalQty) {
+                    combined.push(person);
+                  }
+                }
+                return { ...base, claimedBy: combined };
+              });
+            }
+            if (Array.isArray(data.rsvps)) {
+              const byId = new Map();
+              [...data.rsvps, ...appState.rsvps].forEach(item => {
+                if (item && item.id) byId.set(item.id, item);
+              });
+              appState.rsvps = Array.from(byId.values());
+            }
             saveToLocal(false);
             renderAll();
             setSyncStatus("En vivo");
           }
+        }
+      } catch (e) {
+        console.warn("Cloud fetch warning:", e);
+      }
+    }
+
+    function startCustomRtdbSync() {
+      fetchCustomRtdb();
+      if (window._cloudSyncInterval) clearInterval(window._cloudSyncInterval);
+      window._cloudSyncInterval = setInterval(fetchCustomRtdb, 2000);
+    }
         }
       } catch (e) {
         console.warn("Cloud fetch warning:", e);
@@ -1643,16 +1678,16 @@
             <span>💖</span>
           </div>
         </div>
-      `).join("");
-    }
-
-    window.openGiftModal = function(giftId) {
+    window.openGiftModal = async function(giftId) {
+      await fetchCustomRtdb();
       const gift = appState.gifts.find(g => g.id === giftId);
       if (!gift) return;
 
       const remaining = gift.unlimited ? 5 : Math.max(0, gift.totalQty - gift.claimedBy.length);
       if (!gift.unlimited && remaining <= 0) {
-        showToast("Este regalo acaba de ser apartado por otro invitado.");
+        const who = gift.claimedBy[0] ? ` por ${gift.claimedBy[0]}` : "";
+        showToast(`Este regalo ya fue apartado${who}. Elige otro disponible.`);
+        renderGifts();
         return;
       }
 
@@ -1693,14 +1728,25 @@
         return;
       }
 
-      const gift = appState.selectedGiftForModal;
+      await fetchCustomRtdb();
+
+      const giftId = appState.selectedGiftForModal?.id;
+      const gift = appState.gifts.find(g => g.id === giftId);
       if (!gift) return;
 
       const qty = parseInt(document.getElementById("modal-gift-qty").value || "1", 10);
       const remaining = gift.unlimited ? 99 : Math.max(0, gift.totalQty - gift.claimedBy.length);
 
+      if (!gift.unlimited && remaining <= 0) {
+        const who = gift.claimedBy[0] ? ` por ${gift.claimedBy[0]}` : "";
+        closeGiftModal();
+        renderGifts();
+        showToast(`¡Uy! Alguien acaba de apartar "${gift.name}"${who}. Por favor elige otro regalo.`);
+        return;
+      }
+
       if (!gift.unlimited && qty > remaining) {
-        showToast("No hay suficientes unidades disponibles.");
+        showToast(`Solo quedan ${remaining} unidad(es) disponibles de este regalo.`);
         return;
       }
 
@@ -1989,15 +2035,25 @@
         return;
       }
 
+      await fetchCustomRtdb();
+
       const previouslyClaimed = appState.gifts
         .filter(g => g.claimedBy.some(person => person.toLowerCase() === name.toLowerCase()))
         .map(g => g.name);
 
-      const sessionGiftNames = appState.currentSessionGifts.map(g => `${g.name}${g.qty > 1 ? ` (x${g.qty})` : ""}`);
+      const sessionGiftNames = appState.currentSessionGifts
+        .filter(item => {
+          const g = appState.gifts.find(x => x.id === item.id);
+          if (!g) return false;
+          if (g.unlimited) return true;
+          return g.claimedBy.includes(name);
+        })
+        .map(g => `${g.name}${g.qty > 1 ? ` (x${g.qty})` : ""}`);
+
       const allGuestGifts = [...new Set([...sessionGiftNames, ...previouslyClaimed])];
 
       if (allGuestGifts.length === 0) {
-        showToast("Es obligatorio elegir un regalo para Zoe Isabella antes de confirmar.");
+        showToast("El regalo elegido ya fue tomado por alguien más o falta elegir uno. Elige uno disponible.");
         openGiftPickerPopup();
         return;
       }
